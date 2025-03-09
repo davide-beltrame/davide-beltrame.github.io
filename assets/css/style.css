@@ -439,3 +439,51 @@ body.light-theme #theme-toggle .fa-moon {
     margin-bottom: 10px;
   }
 }
+
+@media (max-width: 768px) {
+  /* Make header a flexbox container with proper spacing */
+  header.sticky {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Position menu toggle to the left */
+  .menu-toggle {
+    position: static; /* Remove positioning */
+    display: block;
+    order: 1; /* First item in flex container */
+    margin: 0;
+    padding: 5px;
+  }
+  
+  /* Position header controls to the right */
+  .header-controls {
+    position: static; /* Remove positioning */
+    order: 3; /* Last item in flex container */
+    margin: 0;
+    margin-left: auto; /* Push to the right */
+  }
+  
+  /* Add an empty middle section to create space (if needed) */
+  header.sticky::after {
+    content: "";
+    order: 2;
+    flex: 1;
+  }
+  
+  /* Make sure the mobile menu appears below header correctly */
+  .mobile-menu {
+    top: 100%;
+    position: absolute;
+    z-index: 1000;
+  }
+  
+  /* Ensure the sticky header has proper z-index */
+  header.sticky {
+    z-index: 1001;
+  }
+}

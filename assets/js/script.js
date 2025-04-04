@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "education-link": "Education",
       "experience-link": "Experience",
       "skills-link": "Skills",
+      "cv-link": "CV",
       
       // Headers
       "about-header": "About",
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "education-link": "Istruzione",
       "experience-link": "Esperienza",
       "skills-link": "Competenze",
+      "cv-link": "CV",
       
       // Headers
       "about-header": "Chi Sono",

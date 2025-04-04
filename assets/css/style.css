@@ -327,6 +327,98 @@ body.light-theme #theme-toggle .fa-moon {
   margin-top: 1rem;
 }
 
+/* Active nav link styling */
+header nav a.active, 
+.mobile-menu a.active {
+  border-bottom: 2px solid var(--primary);
+}
+
+/* Project cards */
+.project-card {
+  background-color: var(--surface);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
+  border-left: 4px solid var(--primary);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.project-card p {
+  color: var(--text-alt);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Project technologies */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  gap: 8px;
+}
+
+.project-tech span {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* GitHub button */
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--surface);
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.github-button i {
+  margin-right: 8px;
+}
+
+.github-button:hover {
+  background-color: var(--accent);
+  text-decoration: none;
+}
+
+/* Back button */
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: var(--surface);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--accent);
+  text-decoration: none;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   /* Hide desktop navigation on mobile */
@@ -409,6 +501,24 @@ body.light-theme #theme-toggle .fa-moon {
   .profile-pic {
     width: 120px;
     height: 120px;
+  }
+  
+  .project-card {
+    padding: 1rem;
+  }
+  
+  .project-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .project-tech {
+    margin-bottom: 0.8rem;
+  }
+  
+  .github-button, .back-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
 

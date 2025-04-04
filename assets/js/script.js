@@ -76,7 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
       
       "bsc-content": "BSc in Management and Computer Science, achieved with honours and a final GPA of 29.8/30. Emphasis on Data Science, Business Analytics, and Machine Learning.",
       "msc-content": "Pursuing an MSc in Artificial Intelligence (LM-18 Computer Science). The program covers subjects such as Software Engineering, Algorithms for Optimisation and Inference, Deep Learning, Computer Vision, Complex Systems, Cryptography, and Advanced Mathematics.",
-      "highschool-content": "High school diploma in scientific studies, graduated with honours. Recognized for achieving the highest final GPA in 2019."
+      "highschool-content": "High school diploma in scientific studies, graduated with honours. Recognized for achieving the highest final GPA in 2019.",
+
+      "projects-link": "Projects",
+      "projects-header": "Projects",
+      "projects-page-title": "Projects - GitHub Portfolio",
+      "projects-intro": "Here are some of my GitHub projects. These represent my interests in AI, data science, and web development. Click on any project to visit its GitHub repository.",
+      "more-projects": "More projects are coming soon! Check my <a href=\"https://github.com/davide-beltrame\" target=\"_blank\">GitHub profile</a> for the latest updates.",
+      "home-link": "Home"
     },
     it: {
       // Navigation
@@ -134,7 +141,14 @@ document.addEventListener("DOMContentLoaded", () => {
       
       "bsc-content": "Laurea in Management and Computer Science, conseguita con lode e media finale di 29.8/30. Focus su Data Science, Business Analytics e Machine Learning.",
       "msc-content": "Master in Intelligenza Artificiale (LM-18 Informatica). Il programma copre materie come Ingegneria del Software, Algoritmi per l'Ottimizzazione e l'Inferenza, Deep Learning, Computer Vision, Sistemi Complessi, Crittografia e Matematica Avanzata.",
-      "highschool-content": "Diploma scientifico, conseguito con lode. Riconosciuto per aver raggiunto la media finale più alta nel 2019."
+      "highschool-content": "Diploma scientifico, conseguito con lode. Riconosciuto per aver raggiunto la media finale più alta nel 2019.",
+
+      "projects-link": "Progetti",
+      "projects-header": "Progetti",
+      "projects-page-title": "Progetti - Portfolio GitHub",
+      "projects-intro": "Ecco alcuni dei miei progetti su GitHub. Rappresentano i miei interessi nell'AI, data science e sviluppo web. Clicca su qualsiasi progetto per visitare il suo repository GitHub.",
+      "more-projects": "Altri progetti in arrivo presto! Controlla il mio <a href=\"https://github.com/davide-beltrame\" target=\"_blank\">profilo GitHub</a> per gli ultimi aggiornamenti.",
+      "home-link": "Home"
     }
   };
   

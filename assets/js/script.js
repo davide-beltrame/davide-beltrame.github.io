@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Content
       "website-message": "Website currently in development!",
-      "role-description": "AI Student, Author & Developer",
+      "role-description": "AI Researcher, Author & Developer",
       "full-experience-link": "View full experience details",
       
       // Skills
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "tools-content": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics.",
       
       // About content
-      "about-content": "I'm a student in the MSc in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Artificial Intelligence</a> at Bocconi University. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies.",
+      "about-content": "I'm a student in the MSc in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Artificial Intelligence</a> at Bocconi University. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. I recently started an internship as an AI Researcher at <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, a Milan-based startup focused on machine learning solutions for e-commerce.",
       
       // Education items
       "bocconi-education": "<strong><a href=\"education/msc.html\">Bocconi University (2024-2026):</a></strong> MSc in Artificial Intelligence (LM-18: Computer Science)",
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Experience items
       "consensus-experience": "<strong><a href=\"https://www.consensusrivista.com\">Consensus Rivista (2024–present):</a></strong> Author and Caporedattore specializing in science and technology.",
+      "commerce-clarity-experience": "<strong><a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity (2025–present):</a></strong> AI Researcher at a Milan-based startup focused on machine learning solutions for e-commerce.",
       "jelu-experience": "<strong>JELU Consulting (2023–2024):</strong> Audit Associate at a student-run consulting firm.",
       "starting-finance-experience": "<strong>Starting Finance Club Guido Carli (2022–2024):</strong> Held leadership roles including President, Vice President, and Head of HR & IT.",
       "luiss-tutor-experience": "<strong>LUISS Training Course for Italian Informatics Olympics (2022–2023):</strong> Tutor and problem designer in Python and C++.",
@@ -102,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Content
       "website-message": "Sito attualmente in sviluppo!",
-      "role-description": "Studente di AI, Autore e Sviluppatore",
+      "role-description": "Ricercatore AI, Autore e Sviluppatore",
       "full-experience-link": "Vedi dettagli completi sull'esperienza",
       
       // Skills
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "tools-content": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics.",
       
       // About content
-      "about-content": "Sono uno studente del Master in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Intelligenza Artificiale</a> presso l'Università Bocconi. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie.",
+      "about-content": "Sono uno studente del Master in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Intelligenza Artificiale</a> presso l'Università Bocconi. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. Recentemente ho iniziato uno stage come Ricercatore AI presso <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, una startup milanese specializzata in soluzioni di machine learning per e-commerce.",
       
       // Education items
       "bocconi-education": "<strong><a href=\"education/msc.html\">Università Bocconi (2024-2026):</a></strong> MSc in Intelligenza Artificiale (LM-18: Informatica)",
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Experience items
       "consensus-experience": "<strong><a href=\"https://www.consensusrivista.com\">Consensus Rivista (2024–presente):</a></strong> Autore e Caporedattore specializzato in scienza e tecnologia.",
+      "commerce-clarity-experience": "<strong><a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity (2025–presente):</a></strong> Ricercatore di AI presso una startup milanese specializzata in soluzioni di machine learning per e-commerce.",
       "jelu-experience": "<strong>JELU Consulting (2023–2024):</strong> Audit Associate presso una società di consulenza gestita da studenti.",
       "starting-finance-experience": "<strong>Starting Finance Club Guido Carli (2022–2024):</strong> Ruoli di leadership tra cui Presidente, Vice Presidente e Responsabile HR e IT.",
       "luiss-tutor-experience": "<strong>Corso di Formazione LUISS per le Olimpiadi Italiane di Informatica (2022–2023):</strong> Tutor e designer di problemi in Python e C++.",

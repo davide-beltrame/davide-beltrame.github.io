@@ -74,14 +74,23 @@ header {
   gap: 10px;
 }
 
-/* Sticky header styles */
+/* Sticky header styles with smooth transitions */
 header.sticky {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0.5rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: padding 0.3s ease;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  background-color: rgba(30, 30, 30, 0.95);
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+body.light-theme header.sticky {
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 header.sticky .header-content {
@@ -90,6 +99,15 @@ header.sticky .header-content {
 
 header.sticky nav {
   margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Body adjustment for sticky header */
+body.header-sticky {
+  padding-top: 80px;
+  transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 header nav {
@@ -439,6 +457,11 @@ header nav a.active,
     overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
+  /* Adjust sticky header padding for mobile */
+  body.header-sticky {
+    padding-top: 60px;
+  }
+  
   .mobile-menu {
     display: none;
     position: absolute;
@@ -446,13 +469,13 @@ header nav a.active,
     left: 0;
     width: 100%;
     background-color: var(--surface);
-    z-index: 1000;
+    z-index: 999;
     flex-direction: column;
     border-bottom: 3px solid var(--primary);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .mobile-menu.active {
@@ -467,10 +490,11 @@ header nav a.active,
   }
   
   header.sticky {
-    min-height: 40px;
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0.75rem 1rem;
   }
   
   .header-controls {
@@ -479,15 +503,8 @@ header nav a.active,
     z-index: 1001;
   }
   
-  header.sticky {
-    transition: padding 0.3s ease, box-shadow 0.3s ease;
-  }
-  
   section {
     margin-top: 2rem;
-  }
-  
-  section {
     width: 95%;
     padding: 1rem;
   }

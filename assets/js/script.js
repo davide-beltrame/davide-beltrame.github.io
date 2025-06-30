@@ -205,43 +205,41 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("preferredTheme", currentTheme);
   }
   
-  // Toggle mobile menu
+  // Toggle mobile menu with improved sticky header handling
   function toggleMobileMenu() {
     mobileMenu.classList.toggle("active");
-    // If the header is sticky, adjust body padding
-    if (header.classList.contains("sticky")) {
-      const headerHeight = header.offsetHeight;
-      if (mobileMenu.classList.contains("active")) {
-        // Menu opened
-        const menuHeight = mobileMenu.scrollHeight;
-        document.body.style.paddingTop = `${headerHeight + menuHeight}px`;
-      } else {
-        // Menu closed
-        document.body.style.paddingTop = `${headerHeight}px`;
-      }
-    }
   }
 
-  // Sticky header
+  // Sticky header with smooth transitions
   function setupStickyHeader() {
-    const headerHeight = header.offsetHeight;
     let isSticky = false;
+    let ticking = false;
     
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 150 && !isSticky) {
+    function updateStickyHeader() {
+      const scrollY = window.scrollY;
+      const shouldBeSticky = scrollY > 200; // Increased threshold for smoother transition
+      
+      if (shouldBeSticky && !isSticky) {
         header.classList.add("sticky");
-        setTimeout(() => {
-          document.body.style.paddingTop = `${headerHeight}px`;
-        }, 10);
+        document.body.classList.add("header-sticky");
         isSticky = true;
-      } else if (window.scrollY <= 150 && isSticky) {
-        document.body.style.paddingTop = "0";
-        setTimeout(() => {
-          header.classList.remove("sticky");
-        }, 10);
+      } else if (!shouldBeSticky && isSticky) {
+        header.classList.remove("sticky");
+        document.body.classList.remove("header-sticky");
         isSticky = false;
       }
-    });
+      
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateStickyHeader);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener("scroll", requestTick, { passive: true });
   }
 
   // Close mobile menu when clicking any link in it

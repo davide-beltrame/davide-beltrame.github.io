@@ -41,11 +41,15 @@ Add this to the beginning of the `experience` array in `content.json`.
   "authors": ["Davide Beltrame", "Co-Author"],
   "venue": "Conference/Journal Name",
   "year": 2025,
-  "status": "published", // or "draft", "submitted", "accepted"
-  "link": "https://link-to-paper.com",
+  "status": "published", // or "draft", "submitted", "accepted", "in_preparation"
+  "link": "https://link-to-paper.com", // use "#" if no link available
   "description": {
     "en": "Brief description...",
     "it": "Breve descrizione..."
+  },
+  "note": {  // optional - for special notes like awards
+    "en": "Special note about the paper...",
+    "it": "Nota speciale sul paper..."
   }
 }
 ```

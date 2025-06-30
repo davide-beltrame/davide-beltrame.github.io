@@ -82,9 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       "projects-link": "Projects",
       "projects-header": "Projects",
-      "projects-page-title": "Projects - GitHub Portfolio",
-      "projects-intro": "Here are some of my GitHub projects. These represent my interests in AI, data science, and web development. Click on any project to visit its GitHub repository.",
-      "more-projects": "More projects are coming soon! Check my <a href=\"https://github.com/davide-beltrame\" target=\"_blank\">GitHub profile</a> for the latest updates.",
+      "publications-link": "Publications",
+      "publications-header": "Publications",
       "home-link": "Home"
     },
     it: {
@@ -149,6 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       "projects-link": "Progetti",
       "projects-header": "Progetti",
+      "publications-link": "Pubblicazioni",
+      "publications-header": "Pubblicazioni",
       "projects-page-title": "Progetti - Portfolio GitHub",
       "projects-intro": "Ecco alcuni dei miei progetti su GitHub. Rappresentano i miei interessi nell'AI, data science e sviluppo web. Clicca su qualsiasi progetto per visitare il suo repository GitHub.",
       "more-projects": "Altri progetti in arrivo presto! Controlla il mio <a href=\"https://github.com/davide-beltrame\" target=\"_blank\">profilo GitHub</a> per gli ultimi aggiornamenti.",

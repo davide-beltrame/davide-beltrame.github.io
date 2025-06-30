@@ -32,6 +32,7 @@ class ContentManager {
     this.updateEducationSection();
     this.updateExperienceSection();
     this.updateSkillsSection();
+    this.updatePublicationsSection();
     
     // Update meta information
     this.updateMeta();
@@ -147,6 +148,69 @@ class ContentManager {
     }
   }
 
+  updatePublicationsSection() {
+    const publicationsList = document.querySelector('[data-content="publications-list"]');
+    if (!publicationsList || !this.content.publications) return;
+
+    const publications = this.content.publications;
+    
+    const getStatusBadge = (status) => {
+      const badges = {
+        'published': { 
+          en: 'Published', 
+          it: 'Pubblicato',
+          class: 'status-published'
+        },
+        'in_preparation': { 
+          en: 'In Preparation', 
+          it: 'In Preparazione',
+          class: 'status-preparation'
+        },
+        'submitted': { 
+          en: 'Submitted', 
+          it: 'Sottomesso',
+          class: 'status-submitted'
+        },
+        'accepted': { 
+          en: 'Accepted', 
+          it: 'Accettato',
+          class: 'status-accepted'
+        },
+        'draft': { 
+          en: 'Draft', 
+          it: 'Bozza',
+          class: 'status-draft'
+        }
+      };
+      
+      const badge = badges[status] || badges['draft'];
+      return `<span class="publication-status ${badge.class}">${this.getText(badge)}</span>`;
+    };
+    
+    publicationsList.innerHTML = publications.map(pub => {
+      const link = pub.link && pub.link !== '#' ? `<a href="${pub.link}" target="_blank" class="publication-link">` : '';
+      const closeLink = pub.link && pub.link !== '#' ? '</a>' : '';
+      const note = pub.note ? `<p class="publication-note"><em>${this.getText(pub.note)}</em></p>` : '';
+      
+      return `
+        <div class="publication-card" data-publication-id="${pub.id}">
+          <div class="publication-header">
+            <h3 class="publication-title">
+              ${link}${this.getText(pub.title)}${closeLink}
+            </h3>
+            ${getStatusBadge(pub.status)}
+          </div>
+          <div class="publication-meta">
+            <span class="publication-authors">${pub.authors.join(', ')}</span>
+            <span class="publication-venue">${pub.venue} (${pub.year})</span>
+          </div>
+          <p class="publication-description">${this.getText(pub.description)}</p>
+          ${note}
+        </div>
+      `;
+    }).join('');
+  }
+
   updateMeta() {
     // Update last updated date in footer
     const copyrightElement = document.querySelector('[data-lang-key="copyright"]');
@@ -179,6 +243,11 @@ class ContentManager {
   addProject(newProject) {
     this.content.projects.unshift(newProject);
     // Update projects if on projects page
+  }
+
+  addPublication(newPublication) {
+    this.content.publications.unshift(newPublication);
+    this.updatePublicationsSection();
   }
 }
 

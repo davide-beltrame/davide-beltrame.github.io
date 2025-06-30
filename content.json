@@ -189,19 +189,39 @@
   ],
   "publications": [
     {
-      "id": "example_paper",
+      "id": "diffusion_llms",
       "title": {
-        "en": "Example Paper Title",
-        "it": "Titolo Paper di Esempio"
+        "en": "Diffusion LLMs: A Novel Architecture for Large Language Models",
+        "it": "Diffusion LLMs: Una Nuova Architettura per Modelli di Linguaggio di Grandi Dimensioni"
       },
       "authors": ["Davide Beltrame"],
-      "venue": "Conference/Journal Name",
+      "venue": "Language Technology Course - Bocconi University",
       "year": 2025,
-      "status": "draft",
+      "status": "in_preparation",
       "link": "#",
       "description": {
-        "en": "Description of the paper...",
-        "it": "Descrizione del paper..."
+        "en": "A research paper on novel diffusion-based architectures for large language models. This work received the highest grade in the Language Technology course and is currently being developed into a conference paper.",
+        "it": "Un paper di ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Questo lavoro ha ricevuto il voto più alto nel corso di Language Technology ed è attualmente in fase di sviluppo per diventare un paper da conferenza."
+      },
+      "note": {
+        "en": "Best paper in Language Technology course - currently being prepared for conference submission",
+        "it": "Miglior paper del corso di Language Technology - attualmente in preparazione per sottomissione a conferenza"
+      }
+    },
+    {
+      "id": "pneumonia_ai_human",
+      "title": {
+        "en": "Do AI and Human Experts See Pneumonia the Same Way? A Comparative Analysis",
+        "it": "AI ed Esperti Umani Vedono la Polmonite allo Stesso Modo? Un'Analisi Comparativa"
+      },
+      "authors": ["Davide Beltrame"],
+      "venue": "BS Machine Learning Project",
+      "year": 2024,
+      "status": "published",
+      "link": "https://bsmachinelearning.com/project-pages/pneumonia.html",
+      "description": {
+        "en": "A comparative study analyzing how artificial intelligence systems and human medical experts perceive and diagnose pneumonia from chest X-rays, exploring the differences and similarities in their diagnostic approaches.",
+        "it": "Uno studio comparativo che analizza come i sistemi di intelligenza artificiale e gli esperti medici umani percepiscono e diagnosticano la polmonite dalle radiografie del torace, esplorando le differenze e le somiglianze nei loro approcci diagnostici."
       }
     }
   ],

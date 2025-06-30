@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" data-page="home">
-<head>
+<html lang="en" data-page="home    <h1>Davide Beltrame</h1>
+    <p data-lang-key="website-message" data-content="status">Website currently in development!</p>
+    <p data-lang-key="role-description" data-content="role">AI Researcher, Author &amp; Developer</p><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Davide Beltrame - AI Researcher, Author & Developer. MSc student in Artificial Intelligence at Bocconi University." />
@@ -100,10 +101,9 @@
 </header>
 
 <main>
-  <!-- About Section -->
-  <section id="about">
+  <!-- About Section -->  <section id="about">
     <h2 data-lang-key="about-header">About</h2>
-    <p data-lang-key="about-content">
+    <p data-lang-key="about-content" data-content="about">
       I'm a student in the MSc in
       <a
         href="https://www.unibocconi.it/en/programs/master-science/artificial-intelligence"
@@ -115,7 +115,6 @@
         >Consensus Rivista</a
       >
       as Editor-in-Chief delegate to AI and New Technologies.
-
       I recently started an internship as an AI Researcher at
       <a href="https://commerceclarity.com" target="_blank">Commerce Clarity</a>, a Milan-based 
       startup focused on machine learning solutions for e-commerce.
@@ -125,7 +124,7 @@
   <!-- Education Section -->
   <section id="education">
     <h2 data-lang-key="education-header">Education</h2>
-    <ul>
+    <ul data-content="education-list">
       <li data-lang-key="bocconi-education">
         <strong><a href="education/msc.html">Bocconi University (2024-2026):</a></strong>
         MSc in Artificial Intelligence (LM-18: Computer Science)
@@ -151,7 +150,7 @@
   <!-- Experience Summary Section -->
   <section id="experience-summary">
     <h2 data-lang-key="experience-header">Experience</h2>
-    <ul>
+    <ul data-content="experience-list">
       <li data-lang-key="commerce-clarity-experience">
         <strong><a href="https://commerceclarity.com" target="_blank">Commerce Clarity (2025–present):</a></strong>
         AI Researcher at a Milan-based startup focused on machine learning solutions for e-commerce.
@@ -187,20 +186,20 @@
     <ul>
       <li>
         <strong data-lang-key="languages-label">Languages:</strong>
-        <span data-lang-key="languages-content"
+        <span data-lang-key="languages-content" data-content="skills-languages"
           >Italian (native), English (fluent), French (basic-intermediate), Spanish
           (basic).</span
         >
       </li>
       <li>
         <strong data-lang-key="coding-label">Coding:</strong>
-        <span data-lang-key="coding-content"
+        <span data-lang-key="coding-content" data-content="skills-programming"
           >Python, C, HTML, CSS, JavaScript, SQL, MATLAB.</span
         >
       </li>
       <li>
         <strong data-lang-key="tools-label">Tools:</strong>
-        <span data-lang-key="tools-content"
+        <span data-lang-key="tools-content" data-content="skills-tools"
           >Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google
           Analytics.</span
         >
@@ -213,6 +212,7 @@
   <p data-lang-key="copyright">&copy; 2025 Davide Beltrame | Last update: April 2025</p>
 </footer>
 
+<script src="assets/js/content.js" defer></script>
 <script src="assets/js/script.js" defer></script>
 </body>
 </html>

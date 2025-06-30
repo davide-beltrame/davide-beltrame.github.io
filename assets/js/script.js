@@ -191,6 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTranslations(currentLang);
     applyPageTitle(currentLang);
     updateLanguageButton();
+    
+    // Update content manager language if available
+    if (window.contentManager) {
+      window.contentManager.updateLanguage(currentLang);
+    }
   }
   
   // Switch theme function
@@ -274,7 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setupStickyHeader();
     setupMobileMenuLinks();
     setupMobileMenuOutsideClick();
-    setupMobileMenuOutsideClick();
+    
+    // Load content from JSON if content manager is available
+    if (window.contentManager) {
+      window.contentManager.loadContent();
+    }
     
     // Event listeners
     langToggle.addEventListener("click", switchLanguage);

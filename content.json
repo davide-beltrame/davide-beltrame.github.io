@@ -1,0 +1,213 @@
+{
+  "personal": {
+    "name": "Davide Beltrame",
+    "title": {
+      "en": "AI Researcher, Author & Developer",
+      "it": "Ricercatore AI, Autore e Sviluppatore"
+    },
+    "status": {
+      "en": "Website currently in development!",
+      "it": "Sito attualmente in sviluppo!"
+    },
+    "about": {
+      "en": "I'm a student in the MSc in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Artificial Intelligence</a> at Bocconi University. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. I recently started an internship as an AI Researcher at <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, a Milan-based startup focused on machine learning solutions for e-commerce.",
+      "it": "Sono uno studente del Master in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Intelligenza Artificiale</a> presso l'Università Bocconi. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. Recentemente ho iniziato uno stage come Ricercatore AI presso <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, una startup milanese specializzata in soluzioni di machine learning per e-commerce."
+    },
+    "email": "davide.beltrame@studbocconi.it",
+    "social": {
+      "github": "https://github.com/davide-beltrame",
+      "linkedin": "https://www.linkedin.com/in/davide-beltrame"
+    },
+    "cv_file": "assets/files/Beltrame_Davide_CV_ENG.pdf",
+    "profile_image": "assets/images/profile.jpg"
+  },
+  "education": [
+    {
+      "id": "bocconi",
+      "institution": "Bocconi University",
+      "degree": {
+        "en": "MSc in Artificial Intelligence (LM-18: Computer Science)",
+        "it": "MSc in Intelligenza Artificiale (LM-18: Informatica)"
+      },
+      "period": "2024-2026",
+      "status": "current",
+      "details": {
+        "en": "Pursuing an MSc in Artificial Intelligence (LM-18 Computer Science). The program covers subjects such as Software Engineering, Algorithms for Optimisation and Inference, Deep Learning, Computer Vision, Complex Systems, Cryptography, and Advanced Mathematics.",
+        "it": "Master in Intelligenza Artificiale (LM-18 Informatica). Il programma copre materie come Ingegneria del Software, Algoritmi per l'Ottimizzazione e l'Inferenza, Deep Learning, Computer Vision, Sistemi Complessi, Crittografia e Matematica Avanzata."
+      },
+      "link": "education/msc.html"
+    },
+    {
+      "id": "luiss",
+      "institution": "LUISS Guido Carli",
+      "degree": {
+        "en": "BSc in Management and Computer Science, graduated with honours",
+        "it": "Laurea in Management and Computer Science, conseguita con lode"
+      },
+      "period": "2021-2024",
+      "status": "completed",
+      "details": {
+        "en": "BSc in Management and Computer Science, achieved with honours and a final GPA of 29.8/30. Emphasis on Data Science, Business Analytics, and Machine Learning.",
+        "it": "Laurea in Management and Computer Science, conseguita con lode e media finale di 29.8/30. Focus su Data Science, Business Analytics e Machine Learning."
+      },
+      "link": "education/bsc.html"
+    },
+    {
+      "id": "kozminski",
+      "institution": "Kozminski University",
+      "degree": {
+        "en": "NLP for Business Intensive Program (EU-funded)",
+        "it": "Programma Intensivo di NLP for Business (finanziato dall'UE)"
+      },
+      "period": "2023",
+      "status": "completed"
+    },
+    {
+      "id": "highschool",
+      "institution": "Liceo Scientifico Augusto Righi",
+      "degree": {
+        "en": "Scientific diploma with honours",
+        "it": "Diploma scientifico con lode"
+      },
+      "period": "2016-2021",
+      "status": "completed",
+      "details": {
+        "en": "High school diploma in scientific studies, graduated with honours. Recognized for achieving the highest final GPA in 2019.",
+        "it": "Diploma scientifico, conseguito con lode. Riconosciuto per aver raggiunto la media finale più alta nel 2019."
+      },
+      "link": "education/highschool.html"
+    }
+  ],
+  "experience": [
+    {
+      "id": "commerce_clarity",
+      "company": "Commerce Clarity",
+      "position": {
+        "en": "AI Researcher",
+        "it": "Ricercatore di AI"
+      },
+      "period": "2025–present",
+      "status": "current",
+      "description": {
+        "en": "AI Researcher at a Milan-based startup focused on machine learning solutions for e-commerce.",
+        "it": "Ricercatore di AI presso una startup milanese specializzata in soluzioni di machine learning per e-commerce."
+      },
+      "link": "https://commerceclarity.com",
+      "type": "work"
+    },
+    {
+      "id": "consensus",
+      "company": "Consensus Rivista",
+      "position": {
+        "en": "Author and Caporedattore",
+        "it": "Autore e Caporedattore"
+      },
+      "period": "2024–present",
+      "status": "current",
+      "description": {
+        "en": "Author and Caporedattore specializing in science and technology.",
+        "it": "Autore e Caporedattore specializzato in scienza e tecnologia."
+      },
+      "link": "https://www.consensusrivista.com",
+      "type": "editorial"
+    },
+    {
+      "id": "jelu",
+      "company": "JELU Consulting",
+      "position": {
+        "en": "Audit Associate",
+        "it": "Audit Associate"
+      },
+      "period": "2023–2024",
+      "status": "completed",
+      "description": {
+        "en": "Audit Associate at a student-run consulting firm.",
+        "it": "Audit Associate presso una società di consulenza gestita da studenti."
+      },
+      "type": "consulting"
+    },
+    {
+      "id": "starting_finance",
+      "company": "Starting Finance Club Guido Carli",
+      "position": {
+        "en": "President, Vice President, and Head of HR & IT",
+        "it": "Presidente, Vice Presidente e Responsabile HR e IT"
+      },
+      "period": "2022–2024",
+      "status": "completed",
+      "description": {
+        "en": "Held leadership roles including President, Vice President, and Head of HR & IT.",
+        "it": "Ruoli di leadership tra cui Presidente, Vice Presidente e Responsabile HR e IT."
+      },
+      "type": "leadership"
+    },
+    {
+      "id": "luiss_tutor",
+      "company": "LUISS Training Course for Italian Informatics Olympics",
+      "position": {
+        "en": "Tutor and problem designer",
+        "it": "Tutor e designer di problemi"
+      },
+      "period": "2022–2023",
+      "status": "completed",
+      "description": {
+        "en": "Tutor and problem designer in Python and C++.",
+        "it": "Tutor e designer di problemi in Python e C++."
+      },
+      "type": "education"
+    }
+  ],
+  "skills": {
+    "languages": {
+      "en": "Italian (native), English (fluent), French (basic-intermediate), Spanish (basic).",
+      "it": "Italiano (madrelingua), Inglese (fluente), Francese (base-intermedio), Spagnolo (base)."
+    },
+    "programming": {
+      "en": "Python, C, HTML, CSS, JavaScript, SQL, MATLAB.",
+      "it": "Python, C, HTML, CSS, JavaScript, SQL, MATLAB."
+    },
+    "tools": {
+      "en": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics.",
+      "it": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics."
+    }
+  },
+  "projects": [
+    {
+      "id": "website",
+      "title": {
+        "en": "Personal Website",
+        "it": "Sito Web Personale"
+      },
+      "description": {
+        "en": "Personal portfolio website built from scratch with HTML, CSS, and JavaScript. Features dark/light mode, multi-language support, and responsive design.",
+        "it": "Sito web portfolio personale costruito da zero con HTML, CSS e JavaScript. Include modalità scura/chiara, supporto multi-lingua e design responsive."
+      },
+      "technologies": ["HTML", "CSS", "JavaScript"],
+      "github": "https://github.com/davide-beltrame/davide-beltrame.github.io",
+      "status": "active"
+    }
+  ],
+  "publications": [
+    {
+      "id": "example_paper",
+      "title": {
+        "en": "Example Paper Title",
+        "it": "Titolo Paper di Esempio"
+      },
+      "authors": ["Davide Beltrame"],
+      "venue": "Conference/Journal Name",
+      "year": 2025,
+      "status": "draft",
+      "link": "#",
+      "description": {
+        "en": "Description of the paper...",
+        "it": "Descrizione del paper..."
+      }
+    }
+  ],
+  "meta": {
+    "last_updated": "2025-06-30",
+    "version": "1.0.0",
+    "website_url": "https://davide-beltrame.github.io"
+  }
+}

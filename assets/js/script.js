@@ -252,6 +252,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
+  // Close mobile menu when clicking outside of it
+  function setupMobileMenuOutsideClick() {
+    document.addEventListener("click", (event) => {
+      if (mobileMenu.classList.contains("active")) {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle) {
+          mobileMenu.classList.remove("active");
+        }
+      }
+    });
+  }
+
   // Initialization
   function init() {
     applyTranslations(currentLang);
@@ -259,6 +273,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLanguageButton();
     setupStickyHeader();
     setupMobileMenuLinks();
+    setupMobileMenuOutsideClick();
+    setupMobileMenuOutsideClick();
     
     // Event listeners
     langToggle.addEventListener("click", switchLanguage);

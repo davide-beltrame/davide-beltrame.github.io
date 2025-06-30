@@ -21,7 +21,7 @@ davide-beltrame.github.io/
 │   ├── css/
 │   │   └── style.css
 │   ├── files/
-│   │   └── CV_Davide_Beltrame.pdf
+│   │   └── Beltrame_Davide_CV_ENG.pdf
 │   ├── images/
 │   │   └── profile.jpg
 │   └── js/

@@ -95,6 +95,12 @@ function getText(path, lang = currentLanguage) {
 function updatePageContent() {
     if (!contentData) return;
     
+    // Update page meta
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.setAttribute('content', `${contentData.personal.name} - ${getText('personal.title')}`);
+    }
+    
     // Update navigation
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
@@ -113,13 +119,13 @@ function updatePageContent() {
 function updateHomeSection() {
     if (!contentData) return;
     
-    // Update title and subtitle
+    // Update title and remove subtitle
     const titleElement = document.querySelector('.title');
     const subtitleElement = document.querySelector('.subtitle');
     const aboutElement = document.querySelector('.about p');
     
     if (titleElement) titleElement.textContent = getText('personal.title');
-    if (subtitleElement) subtitleElement.textContent = getText('personal.subtitle');
+    if (subtitleElement) subtitleElement.style.display = 'none'; // Hide subtitle
     if (aboutElement) aboutElement.textContent = getText('personal.about');
     
     // Update contact links

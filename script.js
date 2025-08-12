@@ -134,9 +134,9 @@ function updateHomeSection() {
     if (cvLink) cvLink.href = contentData.personal.contact.cv;
     
     // Update section headers
-    const contactHeader = document.querySelector('.contact h3');
-    const experienceHeader = document.querySelector('.experience h3');
-    const educationHeader = document.querySelector('.education h3');
+    const contactHeader = document.querySelector('.contact .header-text');
+    const experienceHeader = document.querySelector('.experience .header-text');
+    const educationHeader = document.querySelector('.education .header-text');
     
     if (contactHeader) contactHeader.textContent = getText('sections.get_in_touch');
     if (experienceHeader) experienceHeader.textContent = getText('sections.experience');
@@ -225,6 +225,22 @@ function switchLanguage(lang) {
         localStorage.setItem('preferred_language', lang);
     }
 }
+
+// ===== COLLAPSIBLE SECTIONS =====
+function initializeCollapsibleSections() {
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    
+    collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const section = header.closest('.collapsible-section');
+            
+            // Simply toggle the current section without affecting others
+            section.classList.toggle('expanded');
+        });
+    });
+}
+
+// ===== PROJECTS LOADING =====
 let projectsLoaded = false;
 
 // Configuration: Choose data source
@@ -355,6 +371,9 @@ navItems.forEach(item => {
 document.addEventListener('DOMContentLoaded', async () => {
     // Load content first
     await loadContent();
+    
+    // Initialize collapsible sections
+    initializeCollapsibleSections();
     
     // Load saved language preference
     const savedLanguage = localStorage.getItem('preferred_language');

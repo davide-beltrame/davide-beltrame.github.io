@@ -304,11 +304,59 @@ body {
 }
 
 /* Experience & Education */
+.contact,
 .experience,
 .education {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
 }
 
+/* ===== COLLAPSIBLE SECTIONS ===== */
+.collapsible-section {
+    margin-bottom: var(--space-md);
+}
+
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    cursor: pointer;
+    padding: var(--space-xs) 0;
+    border: none;
+    background: none;
+    color: var(--text);
+    transition: var(--transition);
+    user-select: none;
+}
+
+.collapsible-header:hover {
+    color: var(--text-secondary);
+}
+
+.arrow {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary);
+}
+
+.collapsible-section.expanded .arrow {
+    transform: rotate(90deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
+}
+
+.collapsible-section.expanded .collapsible-content {
+    max-height: 500px;
+    padding: var(--space-sm) 0 0 var(--space-lg);
+}
+
+.contact h3,
 .experience h3,
 .education h3 {
     font-size: var(--font-size-lg);

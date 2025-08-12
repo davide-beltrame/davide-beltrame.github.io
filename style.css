@@ -385,6 +385,18 @@ body {
     font-weight: 500;
 }
 
+.collab-badge {
+    background: var(--text);
+    color: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* ===== OTHER SECTION ===== */
 .skills,
 .publications {

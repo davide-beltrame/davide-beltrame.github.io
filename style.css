@@ -80,16 +80,13 @@ body {
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: var(--space-lg) var(--space-md);
+    padding: 0 var(--space-md);
     min-height: 100vh;
     position: relative;
 }
 
 /* ===== THEME TOGGLE ===== */
 .theme-toggle {
-    position: absolute;
-    top: var(--space-lg);
-    right: var(--space-md);
     width: 40px;
     height: 20px;
     background: var(--border);
@@ -98,7 +95,8 @@ body {
     cursor: pointer;
     transition: var(--transition);
     outline: none;
-    z-index: 100;
+    margin-left: var(--space-md);
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {
@@ -126,11 +124,26 @@ body {
 
 /* ===== HEADER ===== */
 .header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--max-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-2xl);
-    padding-top: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .header {
+    background: rgba(0, 0, 0, 0.95);
 }
 
 .name {
@@ -141,6 +154,7 @@ body {
 
 .nav {
     display: flex;
+    align-items: center;
     gap: var(--space-lg);
 }
 
@@ -181,6 +195,7 @@ body {
 /* ===== MAIN CONTENT ===== */
 .main {
     min-height: 60vh;
+    padding-top: calc(var(--space-2xl) + var(--space-2xl) + var(--space-md));
 }
 
 .section {
@@ -437,19 +452,18 @@ body {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .container {
-        padding: var(--space-md) var(--space-sm);
-    }
-    
-    .theme-toggle {
-        top: var(--space-md);
-        right: var(--space-sm);
+        padding: 0 var(--space-sm);
     }
     
     .header {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-md);
-        margin-bottom: var(--space-xl);
+        padding: var(--space-md) var(--space-sm);
+    }
+    
+    .main {
+        padding-top: calc(var(--space-2xl) + var(--space-2xl) + var(--space-lg));
     }
     
     .name {
@@ -458,6 +472,15 @@ body {
     
     .nav {
         gap: var(--space-md);
+        width: 100%;
+        position: relative;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
     
     .nav-item {

@@ -95,8 +95,32 @@ body {
     cursor: pointer;
     transition: var(--transition);
     outline: none;
-    margin-left: var(--space-md);
-    flex-shrink: 0;
+    position: relative;
+}
+
+.lang-toggle {
+    background: var(--hover);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.lang-toggle:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.lang-toggle:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
 }
 
 .theme-toggle:hover {
@@ -486,6 +510,13 @@ body {
         gap: var(--space-md);
         width: 100%;
         position: relative;
+    }
+    
+    .lang-toggle {
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
     }
     
     .theme-toggle {

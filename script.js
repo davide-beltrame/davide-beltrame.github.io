@@ -1,5 +1,6 @@
 // ===== THEME MANAGEMENT =====
 const themeToggle = document.getElementById('themeToggle');
+const langToggle = document.getElementById('langToggle');
 const body = document.body;
 
 // Load saved theme or default to light
@@ -13,6 +14,15 @@ themeToggle.addEventListener('click', () => {
     
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+});
+
+// Language toggle functionality
+langToggle.addEventListener('click', () => {
+    const newLang = currentLanguage === 'en' ? 'it' : 'en';
+    switchLanguage(newLang);
+    
+    // Update button text
+    langToggle.querySelector('.lang-text').textContent = newLang.toUpperCase();
 });
 
 // ===== NAVIGATION MANAGEMENT =====
@@ -38,7 +48,183 @@ navItems.forEach(item => {
     });
 });
 
-// ===== PROJECTS LOADING =====
+// ===== CONTENT MANAGEMENT =====
+let contentData = null;
+let currentLanguage = 'en'; // Default language
+
+// Load content from JSON
+async function loadContent() {
+    try {
+        const response = await fetch('./content.json');
+        contentData = await response.json();
+        currentLanguage = contentData.meta.default_language || 'en';
+        
+        // Initialize content on page load
+        updatePageContent();
+    } catch (error) {
+        console.error('Error loading content:', error);
+    }
+}
+
+// Get translated text or fallback to English
+function getText(path, lang = currentLanguage) {
+    if (!contentData) return '';
+    
+    const keys = path.split('.');
+    let current = contentData;
+    
+    for (const key of keys) {
+        if (current && current[key]) {
+            current = current[key];
+        } else {
+            return '';
+        }
+    }
+    
+    // If it's a translation object, get the language or fallback to English
+    if (current && typeof current === 'object' && current[lang]) {
+        return current[lang];
+    } else if (current && typeof current === 'object' && current['en']) {
+        return current['en'];
+    }
+    
+    return current || '';
+}
+
+// Update all page content with current language
+function updatePageContent() {
+    if (!contentData) return;
+    
+    // Update navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        const section = item.getAttribute('data-section');
+        if (section && contentData.navigation[section]) {
+            item.textContent = getText(`navigation.${section}`);
+        }
+    });
+    
+    // Update home section content
+    updateHomeSection();
+    updateOtherSection();
+}
+
+// Update home section with dynamic content
+function updateHomeSection() {
+    if (!contentData) return;
+    
+    // Update title and subtitle
+    const titleElement = document.querySelector('.title');
+    const subtitleElement = document.querySelector('.subtitle');
+    const aboutElement = document.querySelector('.about p');
+    
+    if (titleElement) titleElement.textContent = getText('personal.title');
+    if (subtitleElement) subtitleElement.textContent = getText('personal.subtitle');
+    if (aboutElement) aboutElement.textContent = getText('personal.about');
+    
+    // Update contact links
+    const emailLink = document.querySelector('a[href^="mailto:"], a[href="#"]');
+    const githubLink = document.querySelector('a[href*="github.com"], .contact-links a:nth-child(2)');
+    const linkedinLink = document.querySelector('a[href*="linkedin.com"], .contact-links a:nth-child(3)');
+    const cvLink = document.querySelector('a[href$="cv.pdf"], .contact-links a:nth-child(4)');
+    
+    if (emailLink) emailLink.href = `mailto:${contentData.personal.contact.email}`;
+    if (githubLink) githubLink.href = contentData.personal.contact.github;
+    if (linkedinLink) linkedinLink.href = contentData.personal.contact.linkedin;
+    if (cvLink) cvLink.href = contentData.personal.contact.cv;
+    
+    // Update section headers
+    const contactHeader = document.querySelector('.contact h3');
+    const experienceHeader = document.querySelector('.experience h3');
+    const educationHeader = document.querySelector('.education h3');
+    
+    if (contactHeader) contactHeader.textContent = getText('sections.get_in_touch');
+    if (experienceHeader) experienceHeader.textContent = getText('sections.experience');
+    if (educationHeader) educationHeader.textContent = getText('sections.education');
+    
+    // Update experience items
+    const experienceContainer = document.getElementById('experienceContainer');
+    if (experienceContainer && contentData.experience) {
+        experienceContainer.innerHTML = contentData.experience.map(exp => `
+            <div class="exp-item">
+                <span class="exp-title">${getText(`experience.${contentData.experience.indexOf(exp)}.title`)}</span>
+                <span class="exp-company">${exp.company}</span>
+                <span class="exp-period">${exp.period}</span>
+            </div>
+        `).join('');
+    }
+    
+    // Update education items
+    const educationContainer = document.getElementById('educationContainer');
+    if (educationContainer && contentData.education) {
+        educationContainer.innerHTML = contentData.education.map(edu => `
+            <div class="edu-item">
+                <span class="edu-degree">${getText(`education.${contentData.education.indexOf(edu)}.degree`)}</span>
+                <span class="edu-school">${edu.school}</span>
+                <span class="edu-period">${edu.period}</span>
+            </div>
+        `).join('');
+    }
+}
+
+// Update other section with dynamic content
+function updateOtherSection() {
+    if (!contentData) return;
+    
+    const skillsHeader = document.querySelector('.skills h3');
+    const publicationsHeader = document.querySelector('.publications h3');
+    
+    if (skillsHeader) skillsHeader.textContent = getText('sections.skills');
+    if (publicationsHeader) publicationsHeader.textContent = getText('sections.publications');
+    
+    // Update skill categories
+    const skillCategories = document.querySelectorAll('.skill-category');
+    const skills = ['programming', 'languages', 'tools'];
+    
+    skillCategories.forEach((category, index) => {
+        if (skills[index] && contentData.skills[skills[index]]) {
+            const label = category.querySelector('.skill-label');
+            const list = category.querySelector('.skill-list');
+            
+            if (label) label.textContent = getText(`labels.${skills[index]}`);
+            if (list) list.textContent = getText(`skills.${skills[index]}`);
+        }
+    });
+    
+    // Update publications
+    const publicationsContainer = document.getElementById('publicationsContainer');
+    if (publicationsContainer && contentData.publications) {
+        publicationsContainer.innerHTML = contentData.publications.map(pub => {
+            const title = getText(`publications.${contentData.publications.indexOf(pub)}.title`);
+            const status = getText(`publications.${contentData.publications.indexOf(pub)}.status`);
+            
+            return `
+                <div class="pub-item">
+                    <span class="pub-title">${title}</span>
+                    <span class="pub-venue">${pub.venue}</span>
+                    <span class="pub-year">${pub.year}</span>
+                    <span class="pub-status">${status}</span>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+// Language switcher (for future implementation)
+function switchLanguage(lang) {
+    if (contentData && contentData.meta.supported_languages.includes(lang)) {
+        currentLanguage = lang;
+        updatePageContent();
+        
+        // Update projects if they're loaded
+        if (projectsLoaded) {
+            projectsLoaded = false;
+            loadProjects();
+        }
+        
+        localStorage.setItem('preferred_language', lang);
+    }
+}
 let projectsLoaded = false;
 
 // Configuration: Choose data source
@@ -83,25 +269,32 @@ async function loadProjectsFromGitHub() {
 }
 
 async function loadProjectsFromJSON() {
-    const response = await fetch('./projects.json');
-    const data = await response.json();
+    if (!contentData) {
+        await loadContent();
+    }
     
     // Filter featured projects
-    const featuredProjects = data.projects.filter(project => project.featured);
+    const featuredProjects = contentData.projects.filter(project => project.featured);
     
     // Generate HTML for JSON projects
-    return featuredProjects.map(project => `
-        <div class="project-item">
-            <h3 class="project-title">
-                <a href="${project.url}" target="_blank">${project.title}</a>
-                ${project.collaborative ? '<span class="collab-badge">Collaborative</span>' : ''}
-            </h3>
-            <p class="project-description">${project.description}</p>
-            <div class="project-tech">
-                ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+    return featuredProjects.map(project => {
+        const description = project.description && typeof project.description === 'object' 
+            ? (project.description[currentLanguage] || project.description['en'])
+            : project.description;
+            
+        return `
+            <div class="project-item">
+                <h3 class="project-title">
+                    <a href="${project.url}" target="_blank">${project.title}</a>
+                    ${project.collaborative ? '<span class="collab-badge">Collaborative</span>' : ''}
+                </h3>
+                <p class="project-description">${description}</p>
+                <div class="project-tech">
+                    ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 async function loadProjects() {
@@ -159,7 +352,22 @@ navItems.forEach(item => {
 });
 
 // ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Load content first
+    await loadContent();
+    
+    // Load saved language preference
+    const savedLanguage = localStorage.getItem('preferred_language');
+    if (savedLanguage && contentData && contentData.meta.supported_languages.includes(savedLanguage)) {
+        currentLanguage = savedLanguage;
+        updatePageContent();
+    }
+    
+    // Update language button text
+    if (langToggle) {
+        langToggle.querySelector('.lang-text').textContent = currentLanguage.toUpperCase();
+    }
+    
     // Set initial theme icon state
     const currentTheme = body.getAttribute('data-theme');
     console.log(`Website loaded with ${currentTheme} theme`);

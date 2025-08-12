@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "title": "Medical Image Saliency Benchmark",
+      "description": "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis.",
+      "tech": ["Python", "PyTorch", "Medical Imaging"],
+      "url": "https://github.com/davide-beltrame/medimg-saliency-benchmark",
+      "featured": true
+    },
+    {
+      "title": "Semantic Similarity Research",
+      "description": "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text.",
+      "tech": ["Python", "NLP", "BLEU"],
+      "url": "https://github.com/davide-beltrame/semantic-similarity",
+      "featured": true
+    },
+    {
+      "title": "Wordle Solver",
+      "description": "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability.",
+      "tech": ["Python", "Algorithms"],
+      "url": "https://github.com/davide-beltrame/wordle-solver",
+      "featured": true
+    },
+    {
+      "title": "Diffusion LLMs",
+      "description": "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms.",
+      "tech": ["Python", "PyTorch", "Research"],
+      "url": "https://github.com/giacomo-ciro/diffusion-llms",
+      "featured": true,
+      "collaborative": true
+    },
+    {
+      "title": "Personal Website",
+      "description": "This website! A minimal, clean design built from scratch with pure HTML, CSS, and JavaScript. Features dark/light mode and responsive design.",
+      "tech": ["HTML", "CSS", "JavaScript"],
+      "url": "https://github.com/davide-beltrame/davide-beltrame.github.io",
+      "featured": false
+    }
+  ],
+  "contact": {
+    "email": "davide.beltrame@studbocconi.it",
+    "github": "https://github.com/davide-beltrame",
+    "linkedin": "https://www.linkedin.com/in/davide-beltrame"
+  },
+  "meta": {
+    "last_updated": "2025-08-12",
+    "version": "2.0.0"
+  }
+}

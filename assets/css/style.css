@@ -254,6 +254,25 @@ body {
     letter-spacing: -0.01em;
 }
 
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: var(--space-lg) 0;
+    border: 3px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .profile-image:hover {
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+}
+
 .subtitle {
     font-size: var(--font-size-lg);
     color: var(--text-secondary);
@@ -582,6 +601,12 @@ body {
         font-size: var(--font-size-lg);
     }
     
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        margin: var(--space-md) 0;
+    }
+
     .subtitle {
         font-size: var(--font-size-base);
     }

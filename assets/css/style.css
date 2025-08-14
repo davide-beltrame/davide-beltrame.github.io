@@ -218,6 +218,8 @@ body {
     outline: none;
     padding: var(--space-xs) 0;
     position: relative;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .nav-item:hover,
@@ -282,6 +284,15 @@ body {
     font-size: var(--font-size-lg);
     color: var(--text-secondary);
     font-weight: 400;
+}
+
+.warning {
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    background: var(--hover);
+    color: var(--text);
 }
 
 .about {

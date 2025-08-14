@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other - Davide Beltrame</title>
+    <meta name="description" content="Publications and Skills - Davide Beltrame">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="../assets/files/profile.jpg" alt="Davide Beltrame" class="profile-image-header">
+                <h1 class="name">davide beltrame</h1>
+            </div>
+            <nav class="nav">
+                <a href="/home" class="nav-item" data-section="home">Home</a>
+                <a href="/projects" class="nav-item" data-section="projects">Projects</a>
+                <a href="/other" class="nav-item active" data-section="other">Other</a>
+                <!-- Language switcher -->
+                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                    <span class="lang-text">EN</span>
+                </button>
+                <!-- Theme toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-circle"></span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Content Sections -->
+        <main class="main">
+            <!-- Other Section -->
+            <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Development Notice:</strong> This website is currently under active development. Some features may not work as expected.
+            </div>
+            <section class="section active" id="other">
+
+                <div class="publications">
+                    <h3>Publications</h3>
+                    <div id="publicationsContainer">
+                        <p>Loading publications...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

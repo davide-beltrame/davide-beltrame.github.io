@@ -8,45 +8,47 @@ const savedTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', savedTheme);
 
 // Theme toggle functionality
-themeToggle.addEventListener('click', () => {
-    const currentTheme = body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-});
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
 
 // Language toggle functionality
-langToggle.addEventListener('click', () => {
-    const newLang = currentLanguage === 'en' ? 'it' : 'en';
-    switchLanguage(newLang);
-    
-    // Update button text
-    langToggle.querySelector('.lang-text').textContent = newLang.toUpperCase();
-});
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        const newLang = currentLanguage === 'en' ? 'it' : 'en';
+        switchLanguage(newLang);
+        
+        // Update button text
+        langToggle.querySelector('.lang-text').textContent = newLang.toUpperCase();
+    });
+}
 
 // ===== NAVIGATION MANAGEMENT =====
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('.section');
-
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const targetSection = item.getAttribute('data-section');
+// Set active navigation based on current page
+function setActiveNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const currentPath = window.location.pathname;
+    
+    navItems.forEach(item => {
+        item.classList.remove('active');
         
-        // Update navigation
-        navItems.forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
-        
-        // Update sections
-        sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(targetSection).classList.add('active');
-        
-        // Load projects if projects section is selected
-        if (targetSection === 'projects') {
-            loadProjects();
+        // Check if this nav item corresponds to the current page
+        const href = item.getAttribute('href');
+        if (href) {
+            if ((currentPath.includes('/home') && href.includes('home')) ||
+                (currentPath.includes('/projects') && href.includes('projects')) ||
+                (currentPath.includes('/other') && href.includes('other'))) {
+                item.classList.add('active');
+            }
         }
     });
-});
+}
 
 // ===== CONTENT MANAGEMENT =====
 let contentData = null;
@@ -55,12 +57,28 @@ let currentLanguage = 'en'; // Default language
 // Load content from JSON
 async function loadContent() {
     try {
-        const response = await fetch('./content.json');
+        // Use absolute path for subdirectories, relative for root
+        let contentPath;
+        const path = window.location.pathname;
+        
+        if (path.includes('/home') || path.includes('/projects') || path.includes('/other')) {
+            contentPath = '/content.json';  // Absolute path from subdirectories
+        } else {
+            contentPath = './content.json';  // Relative path from root
+        }
+        
+        const response = await fetch(contentPath);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         contentData = await response.json();
         currentLanguage = contentData.meta.default_language || 'en';
         
         // Initialize content on page load
         updatePageContent();
+        setActiveNavigation();
     } catch (error) {
         console.error('Error loading content:', error);
     }
@@ -101,32 +119,45 @@ function updatePageContent() {
         metaDescription.setAttribute('content', `${contentData.personal.name} - ${getText('personal.title')}`);
     }
     
-    // Update navigation
+    // Update navigation - with fallbacks
     const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
+    navItems.forEach((item, index) => {
         const section = item.getAttribute('data-section');
-        if (section && contentData.navigation[section]) {
-            item.textContent = getText(`navigation.${section}`);
+        
+        if (section && contentData && contentData.navigation && contentData.navigation[section]) {
+            const text = getText(`navigation.${section}`);
+            item.textContent = text;
         }
+        // Note: We now have fallback text directly in HTML, so no need for JS fallback
     });
     
     // Update home section content
     updateHomeSection();
+    
+    // Update other section content
     updateOtherSection();
 }
 
 // Update home section with dynamic content
 function updateHomeSection() {
-    if (!contentData) return;
+    if (!contentData) {
+        return; // Fallback content is now in HTML
+    }
     
     // Update title and remove subtitle
     const titleElement = document.querySelector('.title');
     const subtitleElement = document.querySelector('.subtitle');
     const aboutElement = document.querySelector('.about p');
     
-    if (titleElement) titleElement.textContent = getText('personal.title');
+    if (titleElement) {
+        const titleText = getText('personal.title');
+        if (titleText) titleElement.textContent = titleText;
+    }
     if (subtitleElement) subtitleElement.style.display = 'none'; // Hide subtitle
-    if (aboutElement) aboutElement.textContent = getText('personal.about');
+    if (aboutElement) {
+        const aboutText = getText('personal.about');
+        if (aboutText) aboutElement.textContent = aboutText;
+    }
     
     // Update contact links
     const emailLink = document.querySelector('a[href^="mailto:"], a[href="#"]');
@@ -180,8 +211,8 @@ function updateOtherSection() {
     const skillsHeader = document.querySelector('.skills h3');
     const publicationsHeader = document.querySelector('.publications h3');
     
-    if (skillsHeader) skillsHeader.textContent = getText('sections.skills');
-    if (publicationsHeader) publicationsHeader.textContent = getText('sections.publications');
+    if (skillsHeader) skillsHeader.textContent = getText('sections.skills') || 'Skills';
+    if (publicationsHeader) publicationsHeader.textContent = getText('sections.publications') || 'Publications';
     
     // Update skill categories
     const skillCategories = document.querySelectorAll('.skill-category');
@@ -192,17 +223,22 @@ function updateOtherSection() {
             const label = category.querySelector('.skill-label');
             const list = category.querySelector('.skill-list');
             
-            if (label) label.textContent = getText(`labels.${skills[index]}`);
+            if (label) label.textContent = getText(`labels.${skills[index]}`) || `${skills[index].charAt(0).toUpperCase() + skills[index].slice(1)}:`;
             if (list) list.textContent = getText(`skills.${skills[index]}`);
         }
     });
     
     // Update publications
     const publicationsContainer = document.getElementById('publicationsContainer');
+    
     if (publicationsContainer && contentData.publications) {
-        publicationsContainer.innerHTML = contentData.publications.map(pub => {
-            const title = getText(`publications.${contentData.publications.indexOf(pub)}.title`);
-            const status = getText(`publications.${contentData.publications.indexOf(pub)}.status`);
+        const publicationsHTML = contentData.publications.map(pub => {
+            const title = pub.title && typeof pub.title === 'object' 
+                ? (pub.title[currentLanguage] || pub.title['en'])
+                : pub.title;
+            const status = pub.status && typeof pub.status === 'object' 
+                ? (pub.status[currentLanguage] || pub.status['en'])
+                : pub.status;
             
             return `
                 <div class="pub-item">
@@ -213,6 +249,8 @@ function updateOtherSection() {
                 </div>
             `;
         }).join('');
+        
+        publicationsContainer.innerHTML = publicationsHTML;
     }
 }
 
@@ -295,11 +333,19 @@ async function loadProjectsFromJSON() {
         await loadContent();
     }
     
+    if (!contentData || !contentData.projects) {
+        return '<p class="loading">No projects data available.</p>';
+    }
+    
     // Filter featured projects
     const featuredProjects = contentData.projects.filter(project => project.featured);
     
+    if (featuredProjects.length === 0) {
+        return '<p class="loading">No featured projects found.</p>';
+    }
+    
     // Generate HTML for JSON projects
-    return featuredProjects.map(project => {
+    const projectsHTML = featuredProjects.map(project => {
         const description = project.description && typeof project.description === 'object' 
             ? (project.description[currentLanguage] || project.description['en'])
             : project.description;
@@ -317,10 +363,14 @@ async function loadProjectsFromJSON() {
             </div>
         `;
     }).join('');
+    
+    return projectsHTML;
 }
 
 async function loadProjects() {
-    if (projectsLoaded) return;
+    if (projectsLoaded) {
+        return;
+    }
     
     const container = document.getElementById('projectsContainer');
     
@@ -337,14 +387,14 @@ async function loadProjects() {
             projectsHTML = await loadProjectsFromJSON();
         }
         
-        container.innerHTML = projectsHTML;
-        projectsLoaded = true;
+        if (projectsHTML && projectsHTML.trim()) {
+            container.innerHTML = projectsHTML;
+            projectsLoaded = true;
+        }
         
     } catch (error) {
         console.error('Error loading projects:', error);
-        container.innerHTML = `
-            <p class="loading">Unable to load projects at the moment. Please try again later.</p>
-        `;
+        // Don't replace content on error, keep the fallback HTML
     }
 }
 
@@ -369,14 +419,20 @@ function scrollToTop() {
     });
 }
 
+// Apply smooth scroll to navigation items
+const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach(item => {
     item.addEventListener('click', scrollToTop);
 });
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', async () => {
-    // Load content first
-    await loadContent();
+    try {
+        // Load content first
+        await loadContent();
+    } catch (error) {
+        console.error('Error in loadContent():', error);
+    }
     
     // Initialize collapsible sections
     initializeCollapsibleSections();
@@ -395,14 +451,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Set initial theme icon state
     const currentTheme = body.getAttribute('data-theme');
-    console.log(`Website loaded with ${currentTheme} theme`);
     
     // Mobile contact link functionality
     initializeMobileContactLinks();
     
-    // Preload projects if user is on mobile (to improve UX)
-    if (window.innerWidth <= 768) {
-        setTimeout(loadProjects, 1000);
+    // Auto-load content based on current page
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/projects')) {
+        // Ensure content is loaded, then load projects
+        if (contentData) {
+            loadProjects();
+        } else {
+            // Content will load via await in main initialization, then call loadProjects
+            setTimeout(() => loadProjects(), 200);
+        }
+    }
+    
+    if (currentPath.includes('/other')) {
+        // Update other section content when on other page
+        if (contentData) {
+            updateOtherSection();
+        } else {
+            setTimeout(() => updateOtherSection(), 200);
+        }
     }
 });
 

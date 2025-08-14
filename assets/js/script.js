@@ -3,6 +3,10 @@ const themeToggle = document.getElementById('themeToggle');
 const langToggle = document.getElementById('langToggle');
 const body = document.body;
 
+// ===== CONTENT MANAGEMENT =====
+let contentData = null;
+let currentLanguage = 'en'; // Default language
+
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', savedTheme);
@@ -50,10 +54,6 @@ function setActiveNavigation() {
         }
     });
 }
-
-// ===== CONTENT MANAGEMENT =====
-let contentData = null;
-let currentLanguage = 'en'; // Default language
 
 // Load content from JSON
 async function loadContent() {

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Davide Beltrame</title>
+    <meta name="description" content="Projects by Davide Beltrame - AI Researcher, Author & Developer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="../assets/files/profile.jpg" alt="Davide Beltrame" class="profile-image-header">
+                <h1 class="name">davide beltrame</h1>
+            </div>
+            <nav class="nav">
+                <a href="/home" class="nav-item" data-section="home">Home</a>
+                <a href="/projects" class="nav-item active" data-section="projects">Projects</a>
+                <a href="/story" class="nav-item" data-section="story">Story</a>
+                <a href="/other" class="nav-item" data-section="other">Other</a>
+                <!-- Language switcher -->
+                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                    <span class="lang-text">EN</span>
+                </button>
+                <!-- Theme toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-circle"></span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Content Sections -->
+        <main class="main">
+            <!-- Projects Section -->
+            <div class="warning" id="developmentNotice">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Development Notice:</strong> This website is currently under active development. Some features may not work as expected.
+            </div>
+            <section class="section active" id="projects">
+
+                <div class="projects-container" id="projectsContainer">
+                    <div class="project-item">
+                        <h3 class="project-title">
+                            <a href="https://github.com/giacomo-ciro/diffusion-llms" target="_blank">More Efficient Text Diffusion via Length Prediction</a>
+                            <span class="collab-badge">Collaborative</span>
+                        </h3>
+                        <p class="project-description">Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Research</span>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-title">
+                            <a href="https://github.com/davide-beltrame/medimg-saliency-benchmark" target="_blank">Do AI and Human Experts See Pneumonia the Same Way?</a>
+                        </h3>
+                        <p class="project-description">Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Medical Imaging</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

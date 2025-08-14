@@ -1,296 +1,617 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Elements
-  const langToggle = document.getElementById("lang-toggle");
-  const themeToggle = document.getElementById("theme-toggle");
-  const header = document.querySelector("header");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  
-  // Identify which page we're on (via data-page in <html>)
-  const currentPage = document.documentElement.getAttribute("data-page") || "home";
+// ===== THEME MANAGEMENT =====
+const themeToggle = document.getElementById('themeToggle');
+const langToggle = document.getElementById('langToggle');
+const body = document.body;
 
-  // Language state
-  let currentLang = localStorage.getItem("preferredLanguage") || "en";
-  
-  // Theme state
-  let currentTheme = localStorage.getItem("preferredTheme") || "dark";
-  if (currentTheme === "light") {
-    document.body.classList.add("light-theme");
-  }
-  
-  // Translations dictionary (expanded with additional text for subpages)
-  const translations = {
-    en: {
-      // Navigation
-      "about-link": "About",
-      "education-link": "Education",
-      "experience-link": "Experience",
-      "skills-link": "Skills",
-      "cv-link": "CV",
-      
-      // Headers
-      "about-header": "About",
-      "education-header": "Education",
-      "experience-header": "Experience",
-      "skills-header": "Skills",
-      
-      // Content
-      "website-message": "Website currently in development!",
-      "role-description": "AI Researcher, Author & Developer",
-      "full-experience-link": "View full experience details",
-      
-      // Skills
-      "languages-label": "Languages:",
-      "coding-label": "Coding:",
-      "tools-label": "Tools:",
-      "languages-content": "Italian (native), English (fluent), French (basic-intermediate), Spanish (basic).",
-      "coding-content": "Python, C, HTML, CSS, JavaScript, SQL, MATLAB.",
-      "tools-content": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics.",
-      
-      // About content
-      "about-content": "I'm a student in the MSc in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Artificial Intelligence</a> at Bocconi University. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. I recently started an internship as an AI Researcher at <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, a Milan-based startup focused on machine learning solutions for e-commerce.",
-      
-      // Education items
-      "bocconi-education": "<strong><a href=\"education/msc.html\">Bocconi University (2024-2026):</a></strong> MSc in Artificial Intelligence (LM-18: Computer Science)",
-      "luiss-education": "<strong><a href=\"education/bsc.html\">LUISS Guido Carli (2021-2024):</a></strong> BSc in Management and Computer Science, graduated with honours.",
-      "kozminski-education": "<strong>Kozminski University (2023):</strong> NLP for Business Intensive Program (EU-funded).",
-      "highschool-education": "<strong><a href=\"education/highschool.html\">Liceo Scientifico Augusto Righi (2016-2021):</a></strong> Scientific diploma with honours.",
-      
-      // Experience items
-      "consensus-experience": "<strong><a href=\"https://www.consensusrivista.com\">Consensus Rivista (2024–present):</a></strong> Author and Caporedattore specializing in science and technology.",
-      "commerce-clarity-experience": "<strong><a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity (2025–present):</a></strong> AI Researcher at a Milan-based startup focused on machine learning solutions for e-commerce.",
-      "jelu-experience": "<strong>JELU Consulting (2023–2024):</strong> Audit Associate at a student-run consulting firm.",
-      "starting-finance-experience": "<strong>Starting Finance Club Guido Carli (2022–2024):</strong> Held leadership roles including President, Vice President, and Head of HR & IT.",
-      "luiss-tutor-experience": "<strong>LUISS Training Course for Italian Informatics Olympics (2022–2023):</strong> Tutor and problem designer in Python and C++.",
-      
-      // Footer
-      "copyright": "© 2025 Davide Beltrame",
-      
-      // Subpage titles
-      "experience-page-title": "Experience - Professional Journey",
-      "bsc-page-title": "BSc - LUISS Guido Carli",
-      "msc-page-title": "MSc - Bocconi University",
-      "highschool-page-title": "High School - Liceo Scientifico Augusto Righi",
-      
-      // Subpage content
-      "professional-experience": "Professional Experience",
-      "back-to-home": "Back to Home",
-      
-      "bsc-content": "BSc in Management and Computer Science, achieved with honours and a final GPA of 29.8/30. Emphasis on Data Science, Business Analytics, and Machine Learning.",
-      "msc-content": "Pursuing an MSc in Artificial Intelligence (LM-18 Computer Science). The program covers subjects such as Software Engineering, Algorithms for Optimisation and Inference, Deep Learning, Computer Vision, Complex Systems, Cryptography, and Advanced Mathematics.",
-      "highschool-content": "High school diploma in scientific studies, graduated with honours. Recognized for achieving the highest final GPA in 2019.",
+// ===== CONTENT MANAGEMENT =====
+let contentData = null;
+let currentLanguage = 'en'; // Default language
 
-      "projects-link": "Projects",
-      "projects-header": "Projects",
-      "publications-link": "Publications",
-      "publications-header": "Publications",
-      "home-link": "Home"
-    },
-    it: {
-      // Navigation
-      "about-link": "Chi Sono",
-      "education-link": "Istruzione",
-      "experience-link": "Esperienza",
-      "skills-link": "Competenze",
-      "cv-link": "CV",
-      
-      // Headers
-      "about-header": "Chi Sono",
-      "education-header": "Istruzione",
-      "experience-header": "Esperienza",
-      "skills-header": "Competenze",
-      
-      // Content
-      "website-message": "Sito attualmente in sviluppo!",
-      "role-description": "Ricercatore AI, Autore e Sviluppatore",
-      "full-experience-link": "Vedi dettagli completi sull'esperienza",
-      
-      // Skills
-      "languages-label": "Lingue:",
-      "coding-label": "Programmazione:",
-      "tools-label": "Strumenti:",
-      "languages-content": "Italiano (madrelingua), Inglese (fluente), Francese (base-intermedio), Spagnolo (base).",
-      "coding-content": "Python, C, HTML, CSS, JavaScript, SQL, MATLAB.",
-      "tools-content": "Git, GitHub, Google Workspace, Microsoft Office, KNIME, Google Analytics.",
-      
-      // About content
-      "about-content": "Sono uno studente del Master in <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\">Intelligenza Artificiale</a> presso l'Università Bocconi. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. Recentemente ho iniziato uno stage come Ricercatore AI presso <a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity</a>, una startup milanese specializzata in soluzioni di machine learning per e-commerce.",
-      
-      // Education items
-      "bocconi-education": "<strong><a href=\"education/msc.html\">Università Bocconi (2024-2026):</a></strong> MSc in Intelligenza Artificiale (LM-18: Informatica)",
-      "luiss-education": "<strong><a href=\"education/bsc.html\">LUISS Guido Carli (2021-2024):</a></strong> Laurea in Management and Computer Science, conseguita con lode.",
-      "kozminski-education": "<strong>Kozminski University (2023):</strong> Programma Intensivo di NLP for Business (finanziato dall'UE).",
-      "highschool-education": "<strong><a href=\"education/highschool.html\">Liceo Scientifico Augusto Righi (2016-2021):</a></strong> Diploma scientifico con lode.",
-      
-      // Experience items
-      "consensus-experience": "<strong><a href=\"https://www.consensusrivista.com\">Consensus Rivista (2024–presente):</a></strong> Autore e Caporedattore specializzato in scienza e tecnologia.",
-      "commerce-clarity-experience": "<strong><a href=\"https://commerceclarity.com\" target=\"_blank\">Commerce Clarity (2025–presente):</a></strong> Ricercatore di AI presso una startup milanese specializzata in soluzioni di machine learning per e-commerce.",
-      "jelu-experience": "<strong>JELU Consulting (2023–2024):</strong> Audit Associate presso una società di consulenza gestita da studenti.",
-      "starting-finance-experience": "<strong>Starting Finance Club Guido Carli (2022–2024):</strong> Ruoli di leadership tra cui Presidente, Vice Presidente e Responsabile HR e IT.",
-      "luiss-tutor-experience": "<strong>Corso di Formazione LUISS per le Olimpiadi Italiane di Informatica (2022–2023):</strong> Tutor e designer di problemi in Python e C++.",
-      
-      // Footer
-      "copyright": "© 2025 Davide Beltrame",
-      
-      // Subpage titles
-      "experience-page-title": "Esperienza - Percorso Professionale",
-      "bsc-page-title": "Laurea Triennale - LUISS Guido Carli",
-      "msc-page-title": "Master - Università Bocconi",
-      "highschool-page-title": "Liceo Scientifico Augusto Righi",
-      
-      // Subpage content
-      "professional-experience": "Esperienza Professionale",
-      "back-to-home": "Torna alla Home",
-      
-      "bsc-content": "Laurea in Management and Computer Science, conseguita con lode e media finale di 29.8/30. Focus su Data Science, Business Analytics e Machine Learning.",
-      "msc-content": "Master in Intelligenza Artificiale (LM-18 Informatica). Il programma copre materie come Ingegneria del Software, Algoritmi per l'Ottimizzazione e l'Inferenza, Deep Learning, Computer Vision, Sistemi Complessi, Crittografia e Matematica Avanzata.",
-      "highschool-content": "Diploma scientifico, conseguito con lode. Riconosciuto per aver raggiunto la media finale più alta nel 2019.",
+// Load saved theme or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.setAttribute('data-theme', savedTheme);
 
-      "projects-link": "Progetti",
-      "projects-header": "Progetti",
-      "publications-link": "Pubblicazioni",
-      "publications-header": "Pubblicazioni",
-      "projects-page-title": "Progetti - Portfolio GitHub",
-      "projects-intro": "Ecco alcuni dei miei progetti su GitHub. Rappresentano i miei interessi nell'AI, data science e sviluppo web. Clicca su qualsiasi progetto per visitare il suo repository GitHub.",
-      "more-projects": "Altri progetti in arrivo presto! Controlla il mio <a href=\"https://github.com/davide-beltrame\" target=\"_blank\">profilo GitHub</a> per gli ultimi aggiornamenti.",
-      "home-link": "Home"
-    }
-  };
-  
-  // Apply the translations based on data-lang-key attributes
-  function applyTranslations(lang) {
-    const elements = document.querySelectorAll("[data-lang-key]");
-    elements.forEach((element) => {
-      const key = element.getAttribute("data-lang-key");
-      if (translations[lang][key]) {
-        // For elements that might contain links or HTML, set innerHTML
-        element.innerHTML = translations[lang][key];
-      }
-    });
-  }
-
-  // Adjust the page title if we are on a subpage
-  function applyPageTitle(lang) {
-    const titleKey = `${currentPage}-page-title`; // e.g. "experience-page-title"
-    if (translations[lang][titleKey]) {
-      document.title = translations[lang][titleKey];
-    }
-  }
-
-  // Update the language button text
-  function updateLanguageButton() {
-    const inactive = currentLang === "en" ? "IT" : "EN";
-    const active = currentLang === "en" ? "EN" : "IT";
-    langToggle.innerHTML = `<span class="active-lang">${active}</span> / <span class="inactive-lang">${inactive}</span>`;
-  }
-  
-  // Switch language function
-  function switchLanguage() {
-    currentLang = currentLang === "en" ? "it" : "en";
-    localStorage.setItem("preferredLanguage", currentLang);
-    
-    applyTranslations(currentLang);
-    applyPageTitle(currentLang);
-    updateLanguageButton();
-    
-    // Update content manager language if available
-    if (window.contentManager) {
-      window.contentManager.updateLanguage(currentLang);
-    }
-  }
-  
-  // Switch theme function
-  function switchTheme() {
-    if (currentTheme === "dark") {
-      document.body.classList.add("light-theme");
-      currentTheme = "light";
-    } else {
-      document.body.classList.remove("light-theme");
-      currentTheme = "dark";
-    }
-    localStorage.setItem("preferredTheme", currentTheme);
-  }
-  
-  // Toggle mobile menu with improved sticky header handling
-  function toggleMobileMenu() {
-    mobileMenu.classList.toggle("active");
-  }
-
-  // Sticky header with smooth transitions
-  function setupStickyHeader() {
-    let isSticky = false;
-    let ticking = false;
-    
-    function updateStickyHeader() {
-      const scrollY = window.scrollY;
-      const shouldBeSticky = scrollY > 200; // Increased threshold for smoother transition
-      
-      if (shouldBeSticky && !isSticky) {
-        header.classList.add("sticky");
-        document.body.classList.add("header-sticky");
-        isSticky = true;
-      } else if (!shouldBeSticky && isSticky) {
-        header.classList.remove("sticky");
-        document.body.classList.remove("header-sticky");
-        isSticky = false;
-      }
-      
-      ticking = false;
-    }
-    
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(updateStickyHeader);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener("scroll", requestTick, { passive: true });
-  }
-
-  // Close mobile menu when clicking any link in it
-  function setupMobileMenuLinks() {
-    const mobileLinks = mobileMenu.querySelectorAll("a");
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("active");
-      });
-    });
-  }
-  
-  // Close mobile menu when clicking outside of it
-  function setupMobileMenuOutsideClick() {
-    document.addEventListener("click", (event) => {
-      if (mobileMenu.classList.contains("active")) {
-        const isClickInsideMenu = mobileMenu.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
+// Theme toggle functionality
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
-        if (!isClickInsideMenu && !isClickOnToggle) {
-          mobileMenu.classList.remove("active");
-        }
-      }
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
     });
-  }
+}
 
-  // Initialization
-  function init() {
-    applyTranslations(currentLang);
-    applyPageTitle(currentLang);
-    updateLanguageButton();
-    setupStickyHeader();
-    setupMobileMenuLinks();
-    setupMobileMenuOutsideClick();
+// Language toggle functionality
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        const newLang = currentLanguage === 'en' ? 'it' : 'en';
+        switchLanguage(newLang);
+        
+        // Update button text
+        langToggle.querySelector('.lang-text').textContent = newLang.toUpperCase();
+    });
+}
+
+// ===== NAVIGATION MANAGEMENT =====
+// Set active navigation based on current page
+function setActiveNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const currentPath = window.location.pathname;
     
-    // Load content from JSON if content manager is available
-    if (window.contentManager) {
-      window.contentManager.loadContent();
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        
+        // Check if this nav item corresponds to the current page
+        const href = item.getAttribute('href');
+        if (href) {
+            if ((currentPath.includes('/home') && href.includes('home')) ||
+                (currentPath.includes('/projects') && href.includes('projects')) ||
+                (currentPath.includes('/story') && href.includes('story')) ||
+                (currentPath.includes('/other') && href.includes('other'))) {
+                item.classList.add('active');
+            }
+        }
+    });
+}
+
+// Load content from JSON
+async function loadContent() {
+    try {
+        // Use absolute path for subdirectories, relative for root
+        let contentPath;
+        const path = window.location.pathname;
+        
+        if (path.includes('/home') || path.includes('/projects') || path.includes('/story') || path.includes('/other')) {
+            contentPath = '/content.json';  // Absolute path from subdirectories
+        } else {
+            contentPath = './content.json';  // Relative path from root
+        }
+        
+        const response = await fetch(contentPath);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        contentData = await response.json();
+        currentLanguage = contentData.meta.default_language || 'en';
+        
+        // Initialize content on page load
+        updatePageContent();
+        setActiveNavigation();
+    } catch (error) {
+        console.error('Error loading content:', error);
+    }
+}
+
+// Get translated text or fallback to English
+function getText(path, lang = currentLanguage) {
+    if (!contentData) return '';
+    
+    const keys = path.split('.');
+    let current = contentData;
+    
+    for (const key of keys) {
+        if (current && current[key]) {
+            current = current[key];
+        } else {
+            return '';
+        }
     }
     
-    // Event listeners
-    langToggle.addEventListener("click", switchLanguage);
-    themeToggle.addEventListener("click", switchTheme);
-    menuToggle.addEventListener("click", toggleMobileMenu);
-  }
-  
-  init();
+    // If it's a translation object, get the language or fallback to English
+    if (current && typeof current === 'object' && current[lang]) {
+        return current[lang];
+    } else if (current && typeof current === 'object' && current['en']) {
+        return current['en'];
+    }
+    
+    return current || '';
+}
+
+// Update all page content with current language
+function updatePageContent() {
+    if (!contentData) return;
+    
+    // Update page meta
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.setAttribute('content', `${contentData.personal.name} - ${getText('personal.title')}`);
+    }
+    
+    // Update navigation - with fallbacks
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach((item, index) => {
+        const section = item.getAttribute('data-section');
+        
+        if (section && contentData && contentData.navigation && contentData.navigation[section]) {
+            const text = getText(`navigation.${section}`);
+            item.textContent = text;
+        }
+        // Note: We now have fallback text directly in HTML, so no need for JS fallback
+    });
+    
+    // Update development notice
+    const developmentNotice = document.getElementById('developmentNotice');
+    if (developmentNotice) {
+        const title = getText('ui.development_notice.title') || 'Development Notice:';
+        const message = getText('ui.development_notice.message') || 'This website is currently under active development. Some features may not work as expected.';
+        developmentNotice.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>${title}</strong> ${message}
+        `;
+    }
+    
+    // Update home section content
+    updateHomeSection();
+    
+    // Update other section content
+    updateOtherSection();
+}
+
+// Update home section with dynamic content
+function updateHomeSection() {
+    if (!contentData) {
+        return; // Fallback content is now in HTML
+    }
+    
+    // Update title and remove subtitle
+    const titleElement = document.querySelector('.title');
+    const subtitleElement = document.querySelector('.subtitle');
+    const aboutElement = document.querySelector('.about p');
+    
+    if (titleElement) {
+        const titleText = getText('personal.title');
+        if (titleText) titleElement.textContent = titleText;
+    }
+    if (subtitleElement) subtitleElement.style.display = 'none'; // Hide subtitle
+    if (aboutElement) {
+        const aboutText = getText('personal.about');
+        if (aboutText) aboutElement.textContent = aboutText;
+    }
+    
+    // Update contact links
+    const emailLink = document.querySelector('a[href^="mailto:"], a[href="#"]');
+    const githubLink = document.querySelector('a[href*="github.com"], .contact-links a:nth-child(2)');
+    const linkedinLink = document.querySelector('a[href*="linkedin.com"], .contact-links a:nth-child(3)');
+    const cvLink = document.querySelector('a[href$="cv.pdf"], .contact-links a:nth-child(4)');
+    
+    if (emailLink) emailLink.href = `mailto:${contentData.personal.contact.email}`;
+    if (githubLink) githubLink.href = contentData.personal.contact.github;
+    if (linkedinLink) linkedinLink.href = contentData.personal.contact.linkedin;
+    if (cvLink) cvLink.href = contentData.personal.contact.cv;
+    
+    // Update section headers
+    const contactHeader = document.querySelector('.contact-header');
+    const experienceHeader = document.querySelector('.experience .header-text');
+    const educationHeader = document.querySelector('.education .header-text');
+    
+    if (contactHeader) contactHeader.textContent = getText('sections.get_in_touch');
+    if (experienceHeader) experienceHeader.textContent = getText('sections.experience');
+    if (educationHeader) educationHeader.textContent = getText('sections.education');
+    
+    // Update experience items
+    const experienceContainer = document.getElementById('experienceContainer');
+    if (experienceContainer && contentData.experience) {
+        experienceContainer.innerHTML = contentData.experience.map(exp => `
+            <div class="exp-item">
+                <span class="exp-title">${getText(`experience.${contentData.experience.indexOf(exp)}.title`)}</span>
+                <span class="exp-company">${exp.company}</span>
+                <span class="exp-period">${exp.period}</span>
+            </div>
+        `).join('');
+    }
+    
+    // Update education items
+    const educationContainer = document.getElementById('educationContainer');
+    if (educationContainer && contentData.education) {
+        educationContainer.innerHTML = contentData.education.map(edu => `
+            <div class="edu-item">
+                <span class="edu-degree">${getText(`education.${contentData.education.indexOf(edu)}.degree`)}</span>
+                <span class="edu-school">${edu.school}</span>
+                <span class="edu-period">${edu.period}</span>
+            </div>
+        `).join('');
+    }
+}
+
+// Update other section with dynamic content
+function updateOtherSection() {
+    if (!contentData) return;
+    
+    const skillsHeader = document.querySelector('.skills h3');
+    const publicationsHeader = document.querySelector('.publications h3');
+    
+    if (skillsHeader) skillsHeader.textContent = getText('sections.skills') || 'Skills';
+    if (publicationsHeader) publicationsHeader.textContent = getText('sections.publications') || 'Publications';
+    
+    // Update skill categories
+    const skillCategories = document.querySelectorAll('.skill-category');
+    const skills = ['programming', 'languages', 'tools'];
+    
+    skillCategories.forEach((category, index) => {
+        if (skills[index] && contentData.skills[skills[index]]) {
+            const label = category.querySelector('.skill-label');
+            const list = category.querySelector('.skill-list');
+            
+            if (label) label.textContent = getText(`labels.${skills[index]}`) || `${skills[index].charAt(0).toUpperCase() + skills[index].slice(1)}:`;
+            if (list) list.textContent = getText(`skills.${skills[index]}`);
+        }
+    });
+    
+    // Update publications
+    const publicationsContainer = document.getElementById('publicationsContainer');
+    
+    if (publicationsContainer && contentData.publications) {
+        const publicationsHTML = contentData.publications.map(pub => {
+            const title = pub.title && typeof pub.title === 'object' 
+                ? (pub.title[currentLanguage] || pub.title['en'])
+                : pub.title;
+            const status = pub.status && typeof pub.status === 'object' 
+                ? (pub.status[currentLanguage] || pub.status['en'])
+                : pub.status;
+            
+            return `
+                <div class="pub-item">
+                    <span class="pub-title">${title}</span>
+                    <span class="pub-venue">${pub.venue}</span>
+                    <span class="pub-year">${pub.year}</span>
+                    <span class="pub-status">${status}</span>
+                </div>
+            `;
+        }).join('');
+        
+        publicationsContainer.innerHTML = publicationsHTML;
+    }
+    
+    // Update Duolingo data
+    const duolingoHeader = document.querySelector('.duolingo h3');
+    const duolingoContainer = document.getElementById('duolingoContainer');
+    
+    if (duolingoHeader) duolingoHeader.textContent = getText('sections.duolingo') || 'Language Learning';
+    
+    if (duolingoContainer && contentData.duolingo) {
+        const duolingo = contentData.duolingo;
+        
+        // Calculate current streak based on days since start date
+        const startDate = new Date(duolingo.streak_start_date);
+        const today = new Date();
+        const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        const currentStreak = duolingo.current_streak + daysDiff;
+        const longestStreak = Math.max(duolingo.longest_streak, currentStreak);
+        
+        // Format the last updated date
+        const lastUpdated = new Date(duolingo.data_last_updated).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long', 
+            day: 'numeric'
+        });
+        
+        const duolingoHTML = `
+            <div class="duolingo-stats">
+                <div class="duolingo-stat">
+                    <span class="stat-value">${currentStreak}</span>
+                    <span class="stat-label">${getText('ui.duolingo.current_streak') || 'Current Streak'}</span>
+                </div>
+                <div class="duolingo-stat">
+                    <span class="stat-value">${longestStreak}</span>
+                    <span class="stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
+                </div>
+                <div class="duolingo-stat">
+                    <span class="stat-value">${duolingo.total_xp.toLocaleString()}</span>
+                    <span class="stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <div class="collapsible-header">
+                    <h4>${getText('ui.duolingo.languages') || 'Languages'}</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="collapsible-content">
+                    <div class="duolingo-languages">
+                        ${duolingo.languages.map(lang => `
+                            <div class="language-item">
+                                <div class="language-flag">${lang.flag}</div>
+                                <div class="language-info">
+                                    <div class="language-name">${lang.name}</div>
+                                    <div class="language-level">${lang.xp.toLocaleString()} XP</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="duolingo-notice">
+                <small>${getText('ui.duolingo.data_notice') || '* XP and language data last updated:'} ${lastUpdated}</small>
+            </div>
+        `;
+        
+        duolingoContainer.innerHTML = duolingoHTML;
+        
+        // Initialize collapsible functionality
+        initializeCollapsibleSections();
+    }
+}
+
+// Language switcher (for future implementation)
+function switchLanguage(lang) {
+    if (contentData && contentData.meta.supported_languages.includes(lang)) {
+        currentLanguage = lang;
+        updatePageContent();
+        
+        // Update projects if they're loaded
+        if (projectsLoaded) {
+            projectsLoaded = false;
+            loadProjects();
+        }
+        
+        localStorage.setItem('preferred_language', lang);
+    }
+}
+
+// ===== COLLAPSIBLE SECTIONS =====
+function initializeCollapsibleSections() {
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    
+    collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const section = header.closest('.collapsible-section');
+            
+            // Simply toggle the current section without affecting others
+            section.classList.toggle('expanded');
+        });
+    });
+}
+
+// ===== PROJECTS LOADING =====
+let projectsLoaded = false;
+
+// Configuration: Choose data source
+const USE_GITHUB_API = false; // Set to false to use projects.json instead
+
+// Repositories to exclude from GitHub API fetch
+const EXCLUDED_REPOS = [
+    'dsl-web-app',
+    'cybercrime-aho',
+    'davide-beltrame' // Keep excluding profile repo
+];
+
+async function loadProjectsFromGitHub() {
+    const response = await fetch('https://api.github.com/users/davide-beltrame/repos?sort=updated');
+    const repos = await response.json();
+    
+    // Filter repositories
+    const interestingRepos = repos.filter(repo => 
+        !repo.fork && 
+        repo.description && 
+        !EXCLUDED_REPOS.includes(repo.name)
+    );
+    
+    // Generate HTML for GitHub projects
+    return interestingRepos.map(repo => {
+        const languages = repo.language ? [repo.language] : [];
+        
+        return `
+            <div class="project-item">
+                <h3 class="project-title">
+                    <a href="${repo.html_url}" target="_blank">${repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</a>
+                </h3>
+                <p class="project-description">${repo.description}</p>
+                ${languages.length > 0 ? `
+                    <div class="project-tech">
+                        ${languages.map(lang => `<span class="tech-tag">${lang}</span>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }).join('');
+}
+
+async function loadProjectsFromJSON() {
+    if (!contentData) {
+        await loadContent();
+    }
+    
+    if (!contentData || !contentData.projects) {
+        return '<p class="loading">No projects data available.</p>';
+    }
+    
+    // Filter featured projects
+    const featuredProjects = contentData.projects.filter(project => project.featured);
+    
+    if (featuredProjects.length === 0) {
+        return '<p class="loading">No featured projects found.</p>';
+    }
+    
+    // Generate HTML for JSON projects
+    const projectsHTML = featuredProjects.map(project => {
+        const description = project.description && typeof project.description === 'object' 
+            ? (project.description[currentLanguage] || project.description['en'])
+            : project.description;
+            
+        return `
+            <div class="project-item">
+                <h3 class="project-title">
+                    <a href="${project.url}" target="_blank">${project.title}</a>
+                    ${project.collaborative ? '<span class="collab-badge">Collaborative</span>' : ''}
+                </h3>
+                <p class="project-description">${description}</p>
+                <div class="project-tech">
+                    ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    return projectsHTML;
+}
+
+async function loadProjects() {
+    if (projectsLoaded) {
+        return;
+    }
+    
+    const container = document.getElementById('projectsContainer');
+    
+    try {
+        let projectsHTML;
+        
+        if (USE_GITHUB_API) {
+            projectsHTML = await loadProjectsFromGitHub();
+            if (!projectsHTML.trim()) {
+                container.innerHTML = '<p class="loading">No public repositories found. Check back soon!</p>';
+                return;
+            }
+        } else {
+            projectsHTML = await loadProjectsFromJSON();
+        }
+        
+        if (projectsHTML && projectsHTML.trim()) {
+            container.innerHTML = projectsHTML;
+            projectsLoaded = true;
+        }
+        
+    } catch (error) {
+        console.error('Error loading projects:', error);
+        // Don't replace content on error, keep the fallback HTML
+    }
+}
+
+// ===== ACCESSIBILITY =====
+// Keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-focus');
+    }
 });
+
+document.addEventListener('mousedown', () => {
+    document.body.classList.remove('keyboard-focus');
+});
+
+// ===== SMOOTH SCROLLING =====
+// Smooth scroll to top when changing sections
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Apply smooth scroll to navigation items
+const navItems = document.querySelectorAll('.nav-item');
+navItems.forEach(item => {
+    item.addEventListener('click', scrollToTop);
+});
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Load content first
+        await loadContent();
+    } catch (error) {
+        console.error('Error in loadContent():', error);
+    }
+    
+    // Initialize collapsible sections
+    initializeCollapsibleSections();
+    
+    // Load saved language preference
+    const savedLanguage = localStorage.getItem('preferred_language');
+    if (savedLanguage && contentData && contentData.meta.supported_languages.includes(savedLanguage)) {
+        currentLanguage = savedLanguage;
+        updatePageContent();
+    }
+    
+    // Update language button text
+    if (langToggle) {
+        langToggle.querySelector('.lang-text').textContent = currentLanguage.toUpperCase();
+    }
+    
+    // Set initial theme icon state
+    const currentTheme = body.getAttribute('data-theme');
+    
+    // Mobile contact link functionality
+    initializeMobileContactLinks();
+    
+    // Auto-load content based on current page
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/projects')) {
+        // Ensure content is loaded, then load projects
+        if (contentData) {
+            loadProjects();
+        } else {
+            // Content will load via await in main initialization, then call loadProjects
+            setTimeout(() => loadProjects(), 200);
+        }
+    }
+    
+    if (currentPath.includes('/other')) {
+        // Update other section content when on other page
+        if (contentData) {
+            updateOtherSection();
+        } else {
+            setTimeout(() => updateOtherSection(), 200);
+        }
+    }
+});
+
+// ===== MOBILE CONTACT LINKS FUNCTIONALITY =====
+function initializeMobileContactLinks() {
+    const contactLinks = document.querySelectorAll('.contact-link');
+    
+    // Only add touch functionality for devices without hover capability
+    if (window.matchMedia('(hover: none)').matches) {
+        contactLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default if it's a real link and already expanded
+                if (this.classList.contains('active') && this.href && this.href !== '#') {
+                    return; // Let the link work normally
+                }
+                
+                e.preventDefault();
+                
+                // Remove active class from all other links
+                contactLinks.forEach(otherLink => {
+                    if (otherLink !== this) {
+                        otherLink.classList.remove('active');
+                    }
+                });
+                
+                // Toggle active class on clicked link
+                this.classList.toggle('active');
+                
+                // If this link becomes active and has a real href, 
+                // add a secondary tap handler for navigation
+                if (this.classList.contains('active') && this.href && this.href !== '#') {
+                    setTimeout(() => {
+                        // After a short delay, make it navigable with another tap
+                        this.setAttribute('data-ready-to-navigate', 'true');
+                    }, 300);
+                }
+            });
+            
+            // Handle second tap for navigation
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('data-ready-to-navigate') === 'true' && 
+                    this.classList.contains('active') && 
+                    this.href && this.href !== '#') {
+                    // Allow the navigation to proceed
+                    this.removeAttribute('data-ready-to-navigate');
+                    return;
+                }
+            });
+        });
+        
+        // Close expanded links when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.contact-link')) {
+                contactLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.removeAttribute('data-ready-to-navigate');
+                });
+            }
+        });
+    }
+}

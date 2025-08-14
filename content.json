@@ -6,8 +6,8 @@
       "it": "Studente e Ricercatore in IA"
     },
     "about": {
-      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies. I recently started an internship as an AI Researcher at Commerce Clarity, a Milan-based startup focused on machine learning solutions for e-commerce.",
-      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie. Recentemente ho iniziato uno stage come Ricercatore AI presso Commerce Clarity, una startup milanese specializzata in soluzioni di machine learning per e-commerce."
+      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I recently started an internship as an AI Researcher at CommerceClarity, a Milan-based startup that is building the agent layer for e-commerce. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies.",
+      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Ho iniziato uno stage come Ricercatore AI presso CommerceClarity, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie."
     },
     "contact": {
       "email": "davide.beltrame@studbocconi.it",
@@ -148,6 +148,91 @@
       "featured": true
     }
   ],
+  "duolingo": {
+    "username": "davide1729",
+    "current_streak": 1022,
+    "longest_streak": 1022,
+    "total_xp": 140154,
+    "streak_start_date": "2025-08-14",
+    "languages": [
+      {
+        "name": "French",
+        "flag": "🇫🇷",
+        "xp": 63003
+      },
+      {
+        "name": "Japanese", 
+        "flag": "🇯🇵",
+        "xp": 55784
+      },
+      {
+        "name": "Spanish",
+        "flag": "🇪🇸",
+        "xp": 4208
+      },
+      {
+        "name": "German",
+        "flag": "🇩🇪",
+        "xp": 3293
+      },
+      {
+        "name": "Swedish",
+        "flag": "🇸🇪",
+        "xp": 3199
+      },
+      {
+        "name": "Danish",
+        "flag": "🇩🇰",
+        "xp": 2089
+      },
+      {
+        "name": "Latin",
+        "flag": "",
+        "xp": 296
+      },
+      {
+        "name": "Greek",
+        "flag": "🇬🇷",
+        "xp": 270
+      },
+      {
+        "name": "Italian",
+        "flag": "🇮🇹",
+        "xp": 120
+      },
+      {
+        "name": "English (Italian)",
+        "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        "xp": 100
+      },
+      {
+        "name": "Catalan",
+        "flag": "",
+        "xp": 87
+      },
+      {
+        "name": "Arabic",
+        "flag": "",
+        "xp": 73
+      },
+      {
+        "name": "Russian",
+        "flag": "🇷🇺",
+        "xp": 60
+      },
+      {
+        "name": "Esperanto",
+        "flag": "💚",
+        "xp": 45
+      },
+      {
+        "name": "Irish",
+        "flag": "🇮🇪",
+        "xp": 28
+      }
+    ],
+    "data_last_updated": "2025-08-14"
+  },
   "navigation": {
     "home": {
       "en": "home",
@@ -156,6 +241,10 @@
     "projects": {
       "en": "projects",
       "it": "progetti"
+    },
+    "story": {
+      "en": "story",
+      "it": "storia"
     },
     "other": {
       "en": "other",
@@ -183,6 +272,14 @@
       "en": "Publications",
       "it": "Pubblicazioni"
     },
+    "story": {
+      "en": "Coming Soon",
+      "it": "Prossimamente"
+    },
+    "duolingo": {
+      "en": "Duolingo",
+      "it": "Duolingo"
+    },
     "loading": {
       "en": "Loading projects...",
       "it": "Caricamento progetti..."
@@ -200,6 +297,40 @@
     "tools": {
       "en": "Tools:",
       "it": "Strumenti:"
+    }
+  },
+  "ui": {
+    "development_notice": {
+      "title": {
+        "en": "Development Notice:",
+        "it": "Avviso di Sviluppo:"
+      },
+      "message": {
+        "en": "This website has just been majorly refactored. Current content is either being updated or coming soon.",
+        "it": "Questo sito è stato appena ristrutturato. I contenuti attuali sono in fase di aggiornamento o arriveranno presto."
+      }
+    },
+    "duolingo": {
+      "current_streak": {
+        "en": "Current Streak",
+        "it": "Serie Attuale"
+      },
+      "longest_streak": {
+        "en": "Longest Streak", 
+        "it": "Serie Più Lunga"
+      },
+      "total_xp": {
+        "en": "Total XP",
+        "it": "XP Totali"
+      },
+      "languages": {
+        "en": "Languages",
+        "it": "Lingue"
+      },
+      "data_notice": {
+        "en": "* XP and language data last updated:",
+        "it": "* Dati XP e lingue aggiornati il:"
+      }
     }
   },
   "meta": {

@@ -43,6 +43,7 @@ function setActiveNavigation() {
         if (href) {
             if ((currentPath.includes('/home') && href.includes('home')) ||
                 (currentPath.includes('/projects') && href.includes('projects')) ||
+                (currentPath.includes('/story') && href.includes('story')) ||
                 (currentPath.includes('/other') && href.includes('other'))) {
                 item.classList.add('active');
             }
@@ -61,7 +62,7 @@ async function loadContent() {
         let contentPath;
         const path = window.location.pathname;
         
-        if (path.includes('/home') || path.includes('/projects') || path.includes('/other')) {
+        if (path.includes('/home') || path.includes('/projects') || path.includes('/story') || path.includes('/other')) {
             contentPath = '/content.json';  // Absolute path from subdirectories
         } else {
             contentPath = './content.json';  // Relative path from root
@@ -130,6 +131,17 @@ function updatePageContent() {
         }
         // Note: We now have fallback text directly in HTML, so no need for JS fallback
     });
+    
+    // Update development notice
+    const developmentNotice = document.getElementById('developmentNotice');
+    if (developmentNotice) {
+        const title = getText('ui.development_notice.title') || 'Development Notice:';
+        const message = getText('ui.development_notice.message') || 'This website is currently under active development. Some features may not work as expected.';
+        developmentNotice.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>${title}</strong> ${message}
+        `;
+    }
     
     // Update home section content
     updateHomeSection();
@@ -251,6 +263,74 @@ function updateOtherSection() {
         }).join('');
         
         publicationsContainer.innerHTML = publicationsHTML;
+    }
+    
+    // Update Duolingo data
+    const duolingoHeader = document.querySelector('.duolingo h3');
+    const duolingoContainer = document.getElementById('duolingoContainer');
+    
+    if (duolingoHeader) duolingoHeader.textContent = getText('sections.duolingo') || 'Language Learning';
+    
+    if (duolingoContainer && contentData.duolingo) {
+        const duolingo = contentData.duolingo;
+        
+        // Calculate current streak based on days since start date
+        const startDate = new Date(duolingo.streak_start_date);
+        const today = new Date();
+        const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        const currentStreak = duolingo.current_streak + daysDiff;
+        const longestStreak = Math.max(duolingo.longest_streak, currentStreak);
+        
+        // Format the last updated date
+        const lastUpdated = new Date(duolingo.data_last_updated).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long', 
+            day: 'numeric'
+        });
+        
+        const duolingoHTML = `
+            <div class="duolingo-stats">
+                <div class="duolingo-stat">
+                    <span class="stat-value">${currentStreak}</span>
+                    <span class="stat-label">${getText('ui.duolingo.current_streak') || 'Current Streak'}</span>
+                </div>
+                <div class="duolingo-stat">
+                    <span class="stat-value">${longestStreak}</span>
+                    <span class="stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
+                </div>
+                <div class="duolingo-stat">
+                    <span class="stat-value">${duolingo.total_xp.toLocaleString()}</span>
+                    <span class="stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <div class="collapsible-header">
+                    <h4>${getText('ui.duolingo.languages') || 'Languages'}</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="collapsible-content">
+                    <div class="duolingo-languages">
+                        ${duolingo.languages.map(lang => `
+                            <div class="language-item">
+                                <div class="language-flag">${lang.flag}</div>
+                                <div class="language-info">
+                                    <div class="language-name">${lang.name}</div>
+                                    <div class="language-level">${lang.xp.toLocaleString()} XP</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="duolingo-notice">
+                <small>${getText('ui.duolingo.data_notice') || '* XP and language data last updated:'} ${lastUpdated}</small>
+            </div>
+        `;
+        
+        duolingoContainer.innerHTML = duolingoHTML;
+        
+        // Initialize collapsible functionality
+        initializeCollapsibleSections();
     }
 }
 

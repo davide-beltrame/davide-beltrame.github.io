@@ -176,6 +176,30 @@ body {
     letter-spacing: -0.02em;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.profile-image-header {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image-header:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .profile-image-header:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
 .nav {
     display: flex;
     align-items: center;
@@ -244,7 +268,7 @@ body {
 
 /* ===== HOME SECTION ===== */
 .intro {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 .title {
@@ -254,25 +278,6 @@ body {
     letter-spacing: -0.01em;
 }
 
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: var(--space-lg) 0;
-    border: 3px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] .profile-image:hover {
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
-}
-
 .subtitle {
     font-size: var(--font-size-lg);
     color: var(--text-secondary);
@@ -280,7 +285,7 @@ body {
 }
 
 .about {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 .about p {
@@ -300,26 +305,99 @@ body {
     margin-bottom: var(--space-sm);
 }
 
+/* ===== CONTACT SECTION ===== */
+.contact {
+    margin-bottom: var(--space-xl);
+    text-align: left;
+}
+
+.contact-header {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.01em;
+}
+
 .contact-links {
     display: flex;
     gap: var(--space-lg);
     flex-wrap: wrap;
+    justify-content: left;
 }
 
 .contact-link {
     color: var(--text);
     text-decoration: none;
     font-weight: 400;
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
     border: 1px solid var(--border);
     border-radius: var(--border-radius);
     transition: var(--transition);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-width: 44px;
 }
 
-.contact-link:hover,
-.contact-link:focus {
-    background: var(--hover);
-    border-color: var(--text-secondary);
+.contact-icon {
+    font-size: 18px;
+    transition: var(--transition);
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.contact-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Desktop hover behavior */
+@media (hover: hover) {
+    .contact-link:hover .contact-text {
+        opacity: 1;
+        width: auto;
+        margin-left: var(--space-xs);
+        position: static;
+        transform: none;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus {
+        background: var(--hover);
+        border-color: var(--text-secondary);
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile/touch behavior */
+@media (hover: none) {
+    .contact-link.active .contact-text {
+        opacity: 1;
+        width: auto;
+        margin-left: var(--space-xs);
+        position: static;
+        transform: none;
+    }
+
+    .contact-link.active,
+    .contact-link:focus {
+        background: var(--hover);
+        border-color: var(--text-secondary);
+        justify-content: center;
+    }
+    
+    .contact-link {
+        justify-content: center;
+    }
 }
 
 /* Experience & Education */
@@ -573,6 +651,15 @@ body {
         font-size: var(--font-size-xl);
     }
     
+    .header-left {
+        gap: var(--space-sm);
+    }
+    
+    .profile-image-header {
+        width: 32px;
+        height: 32px;
+    }
+
     .nav {
         gap: var(--space-md);
         width: 100%;
@@ -599,12 +686,6 @@ body {
     
     .title {
         font-size: var(--font-size-lg);
-    }
-    
-    .profile-image {
-        width: 100px;
-        height: 100px;
-        margin: var(--space-md) 0;
     }
 
     .subtitle {
@@ -645,14 +726,5 @@ body {
 @media (max-width: 480px) {
     .nav {
         gap: var(--space-sm);
-    }
-    
-    .contact-links {
-        flex-direction: column;
-        gap: var(--space-xs);
-    }
-    
-    .contact-link {
-        text-align: center;
     }
 }

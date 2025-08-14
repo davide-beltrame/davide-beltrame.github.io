@@ -140,7 +140,7 @@ function updateHomeSection() {
     if (cvLink) cvLink.href = contentData.personal.contact.cv;
     
     // Update section headers
-    const contactHeader = document.querySelector('.contact .header-text');
+    const contactHeader = document.querySelector('.contact-header');
     const experienceHeader = document.querySelector('.experience .header-text');
     const educationHeader = document.querySelector('.education .header-text');
     
@@ -397,8 +397,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentTheme = body.getAttribute('data-theme');
     console.log(`Website loaded with ${currentTheme} theme`);
     
+    // Mobile contact link functionality
+    initializeMobileContactLinks();
+    
     // Preload projects if user is on mobile (to improve UX)
     if (window.innerWidth <= 768) {
         setTimeout(loadProjects, 1000);
     }
 });
+
+// ===== MOBILE CONTACT LINKS FUNCTIONALITY =====
+function initializeMobileContactLinks() {
+    const contactLinks = document.querySelectorAll('.contact-link');
+    
+    // Only add touch functionality for devices without hover capability
+    if (window.matchMedia('(hover: none)').matches) {
+        contactLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default if it's a real link and already expanded
+                if (this.classList.contains('active') && this.href && this.href !== '#') {
+                    return; // Let the link work normally
+                }
+                
+                e.preventDefault();
+                
+                // Remove active class from all other links
+                contactLinks.forEach(otherLink => {
+                    if (otherLink !== this) {
+                        otherLink.classList.remove('active');
+                    }
+                });
+                
+                // Toggle active class on clicked link
+                this.classList.toggle('active');
+                
+                // If this link becomes active and has a real href, 
+                // add a secondary tap handler for navigation
+                if (this.classList.contains('active') && this.href && this.href !== '#') {
+                    setTimeout(() => {
+                        // After a short delay, make it navigable with another tap
+                        this.setAttribute('data-ready-to-navigate', 'true');
+                    }, 300);
+                }
+            });
+            
+            // Handle second tap for navigation
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('data-ready-to-navigate') === 'true' && 
+                    this.classList.contains('active') && 
+                    this.href && this.href !== '#') {
+                    // Allow the navigation to proceed
+                    this.removeAttribute('data-ready-to-navigate');
+                    return;
+                }
+            });
+        });
+        
+        // Close expanded links when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.contact-link')) {
+                contactLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.removeAttribute('data-ready-to-navigate');
+                });
+            }
+        });
+    }
+}

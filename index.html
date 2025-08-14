@@ -8,13 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1 class="name">davide beltrame</h1>
+            <div class="header-left">
+                <img src="assets/files/profile.jpg" alt="Davide Beltrame" class="profile-image-header">
+                <h1 class="name">davide beltrame</h1>
+            </div>
             <nav class="nav">
                 <button class="nav-item active" data-section="home"></button>
                 <button class="nav-item" data-section="projects"></button>
@@ -36,7 +40,6 @@
             <section class="section active" id="home">
                 <div class="intro">
                     <p class="title"></p>
-                    <img src="assets/files/profile.jpg" alt="Davide Beltrame" class="profile-image">
                     <p class="subtitle"></p>
                 </div>
 
@@ -60,18 +63,25 @@
                     <div class="collapsible-content" id="experienceContainer"></div>
                 </div> -->
 
-                <div class="contact collapsible-section">
-                    <h3 class="collapsible-header">
-                        <span class="arrow">▶</span>
-                        <span class="header-text"></span>
-                    </h3>
-                    <div class="collapsible-content">
-                        <div class="contact-links">
-                            <a href="#" class="contact-link">Email</a>
-                            <a href="#" target="_blank" class="contact-link">GitHub</a>
-                            <a href="#" target="_blank" class="contact-link">LinkedIn</a>
-                            <a href="#" target="_blank" class="contact-link">CV</a>
-                        </div>
+                <div class="contact">
+                    <h3 class="contact-header">Get in Touch</h3>
+                    <div class="contact-links">
+                        <a href="#" class="contact-link" title="Email">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-text">Email</span>
+                        </a>
+                        <a href="#" target="_blank" class="contact-link" title="GitHub">
+                            <i class="fab fa-github contact-icon"></i>
+                            <span class="contact-text">GitHub</span>
+                        </a>
+                        <a href="#" target="_blank" class="contact-link" title="LinkedIn">
+                            <i class="fab fa-linkedin contact-icon"></i>
+                            <span class="contact-text">LinkedIn</span>
+                        </a>
+                        <a href="#" target="_blank" class="contact-link" title="CV">
+                            <i class="fas fa-file-pdf contact-icon"></i>
+                            <span class="contact-text">CV</span>
+                        </a>
                     </div>
                 </div>
             </section>

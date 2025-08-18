@@ -175,7 +175,7 @@ function updateHomeSection() {
     const emailLink = document.querySelector('a[href^="mailto:"], a[href="#"]');
     const githubLink = document.querySelector('a[href*="github.com"], .contact-links a:nth-child(2)');
     const linkedinLink = document.querySelector('a[href*="linkedin.com"], .contact-links a:nth-child(3)');
-    const cvLink = document.querySelector('a[href$="cv.pdf"], .contact-links a:nth-child(4)');
+    const cvLink = document.querySelector('a[href$="davide_beltrame_cv.pdf"], .contact-links a:nth-child(4)');
     
     if (emailLink) emailLink.href = `mailto:${contentData.personal.contact.email}`;
     if (githubLink) githubLink.href = contentData.personal.contact.github;

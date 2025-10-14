@@ -243,26 +243,31 @@ function updateOtherSection() {
     // Update publications
     const publicationsContainer = document.getElementById('publicationsContainer');
     
-    if (publicationsContainer && contentData.publications) {
-        const publicationsHTML = contentData.publications.map(pub => {
-            const title = pub.title && typeof pub.title === 'object' 
-                ? (pub.title[currentLanguage] || pub.title['en'])
-                : pub.title;
-            const status = pub.status && typeof pub.status === 'object' 
-                ? (pub.status[currentLanguage] || pub.status['en'])
-                : pub.status;
+    if (publicationsContainer) {
+        if (contentData.publications) {
+            const publicationsHTML = contentData.publications.map(pub => {
+                const title = pub.title && typeof pub.title === 'object' 
+                    ? (pub.title[currentLanguage] || pub.title['en'])
+                    : pub.title;
+                const status = pub.status && typeof pub.status === 'object' 
+                    ? (pub.status[currentLanguage] || pub.status['en'])
+                    : pub.status;
+                
+                return `
+                    <div class="pub-item">
+                        <span class="pub-title">${title}</span>
+                        <span class="pub-venue">${pub.venue}</span>
+                        <span class="pub-year">${pub.year}</span>
+                        <span class="pub-status">${status}</span>
+                    </div>
+                `;
+            }).join('');
             
-            return `
-                <div class="pub-item">
-                    <span class="pub-title">${title}</span>
-                    <span class="pub-venue">${pub.venue}</span>
-                    <span class="pub-year">${pub.year}</span>
-                    <span class="pub-status">${status}</span>
-                </div>
-            `;
-        }).join('');
-        
-        publicationsContainer.innerHTML = publicationsHTML;
+            publicationsContainer.innerHTML = publicationsHTML;
+        } else {
+            // Show loading message
+            publicationsContainer.innerHTML = `<p>${getText('ui.loading.publications') || 'Loading publications...'}</p>`;
+        }
     }
     
     // Update Duolingo data
@@ -271,66 +276,71 @@ function updateOtherSection() {
     
     if (duolingoHeader) duolingoHeader.textContent = getText('sections.duolingo') || 'Language Learning';
     
-    if (duolingoContainer && contentData.duolingo) {
-        const duolingo = contentData.duolingo;
-        
-        // Calculate current streak based on days since start date
-        const startDate = new Date(duolingo.streak_start_date);
-        const today = new Date();
-        const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        const currentStreak = duolingo.current_streak + daysDiff;
-        const longestStreak = Math.max(duolingo.longest_streak, currentStreak);
-        
-        // Format the last updated date
-        const lastUpdated = new Date(duolingo.data_last_updated).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long', 
-            day: 'numeric'
-        });
-        
-        const duolingoHTML = `
-            <div class="duolingo-stats">
-                <div class="duolingo-stat">
-                    <span class="stat-value">${currentStreak}</span>
-                    <span class="stat-label">${getText('ui.duolingo.current_streak') || 'Current Streak'}</span>
-                </div>
-                <div class="duolingo-stat">
-                    <span class="stat-value">${longestStreak}</span>
-                    <span class="stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
-                </div>
-                <div class="duolingo-stat">
-                    <span class="stat-value">${duolingo.total_xp.toLocaleString()}</span>
-                    <span class="stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
-                </div>
-            </div>
-            <div class="collapsible-section">
-                <div class="collapsible-header">
-                    <h4>${getText('ui.duolingo.languages') || 'Languages'}</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="collapsible-content">
-                    <div class="duolingo-languages">
-                        ${duolingo.languages.map(lang => `
-                            <div class="language-item">
-                                <div class="language-flag">${lang.flag}</div>
-                                <div class="language-info">
-                                    <div class="language-name">${lang.name}</div>
-                                    <div class="language-level">${lang.xp.toLocaleString()} XP</div>
-                                </div>
-                            </div>
-                        `).join('')}
+    if (duolingoContainer) {
+        if (contentData.duolingo) {
+            const duolingo = contentData.duolingo;
+            
+            // Calculate current streak based on days since start date
+            const startDate = new Date(duolingo.streak_start_date);
+            const today = new Date();
+            const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            const currentStreak = duolingo.current_streak + daysDiff;
+            const longestStreak = Math.max(duolingo.longest_streak, currentStreak);
+            
+            // Format the last updated date
+            const lastUpdated = new Date(duolingo.data_last_updated).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long', 
+                day: 'numeric'
+            });
+            
+            const duolingoHTML = `
+                <div class="duolingo-stats">
+                    <div class="duolingo-stat">
+                        <span class="stat-value">${currentStreak}</span>
+                        <span class="stat-label">${getText('ui.duolingo.current_streak') || 'Current Streak'}</span>
+                    </div>
+                    <div class="duolingo-stat">
+                        <span class="stat-value">${longestStreak}</span>
+                        <span class="stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
+                    </div>
+                    <div class="duolingo-stat">
+                        <span class="stat-value">${duolingo.total_xp.toLocaleString()}</span>
+                        <span class="stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
                     </div>
                 </div>
-            </div>
-            <div class="duolingo-notice">
-                <small>${getText('ui.duolingo.data_notice') || '* XP and language data last updated:'} ${lastUpdated}</small>
-            </div>
-        `;
-        
-        duolingoContainer.innerHTML = duolingoHTML;
-        
-        // Initialize collapsible functionality
-        initializeCollapsibleSections();
+                <div class="collapsible-section">
+                    <div class="collapsible-header">
+                        <h4>${getText('ui.duolingo.languages') || 'Languages'}</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="duolingo-languages">
+                            ${duolingo.languages.map(lang => `
+                                <div class="language-item">
+                                    <div class="language-flag">${lang.flag}</div>
+                                    <div class="language-info">
+                                        <div class="language-name">${lang.name}</div>
+                                        <div class="language-level">${lang.xp.toLocaleString()} XP</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="duolingo-notice">
+                    <small>${getText('ui.duolingo.data_notice') || '* XP and language data last updated:'} ${lastUpdated}</small>
+                </div>
+            `;
+            
+            duolingoContainer.innerHTML = duolingoHTML;
+            
+            // Initialize collapsible functionality
+            initializeCollapsibleSections();
+        } else {
+            // Show loading message
+            duolingoContainer.innerHTML = `<p>${getText('ui.loading.duolingo') || 'Loading Duolingo data...'}</p>`;
+        }
     }
 }
 

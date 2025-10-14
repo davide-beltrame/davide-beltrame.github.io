@@ -68,7 +68,7 @@
       "it": "GitHub, Google Workspace, KNIME, Google Analytics"
     }
   },
-  "publicationsContainer": [
+  "publications": [
     {
       "title": {
         "en": "[temp] More Efficient Text Diffusion via Length Prediction",
@@ -308,6 +308,16 @@
       "message": {
         "en": "This website has just been majorly refactored. Current content is either being updated or coming soon.",
         "it": "Questo sito è stato appena ristrutturato. I contenuti attuali sono in fase di aggiornamento o arriveranno presto."
+      }
+    },
+    "loading": {
+      "publications": {
+        "en": "Loading publications...",
+        "it": "Caricamento pubblicazioni..."
+      },
+      "duolingo": {
+        "en": "Loading Duolingo data...",
+        "it": "Caricamento dati Duolingo..."
       }
     },
     "duolingo": {

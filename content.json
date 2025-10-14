@@ -6,16 +6,16 @@
       "it": "Studente e Ricercatore in IA"
     },
     "about": {
-      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I recently finished an internship as an AI Researcher at CommerceClarity, a Milan-based startup that is building the agent layer for e-commerce. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies.",
-      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Ho terminato da poco uno stage come Ricercatore AI presso CommerceClarity, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie."
+      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I recently finished an internship as a ML Engineer at CommerceClarity, a Milan-based startup that is building the agent layer for e-commerce. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies.",
+      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Ho terminato da poco uno stage come ML Engineer presso CommerceClarity, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie."
+    }
     },
     "contact": {
       "email": "davide.beltrame@studbocconi.it",
       "github": "https://github.com/davide-beltrame",
       "linkedin": "https://www.linkedin.com/in/davide-beltrame",
       "cv": "/assets/files/davide_beltrame_cv.pdf"
-    }
-  },
+    },
   "experience": [
     {
       "title": {
@@ -68,7 +68,7 @@
       "it": "GitHub, Google Workspace, KNIME, Google Analytics"
     }
   },
-  "publications": [
+  "publicationsContainer": [
     {
       "title": {
         "en": "[temp] More Efficient Text Diffusion via Length Prediction",
@@ -334,8 +334,8 @@
     }
   },
   "meta": {
-    "last_updated": "2025-08-12",
-    "version": "2.0.0",
+    "last_updated": "2025-10-14",
+    "version": "2.1.0",
     "default_language": "en",
     "supported_languages": ["en", "it"]
   }

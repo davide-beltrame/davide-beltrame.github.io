@@ -148,6 +148,9 @@ function updatePageContent() {
     
     // Update other section content
     updateOtherSection();
+    
+    // Update story section content
+    updateStorySection();
 }
 
 // Update home section with dynamic content
@@ -168,7 +171,7 @@ function updateHomeSection() {
     if (subtitleElement) subtitleElement.style.display = 'none'; // Hide subtitle
     if (aboutElement) {
         const aboutText = getText('personal.about');
-        if (aboutText) aboutElement.textContent = aboutText;
+        if (aboutText) aboutElement.innerHTML = aboutText;
     }
     
     // Update contact links
@@ -341,6 +344,34 @@ function updateOtherSection() {
             // Show loading message
             duolingoContainer.innerHTML = `<p>${getText('ui.loading.duolingo') || 'Loading Duolingo data...'}</p>`;
         }
+    }
+}
+
+// Update story section with timeline
+function updateStorySection() {
+    if (!contentData || !contentData.timeline) return;
+    
+    const timelineContainer = document.getElementById('timelineContainer');
+    
+    if (timelineContainer) {
+        const timelineHTML = [...contentData.timeline].reverse().map(event => {
+            const title = event.title && typeof event.title === 'object' 
+                ? (event.title[currentLanguage] || event.title['en'])
+                : event.title;
+            const description = event.description && typeof event.description === 'object' 
+                ? (event.description[currentLanguage] || event.description['en'])
+                : event.description;
+            
+            return `
+                <div class="timeline-event">
+                    <div class="timeline-date">${event.date}</div>
+                    <div class="timeline-title">${title}</div>
+                    <div class="timeline-description">${description}</div>
+                </div>
+            `;
+        }).join('');
+        
+        timelineContainer.innerHTML = timelineHTML;
     }
 }
 

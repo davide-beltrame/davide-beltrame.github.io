@@ -1,4 +1,5 @@
 {
+  "instructions": "USE option+Z FOR TEXT WRAP",
   "personal": {
     "name": "Davide Beltrame",
     "title": {
@@ -6,8 +7,8 @@
       "it": "Studente e Ricercatore in IA"
     },
     "about": {
-      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I recently finished an internship as a ML Engineer at CommerceClarity, a Milan-based startup that is building the agent layer for e-commerce. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies.",
-      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Ho terminato da poco uno stage come ML Engineer presso CommerceClarity, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie."
+      "en": "I'm a student in the <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">MSc in Artificial Intelligence at Bocconi University</a>. I recently finished an internship as a ML Engineer at <a href=\"https://commerceclarity.com\" target=\"_blank\" rel=\"noopener noreferrer\">CommerceClarity</a>, a Milan-based startup that is building the agent layer for e-commerce. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. <br><br><strong>I recently started my master's thesis project on memorization in diffusion models with the Bocconi Machine Learning and Statistical Physics research group.</strong>",
+      "it": "Sono uno studente della <a href=\"https://www.unibocconi.it/it/corsi-di-studio/master-of-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">magistrale in Intelligenza Artificiale presso l'Università Bocconi</a>. Ho terminato da poco uno stage come ML Engineer presso <a href=\"https://commerceclarity.com\" target=\"_blank\" rel=\"noopener noreferrer\">CommerceClarity</a>, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. <br><br><strong>Ho recentemente iniziato il progetto di tesi magistrale sulla memorizzazione nei modelli di diffusione con il gruppo di ricerca in Machine Learning e Fisica Statistica della Bocconi.</strong>"
     }
     },
     "contact": {
@@ -16,69 +17,17 @@
       "linkedin": "https://www.linkedin.com/in/davide-beltrame",
       "cv": "/assets/files/davide_beltrame_cv.pdf"
     },
-  "experience": [
-    {
-      "title": {
-        "en": "AI Researcher",
-        "it": "Ricercatore AI"
-      },
-      "company": "Commerce Clarity",
-      "period": "2025–present",
-      "link": "https://commerceclarity.com"
-    },
-    {
-      "title": {
-        "en": "Author & Caporedattore",
-        "it": "Autore e Caporedattore"
-      },
-      "company": "Consensus Rivista",
-      "period": "2024–present",
-      "link": "https://www.consensusrivista.com"
-    }
-  ],
-  "education": [
-    {
-      "degree": {
-        "en": "MSc in Artificial Intelligence",
-        "it": "Laurea Magistrale in Intelligenza Artificiale"
-      },
-      "school": "Bocconi University",
-      "period": "2024–2026"
-    },
-    {
-      "degree": {
-        "en": "BSc in Management and Computer Science",
-        "it": "Laurea in Management and Computer Science"
-      },
-      "school": "LUISS Guido Carli",
-      "period": "2021–2024"
-    }
-  ],
-  "skills": {
-    "programming": {
-      "en": "Python, Git, JavaScript, HTML, CSS, C, SQL, MATLAB",
-      "it": "Python, JavaScript, HTML, CSS, C, SQL, MATLAB"
-    },
-    "languages": {
-      "en": "Italian (native), English (fluent), French (intermediate), Spanish (basic)",
-      "it": "Italiano (madrelingua), Inglese (fluente), Francese (intermedio), Spagnolo (base)"
-    },
-    "tools": {
-      "en": "GitHub, Google Workspace, KNIME, Google Analytics",
-      "it": "GitHub, Google Workspace, KNIME, Google Analytics"
-    }
-  },
   "publications": [
     {
       "title": {
-        "en": "[temp] More Efficient Text Diffusion via Length Prediction",
-        "it": "[temp] More Efficient Text Diffusion via Length Prediction"
+        "en": "More Efficient Text Diffusion via Length Prediction",
+        "it": "More Efficient Text Diffusion via Length Prediction"
       },
-      "venue": "TBD",
+      "venue": "Tentatively ICML 2026",
       "year": "2025",
       "status": {
-        "en": "Work in progress",
-        "it": "Lavori in corso"
+        "en": "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology",
+        "it": "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology"
       }
     },
     {
@@ -86,11 +35,11 @@
         "en": "Do AI and Human Experts See Pneumonia the Same Way?",
         "it": "L'IA e gli Esperti Umani Vedono la Polmonite allo Stesso Modo?"
       },
-      "venue": "Bocconi Students for Machine Learning",
+      "venue": "<a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>",
       "year": "2025",
       "status": {
-        "en": "Published",
-        "it": "Pubblicato"
+        "en": "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing",
+        "it": "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing"
       }
     }
   ],
@@ -101,7 +50,7 @@
         "en": "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms.",
         "it": "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
       },
-      "tech": ["Python", "PyTorch", "Research"],
+      "tech": ["NLP", "Deep Learning", "PyTorch"],
       "url": "https://github.com/giacomo-ciro/diffusion-llms",
       "featured": true,
       "collaborative": true
@@ -112,7 +61,7 @@
         "en": "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis.",
         "it": "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
       },
-      "tech": ["Python", "PyTorch", "Medical Imaging"],
+      "tech": ["Computer Vision", "Medical Imaging", "PyTorch"],
       "url": "https://github.com/davide-beltrame/medimg-saliency-benchmark",
       "featured": true,
       "collaborative": true
@@ -123,7 +72,7 @@
         "en": "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text.",
         "it": "Esplorazione di metodi di recupero di similarità semantica massimizzando il punteggio BLEU. Tecniche NLP avanzate per misurare e migliorare la comprensione semantica nei testi."
       },
-      "tech": ["Python", "NLP", "BLEU"],
+      "tech": ["NLP", "HF Transformers"],
       "url": "https://github.com/davide-beltrame/semantic-similarity",
       "featured": true
     },
@@ -133,7 +82,7 @@
         "en": "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability.",
         "it": "Algoritmo super efficiente per risolvere puzzle Wordle generalizzati. Implementa strategie di indovinamento ottimali usando teoria dell'informazione e probabilità."
       },
-      "tech": ["Python", "Algorithms"],
+      "tech": ["Information Theory", "NLP", "Algorithms"],
       "url": "https://github.com/davide-beltrame/wordle-solver",
       "featured": true
     },
@@ -152,7 +101,7 @@
     "username": "davide1729",
     "current_streak": 1022,
     "longest_streak": 1022,
-    "total_xp": 140154,
+    "total_xp": 150394,
     "streak_start_date": "2025-08-14",
     "languages": [
       {
@@ -343,6 +292,107 @@
       }
     }
   },
+  "timeline": [
+    {
+      "date": "23/07/2002",
+      "title": {
+        "en": "Born in Imperia, Italy, on the western Ligurian Riviera.",
+        "it": "Nasco a Imperia, nella Riviera ligure di Ponente."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "2007",
+      "title": {
+        "en": "My family and I move to Latina.",
+        "it": "Io e la mia famiglia ci trasferiamo a Latina."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "01/09/2016",
+      "title": {
+        "en": "My family and I move to Rome.",
+        "it": "Io e la mia famiglia ci trasferiamo a Roma."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "12/09/2016",
+      "title": {
+        "en": "My first day at Liceo Scientifico Statale \"Augusto Righi\" in Rome.",
+        "it": "Il mio primo giorno al Liceo Scientifico Statale \"Augusto Righi\" a Roma."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "25/06/2021",
+      "title": {
+        "en": "I graduate from Liceo Scientifico Statale \"Augusto Righi\" in Rome with a final grade of 100 cum laude.",
+        "it": "Mi diplomo al Liceo Scientifico Statale \"Augusto Righi\" di Roma con 100 e lode."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "13/09/2021",
+      "title": {
+        "en": "I start my Bachelor's Degree in Management and Computer Science at LUISS Guido Carli University",
+        "it": "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "07/2024",
+      "title": {
+        "en": "I move to Milan.",
+        "it": "Mi trasferisco a Milano."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "15/07/2024",
+      "title": {
+        "en": "I graduate with the highest honors (110 cum laude).",
+        "it": "Conseguo la laurea triennale con votazione finale di 110 e lode."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "05/09/2024",
+      "title": {
+        "en": "I start my Master's Degree in Artificial Intelligence at Bocconi University in Milan.",
+        "it": "Inizio il corso di laurea magistrale in Artificial Intelligence presso l’Università Bocconi di Milano."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    }
+  ],
   "meta": {
     "last_updated": "2025-10-14",
     "version": "2.1.0",

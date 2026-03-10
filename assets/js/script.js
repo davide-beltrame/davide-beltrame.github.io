@@ -469,11 +469,22 @@ function initAbstractToggles() {
             if (target) {
                 target.classList.toggle('expanded');
                 btn.classList.toggle('expanded');
-                btn.querySelector('span') || null;
+
+                // Prefer a dedicated label element inside the button
+                const labelEl = btn.querySelector('span');
+
                 if (btn.classList.contains('expanded')) {
-                    btn.childNodes[0].textContent = 'Hide abstract ';
+                    if (labelEl) {
+                        labelEl.textContent = 'Hide abstract ';
+                    } else if (btn.firstChild && btn.firstChild.nodeType === Node.TEXT_NODE) {
+                        btn.firstChild.textContent = 'Hide abstract ';
+                    }
                 } else {
-                    btn.childNodes[0].textContent = 'Show abstract ';
+                    if (labelEl) {
+                        labelEl.textContent = 'Show abstract ';
+                    } else if (btn.firstChild && btn.firstChild.nodeType === Node.TEXT_NODE) {
+                        btn.firstChild.textContent = 'Show abstract ';
+                    }
                 }
             }
         });

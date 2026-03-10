@@ -1,83 +1,147 @@
 // ===== THEME MANAGEMENT =====
-const themeToggle = document.getElementById('themeToggle');
-const langToggle = document.getElementById('langToggle');
 const body = document.body;
-
-// ===== CONTENT MANAGEMENT =====
-let contentData = null;
-let currentLanguage = 'en'; // Default language
 
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', savedTheme);
 
-// Theme toggle functionality
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+// Theme toggle — works for both desktop and mobile toggles
+function initThemeToggles() {
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const current = body.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
     });
 }
 
-// Language toggle functionality
-if (langToggle) {
-    langToggle.addEventListener('click', () => {
-        const newLang = currentLanguage === 'en' ? 'it' : 'en';
-        switchLanguage(newLang);
-        
-        // Update button text
-        langToggle.querySelector('.lang-text').textContent = newLang.toUpperCase();
+// ===== LANGUAGE MANAGEMENT =====
+let contentData = null;
+let currentLanguage = 'en';
+
+function initLanguageToggles() {
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const newLang = currentLanguage === 'en' ? 'it' : 'en';
+            switchLanguage(newLang);
+            // Update all lang buttons
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.textContent = newLang.toUpperCase();
+            });
+        });
     });
 }
 
-// ===== NAVIGATION MANAGEMENT =====
-// Set active navigation based on current page
+function switchLanguage(lang) {
+    if (contentData && contentData.meta.supported_languages.includes(lang)) {
+        currentLanguage = lang;
+        updatePageContent();
+        if (projectsLoaded) {
+            projectsLoaded = false;
+            loadProjects();
+        }
+        localStorage.setItem('preferred_language', lang);
+    }
+}
+
+// ===== HAMBURGER MENU =====
+function initHamburger() {
+    const btn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+
+    function openMenu() {
+        btn.classList.add('open');
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+    }
+
+    function closeMenu() {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+    }
+
+    btn.addEventListener('click', () => {
+        if (btn.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // Close menu when clicking a nav link
+    menu.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && btn.classList.contains('open')) {
+            closeMenu();
+            btn.focus();
+        }
+    });
+}
+
+// ===== NAVIGATION =====
 function setActiveNavigation() {
-    const navItems = document.querySelectorAll('.nav-item');
     const currentPath = window.location.pathname;
-    
-    navItems.forEach(item => {
+    document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
-        
-        // Check if this nav item corresponds to the current page
         const href = item.getAttribute('href');
         if (href) {
-            if ((currentPath.includes('/home') && href.includes('home')) ||
-                (currentPath.includes('/projects') && href.includes('projects')) ||
-                (currentPath.includes('/story') && href.includes('story')) ||
-                (currentPath.includes('/other') && href.includes('other'))) {
+            const section = href.replace('/', '');
+            if (currentPath.includes(section)) {
                 item.classList.add('active');
             }
         }
     });
 }
 
-// Load content from JSON
+// ===== CONTENT LOADING =====
+function getText(path, lang = currentLanguage) {
+    if (!contentData) return '';
+    const keys = path.split('.');
+    let current = contentData;
+    for (const key of keys) {
+        if (current && current[key] !== undefined) {
+            current = current[key];
+        } else {
+            return '';
+        }
+    }
+    if (current && typeof current === 'object' && current[lang]) {
+        return current[lang];
+    } else if (current && typeof current === 'object' && current['en']) {
+        return current['en'];
+    }
+    return current || '';
+}
+
 async function loadContent() {
     try {
-        // Use absolute path for subdirectories, relative for root
-        let contentPath;
         const path = window.location.pathname;
-        
-        if (path.includes('/home') || path.includes('/projects') || path.includes('/story') || path.includes('/other')) {
-            contentPath = '/content.json';  // Absolute path from subdirectories
-        } else {
-            contentPath = './content.json';  // Relative path from root
-        }
-        
+        const contentPath = (path.includes('/home') || path.includes('/projects') || path.includes('/story') || path.includes('/other'))
+            ? '/content.json'
+            : './content.json';
         const response = await fetch(contentPath);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         contentData = await response.json();
         currentLanguage = contentData.meta.default_language || 'en';
-        
-        // Initialize content on page load
         updatePageContent();
         setActiveNavigation();
     } catch (error) {
@@ -85,533 +149,464 @@ async function loadContent() {
     }
 }
 
-// Get translated text or fallback to English
-function getText(path, lang = currentLanguage) {
-    if (!contentData) return '';
-    
-    const keys = path.split('.');
-    let current = contentData;
-    
-    for (const key of keys) {
-        if (current && current[key]) {
-            current = current[key];
-        } else {
-            return '';
-        }
-    }
-    
-    // If it's a translation object, get the language or fallback to English
-    if (current && typeof current === 'object' && current[lang]) {
-        return current[lang];
-    } else if (current && typeof current === 'object' && current['en']) {
-        return current['en'];
-    }
-    
-    return current || '';
-}
-
-// Update all page content with current language
+// ===== UPDATE PAGE CONTENT =====
 function updatePageContent() {
     if (!contentData) return;
-    
-    // Update page meta
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-        metaDescription.setAttribute('content', `${contentData.personal.name} - ${getText('personal.title')}`);
+
+    // Update meta description
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+        meta.setAttribute('content', `${contentData.personal.name} — ${getText('personal.title')}`);
     }
-    
-    // Update navigation - with fallbacks
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach((item, index) => {
+
+    // Update navigation text
+    document.querySelectorAll('.nav-item').forEach(item => {
         const section = item.getAttribute('data-section');
-        
-        if (section && contentData && contentData.navigation && contentData.navigation[section]) {
-            const text = getText(`navigation.${section}`);
-            item.textContent = text;
+        if (section && contentData.navigation && contentData.navigation[section]) {
+            item.textContent = getText(`navigation.${section}`);
         }
-        // Note: We now have fallback text directly in HTML, so no need for JS fallback
     });
-    
-    // Update development notice
-    const developmentNotice = document.getElementById('developmentNotice');
-    if (developmentNotice) {
-        const title = getText('ui.development_notice.title') || 'Development Notice:';
-        const message = getText('ui.development_notice.message') || 'This website is currently under active development. Some features may not work as expected.';
-        developmentNotice.innerHTML = `
-            <i class="fas fa-exclamation-triangle"></i>
-            <strong>${title}</strong> ${message}
-        `;
-    }
-    
-    // Update home section content
+
+    // Update page-specific content
     updateHomeSection();
-    
-    // Update other section content
+    renderPublications();
     updateOtherSection();
+    updateStorySection();
 }
 
-// Update home section with dynamic content
+// ===== HOME SECTION =====
 function updateHomeSection() {
-    if (!contentData) {
-        return; // Fallback content is now in HTML
+    if (!contentData) return;
+
+    const heroName = document.getElementById('heroName');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroBio = document.getElementById('heroBio');
+
+    if (heroName) {
+        const greeting = currentLanguage === 'it' ? 'Ciao, sono Davide!' : 'Hi, I\'m Davide!';
+        heroName.textContent = greeting;
     }
-    
-    // Update title and remove subtitle
-    const titleElement = document.querySelector('.title');
-    const subtitleElement = document.querySelector('.subtitle');
-    const aboutElement = document.querySelector('.about p');
-    
-    if (titleElement) {
-        const titleText = getText('personal.title');
-        if (titleText) titleElement.textContent = titleText;
-    }
-    if (subtitleElement) subtitleElement.style.display = 'none'; // Hide subtitle
-    if (aboutElement) {
-        const aboutText = getText('personal.about');
-        if (aboutText) aboutElement.textContent = aboutText;
-    }
-    
+    if (heroTitle) heroTitle.textContent = getText('personal.title');
+    if (heroBio) heroBio.innerHTML = getText('personal.about');
+
     // Update contact links
-    const emailLink = document.querySelector('a[href^="mailto:"], a[href="#"]');
-    const githubLink = document.querySelector('a[href*="github.com"], .contact-links a:nth-child(2)');
-    const linkedinLink = document.querySelector('a[href*="linkedin.com"], .contact-links a:nth-child(3)');
-    const cvLink = document.querySelector('a[href$="davide_beltrame_cv.pdf"], .contact-links a:nth-child(4)');
-    
-    if (emailLink) emailLink.href = `mailto:${contentData.personal.contact.email}`;
-    if (githubLink) githubLink.href = contentData.personal.contact.github;
-    if (linkedinLink) linkedinLink.href = contentData.personal.contact.linkedin;
-    if (cvLink) cvLink.href = contentData.personal.contact.cv;
-    
-    // Update section headers
+    const contact = contentData.personal && contentData.personal.contact;
+    if (!contact) return;
+
+    const emailLink = document.getElementById('contactEmail');
+    const githubLink = document.getElementById('contactGithub');
+    const linkedinLink = document.getElementById('contactLinkedin');
+    const cvLink = document.getElementById('contactCV');
+
+    if (emailLink) emailLink.href = `mailto:${contact.email}`;
+    if (githubLink) githubLink.href = contact.github;
+    if (linkedinLink) linkedinLink.href = contact.linkedin;
+    if (cvLink) cvLink.href = contact.cv;
+
+    // Update contact header
     const contactHeader = document.querySelector('.contact-header');
-    const experienceHeader = document.querySelector('.experience .header-text');
-    const educationHeader = document.querySelector('.education .header-text');
-    
     if (contactHeader) contactHeader.textContent = getText('sections.get_in_touch');
-    if (experienceHeader) experienceHeader.textContent = getText('sections.experience');
-    if (educationHeader) educationHeader.textContent = getText('sections.education');
-    
-    // Update experience items
-    const experienceContainer = document.getElementById('experienceContainer');
-    if (experienceContainer && contentData.experience) {
-        experienceContainer.innerHTML = contentData.experience.map(exp => `
-            <div class="exp-item">
-                <span class="exp-title">${getText(`experience.${contentData.experience.indexOf(exp)}.title`)}</span>
-                <span class="exp-company">${exp.company}</span>
-                <span class="exp-period">${exp.period}</span>
-            </div>
-        `).join('');
-    }
-    
-    // Update education items
-    const educationContainer = document.getElementById('educationContainer');
-    if (educationContainer && contentData.education) {
-        educationContainer.innerHTML = contentData.education.map(edu => `
-            <div class="edu-item">
-                <span class="edu-degree">${getText(`education.${contentData.education.indexOf(edu)}.degree`)}</span>
-                <span class="edu-school">${edu.school}</span>
-                <span class="edu-period">${edu.period}</span>
-            </div>
-        `).join('');
-    }
 }
 
-// Update other section with dynamic content
-function updateOtherSection() {
+// ===== OTHER SECTION (Publications + Duolingo) =====
+// ===== PUBLICATIONS RENDERING (on projects page) =====
+function renderPublications() {
     if (!contentData) return;
-    
-    const skillsHeader = document.querySelector('.skills h3');
-    const publicationsHeader = document.querySelector('.publications h3');
-    
-    if (skillsHeader) skillsHeader.textContent = getText('sections.skills') || 'Skills';
-    if (publicationsHeader) publicationsHeader.textContent = getText('sections.publications') || 'Publications';
-    
-    // Update skill categories
-    const skillCategories = document.querySelectorAll('.skill-category');
-    const skills = ['programming', 'languages', 'tools'];
-    
-    skillCategories.forEach((category, index) => {
-        if (skills[index] && contentData.skills[skills[index]]) {
-            const label = category.querySelector('.skill-label');
-            const list = category.querySelector('.skill-list');
-            
-            if (label) label.textContent = getText(`labels.${skills[index]}`) || `${skills[index].charAt(0).toUpperCase() + skills[index].slice(1)}:`;
-            if (list) list.textContent = getText(`skills.${skills[index]}`);
-        }
-    });
-    
-    // Update publications
-    const publicationsContainer = document.getElementById('publicationsContainer');
-    
-    if (publicationsContainer && contentData.publications) {
-        const publicationsHTML = contentData.publications.map(pub => {
-            const title = pub.title && typeof pub.title === 'object' 
+
+    const researchTitle = document.getElementById('researchTitle');
+    if (researchTitle) researchTitle.textContent = getText('sections.publications') || 'Research';
+
+    const pubContainer = document.getElementById('publicationsContainer');
+    if (pubContainer && contentData.publications) {
+        // Sort publications by date (most recent first), fallback to year
+        const sortedPubs = [...contentData.publications].sort((a, b) => {
+            const dateA = a.date ? new Date(a.date) : new Date(a.year || '1970');
+            const dateB = b.date ? new Date(b.date) : new Date(b.year || '1970');
+            return dateB - dateA;
+        });
+        pubContainer.innerHTML = sortedPubs.map((pub, i) => {
+            const title = pub.title && typeof pub.title === 'object'
                 ? (pub.title[currentLanguage] || pub.title['en'])
                 : pub.title;
-            const status = pub.status && typeof pub.status === 'object' 
+            const status = pub.status && typeof pub.status === 'object'
                 ? (pub.status[currentLanguage] || pub.status['en'])
                 : pub.status;
-            
+            const abstract = pub.abstract && typeof pub.abstract === 'object'
+                ? (pub.abstract[currentLanguage] || pub.abstract['en'])
+                : pub.abstract;
+            const hasLink = pub.link && pub.link.trim();
+            const hasAbstract = abstract && abstract.trim() && abstract.trim() !== 'TODO';
+            const authors = pub.authors || '';
+
             return `
-                <div class="pub-item">
-                    <span class="pub-title">${title}</span>
-                    <span class="pub-venue">${pub.venue}</span>
-                    <span class="pub-year">${pub.year}</span>
-                    <span class="pub-status">${status}</span>
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="pub-title">
+                            ${hasLink
+                    ? `<a href="${pub.link}" target="_blank" rel="noopener noreferrer">${title} <i class="fas fa-external-link-alt" style="font-size:11px;opacity:0.5"></i></a>`
+                    : title}
+                        </span>
+                        <span class="pub-year-badge">${pub.year || ''}</span>
+                    </div>
+                    ${authors ? `<div class="pub-authors">${authors}</div>` : ''}
+                    <div class="pub-meta">
+                        ${pub.venue ? `<span class="pub-venue">${pub.venue}</span>` : ''}
+                        ${status ? `<span class="pub-status">${status}</span>` : ''}
+                    </div>
+                    ${hasAbstract ? `
+                        <button class="pub-abstract-toggle" data-target="abstract-${i}">
+                            Show abstract <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="pub-abstract" id="abstract-${i}">
+                            <p>${abstract}</p>
+                        </div>
+                    ` : ''}
                 </div>
             `;
         }).join('');
-        
-        publicationsContainer.innerHTML = publicationsHTML;
+
+        initAbstractToggles();
     }
-    
-    // Update Duolingo data
-    const duolingoHeader = document.querySelector('.duolingo h3');
-    const duolingoContainer = document.getElementById('duolingoContainer');
-    
-    if (duolingoHeader) duolingoHeader.textContent = getText('sections.duolingo') || 'Language Learning';
-    
-    if (duolingoContainer && contentData.duolingo) {
-        const duolingo = contentData.duolingo;
-        
-        // Calculate current streak based on days since start date
-        const startDate = new Date(duolingo.streak_start_date);
+}
+
+// ===== OTHER SECTION (Duolingo only) =====
+function updateOtherSection() {
+    if (!contentData) return;
+
+    // Duolingo
+    const duoTitle = document.getElementById('duolingoTitle');
+    if (duoTitle) duoTitle.textContent = getText('sections.duolingo') || 'Language Learning';
+
+    const duoContainer = document.getElementById('duolingoContainer');
+    if (duoContainer && contentData.duolingo) {
+        const duo = contentData.duolingo;
+
+        // Calculate current streak
+        const startDate = new Date(duo.streak_start_date);
         const today = new Date();
         const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        const currentStreak = duolingo.current_streak + daysDiff;
-        const longestStreak = Math.max(duolingo.longest_streak, currentStreak);
-        
-        // Format the last updated date
-        const lastUpdated = new Date(duolingo.data_last_updated).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long', 
-            day: 'numeric'
+        const currentStreak = duo.current_streak + daysDiff;
+        const longestStreak = Math.max(duo.longest_streak, currentStreak);
+
+        // Top 5 languages by XP
+        const topLangs = [...duo.languages].sort((a, b) => b.xp - a.xp).slice(0, 5);
+        const remainingLangs = [...duo.languages].sort((a, b) => b.xp - a.xp).slice(5);
+
+        const lastUpdated = new Date(duo.data_last_updated).toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
         });
-        
-        const duolingoHTML = `
-            <div class="duolingo-stats">
-                <div class="duolingo-stat">
-                    <span class="stat-value">${currentStreak}</span>
-                    <span class="stat-label">${getText('ui.duolingo.current_streak') || 'Current Streak'}</span>
-                </div>
-                <div class="duolingo-stat">
-                    <span class="stat-value">${longestStreak}</span>
-                    <span class="stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
-                </div>
-                <div class="duolingo-stat">
-                    <span class="stat-value">${duolingo.total_xp.toLocaleString()}</span>
-                    <span class="stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
-                </div>
-            </div>
-            <div class="collapsible-section">
-                <div class="collapsible-header">
-                    <h4>${getText('ui.duolingo.languages') || 'Languages'}</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="collapsible-content">
-                    <div class="duolingo-languages">
-                        ${duolingo.languages.map(lang => `
-                            <div class="language-item">
-                                <div class="language-flag">${lang.flag}</div>
-                                <div class="language-info">
-                                    <div class="language-name">${lang.name}</div>
-                                    <div class="language-level">${lang.xp.toLocaleString()} XP</div>
-                                </div>
-                            </div>
-                        `).join('')}
+
+        duoContainer.innerHTML = `
+            <div class="duolingo-highlight">
+                <div class="streak-display">
+                    <span class="streak-fire">🔥</span>
+                    <div>
+                        <span class="streak-number">${currentStreak}</span>
+                        <span class="streak-label">${getText('ui.duolingo.current_streak') || 'day streak'}</span>
                     </div>
                 </div>
             </div>
+
+            <div class="duolingo-stat-row">
+                <div class="duo-stat-chip">
+                    <span class="duo-stat-value">${longestStreak}</span>
+                    <span class="duo-stat-label">${getText('ui.duolingo.longest_streak') || 'Longest Streak'}</span>
+                </div>
+                <div class="duo-stat-chip">
+                    <span class="duo-stat-value">${duo.total_xp.toLocaleString()}</span>
+                    <span class="duo-stat-label">${getText('ui.duolingo.total_xp') || 'Total XP'}</span>
+                </div>
+                <div class="duo-stat-chip">
+                    <span class="duo-stat-value">${duo.languages.length}</span>
+                    <span class="duo-stat-label">${getText('ui.duolingo.languages') || 'Languages'}</span>
+                </div>
+            </div>
+
+            <div class="duolingo-top-languages" id="duoTopLangs">
+                ${topLangs.map(lang => `
+                    <div class="lang-card">
+                        <span class="lang-flag">${lang.flag || '🌐'}</span>
+                        <div>
+                            <div class="lang-name">${lang.name}</div>
+                            <div class="lang-xp">${lang.xp.toLocaleString()} XP</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+
+            ${remainingLangs.length > 0 ? `
+                <div class="collapsible-section">
+                    <div class="collapsible-header" id="showAllLangsBtn">
+                        <h4>${getText('ui.duolingo.languages') || 'All languages'} (${remainingLangs.length} more)</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="duolingo-top-languages">
+                            ${remainingLangs.map(lang => `
+                                <div class="lang-card">
+                                    <span class="lang-flag">${lang.flag || '🌐'}</span>
+                                    <div>
+                                        <div class="lang-name">${lang.name}</div>
+                                        <div class="lang-xp">${lang.xp.toLocaleString()} XP</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            ` : ''}
+
             <div class="duolingo-notice">
                 <small>${getText('ui.duolingo.data_notice') || '* XP and language data last updated:'} ${lastUpdated}</small>
             </div>
         `;
-        
-        duolingoContainer.innerHTML = duolingoHTML;
-        
-        // Initialize collapsible functionality
+
         initializeCollapsibleSections();
     }
 }
 
-// Language switcher (for future implementation)
-function switchLanguage(lang) {
-    if (contentData && contentData.meta.supported_languages.includes(lang)) {
-        currentLanguage = lang;
-        updatePageContent();
-        
-        // Update projects if they're loaded
-        if (projectsLoaded) {
-            projectsLoaded = false;
-            loadProjects();
-        }
-        
-        localStorage.setItem('preferred_language', lang);
+// ===== STORY SECTION =====
+function updateStorySection() {
+    if (!contentData || !contentData.timeline) return;
+    const container = document.getElementById('timelineContainer');
+    if (!container) return;
+
+    // Group timeline events by year
+    const events = [...contentData.timeline].reverse();
+    const grouped = {};
+    events.forEach(event => {
+        // Extract year from date like "DD/MM/YYYY" or "MM/YYYY"
+        const parts = event.date ? event.date.split('/') : [];
+        let year;
+        if (parts.length === 3) year = parts[2];
+        else if (parts.length === 2) year = parts[1];
+        else if (parts.length === 1) year = parts[0];
+        else year = 'Other';
+
+        if (!grouped[year]) grouped[year] = [];
+        grouped[year].push(event);
+    });
+
+    // Sort years descending (most recent -> least recent)
+    const sortedYears = Object.keys(grouped).sort((a, b) => {
+        if (a === 'Other') return 1;
+        if (b === 'Other') return -1;
+        return Number(b) - Number(a);
+    });
+
+    let html = '';
+    for (const year of sortedYears) {
+        html += `<div class="timeline-year-group">`;
+        html += `<div class="timeline-year-label"><span>${year}</span></div>`;
+        html += `<div class="timeline-year-events">`;
+        grouped[year].forEach(event => {
+            const title = event.title && typeof event.title === 'object'
+                ? (event.title[currentLanguage] || event.title['en'])
+                : event.title;
+            const description = event.description && typeof event.description === 'object'
+                ? (event.description[currentLanguage] || event.description['en'])
+                : event.description;
+
+            // Format the date based on language
+            const formattedDate = formatTimelineDate(event.date, currentLanguage);
+
+            html += `
+                <div class="timeline-event">
+                    ${formattedDate ? `<div class="timeline-date">${formattedDate}</div>` : ''}
+                    <div class="timeline-title">${title}</div>
+                    ${description ? `<div class="timeline-description">${description}</div>` : ''}
+                </div>
+            `;
+        });
+        html += `</div></div>`;
     }
+    container.innerHTML = html;
+
+    // Scroll-based reveal animation
+    initTimelineObserver();
+}
+
+// ===== DATE FORMATTING =====
+function formatTimelineDate(dateStr, lang) {
+    if (!dateStr) return '';
+    const parts = dateStr.split('/');
+    if (parts.length === 1) return ''; // Only year, hide the date line
+
+    const monthsEn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthsIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+
+    let monthIdx, dayNum;
+    if (parts.length === 3) { // DD/MM/YYYY
+        dayNum = parseInt(parts[0], 10);
+        monthIdx = parseInt(parts[1], 10) - 1;
+    } else if (parts.length === 2) { // MM/YYYY
+        monthIdx = parseInt(parts[0], 10) - 1;
+    }
+
+    if (isNaN(monthIdx) || monthIdx < 0 || monthIdx > 11) return dateStr;
+
+    const monthName = lang === 'it' ? monthsIt[monthIdx] : monthsEn[monthIdx];
+
+    if (dayNum) {
+        if (lang === 'it') {
+            return `${dayNum} ${monthName.toLowerCase()}`;
+        } else {
+            const j = dayNum % 10, k = dayNum % 100;
+            let suffix = "th";
+            if (j == 1 && k != 11) suffix = "st";
+            if (j == 2 && k != 12) suffix = "nd";
+            if (j == 3 && k != 13) suffix = "rd";
+            return `${monthName} ${dayNum}${suffix}`;
+        }
+    } else {
+        return monthName;
+    }
+}
+
+// ===== TIMELINE SCROLL ANIMATION =====
+function initTimelineObserver() {
+    const events = document.querySelectorAll('.timeline-event');
+    if (!events.length) return;
+
+    // Start all events hidden
+    events.forEach(el => el.classList.add('timeline-hidden'));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('timeline-visible');
+                entry.target.classList.remove('timeline-hidden');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    events.forEach(el => observer.observe(el));
+}
+
+// ===== ABSTRACT TOGGLES =====
+function initAbstractToggles() {
+    document.querySelectorAll('.pub-abstract-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = document.getElementById(btn.dataset.target);
+            if (target) {
+                target.classList.toggle('expanded');
+                btn.classList.toggle('expanded');
+
+                // Prefer a dedicated label element inside the button
+                const labelEl = btn.querySelector('span');
+
+                if (btn.classList.contains('expanded')) {
+                    if (labelEl) {
+                        labelEl.textContent = 'Hide abstract ';
+                    } else if (btn.firstChild && btn.firstChild.nodeType === Node.TEXT_NODE) {
+                        btn.firstChild.textContent = 'Hide abstract ';
+                    }
+                } else {
+                    if (labelEl) {
+                        labelEl.textContent = 'Show abstract ';
+                    } else if (btn.firstChild && btn.firstChild.nodeType === Node.TEXT_NODE) {
+                        btn.firstChild.textContent = 'Show abstract ';
+                    }
+                }
+            }
+        });
+    });
 }
 
 // ===== COLLAPSIBLE SECTIONS =====
 function initializeCollapsibleSections() {
-    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-    
-    collapsibleHeaders.forEach(header => {
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        // Only add listener if not already initialized
+        if (header.dataset.initialized) return;
+        header.dataset.initialized = 'true';
         header.addEventListener('click', () => {
-            const section = header.closest('.collapsible-section');
-            
-            // Simply toggle the current section without affecting others
-            section.classList.toggle('expanded');
+            header.closest('.collapsible-section').classList.toggle('expanded');
         });
     });
 }
 
-// ===== PROJECTS LOADING =====
+// ===== PROJECTS =====
 let projectsLoaded = false;
 
-// Configuration: Choose data source
-const USE_GITHUB_API = false; // Set to false to use projects.json instead
-
-// Repositories to exclude from GitHub API fetch
-const EXCLUDED_REPOS = [
-    'dsl-web-app',
-    'cybercrime-aho',
-    'davide-beltrame' // Keep excluding profile repo
-];
-
-async function loadProjectsFromGitHub() {
-    const response = await fetch('https://api.github.com/users/davide-beltrame/repos?sort=updated');
-    const repos = await response.json();
-    
-    // Filter repositories
-    const interestingRepos = repos.filter(repo => 
-        !repo.fork && 
-        repo.description && 
-        !EXCLUDED_REPOS.includes(repo.name)
-    );
-    
-    // Generate HTML for GitHub projects
-    return interestingRepos.map(repo => {
-        const languages = repo.language ? [repo.language] : [];
-        
-        return `
-            <div class="project-item">
-                <h3 class="project-title">
-                    <a href="${repo.html_url}" target="_blank">${repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</a>
-                </h3>
-                <p class="project-description">${repo.description}</p>
-                ${languages.length > 0 ? `
-                    <div class="project-tech">
-                        ${languages.map(lang => `<span class="tech-tag">${lang}</span>`).join('')}
-                    </div>
-                ` : ''}
-            </div>
-        `;
-    }).join('');
-}
-
 async function loadProjectsFromJSON() {
-    if (!contentData) {
-        await loadContent();
-    }
-    
-    if (!contentData || !contentData.projects) {
-        return '<p class="loading">No projects data available.</p>';
-    }
-    
-    // Filter featured projects
-    const featuredProjects = contentData.projects.filter(project => project.featured);
-    
-    if (featuredProjects.length === 0) {
-        return '<p class="loading">No featured projects found.</p>';
-    }
-    
-    // Generate HTML for JSON projects
-    const projectsHTML = featuredProjects.map(project => {
-        const description = project.description && typeof project.description === 'object' 
+    if (!contentData) await loadContent();
+    if (!contentData || !contentData.projects) return '<p class="loading">No projects data available.</p>';
+
+    const featured = contentData.projects.filter(p => p.featured);
+    if (featured.length === 0) return '<p class="loading">No featured projects found.</p>';
+
+    return featured.map(project => {
+        const desc = project.description && typeof project.description === 'object'
             ? (project.description[currentLanguage] || project.description['en'])
             : project.description;
-            
+
+        // Map project data to the pub-card structure
         return `
-            <div class="project-item">
-                <h3 class="project-title">
-                    <a href="${project.url}" target="_blank">${project.title}</a>
-                    ${project.collaborative ? '<span class="collab-badge">Collaborative</span>' : ''}
-                </h3>
-                <p class="project-description">${description}</p>
+            <div class="pub-card">
+                <div class="pub-header">
+                    <span class="pub-title">
+                        <a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title} <i class="fas fa-external-link-alt" style="font-size:11px;opacity:0.5"></i></a>
+                    </span>
+                    ${project.collaborative ? '<span class="pub-year-badge">Collaborative</span>' : ''}
+                </div>
+                <div class="pub-authors">${desc}</div>
                 <div class="project-tech">
-                    ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
                 </div>
             </div>
         `;
     }).join('');
-    
-    return projectsHTML;
 }
 
 async function loadProjects() {
-    if (projectsLoaded) {
-        return;
-    }
-    
+    if (projectsLoaded) return;
     const container = document.getElementById('projectsContainer');
-    
+    if (!container) return;
+
     try {
-        let projectsHTML;
-        
-        if (USE_GITHUB_API) {
-            projectsHTML = await loadProjectsFromGitHub();
-            if (!projectsHTML.trim()) {
-                container.innerHTML = '<p class="loading">No public repositories found. Check back soon!</p>';
-                return;
-            }
-        } else {
-            projectsHTML = await loadProjectsFromJSON();
-        }
-        
-        if (projectsHTML && projectsHTML.trim()) {
-            container.innerHTML = projectsHTML;
+        const html = await loadProjectsFromJSON();
+        if (html && html.trim()) {
+            container.innerHTML = html;
             projectsLoaded = true;
         }
-        
     } catch (error) {
         console.error('Error loading projects:', error);
-        // Don't replace content on error, keep the fallback HTML
     }
 }
-
-// ===== ACCESSIBILITY =====
-// Keyboard navigation support
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-        document.body.classList.add('keyboard-focus');
-    }
-});
-
-document.addEventListener('mousedown', () => {
-    document.body.classList.remove('keyboard-focus');
-});
-
-// ===== SMOOTH SCROLLING =====
-// Smooth scroll to top when changing sections
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Apply smooth scroll to navigation items
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach(item => {
-    item.addEventListener('click', scrollToTop);
-});
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', async () => {
+    initThemeToggles();
+    initLanguageToggles();
+    initHamburger();
+
     try {
-        // Load content first
         await loadContent();
     } catch (error) {
         console.error('Error in loadContent():', error);
     }
-    
-    // Initialize collapsible sections
-    initializeCollapsibleSections();
-    
-    // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferred_language');
-    if (savedLanguage && contentData && contentData.meta.supported_languages.includes(savedLanguage)) {
-        currentLanguage = savedLanguage;
+
+    // Restore language preference
+    const savedLang = localStorage.getItem('preferred_language');
+    if (savedLang && contentData && contentData.meta.supported_languages.includes(savedLang)) {
+        currentLanguage = savedLang;
         updatePageContent();
     }
-    
+
     // Update language button text
-    if (langToggle) {
-        langToggle.querySelector('.lang-text').textContent = currentLanguage.toUpperCase();
-    }
-    
-    // Set initial theme icon state
-    const currentTheme = body.getAttribute('data-theme');
-    
-    // Mobile contact link functionality
-    initializeMobileContactLinks();
-    
-    // Auto-load content based on current page
+    document.querySelectorAll('.lang-text').forEach(el => {
+        el.textContent = currentLanguage.toUpperCase();
+    });
+
+    // Auto-load page-specific content
     const currentPath = window.location.pathname;
     if (currentPath.includes('/projects')) {
-        // Ensure content is loaded, then load projects
-        if (contentData) {
-            loadProjects();
-        } else {
-            // Content will load via await in main initialization, then call loadProjects
-            setTimeout(() => loadProjects(), 200);
-        }
+        if (contentData) { renderPublications(); loadProjects(); }
+        else setTimeout(() => { renderPublications(); loadProjects(); }, 200);
     }
-    
     if (currentPath.includes('/other')) {
-        // Update other section content when on other page
-        if (contentData) {
-            updateOtherSection();
-        } else {
-            setTimeout(() => updateOtherSection(), 200);
-        }
+        if (contentData) updateOtherSection();
+        else setTimeout(() => updateOtherSection(), 200);
     }
 });
-
-// ===== MOBILE CONTACT LINKS FUNCTIONALITY =====
-function initializeMobileContactLinks() {
-    const contactLinks = document.querySelectorAll('.contact-link');
-    
-    // Only add touch functionality for devices without hover capability
-    if (window.matchMedia('(hover: none)').matches) {
-        contactLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Don't prevent default if it's a real link and already expanded
-                if (this.classList.contains('active') && this.href && this.href !== '#') {
-                    return; // Let the link work normally
-                }
-                
-                e.preventDefault();
-                
-                // Remove active class from all other links
-                contactLinks.forEach(otherLink => {
-                    if (otherLink !== this) {
-                        otherLink.classList.remove('active');
-                    }
-                });
-                
-                // Toggle active class on clicked link
-                this.classList.toggle('active');
-                
-                // If this link becomes active and has a real href, 
-                // add a secondary tap handler for navigation
-                if (this.classList.contains('active') && this.href && this.href !== '#') {
-                    setTimeout(() => {
-                        // After a short delay, make it navigable with another tap
-                        this.setAttribute('data-ready-to-navigate', 'true');
-                    }, 300);
-                }
-            });
-            
-            // Handle second tap for navigation
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('data-ready-to-navigate') === 'true' && 
-                    this.classList.contains('active') && 
-                    this.href && this.href !== '#') {
-                    // Allow the navigation to proceed
-                    this.removeAttribute('data-ready-to-navigate');
-                    return;
-                }
-            });
-        });
-        
-        // Close expanded links when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.contact-link')) {
-                contactLinks.forEach(link => {
-                    link.classList.remove('active');
-                    link.removeAttribute('data-ready-to-navigate');
-                });
-            }
-        });
-    }
-}

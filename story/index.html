@@ -1,63 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Story - Davide Beltrame</title>
-    <meta name="description" content="My Story - Davide Beltrame">
+    <title>Story — Davide Beltrame</title>
+    <meta name="description" content="Davide Beltrame's personal website.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/files/favicon/davide_beltrame_apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/files/favicon/davide_beltrame_favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/files/favicon/davide_beltrame_favicon-16x16.png">
     <link rel="shortcut icon" href="../assets/files/favicon/davide_beltrame_favicon.ico">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fafafa">
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-left">
-                <img src="../assets/files/davide_beltrame_propic.jpg" alt="Davide Beltrame" class="profile-image-header">
-                <h1 class="name">davide beltrame</h1>
-            </div>
-            <nav class="nav">
-                <a href="/home" class="nav-item" data-section="home">Home</a>
-                <a href="/projects" class="nav-item" data-section="projects">Projects</a>
-                <a href="/story" class="nav-item active" data-section="story">Story</a>
-                <a href="/other" class="nav-item" data-section="other">Other</a>
-                <!-- Language switcher -->
-                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-                    <span class="lang-text">EN</span>
-                </button>
-                <!-- Theme toggle -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <span class="toggle-circle"></span>
-                </button>
-            </nav>
-        </header>
 
-        <!-- Content Sections -->
-        <main class="main">
-            <!-- Story Section -->
-            <div class="warning" id="developmentNotice">
-                <i class="fas fa-exclamation-triangle"></i>
-                <strong>Development Notice:</strong> This website is currently under active development. Some features may not work as expected.
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand">
+                <a href="/home">davide beltrame</a>
             </div>
+            <div class="nav-links">
+                <a href="/home" class="nav-item" data-section="home">home</a>
+                <a href="/projects" class="nav-item" data-section="projects">projects</a>
+                <a href="/story" class="nav-item active" data-section="story">story</a>
+                <a href="/other" class="nav-item" data-section="other">other</a>
+                <div class="nav-controls">
+                    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                        <span class="lang-text">EN</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="toggle-circle"></span>
+                    </button>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/home" class="nav-item" data-section="home">home</a>
+        <a href="/projects" class="nav-item" data-section="projects">projects</a>
+        <a href="/story" class="nav-item active" data-section="story">story</a>
+        <a href="/other" class="nav-item" data-section="other">other</a>
+        <div class="nav-controls">
+            <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
+                <span class="lang-text">EN</span>
+            </button>
+            <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+                <span class="toggle-circle"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <main class="main">
             <section class="section active" id="story">
-                <div class="story-coming-soon">
-                    <h2>Coming Soon!</h2>
+                <h2 class="section-title" id="storyTitle">timeline</h2>
+                <div id="timelineContainer" class="timeline">
+                    <!-- Timeline populated by JavaScript -->
                 </div>
             </section>
         </main>
     </div>
 
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>© 2026 Davide Beltrame · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"
+                    rel="noopener noreferrer">CC BY-SA 4.0</a></span>
+        </div>
+    </footer>
+
     <script src="../assets/js/script.js"></script>
 </body>
+
 </html>

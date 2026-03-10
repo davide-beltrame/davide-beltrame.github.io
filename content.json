@@ -1,13 +1,14 @@
 {
+  "useful": "Use option+Z for text wrap",
   "personal": {
     "name": "Davide Beltrame",
     "title": {
-      "en": "AI Student & Researcher",
-      "it": "Studente e Ricercatore in IA"
+      "en": "Student & researcher in deep learning and AI",
+      "it": "Studente e ricercatore in IA e deep learning"
     },
     "about": {
-      "en": "I'm a student in the MSc in Artificial Intelligence at Bocconi University. I recently finished an internship as an AI Researcher at CommerceClarity, a Milan-based startup that is building the agent layer for e-commerce. I write for Consensus Rivista as Editor-in-Chief delegate to AI and New Technologies.",
-      "it": "Sono uno studente della magistrale in Intelligenza Artificiale presso l'Università Bocconi. Ho terminato da poco uno stage come Ricercatore AI presso CommerceClarity, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per Consensus Rivista come Caporedattore delegato all'AI e alle Nuove Tecnologie."
+      "en": "I'm a student in the <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">MSc in Artificial Intelligence at Bocconi University</a>. Last summer I interned as an ML Engineer at <a href=\"https://commerceclarity.com\" target=\"_blank\" rel=\"noopener noreferrer\">CommerceClarity</a>, a Milan-based startup that is building the agent layer for e-commerce. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. <br><br><strong>I recently started my master's thesis project on generalization in diffusion models with the Bocconi machine learning and statistical physics research group.</strong>",
+      "it": "Sono uno studente della <a href=\"https://www.unibocconi.it/it/corsi-di-studio/master-of-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">magistrale in Intelligenza Artificiale presso l'Università Bocconi</a>. La scorsa estate ho svolto uno stage come ML Engineer presso <a href=\"https://commerceclarity.com\" target=\"_blank\" rel=\"noopener noreferrer\">CommerceClarity</a>, una startup milanese che sta creando il layer agentico per l'e-commerce. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. <br><br><strong>Ho da poco iniziato il progetto di tesi magistrale sulla generalizzazione nei modelli di diffusione con il gruppo di ricerca in machine learning e fisica statistica della Bocconi.</strong>"
     },
     "contact": {
       "email": "davide.beltrame@studbocconi.it",
@@ -16,82 +17,72 @@
       "cv": "/assets/files/davide_beltrame_cv.pdf"
     }
   },
-  "experience": [
-    {
-      "title": {
-        "en": "AI Researcher",
-        "it": "Ricercatore AI"
-      },
-      "company": "Commerce Clarity",
-      "period": "2025–present",
-      "link": "https://commerceclarity.com"
-    },
-    {
-      "title": {
-        "en": "Author & Caporedattore",
-        "it": "Autore e Caporedattore"
-      },
-      "company": "Consensus Rivista",
-      "period": "2024–present",
-      "link": "https://www.consensusrivista.com"
-    }
-  ],
-  "education": [
-    {
-      "degree": {
-        "en": "MSc in Artificial Intelligence",
-        "it": "Laurea Magistrale in Intelligenza Artificiale"
-      },
-      "school": "Bocconi University",
-      "period": "2024–2026"
-    },
-    {
-      "degree": {
-        "en": "BSc in Management and Computer Science",
-        "it": "Laurea in Management and Computer Science"
-      },
-      "school": "LUISS Guido Carli",
-      "period": "2021–2024"
-    }
-  ],
-  "skills": {
-    "programming": {
-      "en": "Python, Git, JavaScript, HTML, CSS, C, SQL, MATLAB",
-      "it": "Python, JavaScript, HTML, CSS, C, SQL, MATLAB"
-    },
-    "languages": {
-      "en": "Italian (native), English (fluent), French (intermediate), Spanish (basic)",
-      "it": "Italiano (madrelingua), Inglese (fluente), Francese (intermedio), Spagnolo (base)"
-    },
-    "tools": {
-      "en": "GitHub, Google Workspace, KNIME, Google Analytics",
-      "it": "GitHub, Google Workspace, KNIME, Google Analytics"
-    }
-  },
   "publications": [
     {
       "title": {
-        "en": "[temp] More Efficient Text Diffusion via Length Prediction",
-        "it": "[temp] More Efficient Text Diffusion via Length Prediction"
+        "en": "More Efficient Text Diffusion via Length Prediction",
+        "it": "More Efficient Text Diffusion via Length Prediction"
       },
-      "venue": "TBD",
+      "authors": "Davide Beltrame, Giacomo Cirò, Luca Gandolfi, Vittorio Rossi",
+      "venue": "",
       "year": "2025",
+      "date": "2025-06-01",
       "status": {
-        "en": "Work in progress",
-        "it": "Lavori in corso"
-      }
+        "en": "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology",
+        "it": "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology"
+      },
+      "link": "https://github.com/giacomo-ciro/diffusion-llms"
     },
     {
       "title": {
         "en": "Do AI and Human Experts See Pneumonia the Same Way?",
-        "it": "L'IA e gli Esperti Umani Vedono la Polmonite allo Stesso Modo?"
+        "it": "Do AI and Human Experts See Pneumonia the Same Way?"
       },
-      "venue": "Bocconi Students for Machine Learning",
+      "authors": "Davide Beltrame, Giacomo Cirò",
+      "venue": "<a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>",
       "year": "2025",
+      "date": "2025-06-01",
       "status": {
-        "en": "Published",
-        "it": "Pubblicato"
-      }
+        "en": "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing",
+        "it": "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing"
+      },
+      "link": "https://bsmachinelearning.com/projects/2025-06-16/"
+    },
+    {
+      "title": {
+        "en": "Diffusion Language Models Are Natively Length-Aware",
+        "it": "Diffusion Language Models Are Natively Length-Aware"
+      },
+      "authors": "Vittorio Rossi*, Giacomo Cirò*, Davide Beltrame*, Luca Gandolfi, Paul Röttger, Dirk Hovy",
+      "year": "2026",
+      "status": {
+        "en": "*Equal contribution.",
+        "it": "*Contributo equo."
+      },
+      "abstract": {
+        "en": "Unlike autoregressive language models, which terminate variable-length generation upon predicting an End-of-Sequence (EoS) token, Diffusion Language Models (DLMs) operate over a fixed maximum-length context window for a predetermined number of denoising steps. However, this process is independent of the required response length, resulting in computational waste for the majority of short responses common in reasoning and chat tasks. To address this problem, we conjecture that the latent prompt representation contains sufficient information to estimate the required output length. We provide empirical evidence for this phenomenon and propose a zero-shot mechanism to dynamically crop the context window before generation begins, leading to fewer diffusion steps and substantial computational savings. We evaluate our approach on four benchmarks with diverse tasks -- GSM8K (reasoning), HumanEval (code generation), IfEval (instruction following), and LongFormQA (question answering) -- revealing massive efficiency gains at minimal performance impact. We report significant reductions in FLOPs across all tasks, with no statistically significant performance degradation, and significant performance improvements in 2 out of 4 tasks.",
+        "it": "TODO"
+      },
+      "link": "https://arxiv.org/abs/2603.06123",
+      "date": "2026-03-06"
+    },
+    {
+      "title": {
+        "en": "Biased Generalization in Diffusion Models",
+        "it": "Generalizzazione Parziale nei Modelli di Diffusione"
+      },
+      "authors": "Jérôme Garnier-Brun*, Luca Biggio*, Davide Beltrame, Marc Mézard, Luca Saglietti",
+      "status": {
+        "en": "*Equal contribution.",
+        "it": "*Contributo equo."
+      },
+      "year": "2026",
+      "abstract": {
+        "en": "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications.",
+        "it": "TODO"
+      },
+      "link": "https://arxiv.org/abs/2603.03469",
+      "date": "2026-03-03"
     }
   ],
   "projects": [
@@ -101,7 +92,13 @@
         "en": "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms.",
         "it": "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
       },
-      "tech": ["Python", "PyTorch", "Research"],
+      "tech": [
+        "NLP",
+        "Deep learning",
+        "Masked diffusion models",
+        "Efficiency",
+        "PyTorch"
+      ],
       "url": "https://github.com/giacomo-ciro/diffusion-llms",
       "featured": true,
       "collaborative": true
@@ -112,7 +109,12 @@
         "en": "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis.",
         "it": "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
       },
-      "tech": ["Python", "PyTorch", "Medical Imaging"],
+      "tech": [
+        "Computer vision",
+        "Medical imaging",
+        "Explainability",
+        "PyTorch"
+      ],
       "url": "https://github.com/davide-beltrame/medimg-saliency-benchmark",
       "featured": true,
       "collaborative": true
@@ -123,7 +125,10 @@
         "en": "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text.",
         "it": "Esplorazione di metodi di recupero di similarità semantica massimizzando il punteggio BLEU. Tecniche NLP avanzate per misurare e migliorare la comprensione semantica nei testi."
       },
-      "tech": ["Python", "NLP", "BLEU"],
+      "tech": [
+        "NLP",
+        "HF transformers"
+      ],
       "url": "https://github.com/davide-beltrame/semantic-similarity",
       "featured": true
     },
@@ -133,7 +138,11 @@
         "en": "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability.",
         "it": "Algoritmo super efficiente per risolvere puzzle Wordle generalizzati. Implementa strategie di indovinamento ottimali usando teoria dell'informazione e probabilità."
       },
-      "tech": ["Python", "Algorithms"],
+      "tech": [
+        "Information theory",
+        "NLP",
+        "Algorithms"
+      ],
       "url": "https://github.com/davide-beltrame/wordle-solver",
       "featured": true
     },
@@ -143,7 +152,11 @@
         "en": "This website! A minimal, clean design built from scratch with pure HTML, CSS, and JavaScript. Features dark/light mode and responsive design.",
         "it": "Questo sito web! Un design minimalista e pulito costruito da zero con HTML, CSS e JavaScript puri. Include modalità scura/chiara e design responsive."
       },
-      "tech": ["HTML", "CSS", "JavaScript"],
+      "tech": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "url": "https://github.com/davide-beltrame/davide-beltrame.github.io",
       "featured": true
     }
@@ -152,7 +165,7 @@
     "username": "davide1729",
     "current_streak": 1022,
     "longest_streak": 1022,
-    "total_xp": 140154,
+    "total_xp": 150394,
     "streak_start_date": "2025-08-14",
     "languages": [
       {
@@ -161,7 +174,7 @@
         "xp": 63003
       },
       {
-        "name": "Japanese", 
+        "name": "Japanese",
         "flag": "🇯🇵",
         "xp": 55784
       },
@@ -253,32 +266,32 @@
   },
   "sections": {
     "get_in_touch": {
-      "en": "Get in touch",
-      "it": "Contattami"
+      "en": "get in touch",
+      "it": "contattami"
     },
     "experience": {
-      "en": "Experience",
-      "it": "Esperienza"
+      "en": "experience",
+      "it": "esperienza"
     },
     "education": {
-      "en": "Education",
-      "it": "Istruzione"
+      "en": "education",
+      "it": "istruzione"
     },
     "skills": {
-      "en": "Skills",
-      "it": "Competenze"
+      "en": "skills",
+      "it": "competenze"
     },
     "publications": {
-      "en": "Publications",
-      "it": "Pubblicazioni"
+      "en": "publications",
+      "it": "pubblicazioni"
     },
     "story": {
-      "en": "Coming Soon",
-      "it": "Prossimamente"
+      "en": "coming soon!",
+      "it": "prossimamente!"
     },
     "duolingo": {
-      "en": "Duolingo",
-      "it": "Duolingo"
+      "en": "duolingo",
+      "it": "duolingo"
     },
     "loading": {
       "en": "Loading projects...",
@@ -287,45 +300,55 @@
   },
   "labels": {
     "programming": {
-      "en": "Programming:",
-      "it": "Programmazione:"
+      "en": "programming:",
+      "it": "programmazione:"
     },
     "languages": {
-      "en": "Languages:",
-      "it": "Lingue:"
+      "en": "languages:",
+      "it": "lingue:"
     },
     "tools": {
-      "en": "Tools:",
-      "it": "Strumenti:"
+      "en": "tools:",
+      "it": "strumenti:"
     }
   },
   "ui": {
     "development_notice": {
       "title": {
-        "en": "Development Notice:",
-        "it": "Avviso di Sviluppo:"
+        "en": "development notice:",
+        "it": "avviso di sviluppo:"
       },
       "message": {
         "en": "This website has just been majorly refactored. Current content is either being updated or coming soon.",
         "it": "Questo sito è stato appena ristrutturato. I contenuti attuali sono in fase di aggiornamento o arriveranno presto."
       }
     },
+    "loading": {
+      "publications": {
+        "en": "loading publications...",
+        "it": "caricamento pubblicazioni..."
+      },
+      "duolingo": {
+        "en": "loading Duolingo data...",
+        "it": "caricamento dati Duolingo..."
+      }
+    },
     "duolingo": {
       "current_streak": {
-        "en": "Current Streak",
-        "it": "Serie Attuale"
+        "en": "current streak",
+        "it": "serie attuale"
       },
       "longest_streak": {
-        "en": "Longest Streak", 
-        "it": "Serie Più Lunga"
+        "en": "longest streak",
+        "it": "serie più lunga"
       },
       "total_xp": {
-        "en": "Total XP",
-        "it": "XP Totali"
+        "en": "total XP",
+        "it": "XP totali"
       },
       "languages": {
-        "en": "Languages",
-        "it": "Lingue"
+        "en": "languages",
+        "it": "lingue"
       },
       "data_notice": {
         "en": "* XP and language data last updated:",
@@ -333,10 +356,114 @@
       }
     }
   },
+  "timeline": [
+    {
+      "date": "23/07/2002",
+      "title": {
+        "en": "Born in Imperia, Italy, on the western Ligurian Riviera.",
+        "it": "Nasco a Imperia, nella Riviera ligure di Ponente."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "2007",
+      "title": {
+        "en": "My family and I move to Latina.",
+        "it": "La mia famiglia e io ci trasferiamo a Latina."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "01/09/2016",
+      "title": {
+        "en": "My family and I move to Rome.",
+        "it": "La mia famiglia e io ci trasferiamo a Roma."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "12/09/2016",
+      "title": {
+        "en": "My first day at Liceo Scientifico Statale \"Augusto Righi\" in Rome.",
+        "it": "Il mio primo giorno al Liceo Scientifico Statale \"Augusto Righi\" a Roma."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "25/06/2021",
+      "title": {
+        "en": "I graduate from Liceo Scientifico Statale \"Augusto Righi\" in Rome with a final grade of 100 cum laude.",
+        "it": "Mi diplomo al liceo scientifico statale \"Augusto Righi\" di Roma con 100 e lode."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "13/09/2021",
+      "title": {
+        "en": "I start my Bachelor's Degree in Management and Computer Science at LUISS Guido Carli University",
+        "it": "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "07/2024",
+      "title": {
+        "en": "I move to Milan.",
+        "it": "Mi trasferisco a Milano."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "15/07/2024",
+      "title": {
+        "en": "I graduate with the highest honors (110 cum laude).",
+        "it": "Conseguo la laurea triennale con votazione finale di 110 e lode."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    },
+    {
+      "date": "05/09/2024",
+      "title": {
+        "en": "I start my Master's Degree in Artificial Intelligence at Bocconi University in Milan.",
+        "it": "Inizio il corso di laurea magistrale in Artificial Intelligence presso l’Università Bocconi di Milano."
+      },
+      "description": {
+        "en": "",
+        "it": ""
+      }
+    }
+  ],
   "meta": {
-    "last_updated": "2025-08-12",
-    "version": "2.0.0",
+    "last_updated": "2025-10-14",
+    "version": "2.1.0",
     "default_language": "en",
-    "supported_languages": ["en", "it"]
+    "supported_languages": [
+      "en",
+      "it"
+    ]
   }
 }

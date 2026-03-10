@@ -552,11 +552,6 @@ async function loadProjects() {
     }
 }
 
-// ===== SMOOTH SCROLLING =====
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', async () => {
     initThemeToggles();

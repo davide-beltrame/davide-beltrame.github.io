@@ -1,97 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — Davide Beltrame</title>
-    <meta name="description"
-        content="Research projects and software by Davide Beltrame — AI, NLP, and Computer Vision.">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/files/favicon/davide_beltrame_apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/files/favicon/davide_beltrame_favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/files/favicon/davide_beltrame_favicon-16x16.png">
-    <link rel="shortcut icon" href="../assets/files/favicon/davide_beltrame_favicon.ico">
-    <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <div class="navbar-brand">
-                <a href="/home">Davide Beltrame</a>
-            </div>
-            <div class="nav-links">
-                <a href="/home" class="nav-item" data-section="home">Home</a>
-                <a href="/projects" class="nav-item active" data-section="projects">Projects</a>
-                <a href="/story" class="nav-item" data-section="story">Story</a>
-                <a href="/other" class="nav-item" data-section="other">Other</a>
-                <div class="nav-controls">
-                    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-                        <span class="lang-text">EN</span>
-                    </button>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <span class="toggle-circle"></span>
-                    </button>
-                </div>
-            </div>
-            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-                <span class="hamburger-icon"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="/home" class="nav-item" data-section="home">Home</a>
-        <a href="/projects" class="nav-item active" data-section="projects">Projects</a>
-        <a href="/story" class="nav-item" data-section="story">Story</a>
-        <a href="/other" class="nav-item" data-section="other">Other</a>
-        <div class="nav-controls">
-            <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
-                <span class="lang-text">EN</span>
-            </button>
-            <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
-                <span class="toggle-circle"></span>
-            </button>
-        </div>
+---
+layout: default
+title: Projects — Davide Beltrame
+description: Research projects and software by Davide Beltrame — AI, NLP, and Computer Vision.
+section: projects
+---
+<section class="section active" id="projects">
+    <div class="publications">
+        <h2 class="section-title" id="researchTitle">Research</h2>
+        <div id="publicationsContainer"></div>
     </div>
 
-    <div class="container">
-        <main class="main">
-            <section class="section active" id="projects">
-                <div class="publications">
-                    <h2 class="section-title" id="researchTitle">Research</h2>
-                    <div id="publicationsContainer"></div>
-                </div>
-
-                <h2 class="section-title" id="projectsTitle">Projects</h2>
-                <div class="projects-container" id="projectsContainer">
-                </div>
-            </section>
-        </main>
+    <h2 class="section-title" id="projectsTitle">Projects</h2>
+    <div class="projects-container" id="projectsContainer">
     </div>
-
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <span>© 2026 Davide Beltrame · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"
-                    rel="noopener noreferrer">CC BY-SA 4.0</a></span>
-        </div>
-    </footer>
-
-    <script src="../assets/js/script.js"></script>
-</body>
-
-</html>
+</section>

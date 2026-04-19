@@ -6,3 +6,6 @@
 
 dadochat
 git_naming_conventions.md
+local_dev.md
+_site
+Gemfile.lock

@@ -248,50 +248,50 @@
   },
   "navigation": {
     "home": {
-      "en": "home",
-      "it": "home"
+      "en": "Home",
+      "it": "Home"
     },
     "projects": {
-      "en": "projects",
-      "it": "progetti"
+      "en": "Projects",
+      "it": "Progetti"
     },
     "story": {
-      "en": "story",
-      "it": "storia"
+      "en": "Story",
+      "it": "Storia"
     },
     "other": {
-      "en": "other",
-      "it": "altro"
+      "en": "Other",
+      "it": "Altro"
     }
   },
   "sections": {
     "get_in_touch": {
-      "en": "get in touch",
-      "it": "contattami"
+      "en": "Get in touch",
+      "it": "Contattami"
     },
     "experience": {
-      "en": "experience",
-      "it": "esperienza"
+      "en": "Experience",
+      "it": "Esperienza"
     },
     "education": {
-      "en": "education",
-      "it": "istruzione"
+      "en": "Education",
+      "it": "Istruzione"
     },
     "skills": {
-      "en": "skills",
-      "it": "competenze"
+      "en": "Skills",
+      "it": "Competenze"
     },
     "publications": {
-      "en": "publications",
-      "it": "pubblicazioni"
+      "en": "Publications",
+      "it": "Pubblicazioni"
     },
     "story": {
-      "en": "coming soon!",
-      "it": "prossimamente!"
+      "en": "Coming soon!",
+      "it": "Prossimamente!"
     },
     "duolingo": {
-      "en": "duolingo",
-      "it": "duolingo"
+      "en": "Duolingo",
+      "it": "Duolingo"
     },
     "loading": {
       "en": "Loading projects...",
@@ -304,8 +304,8 @@
       "it": "programmazione:"
     },
     "languages": {
-      "en": "languages:",
-      "it": "lingue:"
+      "en": "Languages:",
+      "it": "Lingue:"
     },
     "tools": {
       "en": "tools:",

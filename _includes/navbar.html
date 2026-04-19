@@ -1,0 +1,41 @@
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-brand">
+            <a href="{{ site.baseurl }}/home">Davide Beltrame</a>
+        </div>
+        <div class="nav-links">
+            <a href="{{ site.baseurl }}/home" class="nav-item {% if page.section == 'home' %}active{% endif %}" data-section="home">Home</a>
+            <a href="{{ site.baseurl }}/projects" class="nav-item {% if page.section == 'projects' %}active{% endif %}" data-section="projects">Projects</a>
+            <a href="{{ site.baseurl }}/story" class="nav-item {% if page.section == 'story' %}active{% endif %}" data-section="story">Story</a>
+            <a href="{{ site.baseurl }}/other" class="nav-item {% if page.section == 'other' %}active{% endif %}" data-section="other">Other</a>
+            <div class="nav-controls">
+                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                    <span class="lang-text">EN</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-circle"></span>
+                </button>
+            </div>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span class="hamburger-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="{{ site.baseurl }}/home" class="nav-item {% if page.section == 'home' %}active{% endif %}" data-section="home">Home</a>
+    <a href="{{ site.baseurl }}/projects" class="nav-item {% if page.section == 'projects' %}active{% endif %}" data-section="projects">Projects</a>
+    <a href="{{ site.baseurl }}/story" class="nav-item {% if page.section == 'story' %}active{% endif %}" data-section="story">Story</a>
+    <a href="{{ site.baseurl }}/other" class="nav-item {% if page.section == 'other' %}active{% endif %}" data-section="other">Other</a>
+    <div class="nav-controls">
+        <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
+            <span class="lang-text">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+            <span class="toggle-circle"></span>
+        </button>
+    </div>
+</div>

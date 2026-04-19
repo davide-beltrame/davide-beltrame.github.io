@@ -1,0 +1,12 @@
+name: Davide Beltrame
+url: "https://davide-beltrame.github.io"
+baseurl: "" 
+
+markdown: kramdown
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  - README.md
+  - git_naming_conventions.md

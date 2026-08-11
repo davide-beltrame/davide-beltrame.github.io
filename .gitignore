@@ -1,11 +1,13 @@
 **/.DS_Store
-
 .vscode**
-.agent
-.github
 
+# Local working files — never published
+*.pdf
+!assets/files/*.pdf
+_design
 dadochat
-git_naming_conventions.md
-local_dev.md
+
+# Jekyll build output
 _site
+.jekyll-cache
 Gemfile.lock

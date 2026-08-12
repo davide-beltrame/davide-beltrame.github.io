@@ -9,20 +9,23 @@
 
 duolingo:
   username: "davide1729"
-  current_streak: 1022
-  longest_streak: 1022
-  total_xp: 150394
-  data_last_updated: "2025-08-14"
+  current_streak: 1375
+  longest_streak: 1375
+  total_xp: 155975
+  data_last_updated: "2026-08-12"
   data_last_updated_display:
-    en: "August 14, 2025"
-    it: "14 agosto 2025"
+    en: "August 12, 2026"
+    it: "12 agosto 2026"
   languages:
     - name: "French"
       flag: "🇫🇷"
-      xp: 63003
+      xp: 76318
     - name: "Japanese"
       flag: "🇯🇵"
-      xp: 55784
+      xp: 58899
+    - name: "French (from Italian)"
+      flag: "🇫🇷"
+      xp: 5668
     - name: "Spanish"
       flag: "🇪🇸"
       xp: 4208
@@ -35,6 +38,12 @@ duolingo:
     - name: "Danish"
       flag: "🇩🇰"
       xp: 2089
+    - name: "Chinese (Simplified)"
+      flag: "🇨🇳"
+      xp: 997
+    - name: "English"
+      flag: "🇬🇧"
+      xp: 300
     - name: "Latin"
       flag: ""
       xp: 296
@@ -44,9 +53,6 @@ duolingo:
     - name: "Italian"
       flag: "🇮🇹"
       xp: 120
-    - name: "English (Italian)"
-      flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
-      xp: 100
     - name: "Catalan"
       flag: ""
       xp: 87
@@ -62,3 +68,6 @@ duolingo:
     - name: "Irish"
       flag: "🇮🇪"
       xp: 28
+    - name: "Korean"
+      flag: "🇰🇷"
+      xp: 25

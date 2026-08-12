@@ -1,9 +1,17 @@
 # Identity, bio, and contact links.
 #
 # Bilingual values are an {en, it} pair, resolved by _includes/t.html.
-# The email is rendered only through _includes/email-href.html, which
-# entity-encodes it at build time; it is deliberately omitted from
-# /api/content.json so that endpoint is not a plain-text address feed.
+#
+# `contact.email_encoded` is the address with every character replaced by its
+# numeric HTML entity. It is stored that way, not converted at build time, so
+# the address appears as plain text in no file of this repository — which is
+# public — and in no page it serves. The browser decodes it while parsing the
+# attribute, so the link behaves normally. To change it:
+#
+#   python3 -c "print(''.join('&#%d;' % ord(c) for c in 'you@example.com'))"
+#
+# It is also left out of /api/content.json; publishing it there as JSON would
+# undo the point of encoding it here.
 
 name: Davide Beltrame
 
@@ -26,7 +34,7 @@ portrait:
     it: "Davide Beltrame"
 
 contact:
-  email: "davide.beltrame@studbocconi.it"
+  email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#46;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#64;&#115;&#116;&#117;&#100;&#98;&#111;&#99;&#99;&#111;&#110;&#105;&#46;&#105;&#116;"
   github: "https://github.com/davide-beltrame"
   linkedin: "https://www.linkedin.com/in/davide-beltrame"
   cv: "/assets/files/davide_beltrame_cv.pdf"

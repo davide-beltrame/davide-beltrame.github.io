@@ -14,7 +14,7 @@
 
     <div class="contact-section">
         <div class="contact-links">
-            <a href="{% include email-href.html address=contact.email %}" class="contact-link" title="{% include t.html v=labels.email %}">
+            <a href="{% include email-href.html address=contact.email_encoded %}" class="contact-link" title="{% include t.html v=labels.email %}">
                 <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
                 <span>{% include t.html v=labels.email %}</span>
             </a>

@@ -1,29 +1,33 @@
-<section class="section" id="projects">
-    <h2 class="section-title">{% include t.html v=site.data.ui.sections.projects %}</h2>
-    <div class="projects-container">
+{%- comment -%}
+Only entries with `featured: true` render here, in the order `_data/projects.yml`
+lists them. The cells are separated by the container showing through a 1px gap,
+which is what keeps this a ruled matrix rather than a set of cards.
+
+Every cell is a link, so the whole cell is the target rather than the title
+alone — but the anchor wraps only the title, so a screen reader announces one
+link per project with the title as its name.
+{%- endcomment -%}
+{% include page-head.html title=site.data.ui.sections.projects %}
+
+<section class="band">
+    <div class="projects">
         {%- for project in site.data.projects.items %}
         {%- if project.featured %}
-        <div class="pub-card">
-            <div class="pub-header">
-                <span class="pub-title">
-                    <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} {% include icon.html name="external" class="link-icon" %}</a>
-                </span>
-                {%- if project.collaborative %}
-                <span class="pub-year-badge">{% include t.html v=site.data.ui.labels.collaborative %}</span>
-                {%- endif %}
-            </div>
-            <div class="pub-authors">{% include t.html v=project.description %}</div>
-            {%- if project.status %}
-            <div class="pub-meta">
-                <span class="pub-status">{% include t.html v=project.status %}</span>
-            </div>
+        <article class="project">
+            <h2 class="project-title">
+                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} {% include icon.html name="external" class="link-icon" %}</a>
+            </h2>
+            {%- if project.collaborative %}
+            <div class="badges"><span class="badge">{% include t.html v=site.data.ui.labels.collaborative %}</span></div>
             {%- endif %}
-            <div class="project-tech">
-                {%- for tag in project.tech %}
-                <span class="tech-tag">{{ tag | escape }}</span>
-                {%- endfor %}
-            </div>
-        </div>
+            <p class="project-desc">{% include t.html v=project.description %}</p>
+            {%- if project.status %}
+            <p class="project-note">{% include t.html v=project.status %}</p>
+            {%- endif %}
+            {%- if project.tech %}
+            <p class="tags">{% for tag in project.tech %}{{ tag | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+            {%- endif %}
+        </article>
         {%- endif %}
         {%- endfor %}
     </div>

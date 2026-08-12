@@ -1,0 +1,20 @@
+{%- comment -%}
+The head of every page that is not the home page: a kicker and the page's own
+<h1>. Usage:
+
+  {% include page-head.html title=site.data.ui.sections.research %}
+  {% include page-head.html title=site.data.ui.sections.trips lede=site.data.ui.trips_lede %}
+
+`lede` and `kicker` are both optional.
+
+`kicker` defaults to the site name, which is what makes each page read as part
+of the same publication rather than as a standalone document. Every page needs
+exactly one <h1>; before this include existed the inner pages had none.
+{%- endcomment -%}
+<div class="page-head">
+    <div class="kicker"><span class="kicker-text">{% if include.kicker %}{% include t.html v=include.kicker %}{% else %}{{ site.data.profile.name }}{% endif %}</span></div>
+    <h1 class="page-title">{% include t.html v=include.title %}</h1>
+    {%- if include.lede %}
+    <p class="page-lede">{% include t.html v=include.lede %}</p>
+    {%- endif %}
+</div>

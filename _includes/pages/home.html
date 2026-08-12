@@ -1,47 +1,64 @@
+{%- comment -%}
+The masthead leads with his name, set in the serif display face, and the
+portrait square beside it. His greeting sits above the name as the kicker
+rather than being dropped: both strings are his, and neither is rewritten here.
+
+The portrait is a square crop of a 3:4 photograph, in full colour. The crop and
+the framing are CSS (`object-fit`, `object-position`); the file itself is the
+same one dispatch 03 stripped of its metadata and resized.
+{%- endcomment -%}
 {%- assign contact = site.data.profile.contact -%}
 {%- assign labels = site.data.ui.contact_links -%}
-<section class="section" id="home">
-    <div class="hero">
-        <div class="hero-image">
-            {%- assign pt = site.data.profile.portrait -%}
-            {%- capture srcset_webp %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".webp" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
-            {%- capture srcset_jpg %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".jpg" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
-            <picture>
-                <source type="image/webp" srcset="{{ srcset_webp }}" sizes="{{ pt.displayed }}">
-                <img src="{{ pt.src | relative_url }}" srcset="{{ srcset_jpg }}" sizes="{{ pt.displayed }}"
-                     width="{{ pt.box }}" height="{{ pt.box }}" fetchpriority="high" decoding="async"
-                     alt="{% include t.html v=pt.alt %}">
-            </picture>
+{%- assign pt = site.data.profile.portrait -%}
+{%- capture srcset_webp %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".webp" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
+{%- capture srcset_jpg %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".jpg" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
+<header class="masthead">
+    <div class="masthead-grid">
+        <div>
+            <p class="eyebrow">{% include t.html v=site.data.profile.greeting %}</p>
+            <h1 class="masthead-name">{{ site.data.profile.name }}</h1>
+            <p class="standfirst">{% include t.html v=site.data.profile.title %}</p>
         </div>
-        <div class="hero-content">
-            <h1 class="hero-name">{% include t.html v=site.data.profile.greeting %}</h1>
-            <p class="hero-title">{% include t.html v=site.data.profile.title %}</p>
-            <div class="hero-bio">{% include t.html v=site.data.profile.about raw=true %}</div>
-        </div>
+        <picture>
+            <source type="image/webp" srcset="{{ srcset_webp }}" sizes="{{ pt.displayed }}">
+            <img class="portrait" src="{{ pt.src | relative_url }}" srcset="{{ srcset_jpg }}" sizes="{{ pt.displayed }}"
+                 width="{{ pt.box }}" height="{{ pt.box }}" fetchpriority="high" decoding="async"
+                 alt="{% include t.html v=pt.alt %}">
+        </picture>
     </div>
 
-    <div class="contact-section">
-        <div class="contact-links">
-            <a href="{% include email-href.html address=contact.email_encoded %}" class="contact-link" title="{% include t.html v=labels.email %}">
-                {% include icon.html name="envelope" class="contact-icon" %}
-                <span>{% include t.html v=labels.email %}</span>
-            </a>
-            <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.github %}">
-                {% include icon.html name="github" class="contact-icon" %}
-                <span>{% include t.html v=labels.github %}</span>
-            </a>
-            <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.linkedin %}">
-                {% include icon.html name="linkedin" class="contact-icon" %}
-                <span>{% include t.html v=labels.linkedin %}</span>
-            </a>
-            <a href="{{ contact.scholar }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.scholar %}">
-                {% include icon.html name="scholar" class="contact-icon" %}
-                <span>{% include t.html v=labels.scholar %}</span>
-            </a>
-            <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.cv %}">
-                {% include icon.html name="file-pdf" class="contact-icon" %}
-                <span>{% include t.html v=labels.cv %}</span>
-            </a>
-        </div>
+    <div class="bio">{% include t.html v=site.data.profile.about raw=true %}</div>
+
+    <div class="dek">
+        <a href="{% include email-href.html address=contact.email_encoded %}">
+            {% include icon.html name="envelope" %}<span>{% include t.html v=labels.email %}</span>
+        </a>
+        <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer">
+            {% include icon.html name="github" %}<span>{% include t.html v=labels.github %}</span>
+        </a>
+        <a href="{{ contact.scholar }}" target="_blank" rel="noopener noreferrer">
+            {% include icon.html name="scholar" %}<span>{% include t.html v=labels.scholar %}</span>
+        </a>
+        <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer">
+            {% include icon.html name="linkedin" %}<span>{% include t.html v=labels.linkedin %}</span>
+        </a>
+        <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer">
+            {% include icon.html name="file-pdf" %}<span>{% include t.html v=labels.cv %}</span>
+        </a>
+    </div>
+</header>
+
+{%- comment -%}
+The home page leads with research when the plausible readers conflict, per
+`.agents/context/decisions.md` — so the papers are on it, in their compact
+form, rather than one link away. The full versions, with status lines,
+abstracts and code, stay on /research/.
+{%- endcomment -%}
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.research %}</h2></div>
+    <div class="entries">
+        {%- for paper in site.data.research.papers %}
+        {% include paper-entry.html paper=paper compact=true %}
+        {%- endfor %}
     </div>
 </section>

@@ -66,9 +66,11 @@ pages:
     title:
       en: "Story — Davide Beltrame"
       it: "Storia — Davide Beltrame"
+    # This read as a copy of the home page's description until 2026-08-13, which
+    # gave two pages the same snippet in a search result.
     description:
-      en: "Davide Beltrame's personal website."
-      it: "Il sito personale di Davide Beltrame."
+      en: "A dated timeline of Davide Beltrame's studies, research, and work."
+      it: "Una cronologia datata degli studi, della ricerca e del lavoro di Davide Beltrame."
   shelf:
     title:
       en: "Shelf — Davide Beltrame"
@@ -97,24 +99,33 @@ og:
     en: "Davide Beltrame — student and researcher in deep learning and AI"
     it: "Davide Beltrame — studente e ricercatore in IA e deep learning"
 
-# Section headings.
+# Section headings. The keys that end a route's <h1> and the keys that head a
+# band inside it are separate: /research/ is titled "Research" and contains a
+# "Publications" band, and /shelf/ is titled "Shelf" and contains a
+# "Books & Films" one.
 sections:
   now:
     en: "Now"
     it: "Ora"
+  research:
+    en: "Research"
+    it: "Ricerca"
   roles:
     en: "Roles"
     it: "Ruoli"
-  research:
+  publications:
     en: "Publications"
     it: "Pubblicazioni"
   projects:
     en: "Projects"
     it: "Progetti"
-  timeline:
-    en: "Timeline"
-    it: "Cronologia"
+  story:
+    en: "Story"
+    it: "Storia"
   shelf:
+    en: "Shelf"
+    it: "Scaffale"
+  books_films:
     en: "Books & Films"
     it: "Libri e film"
   duolingo:
@@ -153,12 +164,12 @@ labels:
   coursework:
     en: "Coursework"
     it: "Esami"
-  show_abstract:
-    en: "Show abstract"
-    it: "Mostra abstract"
-  hide_abstract:
-    en: "Hide abstract"
-    it: "Nascondi abstract"
+  filter:
+    en: "filter"
+    it: "filtra"
+  abstract:
+    en: "Abstract"
+    it: "Abstract"
   # Thousands separator for rendered numbers. Italian uses a period, so an
   # English comma on an Italian page would read as a decimal point.
   thousands_separator:
@@ -180,6 +191,16 @@ controls:
   close_menu:
     en: "Close menu"
     it: "Chiudi il menu"
+  skip_to_content:
+    en: "Skip to content"
+    it: "Vai al contenuto"
+  primary_nav:
+    en: "Site sections"
+    it: "Sezioni del sito"
+
+footer_note:
+  en: "No tracking, no cookies, no JavaScript required."
+  it: "Nessun tracciamento, nessun cookie, nessun JavaScript richiesto."
 
 wip_notice:
   en: "This section is a work in progress — more content coming soon!"
@@ -193,6 +214,9 @@ now_notice:
   it: "Al 12 agosto 2026, questa pagina non è ancora stata scritta — torna a trovarmi per sapere a cosa sto lavorando questo mese."
 
 duolingo:
+  streak_sentence:
+    en: "day streak on Duolingo"
+    it: "giorni di fila su Duolingo"
   current_streak:
     en: "current streak"
     it: "serie attuale"

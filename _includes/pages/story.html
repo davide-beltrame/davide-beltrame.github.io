@@ -4,21 +4,22 @@ no scroll-reveal animation: the previous one re-hid every event on each render
 and never fired for events already on screen, which meant the timeline could
 render as an empty page.
 {%- endcomment -%}
-<section class="section" id="story">
-    <h2 class="section-title">{% include t.html v=site.data.ui.sections.timeline %}</h2>
-    <div class="timeline">
+{% include page-head.html title=site.data.ui.sections.story %}
+
+<section class="band">
+    <div class="years">
         {%- for group in site.data.timeline.years %}
-        <div class="timeline-year-group">
-            <div class="timeline-year-label"><span>{{ group.year }}</span></div>
-            <div class="timeline-year-events">
+        <div class="year">
+            <h2 class="year-label">{{ group.year }}</h2>
+            <div>
                 {%- for event in group.events %}
-                <div class="timeline-event">
+                <div class="event">
                     {%- if event.display %}
-                    <div class="timeline-date">{% include t.html v=event.display %}</div>
+                    <div class="event-date">{% include t.html v=event.display %}</div>
                     {%- endif %}
-                    <div class="timeline-title">{% include t.html v=event.title %}</div>
+                    <div class="event-title">{% include t.html v=event.title %}</div>
                     {%- if event.description %}
-                    <div class="timeline-description">{% include t.html v=event.description %}</div>
+                    <div class="event-desc">{% include t.html v=event.description %}</div>
                     {%- endif %}
                 </div>
                 {%- endfor %}
@@ -32,12 +33,12 @@ render as an empty page.
     {%- assign coursework_count = coursework_count | plus: group.courses.size -%}
     {%- endfor -%}
     {%- if coursework_count > 0 %}
-    <details class="collapsible-section">
-        <summary class="collapsible-header">
-            <h4>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</h4>
+    <details class="panel">
+        <summary class="panel-summary">
+            <span>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</span>
             {% include icon.html name="chevron-down" %}
         </summary>
-        <div class="collapsible-content">
+        <div class="panel-body">
             {%- for group in site.data.timeline.coursework %}
             <div class="coursework-year">
                 <div class="coursework-year-label">{{ group.academic_year }}</div>

@@ -30,7 +30,9 @@ about:
 # The portrait ships at three widths in webp and jpg. `src` is the fallback and
 # keeps the URL the photo has always had. `displayed` is the CSS box it is drawn
 # in — it feeds the `sizes` attribute, so if the design changes that box, this is
-# the one value to change with it.
+# the one value to change with it. The box is square and the source file is 3:4,
+# so the square is cut from it in CSS (`object-fit`/`object-position`); `box`
+# feeds width/height and is what reserves the space before the image arrives.
 #
 # Strip EXIF from anything regenerated here. A file straight off a phone carries
 # GPS coordinates, a device model and a timestamp.
@@ -38,8 +40,8 @@ portrait:
   src: "/assets/files/davide_beltrame_propic.jpg"
   variants: "/assets/img/portrait"
   widths: [320, 640, 960]
-  displayed: "150px"
-  box: 150
+  displayed: "(max-width: 760px) 116px, 168px"
+  box: 168
   alt:
     en: "Davide Beltrame"
     it: "Davide Beltrame"

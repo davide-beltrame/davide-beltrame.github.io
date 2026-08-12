@@ -1,6 +1,6 @@
 {%- comment -%}
 `alt` is the same page in the other language, found by `ref`. Assigned here so
-both the head (hreflang) and the navbar (language link) use one lookup, and so
+both the head (hreflang) and the bar (language link) use one lookup, and so
 neither has to do string surgery on the URL.
 {%- endcomment -%}
 {%- assign alt = site.pages | where: "ref", page.ref | where_exp: "p", "p.lang != page.lang" | first -%}
@@ -10,15 +10,15 @@ neither has to do string surgery on the URL.
     {% include head.html %}
 </head>
 <body>
+    <a class="skip-link" href="#main">{% include t.html v=site.data.ui.controls.skip_to_content %}</a>
+
     {% include icons.html %}
 
     {% include navbar.html %}
 
-    <div class="container">
-        <main class="main" id="main">
-            {{ content }}
-        </main>
-    </div>
+    <main class="main wrap" id="main" tabindex="-1">
+        {{ content }}
+    </main>
 
     {% include footer.html %}
 

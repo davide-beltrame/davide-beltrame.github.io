@@ -9,10 +9,11 @@ The filter is pure CSS: radio inputs plus a `:has()` selector on
 "every entry visible, grouped by kind" is the page's only state rather than
 a no-JS fallback of some other one.
 
-Duolingo and NYT Games are stat callouts, not title/year/note cards, so they
-sit outside the filter — same reasoning as the existing Duolingo panel below.
-Every number in both panels is the reading recorded in `_data/shelf/` on the
-date shown; nothing is advanced from it at render time.
+Duolingo and NYT Games are stat callouts rather than title/year/note entries,
+and they read as sentences with one number set large inside them — the same
+furniture as the rest of the page. Every number in both is the reading
+recorded in `_data/shelf/` on the date shown; nothing is advanced from it at
+render time.
 {%- endcomment -%}
 {%- assign books = site.data.shelf.books.items -%}
 {%- assign films = site.data.shelf.films.items -%}
@@ -22,30 +23,34 @@ date shown; nothing is advanced from it at render time.
 {%- assign shelf_labels = site.data.ui.shelf -%}
 {%- assign lang_count = duo.languages | size -%}
 {%- assign rest_count = lang_count | minus: 5 -%}
+{% include page-head.html title=site.data.ui.sections.shelf %}
 
-<section class="section" id="shelf">
-    <h2 class="section-title">{% include t.html v=site.data.ui.sections.shelf %}</h2>
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.books_films %}</h2></div>
 
     <div class="shelf-index">
-        <div class="shelf-filter" role="radiogroup" aria-label="{% include t.html v=shelf_labels.filter_group_label %}">
-            <input type="radio" name="shelf-filter" id="shelf-filter-all" class="shelf-filter-input" checked>
-            <label for="shelf-filter-all" class="shelf-filter-label">{% include t.html v=shelf_labels.filter_all %}</label>
-            <input type="radio" name="shelf-filter" id="shelf-filter-books" class="shelf-filter-input">
-            <label for="shelf-filter-books" class="shelf-filter-label">{% include t.html v=shelf_labels.filter_books %}</label>
-            <input type="radio" name="shelf-filter" id="shelf-filter-films" class="shelf-filter-input">
-            <label for="shelf-filter-films" class="shelf-filter-label">{% include t.html v=shelf_labels.filter_films %}</label>
+        <div class="filter" role="radiogroup" aria-label="{% include t.html v=shelf_labels.filter_group_label %}">
+            <span class="filter-lead">{% include t.html v=site.data.ui.labels.filter %}</span>
+            <input type="radio" name="shelf-filter" id="shelf-filter-all" class="filter-input" checked>
+            <label for="shelf-filter-all" class="filter-label">{% include t.html v=shelf_labels.filter_all %}</label>
+            <input type="radio" name="shelf-filter" id="shelf-filter-books" class="filter-input">
+            <label for="shelf-filter-books" class="filter-label">{% include t.html v=shelf_labels.filter_books %}</label>
+            <input type="radio" name="shelf-filter" id="shelf-filter-films" class="filter-input">
+            <label for="shelf-filter-films" class="filter-label">{% include t.html v=shelf_labels.filter_films %}</label>
         </div>
 
         <div class="shelf-content">
             <div class="shelf-group" data-kind="book">
                 <h3 class="shelf-group-title">{% include t.html v=shelf_labels.filter_books %}</h3>
                 {%- if books and books.size > 0 %}
-                {%- for item in books %}
-                {% include shelf-card.html item=item %}
-                {%- endfor %}
+                <div class="shelf-list">
+                    {%- for item in books %}
+                    {% include shelf-item.html item=item %}
+                    {%- endfor %}
+                </div>
                 {%- else %}
-                <div class="wip-notice">
-                    {% include icon.html name="code" class="notice-icon" %}
+                <div class="notice">
+                    {% include icon.html name="code" %}
                     <span>{% include t.html v=site.data.ui.wip_notice %}</span>
                 </div>
                 {%- endif %}
@@ -54,119 +59,90 @@ date shown; nothing is advanced from it at render time.
             <div class="shelf-group" data-kind="film">
                 <h3 class="shelf-group-title">{% include t.html v=shelf_labels.filter_films %}</h3>
                 {%- if films and films.size > 0 %}
-                {%- for item in films %}
-                {% include shelf-card.html item=item %}
-                {%- endfor %}
+                <div class="shelf-list">
+                    {%- for item in films %}
+                    {% include shelf-item.html item=item %}
+                    {%- endfor %}
+                </div>
                 {%- else %}
-                <div class="wip-notice">
-                    {% include icon.html name="code" class="notice-icon" %}
+                <div class="notice">
+                    {% include icon.html name="code" %}
                     <span>{% include t.html v=site.data.ui.wip_notice %}</span>
                 </div>
                 {%- endif %}
             </div>
         </div>
     </div>
+</section>
 
-    <div class="duolingo-section">
-        <h2 class="section-title">{% include t.html v=site.data.ui.sections.duolingo %}</h2>
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.duolingo %}</h2></div>
 
-        <div class="duolingo-highlight">
-            <div class="streak-display">
-                <span class="streak-fire" aria-hidden="true">🔥</span>
-                <div>
-                    <span class="streak-number">{% include number.html n=duo.current_streak %}</span>
-                    <span class="streak-label">{% include t.html v=duo_labels.current_streak %}</span>
-                </div>
-            </div>
-        </div>
+    <p class="stat-line">
+        <span aria-hidden="true">🔥</span>
+        <span class="stat-number">{% include number.html n=duo.current_streak %}</span>
+        {% include t.html v=duo_labels.streak_sentence %}
+    </p>
 
-        <div class="duolingo-stat-row">
-            <div class="duo-stat-chip">
-                <span class="duo-stat-value">{% include number.html n=duo.longest_streak %}</span>
-                <span class="duo-stat-label">{% include t.html v=duo_labels.longest_streak %}</span>
-            </div>
-            <div class="duo-stat-chip">
-                <span class="duo-stat-value">{% include number.html n=duo.total_xp %}</span>
-                <span class="duo-stat-label">{% include t.html v=duo_labels.total_xp %}</span>
-            </div>
-            <div class="duo-stat-chip">
-                <span class="duo-stat-value">{{ lang_count }}</span>
-                <span class="duo-stat-label">{% include t.html v=duo_labels.languages %}</span>
-            </div>
-        </div>
-
-        <div class="duolingo-top-languages">
-            {%- for lang in duo.languages limit: 5 %}
-            <div class="lang-card">
-                <span class="lang-flag" aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span>
-                <div>
-                    <div class="lang-name">{{ lang.name | escape }}</div>
-                    <div class="lang-xp">{% include number.html n=lang.xp %} XP</div>
-                </div>
-            </div>
-            {%- endfor %}
-        </div>
-
-        {%- if rest_count > 0 %}
-        <details class="collapsible-section">
-            <summary class="collapsible-header">
-                <h4>{% include t.html v=duo_labels.languages %} ({{ rest_count }} {% include t.html v=duo_labels.more_languages %})</h4>
-                {% include icon.html name="chevron-down" %}
-            </summary>
-            <div class="collapsible-content">
-                <div class="duolingo-top-languages">
-                    {%- for lang in duo.languages offset: 5 %}
-                    <div class="lang-card">
-                        <span class="lang-flag" aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span>
-                        <div>
-                            <div class="lang-name">{{ lang.name | escape }}</div>
-                            <div class="lang-xp">{% include number.html n=lang.xp %} XP</div>
-                        </div>
-                    </div>
-                    {%- endfor %}
-                </div>
-            </div>
-        </details>
-        {%- endif %}
-
-        <div class="duolingo-notice">
-            <small>{% include t.html v=duo_labels.data_notice %} {% include t.html v=duo.data_last_updated_display %}</small>
-        </div>
+    <div class="chips">
+        <span class="chip"><b>{% include number.html n=duo.longest_streak %}</b> {% include t.html v=duo_labels.longest_streak %}</span>
+        <span class="chip"><b>{% include number.html n=duo.total_xp %}</b> {% include t.html v=duo_labels.total_xp %}</span>
+        <span class="chip"><b>{{ lang_count }}</b> {% include t.html v=duo_labels.languages %}</span>
     </div>
 
-    <div class="nyt-games-section">
-        <h2 class="section-title">{% include t.html v=site.data.ui.sections.nyt_games %}</h2>
-
-        {%- if games.streak or games.score %}
-        <div class="duolingo-stat-row">
-            {%- if games.streak %}
-            <div class="duo-stat-chip">
-                <span class="duo-stat-value">{% include number.html n=games.streak %}</span>
-                <span class="duo-stat-label">{% include t.html v=shelf_labels.nyt_streak %}</span>
-            </div>
-            {%- endif %}
-            {%- if games.score %}
-            <div class="duo-stat-chip">
-                <span class="duo-stat-value">{% include number.html n=games.score %}</span>
-                <span class="duo-stat-label">{% include t.html v=shelf_labels.nyt_score %}</span>
-            </div>
-            {%- endif %}
-        </div>
-        {%- if games.data_last_updated_display and games.data_last_updated_display[page.lang] %}
-        <div class="duolingo-notice">
-            <small>{% include t.html v=duo_labels.data_notice %} {% include t.html v=games.data_last_updated_display %}</small>
-        </div>
-        {%- endif %}
-        {%- else %}
-        <div class="wip-notice">
-            {% include icon.html name="code" class="notice-icon" %}
-            <span>{% include t.html v=site.data.ui.wip_notice %}</span>
-        </div>
-        {%- endif %}
-
-        <p class="shelf-aside">
-            {% include t.html v=shelf_labels.nyt_solver_note %}
-            <a href="{{ games.project_url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=shelf_labels.nyt_solver_link_label %} {% include icon.html name="external" class="link-icon" %}</a>
-        </p>
+    <div class="chips">
+        {%- for lang in duo.languages limit: 5 %}
+        <span class="chip"><span aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span> <b>{{ lang.name | escape }}</b> <span class="chip-count">{% include number.html n=lang.xp %} XP</span></span>
+        {%- endfor %}
     </div>
+
+    {%- if rest_count > 0 %}
+    <details class="panel">
+        <summary class="panel-summary">
+            <span>{% include t.html v=duo_labels.languages %} ({{ rest_count }} {% include t.html v=duo_labels.more_languages %})</span>
+            {% include icon.html name="chevron-down" %}
+        </summary>
+        <div class="panel-body">
+            <div class="chips">
+                {%- for lang in duo.languages offset: 5 %}
+                <span class="chip"><span aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span> <b>{{ lang.name | escape }}</b> <span class="chip-count">{% include number.html n=lang.xp %} XP</span></span>
+                {%- endfor %}
+            </div>
+        </div>
+    </details>
+    {%- endif %}
+
+    <p class="footnote">{% include t.html v=duo_labels.data_notice %} {% include t.html v=duo.data_last_updated_display %}</p>
+</section>
+
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.nyt_games %}</h2></div>
+
+    {%- if games.streak or games.score %}
+    {%- if games.streak %}
+    <p class="stat-line">
+        <span class="stat-number">{% include number.html n=games.streak %}</span>
+        {% include t.html v=shelf_labels.nyt_streak %}
+    </p>
+    {%- endif %}
+    {%- if games.score %}
+    <p class="stat-line">
+        <span class="stat-number">{% include number.html n=games.score %}</span>
+        {% include t.html v=shelf_labels.nyt_score %}
+    </p>
+    {%- endif %}
+    {%- if games.data_last_updated_display and games.data_last_updated_display[page.lang] %}
+    <p class="footnote">{% include t.html v=duo_labels.data_notice %} {% include t.html v=games.data_last_updated_display %}</p>
+    {%- endif %}
+    {%- else %}
+    <div class="notice">
+        {% include icon.html name="code" %}
+        <span>{% include t.html v=site.data.ui.wip_notice %}</span>
+    </div>
+    {%- endif %}
+
+    <p class="aside">
+        {% include t.html v=shelf_labels.nyt_solver_note %}
+        <a href="{{ games.project_url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=shelf_labels.nyt_solver_link_label %} {% include icon.html name="external" class="link-icon" %}</a>
+    </p>
 </section>

@@ -1,5 +1,5 @@
 name: Davide Beltrame
-url: "https://davide-beltrame.github.io"
+url: "https://davidebeltrame.com"
 baseurl: ""
 
 markdown: kramdown
@@ -9,4 +9,15 @@ exclude:
   - Gemfile.lock
   - .gitignore
   - README.md
-  - git_naming_conventions.md
+  - CONTRIBUTING.md
+  # Local working files. Also gitignored — excluded here so a local
+  # `jekyll serve` never puts them on a served path either.
+  # Jekyll matches these with fnmatch and `*` crosses `/`, so the
+  # deliberately published PDF under assets/ is restored via `include`.
+  - "*.pdf"
+  - _design
+  - dadochat
+
+# Wins over `exclude`. The only PDF this site is meant to serve.
+include:
+  - assets/files/davide_beltrame_cv.pdf

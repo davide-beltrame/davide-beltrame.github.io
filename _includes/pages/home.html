@@ -3,7 +3,15 @@
 <section class="section" id="home">
     <div class="hero">
         <div class="hero-image">
-            <img src="{{ site.data.profile.portrait.src | relative_url }}" alt="{% include t.html v=site.data.profile.portrait.alt %}" width="150" height="150">
+            {%- assign pt = site.data.profile.portrait -%}
+            {%- capture srcset_webp %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".webp" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
+            {%- capture srcset_jpg %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".jpg" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
+            <picture>
+                <source type="image/webp" srcset="{{ srcset_webp }}" sizes="{{ pt.displayed }}">
+                <img src="{{ pt.src | relative_url }}" srcset="{{ srcset_jpg }}" sizes="{{ pt.displayed }}"
+                     width="{{ pt.box }}" height="{{ pt.box }}" fetchpriority="high" decoding="async"
+                     alt="{% include t.html v=pt.alt %}">
+            </picture>
         </div>
         <div class="hero-content">
             <h1 class="hero-name">{% include t.html v=site.data.profile.greeting %}</h1>

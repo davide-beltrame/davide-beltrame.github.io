@@ -27,8 +27,19 @@ about:
   en: "I'm a student in the <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">MSc in Artificial Intelligence at Bocconi University</a>. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. <br><br><strong>I recently started my master's thesis project on generalization in diffusion models with the Bocconi machine learning and statistical physics research group.</strong>"
   it: "Sono uno studente della <a href=\"https://www.unibocconi.it/it/corsi-di-studio/master-of-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">magistrale in Intelligenza Artificiale presso l'Università Bocconi</a>. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. <br><br><strong>Ho da poco iniziato il progetto di tesi magistrale sulla generalizzazione nei modelli di diffusione con il gruppo di ricerca in machine learning e fisica statistica della Bocconi.</strong>"
 
+# The portrait ships at three widths in webp and jpg. `src` is the fallback and
+# keeps the URL the photo has always had. `displayed` is the CSS box it is drawn
+# in — it feeds the `sizes` attribute, so if the design changes that box, this is
+# the one value to change with it.
+#
+# Strip EXIF from anything regenerated here. A file straight off a phone carries
+# GPS coordinates, a device model and a timestamp.
 portrait:
   src: "/assets/files/davide_beltrame_propic.jpg"
+  variants: "/assets/img/portrait"
+  widths: [320, 640, 960]
+  displayed: "150px"
+  box: 150
   alt:
     en: "Davide Beltrame"
     it: "Davide Beltrame"

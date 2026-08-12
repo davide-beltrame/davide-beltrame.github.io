@@ -62,7 +62,11 @@
     --transition-slow: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark theme */
+/* Dark theme. Two selectors, one set of values.
+   `[data-theme="dark"]` is the visitor's explicit choice, set on <html> before
+   first paint. The media query is the default for a visitor who has not chosen,
+   and it is what makes dark mode work with JavaScript disabled — it is skipped
+   only when the visitor has explicitly picked light. */
 [data-theme="dark"] {
     --bg: var(--bg-dark);
     --text: var(--text-dark);
@@ -73,11 +77,26 @@
     --accent: var(--accent-dark);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: var(--bg-dark);
+        --text: var(--text-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --border: var(--border-dark);
+        --hover: var(--hover-dark);
+        --card: var(--card-dark);
+        --accent: var(--accent-dark);
+    }
+}
+
 /* ===== BASE STYLES ===== */
 html {
     font-size: var(--font-size-base);
     line-height: 1.6;
     scroll-behavior: smooth;
+    /* The root carries the theme background as well as the body, so the
+       body fade-in below cannot expose a white canvas for a frame in dark mode. */
+    background-color: var(--bg);
 }
 
 body {
@@ -126,6 +145,12 @@ a:hover {
 
 [data-theme="dark"] .navbar {
     background: rgba(10, 10, 10, 0.85);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .navbar {
+        background: rgba(10, 10, 10, 0.85);
+    }
 }
 
 .navbar-inner {
@@ -284,6 +309,12 @@ a:hover {
 
 [data-theme="dark"] .toggle-circle {
     transform: translateX(22px);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .toggle-circle {
+        transform: translateX(22px);
+    }
 }
 
 /* ===== LANGUAGE TOGGLE ===== */
@@ -853,6 +884,24 @@ body {
 @keyframes bodyFadeIn {
     to {
         opacity: 1;
+    }
+}
+
+/* The fade above starts the page at opacity 0, so it is an animation that text
+   depends on. A visitor who asks for less motion gets the page already visible
+   rather than a page that has to animate to become readable. */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        opacity: 1;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 

@@ -1,0 +1,12 @@
+{%- comment -%}
+He hasn't written this page yet. Per site-content-and-voice, an empty section
+beats an invented one — this shows a dated placeholder rather than fabricated
+first-person content about what's currently occupying him.
+{%- endcomment -%}
+<section class="section" id="now">
+    <h2 class="section-title">{% include t.html v=site.data.ui.sections.now %}</h2>
+    <div class="wip-notice">
+        {% include icon.html name="code" class="notice-icon" %}
+        <span>{% include t.html v=site.data.ui.now_notice %}</span>
+    </div>
+</section>

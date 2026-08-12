@@ -1,11 +1,30 @@
 # Projects. Only entries with `featured: true` render on /projects/.
 # Titles are repository and project names and stay untranslated.
+#
+# `status`, where present, carries a checkable grade or outcome verbatim —
+# the same field name and pattern as `_data/research.yml`'s papers.
 
 items:
+  - title: "SO-101 Policy Training"
+    description:
+      en: "Built at the EuroTech x HKTE Hackathon: trained ACT and SmolVLA imitation-learning policies on a SO-101 robotic arm."
+      it: "Realizzato durante l'EuroTech x HKTE Hackathon: addestramento di policy di imitation learning ACT e SmolVLA su un braccio robotico SO-101."
+    tech:
+      - "Robotics"
+      - "Imitation learning"
+      - "ACT"
+      - "SmolVLA"
+    url: "https://github.com/giacomo-ciro/eurotech-hackathon"
+    featured: true
+    collaborative: true
+
   - title: "More Efficient Text Diffusion via Length Prediction"
     description:
       en: "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms."
       it: "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
+    status:
+      en: "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology."
+      it: "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology."
     tech:
       - "NLP"
       - "Deep learning"
@@ -20,6 +39,9 @@ items:
     description:
       en: "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis."
       it: "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
+    status:
+      en: "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing. Published by Bocconi Students for Machine Learning."
+      it: "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing. Pubblicato da Bocconi Students for Machine Learning."
     tech:
       - "Computer vision"
       - "Medical imaging"

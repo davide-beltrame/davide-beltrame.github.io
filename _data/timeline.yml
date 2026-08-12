@@ -6,6 +6,42 @@
 # An event may also carry a `description` {en, it} pair; none does yet.
 
 years:
+  - year: "2026"
+    events:
+      - date: "02/2026"
+        display:
+          en: "February"
+          it: "Febbraio"
+        title:
+          en: "I attend McKinsey's \"New Horizon: Lead What's Next in AI\" program in Barcelona."
+          it: "Partecipo al programma \"New Horizon: Lead What's Next in AI\" di McKinsey a Barcellona."
+
+  - year: "2025"
+    events:
+      - date: "09/2025"
+        display:
+          en: "September"
+          it: "Settembre"
+        title:
+          en: "I begin my master's thesis on generalization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Luca Biggio."
+          it: "Inizio la tesi magistrale sulla generalizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Luca Biggio."
+
+      - date: "06/2025"
+        display:
+          en: "June"
+          it: "Giugno"
+        title:
+          en: "I join MilaNLP as a student researcher, working with Dirk Hovy and Paul Röttger on diffusion language models."
+          it: "Entro in MilaNLP come ricercatore studente, lavorando con Dirk Hovy e Paul Röttger sui modelli linguistici a diffusione."
+
+      - date: "05/2025"
+        display:
+          en: "May"
+          it: "Maggio"
+        title:
+          en: "I begin an AI engineering internship at CommerceClarity in Milan."
+          it: "Inizio uno stage in ingegneria AI presso CommerceClarity a Milano."
+
   - year: "2024"
     events:
       - date: "05/09/2024"
@@ -49,6 +85,16 @@ years:
         title:
           en: "I graduate from Liceo Scientifico Statale \"Augusto Righi\" in Rome with a final grade of 100 cum laude."
           it: "Mi diplomo al liceo scientifico statale \"Augusto Righi\" di Roma con 100 e lode."
+
+  - year: "2022"
+    events:
+      - date: "03/2022"
+        display:
+          en: "March"
+          it: "Marzo"
+        title:
+          en: "I begin tutoring competitive-programming training for the Italian Informatics Olympics (OII) at LUISS."
+          it: "Inizio a fare da tutor per la preparazione alle Olimpiadi Italiane di Informatica (OII) presso la LUISS."
 
   - year: "2016"
     events:

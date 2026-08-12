@@ -1,9 +1,31 @@
 {%- comment -%}
-Papers render in the order `_data/research.yml` lists them (newest first).
-The abstract sits in a native <details>, so it is in the HTML, reachable, and
-does not need JavaScript to open.
+Roles and papers each render in the order `_data/research.yml` lists them
+(newest first). The abstract sits in a native <details>, so it is in the HTML,
+reachable, and does not need JavaScript to open.
 {%- endcomment -%}
 <section class="section" id="research">
+    <div class="publications">
+        <h2 class="section-title">{% include t.html v=site.data.ui.sections.roles %}</h2>
+        {%- for role in site.data.research.roles %}
+        <div class="pub-card">
+            <div class="pub-header">
+                <span class="pub-title">{% include t.html v=role.title %}</span>
+            </div>
+            {%- if role.org %}
+            <div class="pub-authors">{{ role.org | escape }}</div>
+            {%- endif %}
+            <div class="pub-meta">
+                {%- if role.dates %}
+                <span class="pub-status">{% include t.html v=role.dates %}</span>
+                {%- endif %}
+            </div>
+            {%- if role.description %}
+            <div class="pub-abstract"><p>{% include t.html v=role.description raw=true %}</p></div>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+    </div>
+
     <div class="publications">
         <h2 class="section-title">{% include t.html v=site.data.ui.sections.research %}</h2>
         {%- for paper in site.data.research.papers %}
@@ -31,6 +53,9 @@ does not need JavaScript to open.
                 {%- endif %}
                 {%- if paper.status %}
                 <span class="pub-status">{% include t.html v=paper.status %}</span>
+                {%- endif %}
+                {%- if paper.code and paper.code != "" %}
+                <span class="pub-venue"><a href="{{ paper.code }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="code" class="link-icon" %} {% include t.html v=site.data.ui.labels.code %}</a></span>
                 {%- endif %}
             </div>
             {%- if _abstract != "" %}

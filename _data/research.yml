@@ -1,9 +1,47 @@
-# Papers and preprints, newest first. The page renders this order as written —
-# there is no sort in the template, so the order here is the order on the page.
+# Research roles, newest first, then papers and preprints, newest first. The
+# page renders both lists in the order written here — there is no sort in the
+# template.
 #
-# `status` carries venue status and author-list footnotes verbatim. An `abstract`
-# with `it: "TODO"` falls back to the English text via _includes/t.html; the
-# literal string never reaches a page.
+# `status` on a paper carries venue status and author-list footnotes verbatim.
+# An `abstract` with `it: "TODO"` falls back to the English text via
+# _includes/t.html; the literal string never reaches a page.
+#
+# The two course projects that used to sit here (graded exam projects, not
+# publications) now live in `_data/projects.yml` instead.
+
+roles:
+  - title:
+      en: "MSc Thesis Researcher"
+      it: "Ricercatore di tesi magistrale"
+    org: "Bocconi Machine Learning & Statistical Physics Lab — Supervisor: Prof. Luca Biggio"
+    dates:
+      en: "Sep 2025 – present"
+      it: "Set 2025 – presente"
+    description:
+      en: "Studying generalization, memorization, and privacy risk in diffusion models, through controlled hierarchical-data experiments and real-image benchmarks."
+      it: "Studio di generalizzazione, memorizzazione e rischio di privacy nei modelli di diffusione, attraverso esperimenti controllati su dati gerarchici e benchmark su immagini reali."
+
+  - title:
+      en: "Student Researcher"
+      it: "Ricercatore studente"
+    org: "MilaNLP Lab — Supervisors: Prof. Dirk Hovy, Dr. Paul Röttger"
+    dates:
+      en: "Jun 2025 – present"
+      it: "Giu 2025 – presente"
+    description:
+      en: "Predicting how long a diffusion language model's response needs to be before generation starts, to cut the compute wasted on padding. Written up in <em>Diffusion Language Models Are Natively Length-Aware</em>, below."
+      it: "Predizione della lunghezza necessaria della risposta di un modello linguistico a diffusione prima dell'inizio della generazione, per ridurre il calcolo sprecato in padding. Descritto in <em>Diffusion Language Models Are Natively Length-Aware</em>, qui sotto."
+
+  - title:
+      en: "Advisor and Researcher"
+      it: "Advisor e ricercatore"
+    org: "Bocconi Students for Machine Learning (BSML)"
+    dates:
+      en: "Apr 2025 – present"
+      it: "Apr 2025 – presente"
+    description:
+      en: "Advise BSML projects and co-organize on-campus events (an HPC tutorial, meetups with industry). First-authored a <a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">study</a> comparing CNN saliency maps to radiologist attention on pediatric chest X-rays, with 300+ expert annotations."
+      it: "Advisor per progetti BSML e co-organizzatore di eventi in ateneo (un tutorial HPC, incontri con aziende del settore). Primo autore di uno <a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">studio</a> che confronta le saliency map di CNN con l'attenzione dei radiologi su radiografie toraciche pediatriche, con oltre 300 annotazioni di esperti."
 
 papers:
   - title:
@@ -26,34 +64,12 @@ papers:
     authors: "Jérôme Garnier-Brun*, Luca Biggio*, Davide Beltrame, Marc Mézard, Luca Saglietti"
     year: "2026"
     date: "2026-03-03"
+    venue: "ICML 2026"
     status:
-      en: "*Equal contribution."
-      it: "*Contributo equo."
+      en: "Spotlight, top 2.2% of submissions. *Equal contribution."
+      it: "Spotlight, primo 2.2% delle submission. *Contributo equo."
     abstract:
       en: "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications."
       it: "TODO"
     link: "https://arxiv.org/abs/2603.03469"
-
-  - title:
-      en: "More Efficient Text Diffusion via Length Prediction"
-      it: "More Efficient Text Diffusion via Length Prediction"
-    authors: "Davide Beltrame, Giacomo Cirò, Luca Gandolfi, Vittorio Rossi"
-    venue: ""
-    year: "2025"
-    date: "2025-06-01"
-    status:
-      en: "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology"
-      it: "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology"
-    link: "https://github.com/giacomo-ciro/diffusion-llms"
-
-  - title:
-      en: "Do AI and Human Experts See Pneumonia the Same Way?"
-      it: "Do AI and Human Experts See Pneumonia the Same Way?"
-    authors: "Davide Beltrame, Giacomo Cirò"
-    venue: "<a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>"
-    year: "2025"
-    date: "2025-06-01"
-    status:
-      en: "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing"
-      it: "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing"
-    link: "https://bsmachinelearning.com/projects/2025-06-16/"
+    code: "https://github.com/davide-beltrame/biased-generalization"

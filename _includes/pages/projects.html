@@ -13,6 +13,11 @@
                 {%- endif %}
             </div>
             <div class="pub-authors">{% include t.html v=project.description %}</div>
+            {%- if project.status %}
+            <div class="pub-meta">
+                <span class="pub-status">{% include t.html v=project.status %}</span>
+            </div>
+            {%- endif %}
             <div class="project-tech">
                 {%- for tag in project.tech %}
                 <span class="tech-tag">{{ tag | escape }}</span>

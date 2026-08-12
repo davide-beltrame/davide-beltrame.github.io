@@ -11,6 +11,10 @@ nav:
     label:
       en: "Home"
       it: "Home"
+  - ref: now
+    label:
+      en: "Now"
+      it: "Ora"
   - ref: research
     label:
       en: "Research"
@@ -37,6 +41,13 @@ pages:
     description:
       en: "Davide Beltrame's personal website."
       it: "Il sito personale di Davide Beltrame."
+  now:
+    title:
+      en: "Now — Davide Beltrame"
+      it: "Ora — Davide Beltrame"
+    description:
+      en: "What Davide Beltrame is doing right now."
+      it: "Cosa sta facendo Davide Beltrame in questo momento."
   research:
     title:
       en: "Research — Davide Beltrame"
@@ -88,6 +99,12 @@ og:
 
 # Section headings.
 sections:
+  now:
+    en: "Now"
+    it: "Ora"
+  roles:
+    en: "Roles"
+    it: "Ruoli"
   research:
     en: "Publications"
     it: "Pubblicazioni"
@@ -124,6 +141,9 @@ labels:
   collaborative:
     en: "Collaborative"
     it: "In collaborazione"
+  code:
+    en: "Code"
+    it: "Codice"
   show_abstract:
     en: "Show abstract"
     it: "Mostra abstract"
@@ -155,6 +175,13 @@ controls:
 wip_notice:
   en: "This section is a work in progress — more content coming soon!"
   it: "Questa sezione è in lavorazione — altri contenuti in arrivo!"
+
+# The /now page itself is unwritten — see site-content-and-voice on why this
+# is a placeholder rather than drafted prose in his voice. Update this text
+# (and the date) only once he has actually written the page.
+now_notice:
+  en: "As of August 12, 2026, this page hasn't been written yet — check back for what's occupying me this month."
+  it: "Al 12 agosto 2026, questa pagina non è ancora stata scritta — torna a trovarmi per sapere a cosa sto lavorando questo mese."
 
 duolingo:
   current_streak:

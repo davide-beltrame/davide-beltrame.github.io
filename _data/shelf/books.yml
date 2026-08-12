@@ -1,0 +1,17 @@
+# Curated, not a complete log — only books he'd actually recommend go on this
+# list. No rating field of any kind: decided against, see
+# `.agents/context/decisions.md`. The note is the entire reason an entry
+# exists, so it is required, not optional flavor.
+#
+# Schema per entry:
+#   title:    string, not translated (proper noun)
+#   year:     original publication year
+#   finished: the date he finished it, YYYY-MM-DD
+#   note:     {en, it} — his one-line take, required
+#   link:     optional URL (e.g. the publisher page or a review)
+#   tags:     optional list of short strings
+#
+# Empty until he supplies real entries. Never invented — see AGENTS.md and
+# the site-content-and-voice skill. The page shows a "coming soon" notice
+# for this category while `items` is empty.
+items: []

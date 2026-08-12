@@ -114,9 +114,15 @@ sections:
   timeline:
     en: "Timeline"
     it: "Cronologia"
+  shelf:
+    en: "Books & Films"
+    it: "Libri e film"
   duolingo:
     en: "Duolingo"
     it: "Duolingo"
+  nyt_games:
+    en: "NYT Games"
+    it: "Giochi NYT"
 
 # Labels for the contact links. The email one shows this label and never the
 # address, which appears only inside an entity-encoded mailto: href.
@@ -207,6 +213,41 @@ duolingo:
   data_notice:
     en: "* Streak, XP, and language data last updated:"
     it: "* Serie, XP e dati sulle lingue aggiornati il:"
+
+# The books/films filter is pure CSS (radio inputs + a :has() selector), so
+# "all entries visible, grouped by kind" is the page's only state rather than
+# a no-JS fallback of a different one.
+shelf:
+  filter_group_label:
+    en: "Filter the shelf"
+    it: "Filtra lo scaffale"
+  filter_all:
+    en: "All"
+    it: "Tutti"
+  filter_books:
+    en: "Books"
+    it: "Libri"
+  filter_films:
+    en: "Films"
+    it: "Film"
+  # Shown in place of a blank line when an entry has no note — the note is
+  # the entire reason a shelf entry exists, so a missing one is flagged
+  # rather than rendered silently.
+  missing_note:
+    en: "No note yet — flagged for follow-up."
+    it: "Nessuna nota ancora — segnalata per il seguito."
+  nyt_streak:
+    en: "current streak"
+    it: "serie attuale"
+  nyt_score:
+    en: "average score"
+    it: "punteggio medio"
+  nyt_solver_note:
+    en: "I also built a solver for generalized Wordle:"
+    it: "Ho anche costruito un risolutore per Wordle generalizzato:"
+  nyt_solver_link_label:
+    en: "Wordle Solver"
+    it: "Wordle Solver"
 
 # Static hosting serves one 404 for the whole domain, so this page is in English
 # and offers the Italian home as a link rather than guessing the reader's language.

@@ -866,6 +866,112 @@ details[open]>.pub-abstract-toggle .disclosure-hide {
     font-size: 12px;
 }
 
+/* ===== SHELF: BOOKS & FILMS ===== */
+.shelf-index {
+    margin-bottom: var(--space-xl);
+}
+
+.shelf-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+
+/* Visually hidden but focusable, so the label pill carries the click target
+   and keyboard focus still lands on the real control. */
+.shelf-filter-input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+
+.shelf-filter-label {
+    cursor: pointer;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--card);
+    transition: var(--transition);
+}
+
+.shelf-filter-label:hover {
+    border-color: var(--text-secondary);
+}
+
+.shelf-filter-input:checked+.shelf-filter-label {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+}
+
+.shelf-filter-input:focus-visible+.shelf-filter-label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.shelf-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.shelf-group-title {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+}
+
+/* The filter itself: "all" checked (the default) hides nothing. No script
+   involved — every entry is visible, grouped by kind, with or without JS. */
+.shelf-index:has(#shelf-filter-books:checked) .shelf-group:not([data-kind="book"]) {
+    display: none;
+}
+
+.shelf-index:has(#shelf-filter-films:checked) .shelf-group:not([data-kind="film"]) {
+    display: none;
+}
+
+.shelf-card-note {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 2px;
+}
+
+.shelf-card-note--missing {
+    font-style: italic;
+    color: var(--accent);
+}
+
+.nyt-games-section {
+    margin-bottom: var(--space-xl);
+}
+
+.shelf-aside {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-sm);
+}
+
+.shelf-aside a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.shelf-aside a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text);
+    opacity: 1;
+}
+
 /* ===== COLLAPSIBLE SECTIONS ===== */
 .collapsible-section {
     margin-top: var(--space-md);

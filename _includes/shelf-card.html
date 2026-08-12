@@ -1,0 +1,31 @@
+{%- comment -%}
+_includes/shelf-card.html — usage: {% include shelf-card.html item=item %}
+No rating field, ever — the shelf is curated, not scored. An entry without a
+note in both languages is incomplete, so it renders flagged rather than with
+a blank line silently standing in for his take.
+{%- endcomment -%}
+{%- assign _item = include.item -%}
+{%- capture _note %}{% if _item.note %}{% include t.html v=_item.note %}{% endif %}{% endcapture -%}
+{%- assign _note = _note | strip -%}
+<div class="pub-card shelf-card">
+    <div class="pub-header">
+        <span class="pub-title">
+            {%- if _item.link and _item.link != "" -%}
+            <a href="{{ _item.link }}" target="_blank" rel="noopener noreferrer">{{ _item.title | escape }} {% include icon.html name="external" class="link-icon" %}</a>
+            {%- else -%}
+            {{ _item.title | escape }}
+            {%- endif -%}
+        </span>
+        {%- if _item.year %}<span class="pub-year-badge">{{ _item.year }}</span>{%- endif %}
+    </div>
+    {%- if _note != "" %}
+    <p class="shelf-card-note">{{ _note }}</p>
+    {%- else %}
+    <p class="shelf-card-note shelf-card-note--missing">{% include t.html v=site.data.ui.shelf.missing_note %}</p>
+    {%- endif %}
+    {%- if _item.tags %}
+    <div class="project-tech">
+        {%- for tag in _item.tags %}<span class="tech-tag">{{ tag | escape }}</span>{%- endfor %}
+    </div>
+    {%- endif %}
+</div>

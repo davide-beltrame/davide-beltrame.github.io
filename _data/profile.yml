@@ -1,0 +1,32 @@
+# Identity, bio, and contact links.
+#
+# Bilingual values are an {en, it} pair, resolved by _includes/t.html.
+# The email is rendered only through _includes/email-href.html, which
+# entity-encodes it at build time; it is deliberately omitted from
+# /api/content.json so that endpoint is not a plain-text address feed.
+
+name: Davide Beltrame
+
+title:
+  en: "Student & researcher in deep learning and AI"
+  it: "Studente e ricercatore in IA e deep learning"
+
+greeting:
+  en: "Hi, I'm Davide!"
+  it: "Ciao, sono Davide!"
+
+about:
+  en: "I'm a student in the <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">MSc in Artificial Intelligence at Bocconi University</a>. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. <br><br><strong>I recently started my master's thesis project on generalization in diffusion models with the Bocconi machine learning and statistical physics research group.</strong>"
+  it: "Sono uno studente della <a href=\"https://www.unibocconi.it/it/corsi-di-studio/master-of-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">magistrale in Intelligenza Artificiale presso l'Università Bocconi</a>. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. <br><br><strong>Ho da poco iniziato il progetto di tesi magistrale sulla generalizzazione nei modelli di diffusione con il gruppo di ricerca in machine learning e fisica statistica della Bocconi.</strong>"
+
+portrait:
+  src: "/assets/files/davide_beltrame_propic.jpg"
+  alt:
+    en: "Davide Beltrame"
+    it: "Davide Beltrame"
+
+contact:
+  email: "davide.beltrame@studbocconi.it"
+  github: "https://github.com/davide-beltrame"
+  linkedin: "https://www.linkedin.com/in/davide-beltrame"
+  cv: "/assets/files/davide_beltrame_cv.pdf"

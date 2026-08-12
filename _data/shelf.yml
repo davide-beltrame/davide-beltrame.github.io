@@ -1,0 +1,64 @@
+# The shelf. Duolingo today; books, films, and NYT games are not here yet and
+# the page says so rather than showing an empty section.
+#
+# Every number below is the value read off the profile on `data_last_updated`
+# and is displayed with that date. Nothing is extrapolated forward from it —
+# a counter that increments from a stale reading reports days he may not have
+# practised. Languages are listed by XP, highest first; the page shows the top
+# five and puts the rest behind a disclosure.
+
+duolingo:
+  username: "davide1729"
+  current_streak: 1022
+  longest_streak: 1022
+  total_xp: 150394
+  data_last_updated: "2025-08-14"
+  data_last_updated_display:
+    en: "August 14, 2025"
+    it: "14 agosto 2025"
+  languages:
+    - name: "French"
+      flag: "🇫🇷"
+      xp: 63003
+    - name: "Japanese"
+      flag: "🇯🇵"
+      xp: 55784
+    - name: "Spanish"
+      flag: "🇪🇸"
+      xp: 4208
+    - name: "German"
+      flag: "🇩🇪"
+      xp: 3293
+    - name: "Swedish"
+      flag: "🇸🇪"
+      xp: 3199
+    - name: "Danish"
+      flag: "🇩🇰"
+      xp: 2089
+    - name: "Latin"
+      flag: ""
+      xp: 296
+    - name: "Greek"
+      flag: "🇬🇷"
+      xp: 270
+    - name: "Italian"
+      flag: "🇮🇹"
+      xp: 120
+    - name: "English (Italian)"
+      flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      xp: 100
+    - name: "Catalan"
+      flag: ""
+      xp: 87
+    - name: "Arabic"
+      flag: ""
+      xp: 73
+    - name: "Russian"
+      flag: "🇷🇺"
+      xp: 60
+    - name: "Esperanto"
+      flag: "💚"
+      xp: 45
+    - name: "Irish"
+      flag: "🇮🇪"
+      xp: 28

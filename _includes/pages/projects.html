@@ -1,0 +1,25 @@
+<section class="section" id="projects">
+    <h2 class="section-title">{% include t.html v=site.data.ui.sections.projects %}</h2>
+    <div class="projects-container">
+        {%- for project in site.data.projects.items %}
+        {%- if project.featured %}
+        <div class="pub-card">
+            <div class="pub-header">
+                <span class="pub-title">
+                    <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} <i class="fas fa-external-link-alt link-icon" aria-hidden="true"></i></a>
+                </span>
+                {%- if project.collaborative %}
+                <span class="pub-year-badge">{% include t.html v=site.data.ui.labels.collaborative %}</span>
+                {%- endif %}
+            </div>
+            <div class="pub-authors">{% include t.html v=project.description %}</div>
+            <div class="project-tech">
+                {%- for tag in project.tech %}
+                <span class="tech-tag">{{ tag | escape }}</span>
+                {%- endfor %}
+            </div>
+        </div>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</section>

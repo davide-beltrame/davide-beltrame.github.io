@@ -1,0 +1,59 @@
+# Papers and preprints, newest first. The page renders this order as written —
+# there is no sort in the template, so the order here is the order on the page.
+#
+# `status` carries venue status and author-list footnotes verbatim. An `abstract`
+# with `it: "TODO"` falls back to the English text via _includes/t.html; the
+# literal string never reaches a page.
+
+papers:
+  - title:
+      en: "Diffusion Language Models Are Natively Length-Aware"
+      it: "Diffusion Language Models Are Natively Length-Aware"
+    authors: "Vittorio Rossi*, Giacomo Cirò*, Davide Beltrame*, Luca Gandolfi, Paul Röttger, Dirk Hovy"
+    year: "2026"
+    date: "2026-03-06"
+    status:
+      en: "*Equal contribution."
+      it: "*Contributo equo."
+    abstract:
+      en: "Unlike autoregressive language models, which terminate variable-length generation upon predicting an End-of-Sequence (EoS) token, Diffusion Language Models (DLMs) operate over a fixed maximum-length context window for a predetermined number of denoising steps. However, this process is independent of the required response length, resulting in computational waste for the majority of short responses common in reasoning and chat tasks. To address this problem, we conjecture that the latent prompt representation contains sufficient information to estimate the required output length. We provide empirical evidence for this phenomenon and propose a zero-shot mechanism to dynamically crop the context window before generation begins, leading to fewer diffusion steps and substantial computational savings. We evaluate our approach on four benchmarks with diverse tasks -- GSM8K (reasoning), HumanEval (code generation), IfEval (instruction following), and LongFormQA (question answering) -- revealing massive efficiency gains at minimal performance impact. We report significant reductions in FLOPs across all tasks, with no statistically significant performance degradation, and significant performance improvements in 2 out of 4 tasks."
+      it: "TODO"
+    link: "https://arxiv.org/abs/2603.06123"
+
+  - title:
+      en: "Biased Generalization in Diffusion Models"
+      it: "Generalizzazione Parziale nei Modelli di Diffusione"
+    authors: "Jérôme Garnier-Brun*, Luca Biggio*, Davide Beltrame, Marc Mézard, Luca Saglietti"
+    year: "2026"
+    date: "2026-03-03"
+    status:
+      en: "*Equal contribution."
+      it: "*Contributo equo."
+    abstract:
+      en: "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications."
+      it: "TODO"
+    link: "https://arxiv.org/abs/2603.03469"
+
+  - title:
+      en: "More Efficient Text Diffusion via Length Prediction"
+      it: "More Efficient Text Diffusion via Length Prediction"
+    authors: "Davide Beltrame, Giacomo Cirò, Luca Gandolfi, Vittorio Rossi"
+    venue: ""
+    year: "2025"
+    date: "2025-06-01"
+    status:
+      en: "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology"
+      it: "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology"
+    link: "https://github.com/giacomo-ciro/diffusion-llms"
+
+  - title:
+      en: "Do AI and Human Experts See Pneumonia the Same Way?"
+      it: "Do AI and Human Experts See Pneumonia the Same Way?"
+    authors: "Davide Beltrame, Giacomo Cirò"
+    venue: "<a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>"
+    year: "2025"
+    date: "2025-06-01"
+    status:
+      en: "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing"
+      it: "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing"
+    link: "https://bsmachinelearning.com/projects/2025-06-16/"

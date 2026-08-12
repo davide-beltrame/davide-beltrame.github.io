@@ -1,0 +1,19 @@
+{%- comment -%}
+The one blocking script on the page. It has to run before first paint, or a
+visitor in dark mode sees a white page for a frame; nothing else on this site
+qualifies for that treatment.
+
+An explicit choice in localStorage wins. With no choice stored, the system
+preference decides, falling back to light where the system expresses none.
+
+Its sha256 is in the Content-Security-Policy in _includes/head.html. **Editing
+this script by even one byte invalidates that hash and the browser refuses to
+run it**, silently. Rebuild, then recompute from the built page, which is the
+only place the exact bytes the browser hashes actually exist:
+
+  python3 -c "import re,hashlib,base64;h=open('_site/index.html').read();c=re.findall(r'<script>(.+?)</script>',h,re.S)[0];print('sha256-'+base64.b64encode(hashlib.sha256(c.encode()).digest()).decode())"
+
+Then check a page in a browser: a wrong hash shows up as a console error and a
+light flash in dark mode, and as nothing at all in the build output.
+{%- endcomment -%}
+<script>(function(){try{var s=localStorage.getItem("theme");var t=s==="dark"||s==="light"?s:(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>

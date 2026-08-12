@@ -320,13 +320,10 @@ a:hover {
     padding-bottom: var(--space-2xl);
 }
 
+/* One page, one section. This used to be `display: none` with an `.active`
+   class switched on by script, because every page lived in one document. */
 .section {
-    display: none;
     animation: fadeIn 0.4s ease-in-out;
-}
-
-.section.active {
-    display: block;
 }
 
 @keyframes fadeIn {
@@ -594,6 +591,18 @@ a:hover {
     border-radius: 4px;
 }
 
+/* ===== DISCLOSURES ===== */
+/* Abstracts and the long language list are native <details>, so they open with
+   JavaScript disabled. The default triangle goes; the chevron is the affordance. */
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
 .pub-abstract-toggle {
     display: inline-flex;
     align-items: center;
@@ -618,18 +627,21 @@ a:hover {
     transition: transform 0.2s ease;
 }
 
-.pub-abstract-toggle.expanded i {
+details[open]>.pub-abstract-toggle i {
     transform: rotate(180deg);
 }
 
-.pub-abstract {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.35s ease;
+/* Both labels ship in the HTML and CSS picks the one that fits the state. */
+.disclosure-hide,
+details[open]>.pub-abstract-toggle .disclosure-show {
+    display: none;
 }
 
-.pub-abstract.expanded {
-    max-height: 400px;
+details[open]>.pub-abstract-toggle .disclosure-hide {
+    display: inline;
+}
+
+.pub-abstract {
     padding-top: var(--space-sm);
 }
 
@@ -816,25 +828,19 @@ a:hover {
     font-size: var(--font-size-sm);
 }
 
-.collapsible-section.expanded .collapsible-header i {
+.collapsible-section[open]>.collapsible-header i {
     transform: rotate(180deg);
 }
 
 .collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: var(--space-md);
     border-left: 1px solid var(--border);
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     border-top: none;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-}
-
-.collapsible-section.expanded .collapsible-content {
-    max-height: 800px;
-    padding: var(--space-md);
-    overflow-y: auto;
 }
 
 /* ===== TIMELINE SECTION ===== */
@@ -913,18 +919,6 @@ body {
     background: var(--text-secondary);
     border-radius: 50%;
     z-index: 1;
-}
-
-/* Scroll reveal animation */
-.timeline-hidden {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.timeline-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .timeline-date {
@@ -1133,6 +1127,13 @@ body {
 .wip-notice i {
     font-size: var(--font-size-lg);
     opacity: 0.6;
+}
+
+/* Outbound-link marker next to a paper or project title. It was an inline
+   style attribute, which the Content-Security-Policy blocks. */
+.link-icon {
+    font-size: 11px;
+    opacity: 0.5;
 }
 
 /* ===== PUB AUTHORS ===== */

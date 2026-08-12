@@ -1,22 +1,39 @@
+{%- comment -%}
+`alt` — the counterpart page in the other language — is assigned in
+_layouts/default.html and used here for the hreflang pair.
+
+The policy below is delivered before the only inline script on the page, so it
+covers it. The `sha256-` value is that script's hash; see _includes/theme-init.html.
+{%- endcomment -%}
+{%- assign meta = site.data.ui.pages[page.ref] -%}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title | escape }}</title>
-{% if page.description %}
-<meta name="description" content="{{ page.description | escape }}">
-{% endif %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YbSGakeXGvDYJ4MIPIOF3vt+owHAve8kRHFsDO/R3a4='; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+
+<title>{% include t.html v=meta.title %}</title>
+<meta name="description" content="{% include t.html v=meta.description %}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'">
+
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+{%- if alt %}
+<link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url | absolute_url }}">
+{%- endif %}
+<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+
+{% include theme-init.html %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-16x16.png">
-<link rel="shortcut icon" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon.ico">
-<meta name="theme-color" content="#fafafa">
+<link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/files/favicon/davide_beltrame_apple-touch-icon.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/files/favicon/davide_beltrame_favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/files/favicon/davide_beltrame_favicon-16x16.png' | relative_url }}">
+<link rel="shortcut icon" href="{{ '/assets/files/favicon/davide_beltrame_favicon.ico' | relative_url }}">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">

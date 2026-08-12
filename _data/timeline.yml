@@ -1,0 +1,86 @@
+# Story timeline, grouped by year, newest year first, newest event first within
+# a year. The page renders this order as written.
+#
+# `date` is the raw date as recorded. `display` is what the page shows next to
+# the event: a year-only entry shows no date line, so it carries no `display`.
+# An event may also carry a `description` {en, it} pair; none does yet.
+
+years:
+  - year: "2024"
+    events:
+      - date: "05/09/2024"
+        display:
+          en: "September 5th"
+          it: "5 settembre"
+        title:
+          en: "I start my Master's Degree in Artificial Intelligence at Bocconi University in Milan."
+          it: "Inizio il corso di laurea magistrale in Artificial Intelligence presso l’Università Bocconi di Milano."
+
+      - date: "15/07/2024"
+        display:
+          en: "July 15th"
+          it: "15 luglio"
+        title:
+          en: "I graduate with the highest honors (110 cum laude)."
+          it: "Conseguo la laurea triennale con votazione finale di 110 e lode."
+
+      - date: "07/2024"
+        display:
+          en: "July"
+          it: "Luglio"
+        title:
+          en: "I move to Milan."
+          it: "Mi trasferisco a Milano."
+
+  - year: "2021"
+    events:
+      - date: "13/09/2021"
+        display:
+          en: "September 13th"
+          it: "13 settembre"
+        title:
+          en: "I start my Bachelor's Degree in Management and Computer Science at LUISS Guido Carli University"
+          it: "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
+
+      - date: "25/06/2021"
+        display:
+          en: "June 25th"
+          it: "25 giugno"
+        title:
+          en: "I graduate from Liceo Scientifico Statale \"Augusto Righi\" in Rome with a final grade of 100 cum laude."
+          it: "Mi diplomo al liceo scientifico statale \"Augusto Righi\" di Roma con 100 e lode."
+
+  - year: "2016"
+    events:
+      - date: "12/09/2016"
+        display:
+          en: "September 12th"
+          it: "12 settembre"
+        title:
+          en: "My first day at Liceo Scientifico Statale \"Augusto Righi\" in Rome."
+          it: "Il mio primo giorno al Liceo Scientifico Statale \"Augusto Righi\" a Roma."
+
+      - date: "01/09/2016"
+        display:
+          en: "September 1st"
+          it: "1 settembre"
+        title:
+          en: "My family and I move to Rome."
+          it: "La mia famiglia e io ci trasferiamo a Roma."
+
+  - year: "2007"
+    events:
+      - date: "2007"
+        title:
+          en: "My family and I move to Latina."
+          it: "La mia famiglia e io ci trasferiamo a Latina."
+
+  - year: "2002"
+    events:
+      - date: "23/07/2002"
+        display:
+          en: "July 23rd"
+          it: "23 luglio"
+        title:
+          en: "Born in Imperia, Italy, on the western Ligurian Riviera."
+          it: "Nasco a Imperia, nella Riviera ligure di Ponente."

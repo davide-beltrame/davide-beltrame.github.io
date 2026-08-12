@@ -1,0 +1,84 @@
+{%- comment -%}
+Every number here is the reading recorded in `_data/shelf.yml` on the date shown
+in the notice at the bottom. Nothing is advanced from it at render time.
+
+The languages past the top five sit in a native <details>, so they are in the
+HTML and open without JavaScript.
+{%- endcomment -%}
+{%- assign duo = site.data.shelf.duolingo -%}
+{%- assign labels = site.data.ui.duolingo -%}
+{%- assign lang_count = duo.languages | size -%}
+{%- assign rest_count = lang_count | minus: 5 -%}
+<section class="section" id="shelf">
+    <div class="wip-notice">
+        <i class="fas fa-code" aria-hidden="true"></i>
+        <span>{% include t.html v=site.data.ui.wip_notice %}</span>
+    </div>
+
+    <div class="duolingo-section">
+        <h2 class="section-title">{% include t.html v=site.data.ui.sections.duolingo %}</h2>
+
+        <div class="duolingo-highlight">
+            <div class="streak-display">
+                <span class="streak-fire" aria-hidden="true">🔥</span>
+                <div>
+                    <span class="streak-number">{% include number.html n=duo.current_streak %}</span>
+                    <span class="streak-label">{% include t.html v=labels.current_streak %}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="duolingo-stat-row">
+            <div class="duo-stat-chip">
+                <span class="duo-stat-value">{% include number.html n=duo.longest_streak %}</span>
+                <span class="duo-stat-label">{% include t.html v=labels.longest_streak %}</span>
+            </div>
+            <div class="duo-stat-chip">
+                <span class="duo-stat-value">{% include number.html n=duo.total_xp %}</span>
+                <span class="duo-stat-label">{% include t.html v=labels.total_xp %}</span>
+            </div>
+            <div class="duo-stat-chip">
+                <span class="duo-stat-value">{{ lang_count }}</span>
+                <span class="duo-stat-label">{% include t.html v=labels.languages %}</span>
+            </div>
+        </div>
+
+        <div class="duolingo-top-languages">
+            {%- for lang in duo.languages limit: 5 %}
+            <div class="lang-card">
+                <span class="lang-flag" aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span>
+                <div>
+                    <div class="lang-name">{{ lang.name | escape }}</div>
+                    <div class="lang-xp">{% include number.html n=lang.xp %} XP</div>
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+
+        {%- if rest_count > 0 %}
+        <details class="collapsible-section">
+            <summary class="collapsible-header">
+                <h4>{% include t.html v=labels.languages %} ({{ rest_count }} {% include t.html v=labels.more_languages %})</h4>
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="collapsible-content">
+                <div class="duolingo-top-languages">
+                    {%- for lang in duo.languages offset: 5 %}
+                    <div class="lang-card">
+                        <span class="lang-flag" aria-hidden="true">{{ lang.flag | default: "🌐" | escape }}</span>
+                        <div>
+                            <div class="lang-name">{{ lang.name | escape }}</div>
+                            <div class="lang-xp">{% include number.html n=lang.xp %} XP</div>
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+            </div>
+        </details>
+        {%- endif %}
+
+        <div class="duolingo-notice">
+            <small>{% include t.html v=labels.data_notice %} {% include t.html v=duo.data_last_updated_display %}</small>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,62 @@
+# Projects. Only entries with `featured: true` render on /projects/.
+# Titles are repository and project names and stay untranslated.
+
+items:
+  - title: "More Efficient Text Diffusion via Length Prediction"
+    description:
+      en: "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms."
+      it: "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
+    tech:
+      - "NLP"
+      - "Deep learning"
+      - "Masked diffusion models"
+      - "Efficiency"
+      - "PyTorch"
+    url: "https://github.com/giacomo-ciro/diffusion-llms"
+    featured: true
+    collaborative: true
+
+  - title: "Do AI and Human Experts See Pneumonia the Same Way?"
+    description:
+      en: "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis."
+      it: "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
+    tech:
+      - "Computer vision"
+      - "Medical imaging"
+      - "Explainability"
+      - "PyTorch"
+    url: "https://github.com/davide-beltrame/medimg-saliency-benchmark"
+    featured: true
+    collaborative: true
+
+  - title: "Semantic Similarity Research"
+    description:
+      en: "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text."
+      it: "Esplorazione di metodi di recupero di similarità semantica massimizzando il punteggio BLEU. Tecniche NLP avanzate per misurare e migliorare la comprensione semantica nei testi."
+    tech:
+      - "NLP"
+      - "HF transformers"
+    url: "https://github.com/davide-beltrame/semantic-similarity"
+    featured: true
+
+  - title: "Wordle Solver"
+    description:
+      en: "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability."
+      it: "Algoritmo super efficiente per risolvere puzzle Wordle generalizzati. Implementa strategie di indovinamento ottimali usando teoria dell'informazione e probabilità."
+    tech:
+      - "Information theory"
+      - "NLP"
+      - "Algorithms"
+    url: "https://github.com/davide-beltrame/wordle-solver"
+    featured: true
+
+  - title: "Personal Website"
+    description:
+      en: "This website! A minimal, clean design built from scratch with pure HTML, CSS, and JavaScript. Features dark/light mode and responsive design."
+      it: "Questo sito web! Un design minimalista e pulito costruito da zero con HTML, CSS e JavaScript puri. Include modalità scura/chiara e design responsive."
+    tech:
+      - "HTML"
+      - "CSS"
+      - "JavaScript"
+    url: "https://github.com/davide-beltrame/davide-beltrame.github.io"
+    featured: true

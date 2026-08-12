@@ -1,0 +1,35 @@
+{%- assign contact = site.data.profile.contact -%}
+{%- assign labels = site.data.ui.contact_links -%}
+<section class="section" id="home">
+    <div class="hero">
+        <div class="hero-image">
+            <img src="{{ site.data.profile.portrait.src | relative_url }}" alt="{% include t.html v=site.data.profile.portrait.alt %}" width="150" height="150">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-name">{% include t.html v=site.data.profile.greeting %}</h1>
+            <p class="hero-title">{% include t.html v=site.data.profile.title %}</p>
+            <div class="hero-bio">{% include t.html v=site.data.profile.about raw=true %}</div>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact-links">
+            <a href="{% include email-href.html address=contact.email %}" class="contact-link" title="{% include t.html v=labels.email %}">
+                <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
+                <span>{% include t.html v=labels.email %}</span>
+            </a>
+            <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.github %}">
+                <i class="fab fa-github contact-icon" aria-hidden="true"></i>
+                <span>{% include t.html v=labels.github %}</span>
+            </a>
+            <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.linkedin %}">
+                <i class="fab fa-linkedin contact-icon" aria-hidden="true"></i>
+                <span>{% include t.html v=labels.linkedin %}</span>
+            </a>
+            <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.cv %}">
+                <i class="fas fa-file-pdf contact-icon" aria-hidden="true"></i>
+                <span>{% include t.html v=labels.cv %}</span>
+            </a>
+        </div>
+    </div>
+</section>

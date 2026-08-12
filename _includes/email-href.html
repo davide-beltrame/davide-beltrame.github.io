@@ -1,0 +1,28 @@
+{%- comment -%}
+Emit a `mailto:` href with every letter and punctuation mark replaced by its
+numeric HTML entity, scheme included, so the page carries no crawlable address.
+
+  <a href="{% include email-href.html address=site.data.profile.contact.email %}">
+
+The browser decodes the entities while parsing the attribute, so the link works
+normally. This stops a scraper that regex-matches raw HTML; it does not stop one
+that parses the document first, and it is not meant to.
+
+Digits and uppercase letters pass through unchanged, which is safe: an inserted
+entity contains only `&`, `#`, digits and `;`, so no replacement can corrupt the
+output of an earlier one. Adding a digit to the replacement set would.
+{%- endcomment -%}
+{%- assign _addr = include.address | prepend: "mailto:"
+  | replace: "a", "&#97;"  | replace: "b", "&#98;"  | replace: "c", "&#99;"
+  | replace: "d", "&#100;" | replace: "e", "&#101;" | replace: "f", "&#102;"
+  | replace: "g", "&#103;" | replace: "h", "&#104;" | replace: "i", "&#105;"
+  | replace: "j", "&#106;" | replace: "k", "&#107;" | replace: "l", "&#108;"
+  | replace: "m", "&#109;" | replace: "n", "&#110;" | replace: "o", "&#111;"
+  | replace: "p", "&#112;" | replace: "q", "&#113;" | replace: "r", "&#114;"
+  | replace: "s", "&#115;" | replace: "t", "&#116;" | replace: "u", "&#117;"
+  | replace: "v", "&#118;" | replace: "w", "&#119;" | replace: "x", "&#120;"
+  | replace: "y", "&#121;" | replace: "z", "&#122;"
+  | replace: ".", "&#46;"  | replace: "@", "&#64;"  | replace: "-", "&#45;"
+  | replace: "_", "&#95;"  | replace: "+", "&#43;"
+-%}
+{{- _addr -}}

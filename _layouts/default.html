@@ -1,5 +1,11 @@
+{%- comment -%}
+`alt` is the same page in the other language, found by `ref`. Assigned here so
+both the head (hreflang) and the navbar (language link) use one lookup, and so
+neither has to do string surgery on the URL.
+{%- endcomment -%}
+{%- assign alt = site.pages | where: "ref", page.ref | where_exp: "p", "p.lang != page.lang" | first -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: 'en' }}">
 <head>
     {% include head.html %}
 </head>
@@ -7,16 +13,13 @@
     {% include navbar.html %}
 
     <div class="container">
-        <main class="main">
+        <main class="main" id="main">
             {{ content }}
         </main>
     </div>
 
     {% include footer.html %}
-    
-    <script>
-        window.siteBaseurl = {{ site.baseurl | jsonify }};
-    </script>
-    <script src="{{ site.baseurl }}/assets/js/script.js"></script>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
 </body>
 </html>

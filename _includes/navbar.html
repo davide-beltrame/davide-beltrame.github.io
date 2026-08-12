@@ -1,24 +1,34 @@
+{%- comment -%}
+Nav links are the pages in the current language, in the order `_data/ui.yml`
+lists their refs. The language control is a real link to the counterpart page
+(`alt`, assigned in the layout), labelled in the language it leads to, so it
+works with JavaScript off and search engines can follow it.
+{%- endcomment -%}
+{%- assign navpages = site.pages | where: "lang", page.lang -%}
+{%- assign homepage = navpages | where: "ref", "home" | first -%}
 <!-- Navbar -->
 <nav class="navbar">
     <div class="navbar-inner">
         <div class="navbar-brand">
-            <a href="{{ site.baseurl }}/home">Davide Beltrame</a>
+            <a href="{{ homepage.url | relative_url }}">{{ site.data.profile.name }}</a>
         </div>
         <div class="nav-links">
-            <a href="{{ site.baseurl }}/home" class="nav-item {% if page.section == 'home' %}active{% endif %}" data-section="home">Home</a>
-            <a href="{{ site.baseurl }}/projects" class="nav-item {% if page.section == 'projects' %}active{% endif %}" data-section="projects">Projects</a>
-            <a href="{{ site.baseurl }}/story" class="nav-item {% if page.section == 'story' %}active{% endif %}" data-section="story">Story</a>
-            <a href="{{ site.baseurl }}/other" class="nav-item {% if page.section == 'other' %}active{% endif %}" data-section="other">Other</a>
+            {%- for item in site.data.ui.nav -%}
+            {%- assign p = navpages | where: "ref", item.ref | first -%}
+            <a href="{{ p.url | relative_url }}" class="nav-item{% if page.ref == item.ref %} active{% endif %}"{% if page.ref == item.ref %} aria-current="page"{% endif %}>{% include t.html v=item.label %}</a>
+            {%- endfor %}
             <div class="nav-controls">
-                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-                    <span class="lang-text">EN</span>
-                </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                {%- if alt %}
+                <a class="lang-toggle" href="{{ alt.url | relative_url }}" lang="{{ alt.lang }}" hreflang="{{ alt.lang }}" title="{% include t.html v=site.data.ui.controls.switch_language %}" aria-label="{% include t.html v=site.data.ui.controls.switch_language %}">
+                    <span class="lang-text">{{ alt.lang | upcase }}</span>
+                </a>
+                {%- endif %}
+                <button class="theme-toggle" type="button" aria-label="{% include t.html v=site.data.ui.controls.toggle_theme %}">
                     <span class="toggle-circle"></span>
                 </button>
             </div>
         </div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <button class="hamburger" id="hamburgerBtn" type="button" aria-label="{% include t.html v=site.data.ui.controls.open_menu %}" aria-expanded="false" aria-controls="mobileMenu" data-label-open="{% include t.html v=site.data.ui.controls.open_menu %}" data-label-close="{% include t.html v=site.data.ui.controls.close_menu %}">
             <span class="hamburger-icon"></span>
         </button>
     </div>
@@ -26,15 +36,17 @@
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="{{ site.baseurl }}/home" class="nav-item {% if page.section == 'home' %}active{% endif %}" data-section="home">Home</a>
-    <a href="{{ site.baseurl }}/projects" class="nav-item {% if page.section == 'projects' %}active{% endif %}" data-section="projects">Projects</a>
-    <a href="{{ site.baseurl }}/story" class="nav-item {% if page.section == 'story' %}active{% endif %}" data-section="story">Story</a>
-    <a href="{{ site.baseurl }}/other" class="nav-item {% if page.section == 'other' %}active{% endif %}" data-section="other">Other</a>
+    {%- for item in site.data.ui.nav -%}
+    {%- assign p = navpages | where: "ref", item.ref | first -%}
+    <a href="{{ p.url | relative_url }}" class="nav-item{% if page.ref == item.ref %} active{% endif %}"{% if page.ref == item.ref %} aria-current="page"{% endif %}>{% include t.html v=item.label %}</a>
+    {%- endfor %}
     <div class="nav-controls">
-        <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
-            <span class="lang-text">EN</span>
-        </button>
-        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+        {%- if alt %}
+        <a class="lang-toggle" href="{{ alt.url | relative_url }}" lang="{{ alt.lang }}" hreflang="{{ alt.lang }}" title="{% include t.html v=site.data.ui.controls.switch_language %}" aria-label="{% include t.html v=site.data.ui.controls.switch_language %}">
+            <span class="lang-text">{{ alt.lang | upcase }}</span>
+        </a>
+        {%- endif %}
+        <button class="theme-toggle" type="button" aria-label="{% include t.html v=site.data.ui.controls.toggle_theme %}">
             <span class="toggle-circle"></span>
         </button>
     </div>

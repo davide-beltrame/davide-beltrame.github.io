@@ -1,0 +1,161 @@
+# Structural and navigational text: nav labels, page metadata, section
+# headings, control labels. Every value is an {en, it} pair resolved by
+# _includes/t.html.
+#
+# `nav` is an ordered list of page refs. The URL for each comes from the page
+# with that `ref` in the current language, so permalinks live in the page front
+# matter and nowhere else.
+
+nav:
+  - ref: home
+    label:
+      en: "Home"
+      it: "Home"
+  - ref: research
+    label:
+      en: "Research"
+      it: "Ricerca"
+  - ref: projects
+    label:
+      en: "Projects"
+      it: "Progetti"
+  - ref: story
+    label:
+      en: "Story"
+      it: "Storia"
+  - ref: shelf
+    label:
+      en: "Shelf"
+      it: "Scaffale"
+
+# Per-page <title> and meta description, keyed by page ref.
+pages:
+  home:
+    title:
+      en: "Davide Beltrame"
+      it: "Davide Beltrame"
+    description:
+      en: "Davide Beltrame's personal website."
+      it: "Il sito personale di Davide Beltrame."
+  research:
+    title:
+      en: "Research — Davide Beltrame"
+      it: "Ricerca — Davide Beltrame"
+    description:
+      en: "Papers and preprints by Davide Beltrame — diffusion models, NLP, and computer vision."
+      it: "Articoli e preprint di Davide Beltrame — modelli di diffusione, NLP e computer vision."
+  projects:
+    title:
+      en: "Projects — Davide Beltrame"
+      it: "Progetti — Davide Beltrame"
+    description:
+      en: "Research projects and software by Davide Beltrame — AI, NLP, and Computer Vision."
+      it: "Progetti di ricerca e software di Davide Beltrame — IA, NLP e computer vision."
+  story:
+    title:
+      en: "Story — Davide Beltrame"
+      it: "Storia — Davide Beltrame"
+    description:
+      en: "Davide Beltrame's personal website."
+      it: "Il sito personale di Davide Beltrame."
+  shelf:
+    title:
+      en: "Shelf — Davide Beltrame"
+      it: "Scaffale — Davide Beltrame"
+    description:
+      en: "Languages and more — Davide Beltrame."
+      it: "Lingue e altro — Davide Beltrame."
+
+# Section headings.
+sections:
+  research:
+    en: "Publications"
+    it: "Pubblicazioni"
+  projects:
+    en: "Projects"
+    it: "Progetti"
+  timeline:
+    en: "Timeline"
+    it: "Cronologia"
+  duolingo:
+    en: "Duolingo"
+    it: "Duolingo"
+
+# Labels for the contact links. The email one shows this label and never the
+# address, which appears only inside an entity-encoded mailto: href.
+contact_links:
+  email:
+    en: "Email"
+    it: "Email"
+  github:
+    en: "GitHub"
+    it: "GitHub"
+  linkedin:
+    en: "LinkedIn"
+    it: "LinkedIn"
+  cv:
+    en: "CV"
+    it: "CV"
+
+labels:
+  collaborative:
+    en: "Collaborative"
+    it: "In collaborazione"
+  show_abstract:
+    en: "Show abstract"
+    it: "Mostra abstract"
+  hide_abstract:
+    en: "Hide abstract"
+    it: "Nascondi abstract"
+  # Thousands separator for rendered numbers. Italian uses a period, so an
+  # English comma on an Italian page would read as a decimal point.
+  thousands_separator:
+    en: ","
+    it: "."
+
+controls:
+  # The language link is labelled in the language it leads to, so the `en` value
+  # here is the Italian sentence shown on English pages, and the reverse.
+  switch_language:
+    en: "Leggi in italiano"
+    it: "Read in English"
+  toggle_theme:
+    en: "Toggle theme"
+    it: "Cambia tema"
+  open_menu:
+    en: "Open menu"
+    it: "Apri il menu"
+  close_menu:
+    en: "Close menu"
+    it: "Chiudi il menu"
+
+wip_notice:
+  en: "This section is a work in progress — more content coming soon!"
+  it: "Questa sezione è in lavorazione — altri contenuti in arrivo!"
+
+duolingo:
+  current_streak:
+    en: "current streak"
+    it: "serie attuale"
+  longest_streak:
+    en: "longest streak"
+    it: "serie più lunga"
+  total_xp:
+    en: "total XP"
+    it: "XP totali"
+  languages:
+    en: "languages"
+    it: "lingue"
+  more_languages:
+    en: "more"
+    it: "in più"
+  # Names every number in the panel, because all of them are the reading taken
+  # on that date and none of them is advanced afterwards.
+  data_notice:
+    en: "* Streak, XP, and language data last updated:"
+    it: "* Serie, XP e dati sulle lingue aggiornati il:"
+
+redirect:
+  moved:
+    en: "This page has moved."
+    it: "Questa pagina è stata spostata."

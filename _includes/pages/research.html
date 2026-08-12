@@ -1,0 +1,51 @@
+{%- comment -%}
+Papers render in the order `_data/research.yml` lists them (newest first).
+The abstract sits in a native <details>, so it is in the HTML, reachable, and
+does not need JavaScript to open.
+{%- endcomment -%}
+<section class="section" id="research">
+    <div class="publications">
+        <h2 class="section-title">{% include t.html v=site.data.ui.sections.research %}</h2>
+        {%- for paper in site.data.research.papers %}
+        {%- capture _abstract %}{% if paper.abstract %}{% include t.html v=paper.abstract %}{% endif %}{% endcapture -%}
+        <div class="pub-card">
+            <div class="pub-header">
+                <span class="pub-title">
+                    {%- if paper.link and paper.link != "" -%}
+                    <a href="{{ paper.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=paper.title %} <i class="fas fa-external-link-alt link-icon" aria-hidden="true"></i></a>
+                    {%- else -%}
+                    {% include t.html v=paper.title %}
+                    {%- endif -%}
+                </span>
+                {%- if paper.year and paper.year != "" %}
+                <span class="pub-year-badge">{{ paper.year }}</span>
+                {%- endif %}
+            </div>
+            {%- if paper.authors and paper.authors != "" %}
+            <div class="pub-authors">{{ paper.authors | escape }}</div>
+            {%- endif %}
+            <div class="pub-meta">
+                {%- comment -%}A venue is a linked name, so it renders as written.{%- endcomment -%}
+                {%- if paper.venue and paper.venue != "" %}
+                <span class="pub-venue">{{ paper.venue }}</span>
+                {%- endif %}
+                {%- if paper.status %}
+                <span class="pub-status">{% include t.html v=paper.status %}</span>
+                {%- endif %}
+            </div>
+            {%- if _abstract != "" %}
+            <details class="pub-disclosure">
+                <summary class="pub-abstract-toggle">
+                    <span class="disclosure-show">{% include t.html v=site.data.ui.labels.show_abstract %}</span>
+                    <span class="disclosure-hide">{% include t.html v=site.data.ui.labels.hide_abstract %}</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </summary>
+                <div class="pub-abstract">
+                    <p>{{ _abstract }}</p>
+                </div>
+            </details>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+    </div>
+</section>

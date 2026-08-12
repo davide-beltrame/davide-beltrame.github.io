@@ -23,8 +23,8 @@ years:
           en: "September"
           it: "Settembre"
         title:
-          en: "I begin my master's thesis on generalization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Luca Biggio."
-          it: "Inizio la tesi magistrale sulla generalizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Luca Biggio."
+          en: "I begin my master's thesis on memorization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Luca Biggio."
+          it: "Inizio la tesi magistrale sulla memorizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Luca Biggio."
 
       - date: "05/2025"
         display:

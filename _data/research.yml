@@ -18,8 +18,8 @@ roles:
       en: "Sep 2025 – present"
       it: "Set 2025 – presente"
     description:
-      en: "Studying generalization, memorization, and privacy risk in diffusion models, through controlled hierarchical-data experiments and real-image benchmarks."
-      it: "Studio di generalizzazione, memorizzazione e rischio di privacy nei modelli di diffusione, attraverso esperimenti controllati su dati gerarchici e benchmark su immagini reali."
+      en: "Studying how diffusion models memorize specific training examples beyond what they learn as a general pattern, and how to measure and control that."
+      it: "Studio di come i modelli di diffusione memorizzano esempi specifici di training oltre a quanto appreso come pattern generale, e di come misurare e controllare questo fenomeno."
 
   - title:
       en: "Advisor and Researcher"

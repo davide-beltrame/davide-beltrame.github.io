@@ -26,4 +26,35 @@ render as an empty page.
         </div>
         {%- endfor %}
     </div>
+
+    {%- assign coursework_count = 0 -%}
+    {%- for group in site.data.timeline.coursework -%}
+    {%- assign coursework_count = coursework_count | plus: group.courses.size -%}
+    {%- endfor -%}
+    {%- if coursework_count > 0 %}
+    <details class="collapsible-section">
+        <summary class="collapsible-header">
+            <h4>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</h4>
+            {% include icon.html name="chevron-down" %}
+        </summary>
+        <div class="collapsible-content">
+            {%- for group in site.data.timeline.coursework %}
+            <div class="coursework-year">
+                <div class="coursework-year-label">{{ group.academic_year }}</div>
+                <ul class="coursework-list">
+                    {%- for course in group.courses %}
+                    <li class="coursework-item">
+                        <span class="coursework-name">
+                            {{ course.name | escape }}
+                            {%- if course.note %} <span class="coursework-note">({% include t.html v=course.note %})</span>{%- endif -%}
+                        </span>
+                        <span class="coursework-date">{% include t.html v=course.display %}</span>
+                    </li>
+                    {%- endfor %}
+                </ul>
+            </div>
+            {%- endfor %}
+        </div>
+    </details>
+    {%- endif %}
 </section>

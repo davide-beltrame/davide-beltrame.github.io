@@ -22,17 +22,6 @@ roles:
       it: "Studio di generalizzazione, memorizzazione e rischio di privacy nei modelli di diffusione, attraverso esperimenti controllati su dati gerarchici e benchmark su immagini reali."
 
   - title:
-      en: "Student Researcher"
-      it: "Ricercatore studente"
-    org: "MilaNLP Lab — Supervisors: Prof. Dirk Hovy, Dr. Paul Röttger"
-    dates:
-      en: "Jun 2025 – present"
-      it: "Giu 2025 – presente"
-    description:
-      en: "Predicting how long a diffusion language model's response needs to be before generation starts, to cut the compute wasted on padding. Written up in <em>Diffusion Language Models Are Natively Length-Aware</em>, below."
-      it: "Predizione della lunghezza necessaria della risposta di un modello linguistico a diffusione prima dell'inizio della generazione, per ridurre il calcolo sprecato in padding. Descritto in <em>Diffusion Language Models Are Natively Length-Aware</em>, qui sotto."
-
-  - title:
       en: "Advisor and Researcher"
       it: "Advisor e ricercatore"
     org: "Bocconi Students for Machine Learning (BSML)"

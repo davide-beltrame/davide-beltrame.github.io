@@ -1027,6 +1027,52 @@ body {
     line-height: 1.5;
 }
 
+/* ===== COURSEWORK DISCLOSURE ===== */
+.coursework-year+.coursework-year {
+    margin-top: var(--space-md);
+}
+
+.coursework-year-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.coursework-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.coursework-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: var(--font-size-sm);
+}
+
+.coursework-item:last-child {
+    border-bottom: none;
+}
+
+.coursework-name {
+    color: var(--text);
+}
+
+.coursework-date {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.coursework-note {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
 .timeline-description {
     font-size: var(--font-size-sm);
     color: var(--text-secondary);

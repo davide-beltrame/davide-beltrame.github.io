@@ -144,6 +144,9 @@ labels:
   code:
     en: "Code"
     it: "Codice"
+  coursework:
+    en: "Coursework"
+    it: "Esami"
   show_abstract:
     en: "Show abstract"
     it: "Mostra abstract"

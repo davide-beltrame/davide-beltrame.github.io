@@ -26,14 +26,6 @@ years:
           en: "I begin my master's thesis on generalization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Luca Biggio."
           it: "Inizio la tesi magistrale sulla generalizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Luca Biggio."
 
-      - date: "06/2025"
-        display:
-          en: "June"
-          it: "Giugno"
-        title:
-          en: "I join MilaNLP as a student researcher, working with Dirk Hovy and Paul Röttger on diffusion language models."
-          it: "Entro in MilaNLP come ricercatore studente, lavorando con Dirk Hovy e Paul Röttger sui modelli linguistici a diffusione."
-
       - date: "05/2025"
         display:
           en: "May"
@@ -42,8 +34,24 @@ years:
           en: "I begin an AI engineering internship at CommerceClarity in Milan."
           it: "Inizio uno stage in ingegneria AI presso CommerceClarity a Milano."
 
+      - date: "01/2025"
+        display:
+          en: "January"
+          it: "Gennaio"
+        title:
+          en: "I become Editor-in-Chief delegate for AI and New Technologies at Consensus Rivista."
+          it: "Divento Caporedattore delegato all'AI e alle Nuove Tecnologie per Consensus Rivista."
+
   - year: "2024"
     events:
+      - date: "10/2024"
+        display:
+          en: "October"
+          it: "Ottobre"
+        title:
+          en: "I start writing for Consensus Rivista."
+          it: "Inizio a scrivere per Consensus Rivista."
+
       - date: "05/09/2024"
         display:
           en: "September 5th"
@@ -68,8 +76,58 @@ years:
           en: "I move to Milan."
           it: "Mi trasferisco a Milano."
 
+  - year: "2023"
+    events:
+      - date: "10/2023"
+        display:
+          en: "October"
+          it: "Ottobre"
+        title:
+          en: "I'm promoted to auditor at JELU, LUISS's Junior Enterprise."
+          it: "Vengo promosso ad auditor alla JELU, la Junior Enterprise della LUISS."
+
+      - date: "09/2023"
+        display:
+          en: "September"
+          it: "Settembre"
+        title:
+          en: "I become President of the Starting Finance Club Guido Carli."
+          it: "Divento Presidente dello Starting Finance Club Guido Carli."
+
+      - date: "06/2023"
+        display:
+          en: "June"
+          it: "Giugno"
+        title:
+          en: "I take part in the Stats Under the Stars data-science hackathon at Marche Polytechnic University."
+          it: "Partecipo all'hackathon di data science Stats Under the Stars all'Università Politecnica delle Marche."
+
+      - date: "05/2023"
+        display:
+          en: "May"
+          it: "Maggio"
+        title:
+          en: "I'm selected for Kozminski University's EU-funded AI and NLP for Business program in Warsaw."
+          it: "Vengo selezionato per il programma di Kozminski University sull'AI e l'NLP per il business a Varsavia, finanziato dall'UE."
+
+      - date: "03/2023"
+        display:
+          en: "March"
+          it: "Marzo"
+        title:
+          en: "I begin as a trainee auditor at JELU."
+          it: "Inizio come trainee auditor alla JELU."
+
   - year: "2021"
     events:
+      - date: "11/2021"
+        display:
+          en: "November"
+          it: "Novembre"
+        title:
+          en: "I take part in Confindustria Abruzzo's regional Innovation Hackathon."
+          it: "Partecipo all'Innovation Hackathon regionale di Confindustria Abruzzo."
+
       - date: "13/09/2021"
         display:
           en: "September 13th"
@@ -77,6 +135,14 @@ years:
         title:
           en: "I start my Bachelor's Degree in Management and Computer Science at LUISS Guido Carli University"
           it: "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
+
+      - date: "07/2021"
+        display:
+          en: "July"
+          it: "Luglio"
+        title:
+          en: "I'm awarded the CrackThePuzzle merit scholarship, a full tuition waiver for my Bachelor's."
+          it: "Mi viene assegnata la borsa di studio al merito CrackThePuzzle, esenzione totale delle tasse per la triennale."
 
       - date: "25/06/2021"
         display:
@@ -88,6 +154,30 @@ years:
 
   - year: "2022"
     events:
+      - date: "11/2022"
+        display:
+          en: "November"
+          it: "Novembre"
+        title:
+          en: "I become Vice President of the Starting Finance Club Guido Carli."
+          it: "Divento Vicepresidente dello Starting Finance Club Guido Carli."
+
+      - date: "11/2022"
+        display:
+          en: "November"
+          it: "Novembre"
+        title:
+          en: "I score 8.5 on the IELTS Academic English exam."
+          it: "Ottengo un punteggio di 8.5 all'esame IELTS Academic di inglese."
+
+      - date: "06/2022"
+        display:
+          en: "June"
+          it: "Giugno"
+        title:
+          en: "I become Head of HR and IT at the Starting Finance Club Guido Carli."
+          it: "Divento Head of HR and IT dello Starting Finance Club Guido Carli."
+
       - date: "03/2022"
         display:
           en: "March"
@@ -95,6 +185,39 @@ years:
         title:
           en: "I begin tutoring competitive-programming training for the Italian Informatics Olympics (OII) at LUISS."
           it: "Inizio a fare da tutor per la preparazione alle Olimpiadi Italiane di Informatica (OII) presso la LUISS."
+
+  - year: "2020"
+    events:
+      - date: "09/2020"
+        display:
+          en: "September"
+          it: "Settembre"
+        title:
+          en: "I pass the Cambridge C1 Advanced English exam."
+          it: "Supero l'esame di inglese Cambridge C1 Advanced."
+
+      - date: "07/2020"
+        display:
+          en: "July"
+          it: "Luglio"
+        title:
+          en: "I attend the university orientation courses of Scuola Normale Superiore and the joint SNS-SSSA-IUSS program in Pisa."
+          it: "Partecipo ai corsi di orientamento universitario della Scuola Normale Superiore e al programma congiunto SNS-SSSA-IUSS a Pisa."
+
+      - date: "2020"
+        title:
+          en: "My artwork \"Chromatic Dualism\" is exhibited in Rome as part of the Art & Science Across Italy competition, and wins a visit to the INFN Nuclear Physics Laboratories in Frascati."
+          it: "La mia opera \"Dualismo cromatico\" viene esposta a Roma nell'ambito del concorso Art & Science Across Italy, e vince una visita ai Laboratori Nazionali di Fisica Nucleare dell'INFN di Frascati."
+
+  - year: "2019"
+    events:
+      - date: "04/2019"
+        display:
+          en: "April"
+          it: "Aprile"
+        title:
+          en: "I attend Haarlem Model United Nations as an Economic and Social Council delegate."
+          it: "Partecipo all'Haarlem Model United Nations come delegato dell'Economic and Social Council."
 
   - year: "2016"
     events:
@@ -130,3 +253,93 @@ years:
         title:
           en: "Born in Imperia, Italy, on the western Ligurian Riviera."
           it: "Nasco a Imperia, nella Riviera ligure di Ponente."
+
+# The MSc coursework, from the official transcript. Grouped by academic year and
+# kept in a separate disclosure rather than interleaved into `years` above — 15
+# entries in two years would dwarf the rest of a 24-year timeline. No grades:
+# same rule as everywhere else on Story. Course names are Bocconi's own English
+# titles (the MSc is English-taught) and stay untranslated, like paper titles.
+coursework:
+  - academic_year: "2024/2025"
+    courses:
+      - name: "Software Engineering"
+        date: "13/01/2025"
+        display:
+          en: "January 13, 2025"
+          it: "13 gennaio 2025"
+      - name: "AI Ethics Seminar"
+        date: "17/01/2025"
+        display:
+          en: "January 17, 2025"
+          it: "17 gennaio 2025"
+      - name: "Algorithms for Optimization and Inference"
+        date: "21/01/2025"
+        display:
+          en: "January 21, 2025"
+          it: "21 gennaio 2025"
+      - name: "Mathematical Methods in Computer Science"
+        date: "23/01/2025"
+        display:
+          en: "January 23, 2025"
+          it: "23 gennaio 2025"
+      - name: "Language Technology"
+        date: "19/05/2025"
+        display:
+          en: "May 19, 2025"
+          it: "19 maggio 2025"
+      - name: "Deep Learning and Reinforcement Learning"
+        date: "22/05/2025"
+        display:
+          en: "May 22, 2025"
+          it: "22 maggio 2025"
+      - name: "Machine Learning Lab"
+        date: "05/06/2025"
+        display:
+          en: "June 5, 2025"
+          it: "5 giugno 2025"
+      - name: "Computer Vision and Image Processing"
+        date: "23/06/2025"
+        display:
+          en: "June 23, 2025"
+          it: "23 giugno 2025"
+      - name: "Information Theory"
+        date: "29/08/2025"
+        display:
+          en: "August 29, 2025"
+          it: "29 agosto 2025"
+
+  - academic_year: "2025/2026"
+    courses:
+      - name: "French Language"
+        date: "11/12/2025"
+        display:
+          en: "December 11, 2025"
+          it: "11 dicembre 2025"
+      - name: "Cryptography and Security"
+        date: "09/01/2026"
+        display:
+          en: "January 9, 2026"
+          it: "9 gennaio 2026"
+      - name: "Statistical Machine Learning"
+        date: "16/01/2026"
+        note:
+          en: "recognized as a PhD-level course"
+          it: "riconosciuto come corso di dottorato"
+        display:
+          en: "January 16, 2026"
+          it: "16 gennaio 2026"
+      - name: "Computational Neurosciences"
+        date: "27/01/2026"
+        display:
+          en: "January 27, 2026"
+          it: "27 gennaio 2026"
+      - name: "Complex Systems and Physical Models"
+        date: "15/05/2026"
+        display:
+          en: "May 15, 2026"
+          it: "15 maggio 2026"
+      - name: "Introduction to Partial Differential Equations"
+        date: "21/05/2026"
+        display:
+          en: "May 21, 2026"
+          it: "21 maggio 2026"

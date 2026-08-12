@@ -31,6 +31,14 @@ nav:
     label:
       en: "Shelf"
       it: "Scaffale"
+  - ref: trips
+    label:
+      en: "Trips"
+      it: "Viaggi"
+  - ref: everything
+    label:
+      en: "Everything"
+      it: "Tutto"
 
 # Per-page <title> and meta description, keyed by page ref.
 pages:
@@ -78,6 +86,20 @@ pages:
     description:
       en: "Languages and more — Davide Beltrame."
       it: "Lingue e altro — Davide Beltrame."
+  trips:
+    title:
+      en: "Trips — Davide Beltrame"
+      it: "Viaggi — Davide Beltrame"
+    description:
+      en: "A section for trips on Davide Beltrame's site. Nothing published here yet."
+      it: "Una sezione dedicata ai viaggi sul sito di Davide Beltrame. Non c'è ancora nulla."
+  everything:
+    title:
+      en: "Everything — Davide Beltrame"
+      it: "Tutto — Davide Beltrame"
+    description:
+      en: "Every paper, project, post, and talk by Davide Beltrame in one index, newest first."
+      it: "Ogni articolo, progetto, scritto e intervento di Davide Beltrame in un unico indice, dal più recente."
   notfound:
     title:
       en: "Page not found — Davide Beltrame"
@@ -134,6 +156,12 @@ sections:
   nyt_games:
     en: "NYT Games"
     it: "Giochi NYT"
+  trips:
+    en: "Trips"
+    it: "Viaggi"
+  everything:
+    en: "Everything"
+    it: "Tutto"
 
 # Labels for the contact links. The email one shows this label and never the
 # address, which appears only inside an entity-encoded mailto: href.
@@ -170,6 +198,9 @@ labels:
   abstract:
     en: "Abstract"
     it: "Abstract"
+  all_research:
+    en: "All research"
+    it: "Tutta la ricerca"
   # Thousands separator for rendered numbers. Italian uses a period, so an
   # English comma on an Italian page would read as a decimal point.
   thousands_separator:
@@ -212,6 +243,12 @@ wip_notice:
 now_notice:
   en: "As of August 12, 2026, this page hasn't been written yet — check back for what's occupying me this month."
   it: "Al 12 agosto 2026, questa pagina non è ancora stata scritta — torna a trovarmi per sapere a cosa sto lavorando questo mese."
+
+# Trips is a section with no content behind it yet. This line describes what the
+# section is for; it promises no schedule and names no trip.
+trips_lede:
+  en: "A section for trips. A write-up or a set of photos, decided per trip."
+  it: "Una sezione dedicata ai viaggi. Un resoconto o una serie di foto, a seconda del viaggio."
 
 duolingo:
   streak_sentence:
@@ -272,6 +309,53 @@ shelf:
   nyt_solver_link_label:
     en: "Wordle Solver"
     it: "Wordle Solver"
+
+# The dense index. Its filter is the same pure-CSS mechanism as the shelf's,
+# and the counts beside it are rendered per filter state at build time.
+everything:
+  lede:
+    en: "Every paper, project, post, and talk, newest first."
+    it: "Ogni articolo, progetto, scritto e intervento, dal più recente."
+  filter_group_label:
+    en: "Filter by type"
+    it: "Filtra per tipo"
+  filter_all:
+    en: "All"
+    it: "Tutti"
+  entries:
+    en: "entries"
+    it: "voci"
+  col_when:
+    en: "Date"
+    it: "Data"
+  col_kind:
+    en: "Type"
+    it: "Tipo"
+  col_title:
+    en: "Title"
+    it: "Titolo"
+  col_where:
+    en: "Where"
+    it: "Dove"
+  kinds:
+    paper:
+      en: "paper"
+      it: "articolo"
+    paper_plural:
+      en: "Papers"
+      it: "Articoli"
+    project:
+      en: "project"
+      it: "progetto"
+    project_plural:
+      en: "Projects"
+      it: "Progetti"
+    post_plural:
+      en: "Writing"
+      it: "Scritti"
+    talk_plural:
+      en: "Talks"
+      it: "Interventi"
 
 # Static hosting serves one 404 for the whole domain, so this page is in English
 # and offers the Italian home as a link rather than guessing the reader's language.

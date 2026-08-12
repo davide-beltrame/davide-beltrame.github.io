@@ -3,9 +3,18 @@
 #
 # `status`, where present, carries a checkable grade or outcome verbatim —
 # the same field name and pattern as `_data/research.yml`'s papers.
+#
+# `date` is `YYYY-MM` and exists so /everything/ can order papers and projects
+# in one list. It is not displayed anywhere else. Each one is sourced, not
+# estimated, and the source is named on the entry: an event date he confirmed,
+# a date already published on the site, or the repository's creation date from
+# the public GitHub API. Correct any of them at will — nothing else reads this
+# field, and the index re-sorts itself.
 
 items:
   - title: "SO-101 Policy Training"
+    # EuroTech x HKTE Hackathon, June 2026 — the event date, confirmed by him.
+    date: "2026-06"
     description:
       en: "Built at the EuroTech x HKTE Hackathon: trained ACT and SmolVLA imitation-learning policies on a SO-101 robotic arm."
       it: "Realizzato durante l'EuroTech x HKTE Hackathon: addestramento di policy di imitation learning ACT e SmolVLA su un braccio robotico SO-101."
@@ -19,6 +28,9 @@ items:
     collaborative: true
 
   - title: "More Efficient Text Diffusion via Length Prediction"
+    # 20879 Language Technology, examined 19 May 2025 — the date already on
+    # /story/ for that course.
+    date: "2025-05"
     description:
       en: "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms."
       it: "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
@@ -36,6 +48,9 @@ items:
     collaborative: true
 
   - title: "Do AI and Human Experts See Pneumonia the Same Way?"
+    # Published by Bocconi Students for Machine Learning on 16 June 2025, the
+    # date in the URL of the write-up linked from /research/.
+    date: "2025-06"
     description:
       en: "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis."
       it: "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
@@ -52,6 +67,8 @@ items:
     collaborative: true
 
   - title: "Semantic Similarity Research"
+    # Repository created 5 March 2025 (GitHub API).
+    date: "2025-03"
     description:
       en: "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text."
       it: "Esplorazione di metodi di recupero di similarità semantica massimizzando il punteggio BLEU. Tecniche NLP avanzate per misurare e migliorare la comprensione semantica nei testi."
@@ -62,6 +79,8 @@ items:
     featured: true
 
   - title: "Wordle Solver"
+    # Repository created 24 February 2025 (GitHub API).
+    date: "2025-02"
     description:
       en: "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability."
       it: "Algoritmo super efficiente per risolvere puzzle Wordle generalizzati. Implementa strategie di indovinamento ottimali usando teoria dell'informazione e probabilità."
@@ -73,6 +92,8 @@ items:
     featured: true
 
   - title: "Personal Website"
+    # Repository created 1 February 2025 (GitHub API).
+    date: "2025-02"
     description:
       en: "This website! A minimal, clean design built from scratch with pure HTML, CSS, and JavaScript. Features dark/light mode and responsive design."
       it: "Questo sito web! Un design minimalista e pulito costruito da zero con HTML, CSS e JavaScript puri. Include modalità scura/chiara e design responsive."

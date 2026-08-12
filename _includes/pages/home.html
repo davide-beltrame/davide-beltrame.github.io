@@ -54,11 +54,18 @@ The home page leads with research when the plausible readers conflict, per
 form, rather than one link away. The full versions, with status lines,
 abstracts and code, stay on /research/.
 {%- endcomment -%}
+{%- assign navpages = site.pages | where: "lang", page.lang -%}
+{%- assign research_page = navpages | where: "ref", "research" | first -%}
+{%- assign everything_page = navpages | where: "ref", "everything" | first -%}
 <section class="band">
     <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.research %}</h2></div>
     <div class="entries">
         {%- for paper in site.data.research.papers %}
         {% include paper-entry.html paper=paper compact=true %}
         {%- endfor %}
+    </div>
+    <div class="entry-links more-links">
+        <a href="{{ research_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.all_research %}</a>
+        <a href="{{ everything_page.url | relative_url }}">{% include t.html v=site.data.ui.sections.everything %}</a>
     </div>
 </section>

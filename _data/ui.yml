@@ -113,6 +113,9 @@ contact_links:
   linkedin:
     en: "LinkedIn"
     it: "LinkedIn"
+  scholar:
+    en: "Scholar"
+    it: "Scholar"
   cv:
     en: "CV"
     it: "CV"

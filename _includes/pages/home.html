@@ -34,6 +34,10 @@
                 {% include icon.html name="linkedin" class="contact-icon" %}
                 <span>{% include t.html v=labels.linkedin %}</span>
             </a>
+            <a href="{{ contact.scholar }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.scholar %}">
+                {% include icon.html name="scholar" class="contact-icon" %}
+                <span>{% include t.html v=labels.scholar %}</span>
+            </a>
             <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.cv %}">
                 {% include icon.html name="file-pdf" class="contact-icon" %}
                 <span>{% include t.html v=labels.cv %}</span>

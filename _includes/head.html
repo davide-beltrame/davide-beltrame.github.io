@@ -76,9 +76,9 @@ rather than by declaration.
 {%- if page.ref == 'home' %}
 {%- comment -%}
 A `Person`, on the home page only, so there is one entity rather than one per URL.
-`sameAs` lists only profiles that have been confirmed to exist. A Google Scholar
-or ORCID entry belongs here as soon as those identifiers are known — an invented
-one is worse than an absent one.
+`sameAs` lists only profiles that have been confirmed to exist. An ORCID entry
+belongs here as soon as that identifier is known — an invented one is worse than
+an absent one.
 
 A `application/ld+json` block is a data block, not an executable script, so the
 `script-src` above does not apply to it. Verified in a browser console, not assumed.
@@ -99,7 +99,8 @@ A `application/ld+json` block is a data block, not an executable script, so the
   "knowsLanguage": ["en", "it"],
   "sameAs": [
     {{ site.data.profile.contact.github | jsonify }},
-    {{ site.data.profile.contact.linkedin | jsonify }}
+    {{ site.data.profile.contact.linkedin | jsonify }},
+    {{ site.data.profile.contact.scholar | jsonify }}
   ]
 }
 </script>

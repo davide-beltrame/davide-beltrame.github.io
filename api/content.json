@@ -23,6 +23,7 @@ mailto: on the contact link.
     "contact": {
       "github": {{ site.data.profile.contact.github | jsonify }},
       "linkedin": {{ site.data.profile.contact.linkedin | jsonify }},
+      "scholar": {{ site.data.profile.contact.scholar | jsonify }},
       "cv": {{ site.data.profile.contact.cv | jsonify }}
     }
   },

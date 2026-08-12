@@ -48,4 +48,9 @@ contact:
   email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#46;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#64;&#115;&#116;&#117;&#100;&#98;&#111;&#99;&#99;&#111;&#110;&#105;&#46;&#105;&#116;"
   github: "https://github.com/davide-beltrame"
   linkedin: "https://www.linkedin.com/in/davide-beltrame"
+  # Listed in the structured data as one of his profiles. Not a contact link on
+  # the page — adding one is a design decision, not a metadata one. The `hl`
+  # parameter of the URL he uses is an interface-language preference, not part of
+  # the identifier, so it is left off.
+  scholar: "https://scholar.google.com/citations?user=7hTm8DEAAAAJ"
   cv: "/assets/files/davide_beltrame_cv.pdf"

@@ -12,7 +12,7 @@ does not need JavaScript to open.
             <div class="pub-header">
                 <span class="pub-title">
                     {%- if paper.link and paper.link != "" -%}
-                    <a href="{{ paper.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=paper.title %} <i class="fas fa-external-link-alt link-icon" aria-hidden="true"></i></a>
+                    <a href="{{ paper.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=paper.title %} {% include icon.html name="external" class="link-icon" %}</a>
                     {%- else -%}
                     {% include t.html v=paper.title %}
                     {%- endif -%}
@@ -38,7 +38,7 @@ does not need JavaScript to open.
                 <summary class="pub-abstract-toggle">
                     <span class="disclosure-show">{% include t.html v=site.data.ui.labels.show_abstract %}</span>
                     <span class="disclosure-hide">{% include t.html v=site.data.ui.labels.hide_abstract %}</span>
-                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    {% include icon.html name="chevron-down" %}
                 </summary>
                 <div class="pub-abstract">
                     <p>{{ _abstract }}</p>

@@ -23,19 +23,19 @@
     <div class="contact-section">
         <div class="contact-links">
             <a href="{% include email-href.html address=contact.email_encoded %}" class="contact-link" title="{% include t.html v=labels.email %}">
-                <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
+                {% include icon.html name="envelope" class="contact-icon" %}
                 <span>{% include t.html v=labels.email %}</span>
             </a>
             <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.github %}">
-                <i class="fab fa-github contact-icon" aria-hidden="true"></i>
+                {% include icon.html name="github" class="contact-icon" %}
                 <span>{% include t.html v=labels.github %}</span>
             </a>
             <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.linkedin %}">
-                <i class="fab fa-linkedin contact-icon" aria-hidden="true"></i>
+                {% include icon.html name="linkedin" class="contact-icon" %}
                 <span>{% include t.html v=labels.linkedin %}</span>
             </a>
             <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer" class="contact-link" title="{% include t.html v=labels.cv %}">
-                <i class="fas fa-file-pdf contact-icon" aria-hidden="true"></i>
+                {% include icon.html name="file-pdf" class="contact-icon" %}
                 <span>{% include t.html v=labels.cv %}</span>
             </a>
         </div>

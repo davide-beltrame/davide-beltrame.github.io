@@ -10,6 +10,8 @@ exclude:
   - .gitignore
   - README.md
   - CONTRIBUTING.md
+  # Build checks, run by CI and by hand. Not part of the site.
+  - script
   # Local working files. Also gitignored — excluded here so a local
   # `jekyll serve` never puts them on a served path either.
   # Jekyll matches these with fnmatch and `*` crosses `/`, so the

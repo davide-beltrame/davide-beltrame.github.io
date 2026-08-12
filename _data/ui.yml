@@ -65,6 +65,26 @@ pages:
     description:
       en: "Languages and more — Davide Beltrame."
       it: "Lingue e altro — Davide Beltrame."
+  notfound:
+    title:
+      en: "Page not found — Davide Beltrame"
+      it: "Pagina non trovata — Davide Beltrame"
+    description:
+      en: "That page is not on this site."
+      it: "Questa pagina non esiste su questo sito."
+
+# Open Graph and Twitter card values. `image` is a generated 1200x630 card per
+# language, built from this data so the preview cannot contradict the page.
+og:
+  locale:
+    en: "en_US"
+    it: "it_IT"
+  image:
+    en: "/assets/img/og-card.jpg"
+    it: "/assets/img/og-card-it.jpg"
+  image_alt:
+    en: "Davide Beltrame — student and researcher in deep learning and AI"
+    it: "Davide Beltrame — studente e ricercatore in IA e deep learning"
 
 # Section headings.
 sections:
@@ -154,6 +174,22 @@ duolingo:
   data_notice:
     en: "* Streak, XP, and language data last updated:"
     it: "* Serie, XP e dati sulle lingue aggiornati il:"
+
+# Static hosting serves one 404 for the whole domain, so this page is in English
+# and offers the Italian home as a link rather than guessing the reader's language.
+not_found:
+  heading:
+    en: "Page not found"
+    it: "Pagina non trovata"
+  message:
+    en: "The link may be out of date, or the page may have moved. Everything on this site is reachable from the home page."
+    it: "Il link potrebbe essere vecchio, oppure la pagina è stata spostata. Tutto il sito è raggiungibile dalla home."
+  home_link:
+    en: "Go to the home page"
+    it: "Vai alla home"
+  other_language:
+    en: "Italiano"
+    it: "English"
 
 redirect:
   moved:

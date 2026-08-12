@@ -6,7 +6,7 @@
         <div class="pub-card">
             <div class="pub-header">
                 <span class="pub-title">
-                    <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} <i class="fas fa-external-link-alt link-icon" aria-hidden="true"></i></a>
+                    <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} {% include icon.html name="external" class="link-icon" %}</a>
                 </span>
                 {%- if project.collaborative %}
                 <span class="pub-year-badge">{% include t.html v=site.data.ui.labels.collaborative %}</span>

@@ -49,6 +49,8 @@ function initHamburger() {
     function setState(open) {
         btn.classList.toggle('open', open);
         menu.classList.toggle('open', open);
+        // The page behind the menu must not scroll under it.
+        document.body.classList.toggle('menu-open', open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         const label = open ? btn.dataset.labelClose : btn.dataset.labelOpen;
         if (label) btn.setAttribute('aria-label', label);

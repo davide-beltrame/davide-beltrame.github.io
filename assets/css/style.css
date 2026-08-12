@@ -1,3 +1,27 @@
+/* ===== FONTS =====
+   Self-hosted, so the site contacts no third party to draw text. Inter ships as a
+   variable font, which is why one file covers every weight the site uses.
+   The Latin file carries both languages: Italian's accented vowels are in Latin-1.
+   The Extended file is here for names whose characters are not, and `unicode-range`
+   means it is downloaded only by a page that uses one. No page does today. */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/assets/fonts/inter-latin-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/assets/fonts/inter-latin-ext-var.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ===== CSS RESET ===== */
 * {
     margin: 0;
@@ -94,9 +118,15 @@ html {
     font-size: var(--font-size-base);
     line-height: 1.6;
     scroll-behavior: smooth;
+    /* An in-page anchor would otherwise land under the fixed header. */
+    scroll-padding-top: calc(var(--nav-height) + var(--space-md));
     /* The root carries the theme background as well as the body, so the
        body fade-in below cannot expose a white canvas for a frame in dark mode. */
     background-color: var(--bg);
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 body {
@@ -117,6 +147,21 @@ a {
 
 a:hover {
     opacity: 0.8;
+}
+
+/* ===== ICONS =====
+   An inline SVG sprite replaces an icon font from a third-party CDN. Sizing is
+   in `em`, so the rules that used to set `font-size` on an <i> still apply. */
+.icon-sprite {
+    display: none;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
 }
 
 /* ===== LAYOUT ===== */
@@ -467,9 +512,6 @@ a:hover {
 
 .contact-icon {
     font-size: 16px;
-    width: 16px;
-    text-align: center;
-    flex-shrink: 0;
 }
 
 /* ===== DEVELOPMENT NOTICE ===== */
@@ -653,12 +695,12 @@ summary::-webkit-details-marker {
     opacity: 0.7;
 }
 
-.pub-abstract-toggle i {
+.pub-abstract-toggle .icon {
     font-size: 12px;
     transition: transform 0.2s ease;
 }
 
-details[open]>.pub-abstract-toggle i {
+details[open]>.pub-abstract-toggle .icon {
     transform: rotate(180deg);
 }
 
@@ -853,13 +895,13 @@ details[open]>.pub-abstract-toggle .disclosure-hide {
     color: var(--text);
 }
 
-.collapsible-header i {
+.collapsible-header .icon {
     color: var(--text-secondary);
     transition: transform 0.3s ease;
     font-size: var(--font-size-sm);
 }
 
-.collapsible-section[open]>.collapsible-header i {
+.collapsible-section[open]>.collapsible-header .icon {
     transform: rotate(180deg);
 }
 
@@ -1159,6 +1201,24 @@ body {
     opacity: 1;
 }
 
+/* ===== 404 ===== */
+.notfound-message {
+    color: var(--text-secondary);
+    max-width: 46ch;
+    margin-bottom: var(--space-md);
+}
+
+.notfound-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+}
+
+.notfound-links span {
+    color: var(--text-secondary);
+}
+
 /* ===== WIP NOTICE ===== */
 .wip-notice {
     display: flex;
@@ -1173,7 +1233,7 @@ body {
     font-size: var(--font-size-sm);
 }
 
-.wip-notice i {
+.wip-notice .notice-icon {
     font-size: var(--font-size-lg);
     opacity: 0.6;
 }
@@ -1181,7 +1241,7 @@ body {
 /* Outbound-link marker next to a paper or project title. It was an inline
    style attribute, which the Content-Security-Policy blocks. */
 .link-icon {
-    font-size: 11px;
+    font-size: 12px;
     opacity: 0.5;
 }
 

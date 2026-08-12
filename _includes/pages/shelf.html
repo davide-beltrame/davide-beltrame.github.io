@@ -11,7 +11,7 @@ HTML and open without JavaScript.
 {%- assign rest_count = lang_count | minus: 5 -%}
 <section class="section" id="shelf">
     <div class="wip-notice">
-        <i class="fas fa-code" aria-hidden="true"></i>
+        {% include icon.html name="code" class="notice-icon" %}
         <span>{% include t.html v=site.data.ui.wip_notice %}</span>
     </div>
 
@@ -59,7 +59,7 @@ HTML and open without JavaScript.
         <details class="collapsible-section">
             <summary class="collapsible-header">
                 <h4>{% include t.html v=labels.languages %} ({{ rest_count }} {% include t.html v=labels.more_languages %})</h4>
-                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                {% include icon.html name="chevron-down" %}
             </summary>
             <div class="collapsible-content">
                 <div class="duolingo-top-languages">

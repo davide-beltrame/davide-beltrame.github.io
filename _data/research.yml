@@ -2,6 +2,11 @@
 # page renders both lists in the order written here — there is no sort in the
 # template.
 #
+# `link` is the preprint. `venue_link` is the paper of record at the venue, and
+# where it exists the title points there instead — they are different claims and
+# the page should not blur them. The arXiv version stays reachable, labelled as
+# the preprint, because it is what a reader without an OpenReview account gets.
+#
 # `status` on a paper carries venue status and author-list footnotes verbatim.
 # An `abstract` with `it: "TODO"` falls back to the English text via
 # _includes/t.html; the literal string never reaches a page.
@@ -61,4 +66,7 @@ papers:
       en: "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications."
       it: "TODO"
     link: "https://arxiv.org/abs/2603.03469"
+    # The arXiv version above is the pre-conference preprint; a v2 reflecting the
+    # camera-ready is not posted yet.
+    venue_link: "https://openreview.net/forum?id=IqTvyp40O6"
     code: "https://github.com/davide-beltrame/biased-generalization"

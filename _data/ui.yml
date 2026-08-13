@@ -189,6 +189,9 @@ labels:
   code:
     en: "Code"
     it: "Codice"
+  preprint:
+    en: "arXiv preprint"
+    it: "Preprint su arXiv"
   coursework:
     en: "Coursework"
     it: "Esami"

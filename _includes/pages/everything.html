@@ -87,7 +87,7 @@ selected, rather than being hidden until they exist.
                         <td>
                             <div class="idx-title">
                                 {%- if kind == "paper" -%}
-                                <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=item.title %}</a>
+                                <a href="{{ item.venue_link | default: item.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=item.title %}</a>
                                 {%- else -%}
                                 <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=item.title %}</a>
                                 {%- endif -%}

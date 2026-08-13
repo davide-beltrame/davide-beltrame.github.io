@@ -1,7 +1,7 @@
 {%- comment -%}
-The masthead leads with his name, set in the serif display face, and the
-portrait square beside it. His greeting sits above the name as the kicker
-rather than being dropped: both strings are his, and neither is rewritten here.
+The masthead leads with his greeting, set in the serif display face, and the
+portrait square beside it. His name is not repeated here — it sits in the bar
+on every page, so a second copy at display size said the same thing twice.
 
 The portrait is a square crop of a 3:4 photograph, in full colour. The crop and
 the framing are CSS (`object-fit`, `object-position`); the file itself is the
@@ -15,8 +15,7 @@ same one dispatch 03 stripped of its metadata and resized.
 <header class="masthead">
     <div class="masthead-grid">
         <div>
-            <p class="eyebrow">{% include t.html v=site.data.profile.greeting %}</p>
-            <h1 class="masthead-name">{{ site.data.profile.name }}</h1>
+            <h1 class="masthead-name">{% include t.html v=site.data.profile.greeting %}</h1>
             <p class="standfirst">{% include t.html v=site.data.profile.title %}</p>
         </div>
         <picture>

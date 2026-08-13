@@ -30,12 +30,17 @@ about:
 # The portrait ships at three widths in webp and jpg. `src` is the fallback and
 # keeps the URL the photo has always had. `displayed` is the CSS box it is drawn
 # in — it feeds the `sizes` attribute, so if the design changes that box, this is
-# the one value to change with it. The box is square and the source file is 3:4,
-# so the square is cut from it in CSS (`object-fit`/`object-position`); `box`
-# feeds width/height and is what reserves the space before the image arrives.
+# the one value to change with it. The file is square, so nothing is cropped at
+# render time; `box` feeds width/height and reserves the space before the image
+# arrives.
 #
-# Strip EXIF from anything regenerated here. A file straight off a phone carries
-# GPS coordinates, a device model and a timestamp.
+# Regenerate every variant, and both Open Graph cards, from one source with
+# `.agents/tools/build-portrait.py` — the cards embed the photograph, so a new
+# portrait that skips them leaves the old face in every link preview.
+#
+# Strip EXIF from anything regenerated here. The photo replaced on 2026-08-13
+# arrived carrying an iPhone model, an iOS version, a capture timestamp, an XMP
+# block and a second embedded image; the one before it carried GPS coordinates.
 portrait:
   src: "/assets/files/davide_beltrame_propic.jpg"
   variants: "/assets/img/portrait"

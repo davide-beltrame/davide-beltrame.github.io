@@ -14,8 +14,10 @@ the HTML, so the page's default and its no-script state are the same complete
 list. The per-filter counts are all rendered at build time and CSS shows the
 one that matches, so the number is right without a script to recompute it.
 
-Writing and talks have no entries yet. They keep their filter and say so when
-selected, rather than being hidden until they exist.
+Writing has no entries yet. It keeps its filter and says so when selected,
+rather than being hidden until it exists. There is no talks filter: unlike
+writing, no talks are planned anywhere, so it would be a promise rather than a
+placeholder.
 {%- endcomment -%}
 {%- assign papers = site.data.research.papers -%}
 {%- assign projects = site.data.projects.items | where: "featured", true -%}
@@ -50,14 +52,11 @@ selected, rather than being hidden until they exist.
             <label for="idx-project" class="idx-chip">{% include t.html v=kinds.project_plural %}</label>
             <input type="radio" name="idx-filter" id="idx-post" class="idx-input">
             <label for="idx-post" class="idx-chip">{% include t.html v=kinds.post_plural %}</label>
-            <input type="radio" name="idx-filter" id="idx-talk" class="idx-input">
-            <label for="idx-talk" class="idx-chip">{% include t.html v=kinds.talk_plural %}</label>
 
             <span class="idx-count" data-for="all">{{ n_all }} {% include t.html v=site.data.ui.everything.entries %}</span>
             <span class="idx-count" data-for="paper">{{ n_paper }} {% include t.html v=site.data.ui.everything.entries %}</span>
             <span class="idx-count" data-for="project">{{ n_project }} {% include t.html v=site.data.ui.everything.entries %}</span>
             <span class="idx-count" data-for="post">0 {% include t.html v=site.data.ui.everything.entries %}</span>
-            <span class="idx-count" data-for="talk">0 {% include t.html v=site.data.ui.everything.entries %}</span>
         </div>
 
         <div class="idx-scroll">
@@ -115,10 +114,6 @@ selected, rather than being hidden until they exist.
         </div>
 
         <div class="notice idx-empty" data-for="post">
-            {% include icon.html name="code" %}
-            <span>{% include t.html v=site.data.ui.wip_notice %}</span>
-        </div>
-        <div class="notice idx-empty" data-for="talk">
             {% include icon.html name="code" %}
             <span>{% include t.html v=site.data.ui.wip_notice %}</span>
         </div>

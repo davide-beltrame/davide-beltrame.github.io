@@ -847,18 +847,19 @@ body::after {
     background-color: var(--accent-soft);
 }
 
-/* Square, face centred, full colour. The source photograph is 3:4, so the
-   square is cut from it with `object-fit` and pulled down to sit the face in
-   the frame. `width`/`height` declare the box so nothing shifts as it loads.
+/* Square, face centred, full colour. The source photograph is square already,
+   so `object-fit` has nothing to crop and the framing comes from the file
+   rather than from CSS. `width`/`height` declare the box so nothing shifts as
+   it loads.
 
    160px is not arbitrary: at a device pixel ratio of 2 it asks for 320 device
    pixels, which is exactly the smallest variant. 168px asks for 336 and pulls
-   the 640-wide file instead, for 55 KB and no visible difference. */
+   the 640-wide file instead, for 32 KB and no visible difference. */
 .portrait {
     width: var(--portrait);
     height: var(--portrait);
     object-fit: cover;
-    object-position: 50% 78%;
+    object-position: center;
     border: 1px solid var(--rule);
     border-radius: var(--r-2);
     display: block;
@@ -936,6 +937,15 @@ body::after {
     padding-top: var(--s-2);
 }
 
+/* The measure belongs to the whole entry, not to the prose inside it. Setting
+   it per-child made a description wrap at 612px under a byline that ran to
+   935px, which reads as a line break inserted for no reason — there is visibly
+   room to the right. One column edge for the title, the byline and the prose,
+   and nothing breaks earlier than its neighbours. */
+.entry>div:not(.entry-gutter) {
+    max-width: var(--measure);
+}
+
 /* A role has a date range rather than a year, which is too wide for the
    gutter, so it runs above the title instead and the gutter collapses. */
 .entry--plain {
@@ -954,7 +964,6 @@ body::after {
     font-size: var(--fs-sm);
     font-style: italic;
     color: var(--ink-3);
-    max-width: var(--measure);
 }
 
 .entry-gutter {
@@ -991,7 +1000,6 @@ body::after {
 .entry-body {
     font-size: var(--fs-sm);
     color: var(--ink-2);
-    max-width: var(--measure);
 }
 
 .entry-body a {
@@ -1097,7 +1105,6 @@ summary::-webkit-details-marker {
 
 .abstract {
     margin-top: var(--s-3);
-    max-width: var(--measure);
     font-size: var(--fs-sm);
     line-height: 1.65;
     color: var(--ink-2);
@@ -1523,8 +1530,7 @@ summary::-webkit-details-marker {
 .idx:has(#idx-all:checked) .idx-count[data-for="all"],
 .idx:has(#idx-paper:checked) .idx-count[data-for="paper"],
 .idx:has(#idx-project:checked) .idx-count[data-for="project"],
-.idx:has(#idx-post:checked) .idx-count[data-for="post"],
-.idx:has(#idx-talk:checked) .idx-count[data-for="talk"] {
+.idx:has(#idx-post:checked) .idx-count[data-for="post"] {
     display: block;
 }
 
@@ -1631,8 +1637,7 @@ summary::-webkit-details-marker {
    script and no CSS support for `:has()` the page is the complete list. */
 .idx:has(#idx-paper:checked) .idx-row:not([data-kind="paper"]),
 .idx:has(#idx-project:checked) .idx-row:not([data-kind="project"]),
-.idx:has(#idx-post:checked) .idx-row:not([data-kind="post"]),
-.idx:has(#idx-talk:checked) .idx-row:not([data-kind="talk"]) {
+.idx:has(#idx-post:checked) .idx-row:not([data-kind="post"]) {
     display: none;
 }
 
@@ -1644,13 +1649,11 @@ summary::-webkit-details-marker {
     margin-top: var(--s-4);
 }
 
-.idx:has(#idx-post:checked) .idx-empty[data-for="post"],
-.idx:has(#idx-talk:checked) .idx-empty[data-for="talk"] {
+.idx:has(#idx-post:checked) .idx-empty[data-for="post"] {
     display: flex;
 }
 
-.idx:has(#idx-post:checked) .idx-scroll,
-.idx:has(#idx-talk:checked) .idx-scroll {
+.idx:has(#idx-post:checked) .idx-scroll {
     display: none;
 }
 
@@ -1680,7 +1683,7 @@ summary::-webkit-details-marker {
 /* ===== 404 ================================================================== */
 .notfound-message {
     color: var(--ink-2);
-    max-width: 48ch;
+    max-width: var(--measure);
     margin-top: var(--s-4);
 }
 

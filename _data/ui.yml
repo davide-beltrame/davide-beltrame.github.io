@@ -98,8 +98,8 @@ pages:
       en: "Everything — Davide Beltrame"
       it: "Tutto — Davide Beltrame"
     description:
-      en: "Every paper, project, post, and talk by Davide Beltrame in one index, newest first."
-      it: "Ogni articolo, progetto, scritto e intervento di Davide Beltrame in un unico indice, dal più recente."
+      en: "Every paper, project, and post by Davide Beltrame in one index, newest first."
+      it: "Ogni articolo, progetto e scritto di Davide Beltrame in un unico indice, dal più recente."
   notfound:
     title:
       en: "Page not found — Davide Beltrame"
@@ -317,8 +317,8 @@ shelf:
 # and the counts beside it are rendered per filter state at build time.
 everything:
   lede:
-    en: "Every paper, project, post, and talk, newest first."
-    it: "Ogni articolo, progetto, scritto e intervento, dal più recente."
+    en: "Every paper, project, and post, newest first."
+    it: "Ogni articolo, progetto e scritto, dal più recente."
   filter_group_label:
     en: "Filter by type"
     it: "Filtra per tipo"
@@ -356,9 +356,6 @@ everything:
     post_plural:
       en: "Writing"
       it: "Scritti"
-    talk_plural:
-      en: "Talks"
-      it: "Interventi"
 
 # Static hosting serves one 404 for the whole domain, so this page is in English
 # and offers the Italian home as a link rather than guessing the reader's language.

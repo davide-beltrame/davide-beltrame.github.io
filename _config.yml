@@ -10,6 +10,7 @@ exclude:
   - .gitignore
   - README.md
   - CONTRIBUTING.md
+  - SECURITY.md
   # Build checks, run by CI and by hand. Not part of the site.
   - script
   # Local working files. Also gitignored — excluded here so a local

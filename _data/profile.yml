@@ -40,8 +40,8 @@ portrait:
   src: "/assets/files/davide_beltrame_propic.jpg"
   variants: "/assets/img/portrait"
   widths: [320, 640, 960]
-  displayed: "(max-width: 760px) 116px, 168px"
-  box: 168
+  displayed: "(max-width: 760px) 116px, 160px"
+  box: 160
   alt:
     en: "Davide Beltrame"
     it: "Davide Beltrame"

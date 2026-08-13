@@ -31,12 +31,14 @@ there is nothing to allow but `'self'`.
 {% include theme-init.html %}
 
 {%- comment -%}
-The Latin subset is the only font file either language actually needs — Italian's
-accented vowels sit in Latin-1, inside its range — so it is the one preloaded. The
-Extended file covers names outside that range and is fetched only if a page uses
-one, by unicode-range. Measured: no page on the site requests it today.
+The Latin subset is the only file either language actually needs — Italian's
+accented vowels sit in Latin-1, inside its range — so it is the one preloaded,
+for both faces. The Extended files cover names outside that range and are
+fetched only if a page uses one, by unicode-range. Measured: no page on the
+site requests either of them today.
 {%- endcomment -%}
 <link rel="preload" href="{{ '/assets/fonts/inter-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/newsreader-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
 <meta property="og:type" content="{% if page.ref == 'home' %}profile{% else %}website{% endif %}">

@@ -1,0 +1,21 @@
+{%- comment -%}
+Group an integer into thousands using the current language's separator.
+
+  {% include number.html n=duo.total_xp %}
+
+Handles up to nine digits, which covers everything on the site by a wide margin.
+Jekyll has no number-formatting filter, and the separator is language-dependent:
+an English comma on an Italian page reads as a decimal point.
+{%- endcomment -%}
+{%- assign _n = include.n | append: "" -%}
+{%- assign _len = _n | size -%}
+{%- capture _sep %}{% include t.html v=site.data.ui.labels.thousands_separator %}{% endcapture -%}
+{%- if _len > 6 -%}
+  {%- assign _head = _len | minus: 6 -%}
+  {{- _n | slice: 0, _head }}{{ _sep }}{{ _n | slice: -6, 3 }}{{ _sep }}{{ _n | slice: -3, 3 -}}
+{%- elsif _len > 3 -%}
+  {%- assign _head = _len | minus: 3 -%}
+  {{- _n | slice: 0, _head }}{{ _sep }}{{ _n | slice: -3, 3 -}}
+{%- else -%}
+  {{- _n -}}
+{%- endif -%}

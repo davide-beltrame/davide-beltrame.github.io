@@ -1,0 +1,61 @@
+{%- comment -%}
+Year groups and event order come from `_data/timeline.yml` as written. There is
+no scroll-reveal animation: the previous one re-hid every event on each render
+and never fired for events already on screen, which meant the timeline could
+render as an empty page.
+{%- endcomment -%}
+{% include page-head.html title=site.data.ui.sections.story %}
+
+<section class="band">
+    <div class="years">
+        {%- for group in site.data.timeline.years %}
+        <div class="year">
+            <h2 class="year-label">{{ group.year }}</h2>
+            <div>
+                {%- for event in group.events %}
+                <div class="event">
+                    {%- if event.display %}
+                    <div class="event-date">{% include t.html v=event.display %}</div>
+                    {%- endif %}
+                    <div class="event-title">{% include t.html v=event.title %}</div>
+                    {%- if event.description %}
+                    <div class="event-desc">{% include t.html v=event.description %}</div>
+                    {%- endif %}
+                </div>
+                {%- endfor %}
+            </div>
+        </div>
+        {%- endfor %}
+    </div>
+
+    {%- assign coursework_count = 0 -%}
+    {%- for group in site.data.timeline.coursework -%}
+    {%- assign coursework_count = coursework_count | plus: group.courses.size -%}
+    {%- endfor -%}
+    {%- if coursework_count > 0 %}
+    <details class="panel">
+        <summary class="panel-summary">
+            <span>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</span>
+            {% include icon.html name="chevron-down" %}
+        </summary>
+        <div class="panel-body">
+            {%- for group in site.data.timeline.coursework %}
+            <div class="coursework-year">
+                <div class="coursework-year-label">{{ group.academic_year }}</div>
+                <ul class="coursework-list">
+                    {%- for course in group.courses %}
+                    <li class="coursework-item">
+                        <span class="coursework-name">
+                            {{ course.name | escape }}
+                            {%- if course.note %} <span class="coursework-note">({% include t.html v=course.note %})</span>{%- endif -%}
+                        </span>
+                        <span class="coursework-date">{% include t.html v=course.display %}</span>
+                    </li>
+                    {%- endfor %}
+                </ul>
+            </div>
+            {%- endfor %}
+        </div>
+    </details>
+    {%- endif %}
+</section>

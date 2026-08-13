@@ -1,0 +1,15 @@
+{%- comment -%}
+A section that exists in the design and has no content behind it yet, so it
+ships with the sitewide "coming soon" notice rather than being omitted or
+filled in with an invented trip. There is no photo pipeline here on purpose —
+that is separate, unscheduled work, and any photograph would have to have its
+EXIF stripped and anyone in it asked first.
+{%- endcomment -%}
+{% include page-head.html title=site.data.ui.sections.trips lede=site.data.ui.trips_lede %}
+
+<section class="band">
+    <div class="notice">
+        {% include icon.html name="code" %}
+        <span>{% include t.html v=site.data.ui.wip_notice %}</span>
+    </div>
+</section>

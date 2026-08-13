@@ -1,40 +1,26 @@
 ---
-layout: default
-title: Davide Beltrame
-description: Davide Beltrame's personal website.
-section: home
+layout: null
+lang: en
+permalink: /home/
+sitemap: false
 ---
-<section class="section active" id="home">
-    <div class="hero">
-        <div class="hero-image">
-            <img src="{{ site.baseurl }}/assets/files/davide_beltrame_propic.jpg" alt="Davide Beltrame">
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-name" id="heroName">Hi, I'm Davide!</h1>
-            <p class="hero-title" id="heroTitle"></p>
-            <div class="hero-bio" id="heroBio"></div>
-        </div>
-    </div>
-
-    <!-- Contact links (centered) -->
-    <div class="contact-section">
-        <div class="contact-links">
-            <a href="#" class="contact-link" id="contactEmail" title="Email">
-                <i class="fas fa-envelope contact-icon"></i>
-                <span>Email</span>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link" id="contactGithub" title="GitHub">
-                <i class="fab fa-github contact-icon"></i>
-                <span>GitHub</span>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link" id="contactLinkedin" title="LinkedIn">
-                <i class="fab fa-linkedin contact-icon"></i>
-                <span>LinkedIn</span>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link" id="contactCV" title="CV">
-                <i class="fas fa-file-pdf contact-icon"></i>
-                <span>CV</span>
-            </a>
-        </div>
-    </div>
-</section>
+{%- comment -%}
+/home was the home page before the site moved to a language root. It keeps a
+stub so existing links and anything a search engine already indexed still land
+somewhere, with the canonical pointing at the page that replaced it.
+{%- endcomment -%}
+{%- assign target = site.data.ui.nav | where: "ref", "home" | first -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url={{ '/' | relative_url }}">
+    <link rel="canonical" href="{{ '/' | absolute_url }}">
+    <meta name="robots" content="noindex, follow">
+    <title>{% include t.html v=site.data.ui.pages.home.title %}</title>
+</head>
+<body>
+    <p>{% include t.html v=site.data.ui.redirect.moved %} <a href="{{ '/' | relative_url }}">{% include t.html v=target.label %}</a></p>
+</body>
+</html>

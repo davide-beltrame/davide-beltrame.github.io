@@ -1,22 +1,109 @@
+{%- comment -%}
+`alt` — the counterpart page in the other language — is assigned in
+_layouts/default.html and used here for the hreflang pair and og:locale:alternate.
+
+The policy below is delivered before the only inline script on the page, so it
+covers it. The `sha256-` value is that script's hash; see _includes/theme-init.html.
+Every origin it allows is this one: the fonts and icons are served from here, so
+there is nothing to allow but `'self'`.
+{%- endcomment -%}
+{%- assign meta = site.data.ui.pages[page.ref] -%}
+{%- capture page_title %}{% include t.html v=meta.title %}{% endcapture -%}
+{%- capture page_desc %}{% include t.html v=meta.description %}{% endcapture -%}
+{%- assign og = site.data.ui.og -%}
+{%- capture og_image_rel %}{% include t.html v=og.image %}{% endcapture -%}
+{%- assign og_image = og_image_rel | strip | absolute_url -%}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title | escape }}</title>
-{% if page.description %}
-<meta name="description" content="{{ page.description | escape }}">
-{% endif %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YbSGakeXGvDYJ4MIPIOF3vt+owHAve8kRHFsDO/R3a4='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_desc }}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+{%- if alt %}
+<link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url | absolute_url }}">
+{%- endif %}
+<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
 
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-16x16.png">
-<link rel="shortcut icon" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon.ico">
-<meta name="theme-color" content="#fafafa">
+{% include theme-init.html %}
+
+{%- comment -%}
+The Latin subset is the only file either language actually needs — Italian's
+accented vowels sit in Latin-1, inside its range — so it is the one preloaded,
+for both faces. The Extended files cover names outside that range and are
+fetched only if a page uses one, by unicode-range. Measured: no page on the
+site requests either of them today.
+{%- endcomment -%}
+<link rel="preload" href="{{ '/assets/fonts/inter-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/newsreader-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+<meta property="og:type" content="{% if page.ref == 'home' %}profile{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.data.profile.name }}">
+<meta property="og:locale" content="{% include t.html v=og.locale %}">
+{%- if alt %}
+<meta property="og:locale:alternate" content="{{ og.locale[alt.lang] }}">
+{%- endif %}
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_desc }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{% include t.html v=og.image_alt %}">
+{%- if page.ref == 'home' %}
+<meta property="profile:first_name" content="Davide">
+<meta property="profile:last_name" content="Beltrame">
+{%- endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_desc }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:image:alt" content="{% include t.html v=og.image_alt %}">
+
+{%- comment -%}
+The PNGs are declared and the 15 kB .ico is not, so a browser fetches 2.7 kB
+instead. `/favicon.ico` stays in place for anything that asks for it by convention
+rather than by declaration.
+{%- endcomment -%}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/files/favicon/davide_beltrame_favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/files/favicon/davide_beltrame_favicon-16x16.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/files/favicon/davide_beltrame_apple-touch-icon.png' | relative_url }}">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+{%- if page.ref == 'home' %}
+{%- comment -%}
+A `Person`, on the home page only, so there is one entity rather than one per URL.
+`sameAs` lists only profiles that have been confirmed to exist. An ORCID entry
+belongs here as soon as that identifier is known — an invented one is worse than
+an absent one.
+
+A `application/ld+json` block is a data block, not an executable script, so the
+`script-src` above does not apply to it. Verified in a browser console, not assumed.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.data.profile.name | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "image": {{ site.data.profile.portrait.src | absolute_url | jsonify }},
+  "description": {{ page_desc | strip | jsonify }},
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Bocconi University",
+    "url": "https://www.unibocconi.it"
+  },
+  "knowsLanguage": ["en", "it"],
+  "sameAs": [
+    {{ site.data.profile.contact.github | jsonify }},
+    {{ site.data.profile.contact.linkedin | jsonify }},
+    {{ site.data.profile.contact.scholar | jsonify }}
+  ]
+}
+</script>
+{%- endif %}

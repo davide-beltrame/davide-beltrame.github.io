@@ -1,0 +1,10 @@
+{%- comment -%}
+Reference one symbol from the sprite in _includes/icons.html.
+
+  {% include icon.html name="github" %}
+  {% include icon.html name="external" class="link-icon" %}
+
+Decorative by default: the label always sits next to it in real text, so the icon
+is hidden from assistive technology rather than duplicating that label.
+{%- endcomment -%}
+<svg class="icon{% if include.class %} {{ include.class }}{% endif %}" aria-hidden="true" focusable="false"><use href="#i-{{ include.name }}"/></svg>

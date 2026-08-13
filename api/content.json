@@ -1,0 +1,35 @@
+---
+layout: null
+permalink: /api/content.json
+sitemap: false
+---
+{%- comment -%}
+The site's content as JSON, emitted from the same `_data` files the pages render
+from, so there is still one source of truth and anything that wants JSON has a
+supported endpoint. The profile object is written out field by field rather than
+passed through `jsonify` wholesale, because the contact email is deliberately
+left out — publishing it here as plain text would undo the entity-encoded
+mailto: on the contact link.
+{%- endcomment -%}
+{
+  "_note": "Content of davidebeltrame.com. The contact email is not included here; use the contact link on the site.",
+  "languages": ["en", "it"],
+  "profile": {
+    "name": {{ site.data.profile.name | jsonify }},
+    "title": {{ site.data.profile.title | jsonify }},
+    "greeting": {{ site.data.profile.greeting | jsonify }},
+    "about": {{ site.data.profile.about | jsonify }},
+    "portrait": {{ site.data.profile.portrait | jsonify }},
+    "contact": {
+      "github": {{ site.data.profile.contact.github | jsonify }},
+      "linkedin": {{ site.data.profile.contact.linkedin | jsonify }},
+      "scholar": {{ site.data.profile.contact.scholar | jsonify }},
+      "cv": {{ site.data.profile.contact.cv | jsonify }}
+    }
+  },
+  "research": {{ site.data.research.papers | jsonify }},
+  "projects": {{ site.data.projects.items | jsonify }},
+  "timeline": {{ site.data.timeline.years | jsonify }},
+  "shelf": {{ site.data.shelf | jsonify }},
+  "ui": {{ site.data.ui | jsonify }}
+}

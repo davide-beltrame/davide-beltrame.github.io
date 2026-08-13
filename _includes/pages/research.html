@@ -1,0 +1,40 @@
+{%- comment -%}
+Roles and papers each render in the order `_data/research.yml` lists them
+(newest first). The abstract sits in a native <details>, so it is in the HTML,
+reachable, and does not need JavaScript to open.
+
+A paper renders through `_includes/paper-entry.html`, which the home page also
+uses in its compact form, so the two cannot drift apart.
+{%- endcomment -%}
+{% include page-head.html title=site.data.ui.sections.research %}
+
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.roles %}</h2></div>
+    <div class="entries">
+        {%- for role in site.data.research.roles %}
+        <article class="entry entry--plain">
+            <div>
+                {%- if role.dates %}
+                <div class="entry-kicker">{% include t.html v=role.dates %}</div>
+                {%- endif %}
+                <h3 class="entry-title">{% include t.html v=role.title %}</h3>
+                {%- if role.org %}
+                <p class="entry-byline">{{ role.org | escape }}</p>
+                {%- endif %}
+                {%- if role.description %}
+                <div class="entry-body"><p>{% include t.html v=role.description raw=true %}</p></div>
+                {%- endif %}
+            </div>
+        </article>
+        {%- endfor %}
+    </div>
+</section>
+
+<section class="band">
+    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.publications %}</h2></div>
+    <div class="entries">
+        {%- for paper in site.data.research.papers %}
+        {% include paper-entry.html paper=paper %}
+        {%- endfor %}
+    </div>
+</section>

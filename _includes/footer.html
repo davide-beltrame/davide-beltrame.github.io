@@ -1,6 +1,6 @@
 <footer class="site-footer">
     <div class="footer-inner">
-        <span>© {{ "now" | date: "%Y" }} Davide Beltrame · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"
-                rel="noopener noreferrer">CC BY-SA 4.0</a></span>
+        <span>© {{ "now" | date: "%Y" }} {{ site.data.profile.name }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span>
+        <span>{% include t.html v=site.data.ui.footer_note %}</span>
     </div>
 </footer>

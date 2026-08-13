@@ -1,0 +1,6 @@
+# Same schema and the same rules as `books.yml` — see that file's header.
+#
+# Empty until he supplies real entries. Never invented — see AGENTS.md and
+# the site-content-and-voice skill. The page shows a "coming soon" notice
+# for this category while `items` is empty.
+items: []

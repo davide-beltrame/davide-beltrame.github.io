@@ -1,0 +1,16 @@
+{%- comment -%}
+The language link and the theme switch, rendered identically in the bar and in
+the menu. `alt` — the counterpart page in the other language — is assigned in
+_layouts/default.html.
+
+The language control is an <a href> to a real URL, never a script that rewrites
+the page. The theme switch is a <button>, because it changes nothing but a
+presentation attribute; its position in both states is set in CSS from the same
+two selectors as the palette, so it is drawn correctly before any script runs.
+{%- endcomment -%}
+{%- if alt %}
+<a class="lang-toggle" href="{{ alt.url | relative_url }}" lang="{{ alt.lang }}" hreflang="{{ alt.lang }}" title="{% include t.html v=site.data.ui.controls.switch_language %}" aria-label="{% include t.html v=site.data.ui.controls.switch_language %}">{{ alt.lang | upcase }}</a>
+{%- endif %}
+<button class="theme-toggle" type="button" aria-label="{% include t.html v=site.data.ui.controls.toggle_theme %}">
+    <span class="toggle-knob"></span>
+</button>

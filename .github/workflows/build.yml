@@ -1,0 +1,54 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [main, next]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build
+        run: bundle exec jekyll build --trace
+
+      - name: No unrendered Liquid in the output
+        run: |
+          if grep -rn '{{\|{%' _site --include='*.html' --include='*.xml' --include='*.json'; then
+            echo "::error::A Liquid tag reached the built site."
+            exit 1
+          fi
+
+      - name: No placeholder strings in the output
+        run: |
+          if grep -rln 'TODO' _site --include='*.html'; then
+            echo "::error::A TODO reached a page."
+            exit 1
+          fi
+
+      - name: The published CV is the only PDF
+        run: |
+          test -f _site/assets/files/davide_beltrame_cv.pdf || { echo "::error::The published CV is missing from the build."; exit 1; }
+          if find _site -name '*.pdf' | grep -v davide_beltrame_cv.pdf; then
+            echo "::error::A PDF other than the published CV is in the build."
+            exit 1
+          fi
+
+      - name: Every English string has an Italian counterpart
+        run: ruby script/check-i18n.rb
+
+      - name: No image carries EXIF metadata
+        run: ruby script/check-exif.rb
+
+      - name: Internal links resolve
+        run: ruby script/check-links.rb

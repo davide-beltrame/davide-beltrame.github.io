@@ -1,22 +1,29 @@
+{%- comment -%}
+`alt` is the same page in the other language, found by `ref`. Assigned here so
+both the head (hreflang) and the bar (language link) use one lookup, and so
+neither has to do string surgery on the URL.
+{%- endcomment -%}
+{%- assign alt = site.pages | where: "ref", page.ref | where_exp: "p", "p.lang != page.lang" | first -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: 'en' }}">
 <head>
     {% include head.html %}
 </head>
 <body>
+    <a class="skip-link" href="#main">{% include t.html v=site.data.ui.controls.skip_to_content %}</a>
+
+    <div class="ambient" aria-hidden="true"></div>
+
+    {% include icons.html %}
+
     {% include navbar.html %}
 
-    <div class="container">
-        <main class="main">
-            {{ content }}
-        </main>
-    </div>
+    <main class="main wrap" id="main" tabindex="-1">
+        {{ content }}
+    </main>
 
     {% include footer.html %}
-    
-    <script>
-        window.siteBaseurl = {{ site.baseurl | jsonify }};
-    </script>
-    <script src="{{ site.baseurl }}/assets/js/script.js"></script>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+{%- comment -%}
+One paper, as a ruled entry row. Used by /research/ and, in its compact form,
+by the home page.
+
+  {% include paper-entry.html paper=paper %}
+  {% include paper-entry.html paper=paper compact=true %}
+
+`compact` drops the status line, the link row and the abstract disclosure —
+the home page names the result and sends the reader to /research/ for the rest.
+
+The title points at `venue_link` where there is one and the preprint otherwise,
+and the preprint keeps its own link in the row below so it stays one click away
+and is named as a preprint. The arXiv identifier is read off the link rather
+than stored a second time, so the two can never disagree.
+{%- endcomment -%}
+{%- assign paper = include.paper -%}
+{%- assign primary = paper.venue_link | default: paper.link -%}
+{%- capture _abstract %}{% if paper.abstract %}{% include t.html v=paper.abstract %}{% endif %}{% endcapture -%}
+{%- assign _abstract = _abstract | strip -%}
+<article class="entry">
+    <div class="entry-gutter">{{ paper.year }}</div>
+    <div>
+        <h3 class="entry-title">
+            {%- if primary and primary != "" -%}
+            <a href="{{ primary }}" target="_blank" rel="noopener noreferrer">{% include t.html v=paper.title %} {% include icon.html name="external" class="link-icon" %}</a>
+            {%- else -%}
+            {% include t.html v=paper.title %}
+            {%- endif -%}
+        </h3>
+        {%- if paper.authors and paper.authors != "" %}
+        <p class="entry-byline">{{ paper.authors | escape }}</p>
+        {%- endif %}
+        <div class="badges">
+            {%- if paper.venue and paper.venue != "" %}
+            <span class="badge badge--hi">{{ paper.venue }}</span>
+            {%- endif %}
+            {%- if paper.link contains "arxiv.org/abs/" %}
+            {%- assign arxiv_id = paper.link | split: "/abs/" | last %}
+            <span class="badge">arXiv:{{ arxiv_id }}</span>
+            {%- endif %}
+        </div>
+        {%- unless include.compact %}
+        {%- if paper.status %}
+        <p class="entry-note">{% include t.html v=paper.status %}</p>
+        {%- endif %}
+        {%- if paper.venue_link or paper.code %}
+        <div class="entry-links">
+            {%- if paper.venue_link and paper.venue_link != "" %}
+            <a href="{{ paper.link }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="file-pdf" %} {% include t.html v=site.data.ui.labels.preprint %}</a>
+            {%- endif %}
+            {%- if paper.code and paper.code != "" %}
+            <a href="{{ paper.code }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="code" %} {% include t.html v=site.data.ui.labels.code %}</a>
+            {%- endif %}
+        </div>
+        {%- endif %}
+        {%- if _abstract != "" %}
+        <details class="disclosure">
+            <summary class="disclosure-summary">{% include t.html v=site.data.ui.labels.abstract %}</summary>
+            <div class="abstract"><p>{{ _abstract }}</p></div>
+        </details>
+        {%- endif %}
+        {%- endunless %}
+    </div>
+</article>

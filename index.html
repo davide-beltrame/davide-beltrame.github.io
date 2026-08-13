@@ -1,24 +1,7 @@
 ---
-layout: null
+layout: default
+lang: en
+ref: home
+permalink: /
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Davide Beltrame</title>
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon-16x16.png">
-    <link rel="shortcut icon" href="{{ site.baseurl }}/assets/files/favicon/davide_beltrame_favicon.ico">
-    <meta name="theme-color" content="#fafafa">
-    <script>
-        window.location.replace('{{ site.baseurl }}/home');
-    </script>
-</head>
-<body>
-    <p>Redirecting to <a href="{{ site.baseurl }}/home">home page</a>...</p>
-</body>
-</html>
+{% include pages/home.html %}

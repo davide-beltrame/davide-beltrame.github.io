@@ -1,0 +1,19 @@
+---
+layout: default
+lang: en
+ref: notfound
+permalink: /404.html
+sitemap: false
+---
+<div class="page-head">
+    <h1 class="page-title">{% include t.html v=site.data.ui.not_found.heading %}</h1>
+</div>
+
+<section class="band">
+    <p class="notfound-message">{% include t.html v=site.data.ui.not_found.message %}</p>
+    <p class="notfound-links">
+        <a href="{{ '/' | relative_url }}">{% include t.html v=site.data.ui.not_found.home_link %}</a>
+        <span aria-hidden="true">·</span>
+        <a href="{{ '/it/' | relative_url }}" lang="it" hreflang="it">{% include t.html v=site.data.ui.not_found.other_language %}</a>
+    </p>
+</section>

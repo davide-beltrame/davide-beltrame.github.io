@@ -1,0 +1,72 @@
+# Research roles, newest first, then papers and preprints, newest first. The
+# page renders both lists in the order written here — there is no sort in the
+# template.
+#
+# `link` is the preprint. `venue_link` is the paper of record at the venue, and
+# where it exists the title points there instead — they are different claims and
+# the page should not blur them. The arXiv version stays reachable, labelled as
+# the preprint, because it is what a reader without an OpenReview account gets.
+#
+# `status` on a paper carries venue status and author-list footnotes verbatim.
+# An `abstract` with `it: "TODO"` falls back to the English text via
+# _includes/t.html; the literal string never reaches a page.
+#
+# The two course projects that used to sit here (graded exam projects, not
+# publications) now live in `_data/projects.yml` instead.
+
+roles:
+  - title:
+      en: "MSc Thesis Researcher"
+      it: "Ricercatore di tesi magistrale"
+    org: "Bocconi Machine Learning & Statistical Physics Lab — Supervisor: Prof. Luca Biggio"
+    dates:
+      en: "Sep 2025 – present"
+      it: "Set 2025 – presente"
+    description:
+      en: "Studying how diffusion models memorize specific training examples beyond what they learn as a general pattern, and how to measure and control that."
+      it: "Studio di come i modelli di diffusione memorizzano esempi specifici di training oltre a quanto appreso come pattern generale, e di come misurare e controllare questo fenomeno."
+
+  - title:
+      en: "Advisor and Researcher"
+      it: "Advisor e ricercatore"
+    org: "Bocconi Students for Machine Learning (BSML)"
+    dates:
+      en: "Apr 2025 – present"
+      it: "Apr 2025 – presente"
+    description:
+      en: "Advise BSML projects and co-organize on-campus events (an HPC tutorial, meetups with industry). First-authored a <a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">study</a> comparing CNN saliency maps to radiologist attention on pediatric chest X-rays, with 300+ expert annotations."
+      it: "Advisor per progetti BSML e co-organizzatore di eventi in ateneo (un tutorial HPC, incontri con aziende del settore). Primo autore di uno <a href=\"https://bsmachinelearning.com/projects/2025-06-16/\" target=\"_blank\" rel=\"noopener noreferrer\">studio</a> che confronta le saliency map di CNN con l'attenzione dei radiologi su radiografie toraciche pediatriche, con oltre 300 annotazioni di esperti."
+
+papers:
+  - title:
+      en: "Diffusion Language Models Are Natively Length-Aware"
+      it: "Diffusion Language Models Are Natively Length-Aware"
+    authors: "Vittorio Rossi*, Giacomo Cirò*, Davide Beltrame*, Luca Gandolfi, Paul Röttger, Dirk Hovy"
+    year: "2026"
+    date: "2026-03-06"
+    status:
+      en: "*Equal contribution."
+      it: "*Contributo equo."
+    abstract:
+      en: "Unlike autoregressive language models, which terminate variable-length generation upon predicting an End-of-Sequence (EoS) token, Diffusion Language Models (DLMs) operate over a fixed maximum-length context window for a predetermined number of denoising steps. However, this process is independent of the required response length, resulting in computational waste for the majority of short responses common in reasoning and chat tasks. To address this problem, we conjecture that the latent prompt representation contains sufficient information to estimate the required output length. We provide empirical evidence for this phenomenon and propose a zero-shot mechanism to dynamically crop the context window before generation begins, leading to fewer diffusion steps and substantial computational savings. We evaluate our approach on four benchmarks with diverse tasks -- GSM8K (reasoning), HumanEval (code generation), IfEval (instruction following), and LongFormQA (question answering) -- revealing massive efficiency gains at minimal performance impact. We report significant reductions in FLOPs across all tasks, with no statistically significant performance degradation, and significant performance improvements in 2 out of 4 tasks."
+      it: "TODO"
+    link: "https://arxiv.org/abs/2603.06123"
+
+  - title:
+      en: "Biased Generalization in Diffusion Models"
+      it: "Generalizzazione Parziale nei Modelli di Diffusione"
+    authors: "Jérôme Garnier-Brun*, Luca Biggio*, Davide Beltrame, Marc Mézard, Luca Saglietti"
+    year: "2026"
+    date: "2026-03-03"
+    venue: "ICML 2026"
+    status:
+      en: "Spotlight, top 2.2% of submissions. *Equal contribution."
+      it: "Spotlight, primo 2.2% delle submission. *Contributo equo."
+    abstract:
+      en: "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications."
+      it: "TODO"
+    link: "https://arxiv.org/abs/2603.03469"
+    # The arXiv version above is the pre-conference preprint; a v2 reflecting the
+    # camera-ready is not posted yet.
+    venue_link: "https://openreview.net/forum?id=IqTvyp40O6"
+    code: "https://github.com/davide-beltrame/biased-generalization"

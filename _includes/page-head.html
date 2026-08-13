@@ -1,0 +1,17 @@
+{%- comment -%}
+The head of every page that is not the home page: the page's own <h1>, and an
+optional line under it. Usage:
+
+  {% include page-head.html title=site.data.ui.sections.research %}
+  {% include page-head.html title=site.data.ui.sections.trips lede=site.data.ui.trips_lede %}
+
+There is deliberately no kicker above the title. It used to carry his name,
+which the bar already shows on every page, so it repeated itself. Every page
+needs exactly one <h1>; before this include existed the inner pages had none.
+{%- endcomment -%}
+<div class="page-head">
+    <h1 class="page-title">{% include t.html v=include.title %}</h1>
+    {%- if include.lede %}
+    <p class="page-lede">{% include t.html v=include.lede %}</p>
+    {%- endif %}
+</div>

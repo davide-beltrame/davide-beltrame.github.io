@@ -1,0 +1,14 @@
+{%- comment -%}
+Emit a `mailto:` href in numeric HTML entities, scheme included.
+
+  <a href="{% include email-href.html address=site.data.profile.contact.email_encoded %}">
+
+The address arrives already encoded from `_data/profile.yml`, so the plain text
+exists in no file of this repository. All this adds is the scheme, encoded too,
+so the href does not even contain a literal `mailto:` to pattern-match on.
+
+The browser decodes the entities while parsing the attribute, so the link works
+normally. This stops a scraper that reads raw HTML; it does not stop one that
+parses the document first, and it is not meant to.
+{%- endcomment -%}
+{{- "&#109;&#97;&#105;&#108;&#116;&#111;&#58;" | append: include.address -}}

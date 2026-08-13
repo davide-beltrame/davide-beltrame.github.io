@@ -1,0 +1,24 @@
+{%- comment -%}
+Resolve a bilingual value for the current page's language.
+
+  {% include t.html v=paper.title %}
+  {% include t.html v=site.data.profile.about raw=true %}
+
+`v` is either an {en, it} pair or a plain string. A plain string passes through
+unchanged, so values that are the same in both languages — repository names,
+proper nouns — need no pair. A missing, empty, or `TODO` translation falls back
+to the English. It never renders a key, an empty tag, or the literal `TODO`.
+
+Output is escaped, because most values are prose that may contain an ampersand
+or a quote and several land in an attribute. Pass `raw=true` for the few values
+that carry deliberate markup — the bio and its links are the only one today.
+{%- endcomment -%}
+{%- assign _v = include.v -%}
+{%- assign _l = page.lang | default: "en" -%}
+{%- assign _s = _v[_l] -%}
+{%- unless _s and _s != "" and _s != "TODO" -%}
+  {%- if _v.en != nil -%}{%- assign _s = _v.en -%}
+  {%- elsif _v.it != nil -%}{%- assign _s = _v.it -%}
+  {%- else -%}{%- assign _s = _v -%}{%- endif -%}
+{%- endunless -%}
+{%- if include.raw -%}{{ _s }}{%- else -%}{{ _s | escape }}{%- endif -%}

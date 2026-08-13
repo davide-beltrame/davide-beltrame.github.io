@@ -1,0 +1,15 @@
+# NYT Games: a lightweight streak/score callout, closer in spirit to the
+# Duolingo panel than to a title/year/note shelf entry — decided in
+# `.agents/dispatch/07-shelf.md`. Tied to the Wordle Solver project, already
+# listed under Projects (`project_url` below).
+#
+# streak/score are his personal NYT Games numbers, not the solver's — left
+# null until he supplies real ones. Never invented; the page shows a
+# "coming soon" notice while both are null.
+project_url: "https://github.com/davide-beltrame/wordle-solver"
+streak: null
+score: null
+data_last_updated: null
+data_last_updated_display:
+  en: null
+  it: null

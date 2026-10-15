@@ -1,6 +1,21 @@
-# Same schema and the same rules as `books.yml` — see that file's header.
-#
-# Empty until he supplies real entries. Never invented — see AGENTS.md and
-# the site-content-and-voice skill. The page shows a "coming soon" notice
-# for this category while `items` is empty.
-items: []
+# Same schema and the same rules as `books.yml`; `creator` is the director. A
+# film still is copyrighted, so an entry's `illustration` is a public-domain or
+# CC0 image chosen for it, and credited.
+items:
+  - title:
+      en: "The Wind Rises"
+      it: "Si alza il vento"
+    link: "https://en.wikipedia.org/wiki/The_Wind_Rises"
+    creator: "Hayao Miyazaki"
+    year: "2013"
+    illustration:
+      src: "/assets/img/shelf/hokusai-ejiri"
+      widths: [640, 1280]
+      ratio: "1.433"
+      alt:
+        en: "Woodblock print of travellers on a path through the fields as a gust of wind scatters their papers and a hat, with Mount Fuji in the distance."
+        it: "Silografia con viaggiatori su un sentiero tra i campi mentre una raffica di vento disperde i loro fogli e un cappello, con il monte Fuji sullo sfondo."
+      credit:
+        en: "Katsushika Hokusai, Ejiri in Suruga Province, from Thirty-six Views of Mount Fuji, c. 1830–32."
+        it: "Katsushika Hokusai, Ejiri nella provincia di Suruga, dalle Trentasei vedute del monte Fuji, 1830–32 circa."
+      source: "https://commons.wikimedia.org/wiki/File:%E5%86%A8%E5%B6%BD%E4%B8%89%E5%8D%81%E5%85%AD%E6%99%AF_%E9%A7%BF%E5%B7%9E%E6%B1%9F%E5%B0%BB-Ejiri_in_Suruga_Province_(Sunsh%C5%AB_Ejiri),_from_the_series_Thirty-six_Views_of_Mount_Fuji_(Fugaku_sanj%C5%ABrokkei)_MET_DP140977.jpg"

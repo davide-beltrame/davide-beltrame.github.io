@@ -1,0 +1,17 @@
+{%- comment -%}
+The three previews on the home page. Each shows the first entry of its `source`
+data: a trip's photo or a shelf entry's illustration in the shared image frame,
+with the credit on hover, else a labelled placeholder. The caption is the
+entry's title, with its creator and year, or a trip's date.
+{%- endcomment -%}
+<section class="band">
+  <h2>{% include t.html v=site.data.personal.heading %}</h2>
+  <div class="personal-previews">
+    {% for preview in site.data.personal.previews %}
+    {% assign p = navpages | where: "ref", preview.ref | first %}
+    {% if preview.source == 'trips' %}{% assign item = site.data.trips.items | first %}{% else %}{% assign item = site.data.shelf[preview.source].items | first %}{% endif %}
+    {% assign im = item.photo | default: item.illustration %}
+    <article>{% if im %}{% include media.html image=im sizes="(max-width: 640px) 100vw, 360px" %}{% else %}<div class="image-placeholder">{% include t.html v=preview.image %}</div>{% endif %}<h3><a class="title-link" href="{{ p.url | relative_url }}{% if preview.anchor %}#{{ preview.anchor }}{% endif %}">{% include t.html v=preview.label %} →</a></h3><p>{% include t.html v=item.title %}{% if item.creator %}<span class="meta">{{ item.creator }}{% if item.year %}, {{ item.year }}{% endif %}</span>{% elsif item.date %}<span class="meta">{% include event-date.html date=item.date %}</span>{% endif %}</p></article>
+    {% endfor %}
+  </div>
+</section>

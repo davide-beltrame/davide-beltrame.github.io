@@ -1,15 +1,13 @@
 {%- comment -%}
-A section that exists in the design and has no content behind it yet, so it
-ships with the sitewide "coming soon" notice rather than being omitted or
-filled in with an invented trip. There is no photo pipeline here on purpose —
-that is separate, unscheduled work, and any photograph would have to have its
-EXIF stripped and anyone in it asked first.
+One article per trip, newest first, from `_data/trips.yml`: the date, styled
+like Story's, then the title and description. A photo uses the site's shared
+image frame, with who took it on hover.
 {%- endcomment -%}
-{% include page-head.html title=site.data.ui.sections.trips lede=site.data.ui.trips_lede %}
-
-<section class="band">
-    <div class="notice">
-        {% include icon.html name="code" %}
-        <span>{% include t.html v=site.data.ui.wip_notice %}</span>
-    </div>
-</section>
+{% include page-head.html title=site.data.ui.sections.trips %}
+{% for trip in site.data.trips.items %}<article class="band trip" id="{{ trip.id }}">
+  {%- if trip.date %}<p class="event-date">{% include event-date.html date=trip.date %}</p>{% endif %}
+  <h2 class="section-title">{% include t.html v=trip.title %}</h2>
+  <p>{% include t.html v=trip.description raw=true %}</p>
+  {%- if trip.photo %}{% include media.html image=trip.photo sizes="(max-width: 640px) 100vw, 480px" %}{% endif %}
+  {%- if trip.note %}<p class="small">{% include t.html v=trip.note %}</p>{% endif %}
+</article>{% endfor %}

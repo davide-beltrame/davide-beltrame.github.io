@@ -18,7 +18,6 @@ mailto: on the contact link.
     "name": {{ site.data.profile.name | jsonify }},
     "title": {{ site.data.profile.title | jsonify }},
     "greeting": {{ site.data.profile.greeting | jsonify }},
-    "about": {{ site.data.profile.about | jsonify }},
     "portrait": {{ site.data.profile.portrait | jsonify }},
     "contact": {
       "github": {{ site.data.profile.contact.github | jsonify }},
@@ -31,5 +30,7 @@ mailto: on the contact link.
   "projects": {{ site.data.projects.items | jsonify }},
   "timeline": {{ site.data.timeline.years | jsonify }},
   "shelf": {{ site.data.shelf | jsonify }},
+  "now": {{ site.data.now | jsonify }},
+  "trips": {{ site.data.trips | jsonify }},
   "ui": {{ site.data.ui | jsonify }}
 }

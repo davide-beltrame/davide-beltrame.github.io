@@ -1,69 +1,90 @@
-# Every number below is the value read off the profile on `data_last_updated`
-# and is displayed with that date. Nothing is extrapolated forward from it —
-# a counter that increments from a stale reading reports days he may not have
-# practised. Languages are listed by XP, highest first; the page shows the top
-# five and puts the rest behind a disclosure.
+# Every number below is the value read off the public profile on
+# `data_last_updated` and is displayed with that date. Nothing is extrapolated
+# forward from it: a counter that increments from a stale reading reports days
+# he may not have practised. Refresh it by reading the profile again and
+# replacing the numbers and the date together.
+#
+# Courses are listed by XP, highest first, and the page lists them all; the one
+# he is taking now carries `current: true`.
 
 username: "davide1729"
-current_streak: 1375
-longest_streak: 1375
-total_xp: 155975
-data_last_updated: "2026-08-12"
+current_streak: 1438
+total_xp: 166136
+data_last_updated: "2026-10-15"
 data_last_updated_display:
-  en: "August 12, 2026"
-  it: "12 agosto 2026"
+  en: "15 October 2026"
+  it: "15 ottobre 2026"
 languages:
-  - name: "French"
-    flag: "🇫🇷"
-    xp: 76318
-  - name: "Japanese"
-    flag: "🇯🇵"
-    xp: 58899
-  - name: "French (from Italian)"
-    flag: "🇫🇷"
+  - name:
+      en: "French"
+      it: "Francese"
+    xp: 77115
+  - name:
+      en: "Japanese"
+      it: "Giapponese"
+    xp: 59072
+  - name:
+      en: "French (from Italian)"
+      it: "Francese (dall’italiano)"
     xp: 5668
-  - name: "Spanish"
-    flag: "🇪🇸"
+  - name:
+      en: "Spanish"
+      it: "Spagnolo"
     xp: 4208
-  - name: "German"
-    flag: "🇩🇪"
+  - name:
+      en: "Chinese (Simplified)"
+      it: "Cinese semplificato"
+    xp: 3894
+    current: true
+  - name:
+      en: "German"
+      it: "Tedesco"
     xp: 3293
-  - name: "Swedish"
-    flag: "🇸🇪"
+  - name:
+      en: "Swedish"
+      it: "Svedese"
     xp: 3199
-  - name: "Danish"
-    flag: "🇩🇰"
+  - name:
+      en: "Danish"
+      it: "Danese"
     xp: 2089
-  - name: "Chinese (Simplified)"
-    flag: "🇨🇳"
-    xp: 997
-  - name: "English"
-    flag: "🇬🇧"
+  - name:
+      en: "English"
+      it: "Inglese"
     xp: 300
-  - name: "Latin"
-    flag: ""
+  - name:
+      en: "Latin"
+      it: "Latino"
     xp: 296
-  - name: "Greek"
-    flag: "🇬🇷"
+  - name:
+      en: "Greek"
+      it: "Greco"
     xp: 270
-  - name: "Italian"
-    flag: "🇮🇹"
+  - name:
+      en: "Italian"
+      it: "Italiano"
     xp: 120
-  - name: "Catalan"
-    flag: ""
+  - name:
+      en: "Catalan"
+      it: "Catalano"
     xp: 87
-  - name: "Arabic"
-    flag: ""
+  - name:
+      en: "Arabic"
+      it: "Arabo"
     xp: 73
-  - name: "Russian"
-    flag: "🇷🇺"
+  - name:
+      en: "Russian"
+      it: "Russo"
     xp: 60
-  - name: "Esperanto"
-    flag: "💚"
+  - name:
+      en: "Esperanto"
+      it: "Esperanto"
     xp: 45
-  - name: "Irish"
-    flag: "🇮🇪"
+  - name:
+      en: "Irish"
+      it: "Irlandese"
     xp: 28
-  - name: "Korean"
-    flag: "🇰🇷"
+  - name:
+      en: "Korean"
+      it: "Coreano"
     xp: 25

@@ -40,8 +40,8 @@ walk = lambda do |node, path|
   end
 end
 
-files = Dir['_data/*.yml'].sort
-abort 'No _data/*.yml files found. Run this from the repository root.' if files.empty?
+files = Dir['_data/**/*.yml'].sort
+abort 'No _data/**/*.yml files found. Run this from the repository root.' if files.empty?
 files.each { |file| walk.call(YAML.load_file(file), File.basename(file, '.yml')) }
 
 puts "#{pairs} bilingual pairs in #{files.size} files"

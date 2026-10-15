@@ -1,7 +1,11 @@
 {%- comment -%}
 The one blocking script on the page. It has to run before first paint, or a
-visitor in dark mode sees a white page for a frame; nothing else on this site
-qualifies for that treatment.
+visitor in dark mode sees a white page for a frame.
+
+It also handles a skipped page transition. When the browser cancels a
+cross-document view transition (the window resized mid-navigation, say), the
+transition's promises reject, and unhandled that is a console error. The
+`pagereveal` listener has to exist before first render, so it lives here too.
 
 An explicit choice in localStorage wins. With no choice stored, the system
 preference decides, falling back to light where the system expresses none.
@@ -16,4 +20,4 @@ only place the exact bytes the browser hashes actually exist:
 Then check a page in a browser: a wrong hash shows up as a console error and a
 light flash in dark mode, and as nothing at all in the build output.
 {%- endcomment -%}
-<script>(function(){try{var s=localStorage.getItem("theme");var t=s==="dark"||s==="light"?s:(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+<script>(function(){try{var s=localStorage.getItem("theme");var t=s==="dark"||s==="light"?s:(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var v=e.viewTransition;v&&[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){p&&p.catch(function(){})})})});</script>

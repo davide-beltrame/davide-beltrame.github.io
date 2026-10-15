@@ -1,0 +1,34 @@
+# The three personal previews on the home page. Each links to a page by `ref`
+# (and to an `anchor` on it, where given) and takes its caption from the first
+# entry of the `source` data file. `image` labels the space a cover or photo
+# will fill; nothing stands in for it until he supplies the real one.
+heading:
+  en: "A few other things"
+  it: "Qualche altra cosa"
+previews:
+  - ref: shelf
+    anchor: books
+    source: books
+    label:
+      en: "Reading"
+      it: "Letture"
+    image:
+      en: "Cover placeholder"
+      it: "Copertina da aggiungere"
+  - ref: shelf
+    anchor: films
+    source: films
+    label:
+      en: "Watching"
+      it: "Film"
+    image:
+      en: "Image placeholder"
+      it: "Immagine da aggiungere"
+  - ref: trips
+    source: trips
+    label:
+      en: "Travelling"
+      it: "Viaggi"
+    image:
+      en: "Photo placeholder"
+      it: "Foto da aggiungere"

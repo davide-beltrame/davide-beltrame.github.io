@@ -1,20 +1,53 @@
 # Story timeline, grouped by year, newest year first, newest event first within
 # a year. The page renders this order as written.
 #
-# `date` is the raw date as recorded. `display` is what the page shows next to
-# the event: a year-only entry shows no date line, so it carries no `display`.
-# An event may also carry a `description` {en, it} pair; none does yet.
+# `date` is the raw date as recorded, DD/MM/YYYY or MM/YYYY. `display` is what
+# the page shows next to the event: a year-only entry shows no date line, so it
+# carries no `display`. An event may also carry a `description` {en, it} pair.
+#
+# The home page's news list is the first three events here, with the date built
+# from `date`, so the newest entries are what a visitor sees first.
 
 years:
   - year: "2026"
     events:
+      - date: "23/10/2026"
+        display:
+          en: "October 23rd"
+          it: "23 ottobre"
+        title:
+          en: "MSc thesis discussion at Bocconi University."
+          it: "Discussione della tesi magistrale all’Università Bocconi."
+        description:
+          en: "“Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”, supervised by Prof. Luca Biggio."
+          it: "“Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”, relatore Prof. Luca Biggio."
+
+      - date: "28/09/2026"
+        display:
+          en: "September 28th"
+          it: "28 settembre"
+        title:
+          en: "“Diffusion Language Models Are Natively Length-Aware” is accepted as a poster at the NeurIPS 2026 DiffuLM Workshop."
+          it: "“Diffusion Language Models Are Natively Length-Aware” viene accettato come poster al workshop DiffuLM di NeurIPS 2026."
+
+      - date: "09/2026"
+        display:
+          en: "September"
+          it: "Settembre"
+        title:
+          en: "Started as technical consultant at Silverstream AI."
+          it: "Inizio come technical consultant presso Silverstream AI."
+        description:
+          en: "AI agent evaluation."
+          it: "Valutazione di agenti AI."
+
       - date: "02/2026"
         display:
           en: "February"
           it: "Febbraio"
         title:
-          en: "I attend McKinsey's \"New Horizon: Lead What's Next in AI\" program in Barcelona."
-          it: "Partecipo al programma \"New Horizon: Lead What's Next in AI\" di McKinsey a Barcellona."
+          en: "I attend McKinsey’s “New Horizon: Lead What’s Next in AI” program in Barcelona."
+          it: "Partecipo al programma “New Horizon: Lead What’s Next in AI” di McKinsey a Barcellona."
 
   - year: "2025"
     events:
@@ -23,8 +56,8 @@ years:
           en: "September"
           it: "Settembre"
         title:
-          en: "I begin my master's thesis on memorization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Luca Biggio."
-          it: "Inizio la tesi magistrale sulla memorizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Luca Biggio."
+          en: "I begin my master’s thesis on memorization in diffusion models at the Bocconi Machine Learning & Statistical Physics Lab, advised by Prof. Luca Biggio."
+          it: "Inizio la tesi magistrale sulla memorizzazione nei modelli di diffusione presso il Bocconi Machine Learning & Statistical Physics Lab, relatore Prof. Luca Biggio."
 
       - date: "05/2025"
         display:
@@ -40,7 +73,7 @@ years:
           it: "Gennaio"
         title:
           en: "I become Editor-in-Chief delegate for AI and New Technologies at Consensus Rivista."
-          it: "Divento Caporedattore delegato all'AI e alle Nuove Tecnologie per Consensus Rivista."
+          it: "Divento Caporedattore delegato all’AI e alle Nuove Tecnologie per Consensus Rivista."
 
   - year: "2024"
     events:
@@ -57,7 +90,7 @@ years:
           en: "September 5th"
           it: "5 settembre"
         title:
-          en: "I start my Master's Degree in Artificial Intelligence at Bocconi University in Milan."
+          en: "I start my Master’s Degree in Artificial Intelligence at Bocconi University in Milan."
           it: "Inizio il corso di laurea magistrale in Artificial Intelligence presso l’Università Bocconi di Milano."
 
       - date: "15/07/2024"
@@ -83,7 +116,7 @@ years:
           en: "October"
           it: "Ottobre"
         title:
-          en: "I'm promoted to auditor at JELU, LUISS's Junior Enterprise."
+          en: "I’m promoted to auditor at JELU, LUISS’s Junior Enterprise."
           it: "Vengo promosso ad auditor alla JELU, la Junior Enterprise della LUISS."
 
       - date: "09/2023"
@@ -100,15 +133,15 @@ years:
           it: "Giugno"
         title:
           en: "I take part in the Stats Under the Stars data-science hackathon at Marche Polytechnic University."
-          it: "Partecipo all'hackathon di data science Stats Under the Stars all'Università Politecnica delle Marche."
+          it: "Partecipo all’hackathon di data science Stats Under the Stars all’Università Politecnica delle Marche."
 
       - date: "05/2023"
         display:
           en: "May"
           it: "Maggio"
         title:
-          en: "I'm selected for Kozminski University's EU-funded AI and NLP for Business program in Warsaw."
-          it: "Vengo selezionato per il programma di Kozminski University sull'AI e l'NLP per il business a Varsavia, finanziato dall'UE."
+          en: "I’m selected for Kozminski University’s EU-funded AI and NLP for Business program in Warsaw."
+          it: "Vengo selezionato per il programma di Kozminski University sull’AI e l’NLP per il business a Varsavia, finanziato dall’UE."
 
       - date: "03/2023"
         display:
@@ -117,40 +150,6 @@ years:
         title:
           en: "I begin as a trainee auditor at JELU."
           it: "Inizio come trainee auditor alla JELU."
-
-  - year: "2021"
-    events:
-      - date: "11/2021"
-        display:
-          en: "November"
-          it: "Novembre"
-        title:
-          en: "I take part in Confindustria Abruzzo's regional Innovation Hackathon."
-          it: "Partecipo all'Innovation Hackathon regionale di Confindustria Abruzzo."
-
-      - date: "13/09/2021"
-        display:
-          en: "September 13th"
-          it: "13 settembre"
-        title:
-          en: "I start my Bachelor's Degree in Management and Computer Science at LUISS Guido Carli University"
-          it: "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
-
-      - date: "07/2021"
-        display:
-          en: "July"
-          it: "Luglio"
-        title:
-          en: "I'm awarded the CrackThePuzzle merit scholarship, a full tuition waiver for my Bachelor's."
-          it: "Mi viene assegnata la borsa di studio al merito CrackThePuzzle, esenzione totale delle tasse per la triennale."
-
-      - date: "25/06/2021"
-        display:
-          en: "June 25th"
-          it: "25 giugno"
-        title:
-          en: "I graduate from Liceo Scientifico Statale \"Augusto Righi\" in Rome with a final grade of 100 cum laude."
-          it: "Mi diplomo al liceo scientifico statale \"Augusto Righi\" di Roma con 100 e lode."
 
   - year: "2022"
     events:
@@ -168,7 +167,7 @@ years:
           it: "Novembre"
         title:
           en: "I score 8.5 on the IELTS Academic English exam."
-          it: "Ottengo un punteggio di 8.5 all'esame IELTS Academic di inglese."
+          it: "Ottengo un punteggio di 8.5 all’esame IELTS Academic di inglese."
 
       - date: "06/2022"
         display:
@@ -186,6 +185,40 @@ years:
           en: "I begin tutoring competitive-programming training for the Italian Informatics Olympics (OII) at LUISS."
           it: "Inizio a fare da tutor per la preparazione alle Olimpiadi Italiane di Informatica (OII) presso la LUISS."
 
+  - year: "2021"
+    events:
+      - date: "11/2021"
+        display:
+          en: "November"
+          it: "Novembre"
+        title:
+          en: "I take part in Confindustria Abruzzo’s regional Innovation Hackathon."
+          it: "Partecipo all’Innovation Hackathon regionale di Confindustria Abruzzo."
+
+      - date: "13/09/2021"
+        display:
+          en: "September 13th"
+          it: "13 settembre"
+        title:
+          en: "I start my Bachelor’s Degree in Management and Computer Science at LUISS Guido Carli University."
+          it: "Inizio il corso di laurea triennale in Management and Computer Science presso l’Università LUISS Guido Carli."
+
+      - date: "07/2021"
+        display:
+          en: "July"
+          it: "Luglio"
+        title:
+          en: "I’m awarded the CrackThePuzzle merit scholarship, a full tuition waiver for my Bachelor’s."
+          it: "Mi viene assegnata la borsa di studio al merito CrackThePuzzle, esenzione totale delle tasse per la triennale."
+
+      - date: "25/06/2021"
+        display:
+          en: "June 25th"
+          it: "25 giugno"
+        title:
+          en: "I graduate from Liceo Scientifico Statale “Augusto Righi” in Rome with a final grade of 100 cum laude."
+          it: "Mi diplomo al liceo scientifico statale “Augusto Righi” di Roma con 100 e lode."
+
   - year: "2020"
     events:
       - date: "09/2020"
@@ -194,7 +227,7 @@ years:
           it: "Settembre"
         title:
           en: "I pass the Cambridge C1 Advanced English exam."
-          it: "Supero l'esame di inglese Cambridge C1 Advanced."
+          it: "Supero l’esame di inglese Cambridge C1 Advanced."
 
       - date: "07/2020"
         display:
@@ -206,8 +239,8 @@ years:
 
       - date: "2020"
         title:
-          en: "My artwork \"Chromatic Dualism\" is exhibited in Rome as part of the Art & Science Across Italy competition, and wins a visit to the INFN Nuclear Physics Laboratories in Frascati."
-          it: "La mia opera \"Dualismo cromatico\" viene esposta a Roma nell'ambito del concorso Art & Science Across Italy, e vince una visita ai Laboratori Nazionali di Fisica Nucleare dell'INFN di Frascati."
+          en: "My artwork “Chromatic Dualism” is exhibited in Rome as part of the Art & Science Across Italy competition, and wins a visit to the INFN Nuclear Physics Laboratories in Frascati."
+          it: "La mia opera “Dualismo cromatico” viene esposta a Roma nell’ambito del concorso Art & Science Across Italy, e vince una visita ai Laboratori Nazionali di Fisica Nucleare dell’INFN di Frascati."
 
   - year: "2019"
     events:
@@ -217,7 +250,7 @@ years:
           it: "Aprile"
         title:
           en: "I attend Haarlem Model United Nations as an Economic and Social Council delegate."
-          it: "Partecipo all'Haarlem Model United Nations come delegato dell'Economic and Social Council."
+          it: "Partecipo all’Haarlem Model United Nations come delegato dell’Economic and Social Council."
 
   - year: "2016"
     events:
@@ -226,8 +259,8 @@ years:
           en: "September 12th"
           it: "12 settembre"
         title:
-          en: "My first day at Liceo Scientifico Statale \"Augusto Righi\" in Rome."
-          it: "Il mio primo giorno al Liceo Scientifico Statale \"Augusto Righi\" a Roma."
+          en: "My first day at Liceo Scientifico Statale “Augusto Righi” in Rome."
+          it: "Il mio primo giorno al Liceo Scientifico Statale “Augusto Righi” a Roma."
 
       - date: "01/09/2016"
         display:

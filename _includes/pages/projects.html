@@ -15,7 +15,7 @@ link per project with the title as its name.
         {%- if project.featured %}
         <article class="project">
             <h2 class="project-title">
-                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=project.title %} {% include icon.html name="external" class="link-icon" %}</a>
+                <a href="{{ project.url }}">{% include t.html v=project.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
             </h2>
             {%- if project.collaborative %}
             <div class="badges"><span class="badge">{% include t.html v=site.data.ui.labels.collaborative %}</span></div>

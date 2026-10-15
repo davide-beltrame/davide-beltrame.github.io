@@ -1,0 +1,33 @@
+{%- comment -%}
+The exploration map in the footer. Without JavaScript it is a plain <details>
+listing the sections and a link to /everything/. exploration.js moves the
+same contents into a dialog, counts the sections visited in this browser's
+localStorage (English and Italian pages share a `data-visit` ref), and offers a
+random unvisited section. If storage is unavailable, the progress controls stay
+hidden and the map still works.
+{%- endcomment -%}
+{% assign explore = site.data.ui.exploration %}{% assign explore_total = explore.sections | size %}
+<div class="exploration" data-section="{{ page.ref }}">
+  <button type="button" id="exploration-open" hidden aria-haspopup="dialog">
+    <svg class="exploration-ring" viewBox="0 0 32 32" aria-hidden="true" hidden><circle class="ring-track" cx="16" cy="16" r="13"/><circle class="ring-value" cx="16" cy="16" r="13" pathLength="{{ explore_total }}" stroke-dasharray="0 {{ explore_total }}"/></svg>
+    <span class="map-button-label">{% include t.html v=explore.title %}</span>
+    <span class="exploration-progress" hidden><span class="visited-count">0</span> {% include t.html v=explore.of %} {{ explore_total }} {% include t.html v=explore.explored %}</span>
+    <span aria-hidden="true">↗</span>
+  </button>
+  <details id="exploration-fallback">
+    <summary>{% include t.html v=explore.title %}</summary>
+    <div id="exploration-content">
+      <div class="map-heading"><h2 id="map-title">{% include t.html v=explore.title %}</h2><button type="button" id="exploration-close" hidden>{% include t.html v=explore.close %}</button></div>
+      <div class="exploration-progress" hidden><p><span class="visited-count">0</span> {% include t.html v=explore.of %} {{ explore_total }} {% include t.html v=explore.explored %}</p><progress id="exploration-meter" max="{{ explore_total }}" value="0" aria-label="{% include t.html v=explore.progress_label %}"></progress><p class="small">{% include t.html v=explore.storage_note %}</p></div>
+      <nav class="map-links" aria-label="{% include t.html v=explore.title %}">
+      {% for item in explore.sections %}{% assign p = navpages | where: "ref", item | first %}
+        {% if p %}<a href="{{ p.url | relative_url }}" data-visit="{{ item }}"{% if item == page.ref %} aria-current="page"{% endif %}><span>{% assign section_label = site.data.ui.sections[item] %}{% include t.html v=section_label %}</span><span class="visit-mark" hidden>{% include t.html v=explore.visited %}</span></a>{% endif %}
+      {% endfor %}
+      </nav>
+      <div class="map-actions exploration-progress" hidden><button type="button" id="exploration-new">{% include t.html v=explore.suggest %}</button><button type="button" id="exploration-reset">{% include t.html v=explore.reset %}</button></div>
+      <p id="exploration-complete" hidden role="status">{% include t.html v=explore.complete %}</p>
+      <p id="exploration-reset-notice" hidden role="status">{% include t.html v=explore.reset_notice %}</p>
+      <p class="map-index">{% assign p = navpages | where: "ref", "everything" | first %}<a href="{{ p.url | relative_url }}">{% include t.html v=site.data.ui.sections.everything %} →</a></p>
+    </div>
+  </details>
+</div>

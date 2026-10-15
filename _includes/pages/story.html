@@ -36,7 +36,6 @@ render as an empty page.
     <details class="panel">
         <summary class="panel-summary">
             <span>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</span>
-            {% include icon.html name="chevron-down" %}
         </summary>
         <div class="panel-body">
             {%- for group in site.data.timeline.coursework %}

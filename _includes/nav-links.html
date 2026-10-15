@@ -1,0 +1,12 @@
+{%- comment -%}
+The section links, always in `_data/ui.yml` order, so nothing moves when the
+page changes. The current section is marked `aria-current` and carries the one
+underline bar, which has its own view-transition name and so slides from link
+to link between pages. `home` is not listed: his name at the left of the bar is
+the link home.
+{%- endcomment -%}
+{%- for item in site.data.ui.nav -%}
+{%- if item.ref == "home" %}{% continue %}{% endif -%}
+{%- assign p = navpages | where: "ref", item.ref | first -%}
+{%- if p %}<a href="{{ p.url | relative_url }}"{% if item.ref == page.ref %} aria-current="page"{% endif %}>{% include t.html v=item.label %}{% if item.ref == page.ref %}<span class="nav-bar" aria-hidden="true"></span>{% endif %}</a>{% endif %}
+{%- endfor %}

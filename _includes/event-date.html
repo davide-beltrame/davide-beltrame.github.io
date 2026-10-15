@@ -1,0 +1,17 @@
+{%- comment -%}
+A <time> built from a timeline `date` (DD/MM/YYYY, MM/YYYY or YYYY), with short
+month names from `ui.labels.months` in the page's language. Usage:
+
+  {% include event-date.html date=event.date %}
+{%- endcomment -%}
+{%- assign parts = include.date | split: "/" -%}
+{%- assign months = site.data.ui.labels.months[page.lang] | default: site.data.ui.labels.months.en -%}
+{%- if parts.size == 3 -%}
+{%- assign m = parts[1] | plus: 0 | minus: 1 -%}
+<time datetime="{{ parts[2] }}-{{ parts[1] }}-{{ parts[0] }}">{{ parts[0] | plus: 0 }} {{ months[m] }} {{ parts[2] }}</time>
+{%- elsif parts.size == 2 -%}
+{%- assign m = parts[0] | plus: 0 | minus: 1 -%}
+<time datetime="{{ parts[1] }}-{{ parts[0] }}">{{ months[m] }} {{ parts[1] }}</time>
+{%- else -%}
+<time datetime="{{ include.date }}">{{ include.date }}</time>
+{%- endif -%}

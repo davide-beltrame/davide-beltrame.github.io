@@ -1,0 +1,13 @@
+# What he is doing now, in his own words. It is the introduction on the home
+# page, under his name. `date` is the month the text was written, as YYYY-MM;
+# update it whenever the text changes, so an old update never reads as current.
+# Paragraphs may carry a link, so they are rendered as markup.
+date: "2026-10"
+display:
+  en: "October 2026"
+  it: "Ottobre 2026"
+paragraphs:
+  - en: "I’m about to discuss my MSc thesis in Computer Science for AI at Bocconi University. Its title is “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”."
+    it: "Sto per discutere la tesi magistrale in Computer Science for AI all’Università Bocconi. Il titolo è “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”."
+  - en: "I also work as a technical consultant at <a href=\"https://www.silverstream.ai/\">Silverstream AI</a>, doing AI agent evaluation."
+    it: "Lavoro anche come technical consultant presso <a href=\"https://www.silverstream.ai/\">Silverstream AI</a>, occupandomi di valutazione di agenti AI."

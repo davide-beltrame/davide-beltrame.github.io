@@ -1,70 +1,49 @@
 {%- comment -%}
-The masthead leads with his greeting, set in the serif display face, and the
-portrait square beside it. His name is not repeated here — it sits in the bar
-on every page, so a second copy at display size said the same thing twice.
+The masthead is his name, the introduction from `_data/now.yml`, the contact
+links, and the portrait square beside them. Under it, the three newest Story
+events with a link to the rest: the list is read from `_data/timeline.yml`, so
+news is written once, in Story.
 
-The portrait is a square crop of a 3:4 photograph, in full colour. The crop and
-the framing are CSS (`object-fit`, `object-position`); the file itself is the
-same one dispatch 03 stripped of its metadata and resized.
+Research comes first, in compact form: each paper with its own figure, its venue
+and status, and links to the preprint and code. The full entries stay on
+/research/. The personal previews follow, and render only when
+`_data/personal.yml` is present.
 {%- endcomment -%}
-{%- assign contact = site.data.profile.contact -%}
-{%- assign labels = site.data.ui.contact_links -%}
-{%- assign pt = site.data.profile.portrait -%}
-{%- capture srcset_webp %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".webp" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
-{%- capture srcset_jpg %}{% for w in pt.widths %}{{ pt.variants | append: "-" | append: w | append: ".jpg" | relative_url }} {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture -%}
+{% assign navpages = site.pages | where: "lang", page.lang %}
+{% assign contact = site.data.profile.contact %}{% assign pt = site.data.profile.portrait %}
 <header class="masthead">
-    <div class="masthead-grid">
-        <div>
-            <h1 class="masthead-name">{% include t.html v=site.data.profile.greeting %}</h1>
-            <p class="standfirst">{% include t.html v=site.data.profile.title %}</p>
-        </div>
-        <picture>
-            <source type="image/webp" srcset="{{ srcset_webp }}" sizes="{{ pt.displayed }}">
-            <img class="portrait" src="{{ pt.src | relative_url }}" srcset="{{ srcset_jpg }}" sizes="{{ pt.displayed }}"
-                 width="{{ pt.box }}" height="{{ pt.box }}" fetchpriority="high" decoding="async"
-                 alt="{% include t.html v=pt.alt %}">
-        </picture>
+  <div class="masthead-copy"><h1 data-vt="name">{{ site.data.profile.name }}</h1>
+    <div class="intro">{% for paragraph in site.data.now.paragraphs %}<p>{% include t.html v=paragraph raw=true %}</p>{% endfor %}</div>
+    <div class="contact-links">
+      <a href="{{ contact.cv | relative_url }}">{% include t.html v=site.data.ui.contact_links.cv %}</a>
+      <a href="{% include email-href.html address=contact.email_encoded %}">{% include t.html v=site.data.ui.contact_links.email %}</a>
+      <a href="{{ contact.github }}">{% include t.html v=site.data.ui.contact_links.github %}</a>
+      <a href="{{ contact.scholar }}">{% include t.html v=site.data.ui.contact_links.scholar %}</a>
     </div>
-
-    <div class="bio">{% include t.html v=site.data.profile.about raw=true %}</div>
-
-    <div class="dek">
-        <a href="{% include email-href.html address=contact.email_encoded %}">
-            {% include icon.html name="envelope" %}<span>{% include t.html v=labels.email %}</span>
-        </a>
-        <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer">
-            {% include icon.html name="github" %}<span>{% include t.html v=labels.github %}</span>
-        </a>
-        <a href="{{ contact.scholar }}" target="_blank" rel="noopener noreferrer">
-            {% include icon.html name="scholar" %}<span>{% include t.html v=labels.scholar %}</span>
-        </a>
-        <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer">
-            {% include icon.html name="linkedin" %}<span>{% include t.html v=labels.linkedin %}</span>
-        </a>
-        <a href="{{ contact.cv | relative_url }}" target="_blank" rel="noopener noreferrer">
-            {% include icon.html name="file-pdf" %}<span>{% include t.html v=labels.cv %}</span>
-        </a>
-    </div>
+  </div>
+  <picture><source type="image/webp" srcset="{{ pt.variants | relative_url }}-320.webp 320w, {{ pt.variants | relative_url }}-640.webp 640w, {{ pt.variants | relative_url }}-960.webp 960w" sizes="{{ pt.displayed }}"><img class="portrait" src="{{ pt.src | relative_url }}" width="240" height="240" alt="{% include t.html v=pt.alt %}" fetchpriority="high"></picture>
 </header>
-
-{%- comment -%}
-The home page leads with research when the plausible readers conflict, per
-`.agents/context/decisions.md` — so the papers are on it, in their compact
-form, rather than one link away. The full versions, with status lines,
-abstracts and code, stay on /research/.
-{%- endcomment -%}
-{%- assign navpages = site.pages | where: "lang", page.lang -%}
-{%- assign research_page = navpages | where: "ref", "research" | first -%}
-{%- assign everything_page = navpages | where: "ref", "everything" | first -%}
-<section class="band">
-    <div class="kicker"><h2 class="kicker-text">{% include t.html v=site.data.ui.sections.research %}</h2></div>
-    <div class="entries">
-        {%- for paper in site.data.research.papers %}
-        {% include paper-entry.html paper=paper compact=true %}
-        {%- endfor %}
-    </div>
-    <div class="entry-links more-links">
-        <a href="{{ research_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.all_research %}</a>
-        <a href="{{ everything_page.url | relative_url }}">{% include t.html v=site.data.ui.sections.everything %}</a>
-    </div>
+{% assign research_page = navpages | where: "ref", "research" | first %}{% assign story_page = navpages | where: "ref", "story" | first %}
+<section class="news" aria-labelledby="news-title">
+  <h2 id="news-title" class="news-title">{% include t.html v=site.data.ui.labels.news %}</h2>
+  <ul class="news-list">
+    {%- assign shown = 0 -%}
+    {%- for group in site.data.timeline.years -%}{%- for event in group.events -%}{%- if shown < 3 %}
+    <li>{% include event-date.html date=event.date %}<span>{% include t.html v=event.title %}</span></li>
+    {%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor %}
+  </ul>
+  <a class="news-more" href="{{ story_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.full_story %} →</a>
 </section>
+<section class="band home-research">
+  <div class="section-heading"><h2>{% include t.html v=site.data.ui.sections.research %}</h2><a href="{{ research_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.all_research %} →</a></div>
+  <div class="research-previews">
+    {% for paper in site.data.research.papers %}<article>
+      {%- assign primary = paper.venue_link | default: paper.link -%}
+      {%- if paper.figure %}<a class="research-figure" href="{{ primary }}" tabindex="-1" aria-hidden="true">{% include photo.html photo=paper.figure sizes="(max-width: 640px) 100vw, 540px" %}</a>{% endif %}
+      <h3><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h3>
+      <p class="preview-venue">{{ paper.venue | escape }}{% if paper.badge %} · {% include t.html v=paper.badge %}{% endif %}</p>
+      <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=site.data.ui.labels.preprint %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% endif %}</div>
+    </article>{% endfor %}
+  </div>
+</section>
+{% if site.data.personal %}{% include personal-preview.html %}{% endif %}

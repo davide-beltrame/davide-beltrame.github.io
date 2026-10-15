@@ -1,0 +1,46 @@
+# Trips, newest first. Each entry is a title, a `date` (MM/YYYY, shown as
+# "Sep 2026"), one line about the trip, and an optional photo. No venues or
+# companions beyond what he has supplied. The description may carry links.
+#
+# Photos are re-encoded as WebP with no metadata before they are committed: a
+# phone photo carries GPS coordinates, the device and a timestamp. Anyone else
+# in a photo is shown only with their OK. `photo.src` is the path without its
+# `-<width>.webp` suffix; `widths` are the encoded sizes, `ratio` width/height.
+# `credit` shows over the photo on hover.
+items:
+  - id: pescasseroli
+    date: "09/2026"
+    title:
+      en: "Pescasseroli"
+      it: "Pescasseroli"
+    description:
+      en: "My home office for this month."
+      it: "Il mio ufficio da remoto per questo mese."
+    photo:
+      src: "/assets/img/trips/pescasseroli"
+      widths: [640, 1280]
+      ratio: "1.333"
+      alt:
+        en: "Pescasseroli and the mountains around it, seen from Castel Mancino."
+        it: "Pescasseroli e le montagne intorno, viste da Castel Mancino."
+      credit:
+        en: "Taken by me at Castel Mancino, Pescasseroli."
+        it: "Scattata da me a Castel Mancino, Pescasseroli."
+  - id: london
+    date: "07/2026"
+    title:
+      en: "London"
+      it: "Londra"
+    description:
+      en: "<a href=\"https://en.wikipedia.org/wiki/Hadestown\">Hadestown</a> and <a href=\"https://en.wikipedia.org/wiki/Jesus_Christ_Superstar\">Jesus Christ Superstar</a> in the West End."
+      it: "<a href=\"https://en.wikipedia.org/wiki/Hadestown\">Hadestown</a> e <a href=\"https://en.wikipedia.org/wiki/Jesus_Christ_Superstar\">Jesus Christ Superstar</a> nel West End."
+    photo:
+      src: "/assets/img/trips/london-hadestown"
+      widths: [420]
+      ratio: "1.167"
+      alt:
+        en: "The Hadestown marquee at night."
+        it: "L’insegna di Hadestown di notte."
+      credit:
+        en: "Taken by me in London."
+        it: "Scattata da me a Londra."

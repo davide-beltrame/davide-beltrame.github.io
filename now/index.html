@@ -1,7 +1,26 @@
 ---
-layout: default
+layout: null
 lang: en
-ref: now
 permalink: /now/
+sitemap: false
 ---
-{% include pages/now.html %}
+{%- comment -%}
+/now/ was the Now page. What it said is now the introduction on the home
+page, so it keeps a stub that sends existing links there, with the canonical
+pointing at the home page.
+{%- endcomment -%}
+{%- assign target = site.data.ui.nav | where: "ref", "home" | first -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url={{ '/' | relative_url }}">
+    <link rel="canonical" href="{{ '/' | absolute_url }}">
+    <meta name="robots" content="noindex, follow">
+    <title>{% include t.html v=site.data.ui.pages.home.title %}</title>
+</head>
+<body>
+    <p>{% include t.html v=site.data.ui.redirect.moved %} <a href="{{ '/' | relative_url }}">{% include t.html v=target.label %}</a></p>
+</body>
+</html>

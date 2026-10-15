@@ -1,0 +1,12 @@
+{%- comment -%}
+A photo or illustration in the site's one image frame (3:2, cropped to fill).
+Usage:
+
+  {% include media.html image=trip.photo sizes="(max-width: 640px) 100vw, 480px" %}
+
+`image` carries what photo.html needs, plus an optional {en, it} `credit` and a
+`source` URL. The credit is shown over the image on hover or keyboard focus,
+and is always in the page for screen readers.
+{%- endcomment -%}
+{%- assign im = include.image -%}
+<figure class="media">{% include photo.html photo=im sizes=include.sizes %}{% if im.credit %}<figcaption class="credit">{% if im.source %}<a href="{{ im.source }}">{% include t.html v=im.credit %}</a>{% else %}<span tabindex="0">{% include t.html v=im.credit %}</span>{% endif %}</figcaption>{% endif %}</figure>

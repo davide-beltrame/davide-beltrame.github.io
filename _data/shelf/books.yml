@@ -1,17 +1,39 @@
 # Curated, not a complete log — only books he'd actually recommend go on this
-# list. No rating field of any kind: decided against, see
-# `.agents/context/decisions.md`. The note is the entire reason an entry
-# exists, so it is required, not optional flavor.
+# list. No rating field of any kind.
 #
 # Schema per entry:
-#   title:    string, not translated (proper noun)
-#   year:     original publication year
-#   finished: the date he finished it, YYYY-MM-DD
-#   note:     {en, it} — his one-line take, required
-#   link:     optional URL (e.g. the publisher page or a review)
+#   title:    {en, it} — the title as published in each language
+#   creator:  optional, the author (or director, for a film)
+#   year:     optional, original publication year
+#   finished: optional, the date he finished it, YYYY-MM-DD
+#   note:     optional {en, it} — his one-line take; until there is one, the
+#             page says a note is to follow
+#   link:     optional URL; the English Wikipedia page for the work
 #   tags:     optional list of short strings
+#   illustration: optional public-domain or CC0 image for the entry, with
+#             `src` (path without `-<width>.webp`), `widths`, `ratio`
+#             (width/height), {en, it} `alt` and `credit`, and `source`, the
+#             page it came from. The credit shows over the image on hover.
+#             Re-encoded with no metadata before it is committed. The home
+#             page's Reading preview uses the first entry's.
 #
-# Empty until he supplies real entries. Never invented — see AGENTS.md and
-# the site-content-and-voice skill. The page shows a "coming soon" notice
-# for this category while `items` is empty.
-items: []
+# Only books he has named go here, and nothing is filled in for him: no note,
+# date or year he has not supplied.
+items:
+  - title:
+      en: "The Count of Monte Cristo"
+      it: "Il conte di Montecristo"
+    link: "https://en.wikipedia.org/wiki/The_Count_of_Monte_Cristo"
+    creator: "Alexandre Dumas"
+    year: "1844"
+    illustration:
+      src: "/assets/img/shelf/monte-cristo-johannot"
+      widths: [640, 1280]
+      ratio: "1.8"
+      alt:
+        en: "Engraving of Edmond Dantès and the Abbé Faria reading Cardinal Spada’s will in their cell."
+        it: "Incisione di Edmond Dantès e dell’abate Faria che leggono il testamento del cardinale Spada nella loro cella."
+      credit:
+        en: "Tony Johannot, illustration for the 1846–52 edition."
+        it: "Tony Johannot, illustrazione per l’edizione del 1846–52."
+      source: "https://commons.wikimedia.org/wiki/File:%D0%94%D1%8E%D0%BC%D0%B0_%D0%96%D0%BE%D0%B0%D0%BD%D0%BD%D0%BE_%D0%94%D0%B0%D0%BD%D1%82%D0%B5%D1%81_%D0%B8_%D0%A4%D0%B0%D1%80%D0%B8%D0%B0_%D1%87%D0%B8%D1%82%D0%B0%D1%8E%D1%82_%D0%B7%D0%B0%D0%B2%D0%B5%D1%89%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BA%D0%B0%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0_%D0%A1%D0%BF%D0%B0%D0%B4%D0%B0.JPG"

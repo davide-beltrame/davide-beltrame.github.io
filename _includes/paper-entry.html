@@ -22,7 +22,7 @@ than stored a second time, so the two can never disagree.
     <div>
         <h3 class="entry-title">
             {%- if primary and primary != "" -%}
-            <a href="{{ primary }}" target="_blank" rel="noopener noreferrer">{% include t.html v=paper.title %} {% include icon.html name="external" class="link-icon" %}</a>
+            <a href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
             {%- else -%}
             {% include t.html v=paper.title %}
             {%- endif -%}
@@ -40,16 +40,17 @@ than stored a second time, so the two can never disagree.
             {%- endif %}
         </div>
         {%- unless include.compact %}
+        {%- if paper.summary %}<p class="entry-body">{% include t.html v=paper.summary %}</p>{% endif %}
         {%- if paper.status %}
         <p class="entry-note">{% include t.html v=paper.status %}</p>
         {%- endif %}
-        {%- if paper.venue_link or paper.code %}
+        {%- if paper.link or paper.code %}
         <div class="entry-links">
-            {%- if paper.venue_link and paper.venue_link != "" %}
-            <a href="{{ paper.link }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="file-pdf" %} {% include t.html v=site.data.ui.labels.preprint %}</a>
+            {%- if paper.link and paper.link != "" %}
+            <a href="{{ paper.link }}">{% include t.html v=site.data.ui.labels.preprint %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
             {%- endif %}
             {%- if paper.code and paper.code != "" %}
-            <a href="{{ paper.code }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="code" %} {% include t.html v=site.data.ui.labels.code %}</a>
+            <a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
             {%- endif %}
         </div>
         {%- endif %}

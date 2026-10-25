@@ -1,39 +1,228 @@
-# Curated, not a complete log — only books he'd actually recommend go on this
-# list. No rating field of any kind.
-#
-# Schema per entry:
-#   title:    {en, it} — the title as published in each language
-#   creator:  optional, the author (or director, for a film)
-#   year:     optional, original publication year
-#   finished: optional, the date he finished it, YYYY-MM-DD
-#   note:     optional {en, it} — his one-line take; until there is one, the
-#             page says a note is to follow
-#   link:     optional URL; the English Wikipedia page for the work
-#   tags:     optional list of short strings
-#   illustration: optional public-domain or CC0 image for the entry, with
-#             `src` (path without `-<width>.webp`), `widths`, `ratio`
-#             (width/height), {en, it} `alt` and `credit`, and `source`, the
-#             page it came from. The credit shows over the image on hover.
-#             Re-encoded with no metadata before it is committed. The home
-#             page's Reading preview uses the first entry's.
-#
-# Only books he has named go here, and nothing is filled in for him: no note,
-# date or year he has not supplied.
+# Books read and books to read. No ratings or inferred reading dates.
+# Titles use their published English names where known, otherwise the original.
+# The first read entry supplies the home page’s Reading preview.
 items:
-  - title:
-      en: "The Count of Monte Cristo"
-      it: "Il conte di Montecristo"
-    link: "https://en.wikipedia.org/wiki/The_Count_of_Monte_Cristo"
-    creator: "Alexandre Dumas"
-    year: "1844"
-    illustration:
-      src: "/assets/img/shelf/monte-cristo-johannot"
-      widths: [640, 1280]
-      ratio: "1.8"
-      alt:
-        en: "Engraving of Edmond Dantès and the Abbé Faria reading Cardinal Spada’s will in their cell."
-        it: "Incisione di Edmond Dantès e dell’abate Faria che leggono il testamento del cardinale Spada nella loro cella."
-      credit:
-        en: "Tony Johannot, illustration for the 1846–52 edition."
-        it: "Tony Johannot, illustrazione per l’edizione del 1846–52."
-      source: "https://commons.wikimedia.org/wiki/File:%D0%94%D1%8E%D0%BC%D0%B0_%D0%96%D0%BE%D0%B0%D0%BD%D0%BD%D0%BE_%D0%94%D0%B0%D0%BD%D1%82%D0%B5%D1%81_%D0%B8_%D0%A4%D0%B0%D1%80%D0%B8%D0%B0_%D1%87%D0%B8%D1%82%D0%B0%D1%8E%D1%82_%D0%B7%D0%B0%D0%B2%D0%B5%D1%89%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BA%D0%B0%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0_%D0%A1%D0%BF%D0%B0%D0%B4%D0%B0.JPG"
+- title:
+    en: The Count of Monte Cristo
+    it: Il conte di Montecristo
+  link: https://en.wikipedia.org/wiki/The_Count_of_Monte_Cristo
+  creator: Alexandre Dumas
+  year: '1844'
+  illustration:
+    src: /assets/img/shelf/monte-cristo-johannot
+    widths:
+    - 640
+    - 1280
+    ratio: '1.8'
+    alt:
+      en: Engraving of Edmond Dantès and the Abbé Faria reading Cardinal Spada’s will in their cell.
+      it: Incisione di Edmond Dantès e dell’abate Faria che leggono il testamento del cardinale Spada nella loro cella.
+    credit:
+      en: Tony Johannot, illustration for the 1846–52 edition.
+      it: Tony Johannot, illustrazione per l’edizione del 1846–52.
+    source: https://commons.wikimedia.org/wiki/File:%D0%94%D1%8E%D0%BC%D0%B0_%D0%96%D0%BE%D0%B0%D0%BD%D0%BD%D0%BE_%D0%94%D0%B0%D0%BD%D1%82%D0%B5%D1%81_%D0%B8_%D0%A4%D0%B0%D1%80%D0%B8%D0%B0_%D1%87%D0%B8%D1%82%D0%B0%D1%8E%D1%82_%D0%B7%D0%B0%D0%B2%D0%B5%D1%89%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BA%D0%B0%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0_%D0%A1%D0%BF%D0%B0%D0%B4%D0%B0.JPG
+- title:
+    en: An Iliad
+    it: Omero, Iliade
+  creator: Alessandro Baricco
+- title:
+    en: The Path to the Spiders’ Nests
+    it: Il sentiero dei nidi di ragno
+  creator: Italo Calvino
+- title:
+    en: The Catcher in the Rye
+    it: Il giovane Holden
+  creator: J. D. Salinger
+- title:
+    en: And Then There Were None
+    it: Dieci piccoli indiani
+  creator: Agatha Christie
+- title:
+    en: The Day of the Owl
+    it: Il giorno della civetta
+  creator: Leonardo Sciascia
+- title:
+    en: '1984'
+    it: '1984'
+  creator: George Orwell
+- title:
+    en: Strange Case of Dr Jekyll and Mr Hyde
+    it: Lo strano caso del dottor Jekyll e del signor Hyde
+  creator: Robert Louis Stevenson
+- title:
+    en: The Metamorphosis
+    it: La metamorfosi
+  creator: Franz Kafka
+- title:
+    en: Of Mice and Men
+    it: Uomini e topi
+  creator: John Steinbeck
+- title:
+    en: The Old Man and the Sea
+    it: Il vecchio e il mare
+  creator: Ernest Hemingway
+- title:
+    en: A Study in Scarlet
+    it: Uno studio in rosso
+  creator: Arthur Conan Doyle
+- title:
+    en: The Sign of the Four
+    it: Il segno dei quattro
+  creator: Arthur Conan Doyle
+- title:
+    en: I, Claudius
+    it: Io, Claudio
+  creator: Robert Graves
+- title:
+    en: Memoirs of Hadrian
+    it: Memorie di Adriano
+  creator: Marguerite Yourcenar
+- title:
+    en: Julian
+    it: Giuliano
+  creator: Gore Vidal
+- title:
+    en: The Cloven Viscount
+    it: Il visconte dimezzato
+  creator: Italo Calvino
+- title:
+    en: The Baron in the Trees
+    it: Il barone rampante
+  creator: Italo Calvino
+- title:
+    en: The Nonexistent Knight
+    it: Il cavaliere inesistente
+  creator: Italo Calvino
+- title:
+    en: Imperium
+    it: Imperium
+  creator: Robert Harris
+- title:
+    en: Lustrum
+    it: Conspirata (Lustrum)
+  creator: Robert Harris
+- title:
+    en: Dictator
+    it: Dictator
+  creator: Robert Harris
+- title:
+    en: Gulliver’s Travels
+    it: I viaggi di Gulliver
+  creator: Jonathan Swift
+- title:
+    en: The Canterville Ghost
+    it: Il fantasma di Canterville
+  creator: Oscar Wilde
+- title:
+    en: Luca Canali racconta l’Eneide
+    it: Luca Canali racconta l’Eneide
+  creator: Luca Canali
+- title:
+    en: If This Is a Man
+    it: Se questo è un uomo
+  creator: Primo Levi
+- title:
+    en: Pushing Past the Night
+    it: Spingendo la notte più in là
+  creator: Mario Calabresi
+- title:
+    en: Come mi batte forte il tuo cuore
+    it: Come mi batte forte il tuo cuore
+  creator: Benedetta Tobagi
+- title:
+    en: Due storie d’amore
+    it: Due storie d’amore
+  creator: Laura Mancinelli
+- title:
+    en: Pride and Prejudice
+    it: Orgoglio e pregiudizio
+  creator: Jane Austen
+- title:
+    en: A Private Matter
+    it: Una questione privata
+  creator: Beppe Fenoglio
+- title:
+    en: The Name of the Rose
+    it: Il nome della rosa
+  creator: Umberto Eco
+- title:
+    en: Oedipus Rex
+    it: Edipo re
+  creator: &id001
+    en: Sophocles
+    it: Sofocle
+- title:
+    en: Amphitryon
+    it: Anfitrione
+  creator:
+    en: Plautus
+    it: Plauto
+- title:
+    en: The Murder of Roger Ackroyd
+    it: L’assassinio di Roger Ackroyd
+  creator: Agatha Christie
+- title:
+    en: Oedipus at Colonus
+    it: Edipo a Colono
+  creator: *id001
+- title:
+    en: Novecento
+    it: Novecento
+  creator: Alessandro Baricco
+- title:
+    en: The Castle of Crossed Destinies
+    it: Il castello dei destini incrociati
+  creator: Italo Calvino
+- title:
+    en: If on a winter’s night a traveller
+    it: Se una notte d’inverno un viaggiatore
+  creator: Italo Calvino
+- title:
+    en: The Stranger
+    it: Lo straniero
+  creator: Albert Camus
+- title:
+    en: Finding Moonshine
+    it: Il disordine perfetto
+  creator: Marcus du Sautoy
+- title:
+    en: The Leopard
+    it: Il Gattopardo
+  creator: Giuseppe Tomasi di Lampedusa
+- title:
+    en: The Plague
+    it: La peste
+  creator: Albert Camus
+- title:
+    en: Sense and Sensibility
+    it: Ragione e sentimento
+  creator: Jane Austen
+- title:
+    en: Trafalgar
+    it: Trafalgar
+  creator: Benito Pérez Galdós
+- title:
+    en: Robinson Crusoe
+    it: Robinson Crusoe
+  creator: Daniel Defoe
+- title:
+    en: White Nights
+    it: Le notti bianche
+  creator: Fëdor Dostoevskij
+- title:
+    en: The House by the Medlar Tree
+    it: I Malavoglia
+  creator: Giovanni Verga
+- title:
+    en: The Hummingbird
+    it: Il colibrì
+  creator: Sandro Veronesi
+want_to_read:
+- title:
+    en: The Time of Indifference
+    it: Gli indifferenti
+  creator: Alberto Moravia
+- title:
+    en: To Kill a Mockingbird
+    it: Il buio oltre la siepe
+  creator: Harper Lee

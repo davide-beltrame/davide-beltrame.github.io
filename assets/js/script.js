@@ -30,6 +30,25 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
     updateThemeControls();
   }
 });
+// Trip photos remain ordinary image links without dialog support or JavaScript.
+const photoDialog = document.querySelector('.photo-dialog');
+if (photoDialog && typeof photoDialog.showModal === 'function') {
+  const fullPhoto = photoDialog.querySelector('img');
+  let photoTrigger = null;
+  document.querySelectorAll('.photo-expand').forEach(link => link.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    photoTrigger = link;
+    fullPhoto.src = link.href;
+    fullPhoto.alt = link.querySelector('img').alt;
+    photoDialog.showModal();
+  }));
+  photoDialog.addEventListener('click', event => {
+    if (event.target === photoDialog) photoDialog.close();
+  });
+  photoDialog.addEventListener('close', () => photoTrigger?.focus({ preventScroll: true }));
+}
+
 // Escape closes the mobile menu and returns focus to its summary.
 const menu = document.querySelector('.mobile-navigation');
 menu?.addEventListener('keydown', event => {

@@ -1,7 +1,7 @@
 {%- comment -%}
-Books, films and video games are curated, not a complete log: only entries he
-has named. No rating field. Books and films sit side by side; an entry may
-carry a credited public-domain illustration (shelf-item.html).
+Books are separated into read and want-to-read lists. Films and video games
+show only named entries. No ratings or inferred reading dates. The first book
+retains its credited public-domain illustration.
 
 Duolingo and NYT Games are numbers rather than title/year/note entries. Every
 number in both is the reading recorded in `_data/shelf/` on the date shown;
@@ -11,10 +11,23 @@ and marks the one he is taking now.
 {% assign duo = site.data.shelf.duolingo %}{% assign games = site.data.shelf.games %}{% assign duo_labels = site.data.ui.duolingo %}{% assign shelf_labels = site.data.ui.shelf %}
 {%- assign current_course = duo.languages | where: "current", true | first -%}
 {% include page-head.html title=site.data.ui.sections.shelf lede=shelf_labels.lede %}
-<div class="band shelf-grid">
-<section id="books"><h2 class="section-title sticky-title"><span>{% include t.html v=shelf_labels.filter_books %}</span></h2>{% for item in site.data.shelf.books.items %}{% include shelf-item.html item=item %}{% endfor %}</section>
-<section id="films"><h2 class="section-title sticky-title"><span>{% include t.html v=shelf_labels.filter_films %}</span></h2>{% for item in site.data.shelf.films.items %}{% include shelf-item.html item=item %}{% endfor %}</section>
-</div>
+<section class="band" id="books">
+  <h2 class="section-title sticky-title"><span>{% include t.html v=shelf_labels.filter_books %}</span></h2>
+  {% assign featured_book = site.data.shelf.books.items | first %}
+  {% if featured_book.illustration %}<div class="book-illustration">{% include media.html image=featured_book.illustration sizes="(max-width: 640px) 100vw, 480px" %}</div>{% endif %}
+  <section id="read">
+    <h3 class="book-list-heading">{% include t.html v=shelf_labels.read_books %} <span class="muted">({{ site.data.shelf.books.items | size }})</span></h3>
+    {% include book-list.html items=site.data.shelf.books.items %}
+  </section>
+  <section id="want-to-read">
+    <h3 class="book-list-heading">{% include t.html v=shelf_labels.want_to_read %} <span class="muted">({{ site.data.shelf.books.want_to_read | size }})</span></h3>
+    {% include book-list.html items=site.data.shelf.books.want_to_read %}
+  </section>
+</section>
+<section class="band" id="films">
+  <h2 class="section-title sticky-title"><span>{% include t.html v=shelf_labels.filter_films %}</span></h2>
+  <div class="shelf-grid">{% for item in site.data.shelf.films.items %}{% include shelf-item.html item=item %}{% endfor %}</div>
+</section>
 <section class="band" id="video-games"><h2 class="section-title sticky-title"><span>{% include t.html v=site.data.ui.sections.video_games %}</span></h2><div class="shelf-grid">{% for item in site.data.shelf.video_games.items %}{% include shelf-item.html item=item %}{% endfor %}</div></section>
 <section class="band" id="duolingo">
   <h2 class="section-title sticky-title"><span>{% include t.html v=site.data.ui.sections.duolingo %}</span></h2>

@@ -1,5 +1,6 @@
 {%- comment -%}
-A photo or illustration in the site's one image frame (3:2, cropped to fill).
+A photo or illustration in the site's image frame. Previews use a 3:2 crop;
+trip galleries preserve the photograph's full aspect ratio.
 Usage:
 
   {% include media.html image=trip.photo sizes="(max-width: 640px) 100vw, 480px" %}
@@ -9,4 +10,4 @@ Usage:
 and is always in the page for screen readers.
 {%- endcomment -%}
 {%- assign im = include.image -%}
-<figure class="media">{% include photo.html photo=im sizes=include.sizes %}{% if im.credit %}<figcaption class="credit">{% if im.source %}<a href="{{ im.source }}">{% include t.html v=im.credit %}</a>{% else %}<span tabindex="0">{% include t.html v=im.credit %}</span>{% endif %}</figcaption>{% endif %}</figure>
+<figure class="media">{% if include.expand %}{% assign full_width = im.widths | last %}<a class="photo-expand" href="{{ im.src | relative_url }}-{{ full_width }}.webp" aria-label="{% include t.html v=site.data.ui.controls.open_photo %}: {% include t.html v=im.alt %}">{% endif %}{% include photo.html photo=im sizes=include.sizes %}{% if include.expand %}</a>{% endif %}{% if im.credit %}<figcaption class="credit">{% if im.source %}<a href="{{ im.source }}">{% include t.html v=im.credit %}</a>{% else %}<span tabindex="0">{% include t.html v=im.credit %}</span>{% endif %}</figcaption>{% endif %}</figure>

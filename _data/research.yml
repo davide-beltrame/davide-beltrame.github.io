@@ -22,21 +22,29 @@
 # The two course projects that used to sit here (graded exam projects, not
 # publications) now live in `_data/projects.yml` instead.
 
+interests:
+  en: "I study memorisation and generalisation in diffusion models. I’m interested in measuring what learned representations retain or discard, and in world models and GFlowNets."
+  it: "Studio memorizzazione e generalizzazione nei diffusion models. Mi interessa misurare cosa conservano o scartano le rappresentazioni apprese, e approfondire world models e GFlowNets."
+
 roles:
-  - title:
+  - id: msc-thesis
+    title:
       en: "MSc Thesis Researcher"
-      it: "Ricercatore di tesi magistrale"
-    org: "Bocconi Machine Learning & Statistical Physics Lab, supervisor Prof. Luca Biggio"
+      it: "Tesista magistrale"
+    org:
+      en: "Bocconi Machine Learning & Statistical Physics Lab, supervisor Prof. Luca Biggio"
+      it: "Bocconi Machine Learning & Statistical Physics Lab, relatore Prof. Luca Biggio"
     dates:
-      en: "Sep 2025 – present"
-      it: "Set 2025 – presente"
+      en: "Sep 2025 – Oct 2026"
+      it: "Set 2025 – ott 2026"
     description:
       en: "Thesis: “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”. Studying how diffusion models memorize specific training examples beyond what they learn as a general pattern, and how to measure and control that."
-      it: "Tesi: “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”. Studio di come i modelli di diffusione memorizzano esempi specifici di training oltre a quanto appreso come pattern generale, e di come misurare e controllare questo fenomeno."
+      it: "Tesi: “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”. Studio di come i diffusion models memorizzano specifici esempi di training oltre agli schemi generali appresi, e di come misurare e controllare questo fenomeno."
 
-  - title:
-      en: "Researcher"
-      it: "Ricercatore"
+  - id: graduate-researcher
+    title:
+      en: "Graduate Researcher"
+      it: "Graduate Researcher"
     org:
       en: "Bocconi University, with Vittorio Rossi, Giacomo Cirò, Luca Gandolfi, Paul Röttger and Dirk Hovy"
       it: "Università Bocconi, con Vittorio Rossi, Giacomo Cirò, Luca Gandolfi, Paul Röttger e Dirk Hovy"
@@ -44,10 +52,11 @@ roles:
       en: "Jun 2025 – May 2026"
       it: "Giu 2025 – mag 2026"
     description:
-      en: "Developed zero-shot length prediction for diffusion language models from latent prompt representations."
-      it: "Ho sviluppato un metodo zero-shot per prevedere la lunghezza delle risposte dei modelli di diffusione del linguaggio a partire dalle rappresentazioni latenti del prompt."
+      en: "We developed zero-shot length prediction for diffusion language models from latent prompt representations."
+      it: "Abbiamo sviluppato un metodo zero-shot per prevedere la lunghezza delle risposte dei diffusion language models a partire dalle rappresentazioni latenti del prompt."
 
-  - title:
+  - id: bsml
+    title:
       en: "Advisor and Researcher"
       it: "Advisor e ricercatore"
     org: "Bocconi Students for Machine Learning (BSML)"
@@ -59,7 +68,8 @@ roles:
       it: "Co-primo autore di uno <a href=\"https://bsmachinelearning.com/projects/2025-06-16/\">studio</a> che confronta le mappe di salienza di CNN con oltre 300 annotazioni di 14 studenti di medicina e medici. Ho seguito progetti e co-organizzato un tutorial HPC e incontri con aziende."
 
 papers:
-  - title:
+  - id: length-aware-diffusion
+    title:
       en: "Diffusion Language Models Are Natively Length-Aware"
       it: "Diffusion Language Models Are Natively Length-Aware"
     authors: "Vittorio Rossi*, Giacomo Cirò*, Davide Beltrame*, Luca Gandolfi, Paul Röttger, Dirk Hovy"
@@ -72,6 +82,12 @@ papers:
       en: "Poster"
       it: "Poster"
     link: "https://arxiv.org/abs/2603.06123"
+    preprint_label:
+      en: "arXiv preprint (v2 incoming)"
+      it: "Preprint su arXiv (v2 in arrivo)"
+    code_notice:
+      en: "Code incoming"
+      it: "Codice in arrivo"
     venue: "NeurIPS 2026 DiffuLM Workshop"
     figure:
       src: "/assets/img/research/smartcrop-method"
@@ -79,12 +95,13 @@ papers:
       ratio: "3.23"
       alt:
         en: "The SmartCrop method. One forward pass over a fully masked canvas gives the cumulative EOS probability at each position; positions past the q = 0.9 threshold are discarded, and the shorter canvas is denoised step by step."
-        it: "Il metodo SmartCrop. Un solo passaggio sul canvas completamente mascherato dà la probabilità cumulativa di EOS in ogni posizione; le posizioni oltre la soglia q = 0.9 vengono scartate e il canvas più corto viene ricostruito passo dopo passo."
+        it: "Il metodo SmartCrop. Un solo forward pass su un canvas di soli token [MASK] fornisce la probabilità cumulativa di EOS in ogni posizione; le posizioni oltre la soglia q = 0,9 vengono scartate e il canvas ridotto viene sottoposto al denoising passo dopo passo."
     summary:
       en: "Under optimal masked diffusion, the EOS probability gives the conditional length CDF. SmartCrop reads it once, crops the context window at a chosen quantile, then denoises. No additional training is required."
-      it: "Nel modello ottimale di diffusione mascherata, la probabilità del token EOS coincide con la funzione di distribuzione cumulativa della lunghezza condizionata. SmartCrop la legge una sola volta, riduce la finestra di contesto a un quantile scelto e avvia il denoising, senza addestramento aggiuntivo."
+      it: "Nel caso ottimale di masked diffusion, la probabilità del token EOS coincide con la CDF della lunghezza della risposta condizionata al prompt. SmartCrop la legge una sola volta, taglia la finestra di contesto al quantile scelto e procede con il denoising. Non richiede ulteriore training."
 
-  - title:
+  - id: biased-generalization
+    title:
       en: "Biased Generalization in Diffusion Models"
       it: "Biased Generalization in Diffusion Models"
     authors: "Jérôme Garnier-Brun*, Luca Biggio*, Davide Beltrame, Marc Mézard, Luca Saglietti"
@@ -93,13 +110,13 @@ papers:
     venue: "ICML 2026"
     status:
       en: "Spotlight, top 2.2% of submissions. *Equal contribution."
-      it: "Spotlight, primo 2.2% delle submission. *Contributo paritario."
+      it: "Spotlight, tra il miglior 2,2% dei lavori presentati. *Contributo paritario."
     badge:
       en: "Spotlight, top 2.2%"
-      it: "Spotlight, primo 2,2%"
+      it: "Spotlight, miglior 2,2%"
     abstract:
       en: "Generalization in generative modeling is defined as the ability to learn an underlying distribution from a finite dataset and produce novel samples, with evaluation largely driven by held-out performance and perceived sample quality. In practice, training is often stopped at the minimum of the test loss, taken as an operational indicator of generalization. We challenge this viewpoint by identifying a phase of biased generalization during training, in which the model continues to decrease the test loss while favoring samples with anomalously high proximity to training data. By training the same network on two disjoint datasets and comparing the mutual distances of generated samples and their similarity to training data, we introduce a quantitative measure of bias and demonstrate its presence on real images. We then study the mechanism of bias, using a controlled hierarchical data model where access to exact scores and ground-truth statistics allows us to precisely characterize its onset. We attribute this phenomenon to the sequential nature of feature learning in deep networks, where coarse structure is learned early in a data-independent manner, while finer features are resolved later in a way that increasingly depends on individual training samples. Our results show that early stopping at the test loss minimum, while optimal under standard generalization criteria, may be insufficient for privacy-critical applications."
-      it: "La generalizzazione nei modelli generativi viene spesso valutata attraverso la loss su dati di test e la qualità dei campioni prodotti. Identifichiamo una fase in cui la loss di test continua a scendere mentre i campioni generati si avvicinano in modo anomalo ai dati di addestramento. Misuriamo questo fenomeno confrontando reti addestrate su insiemi di dati disgiunti e lo osserviamo su immagini reali. Un modello gerarchico controllato permette di studiarne il meccanismo: le strutture più grossolane vengono apprese prima, mentre i dettagli successivi dipendono sempre più dai singoli esempi. Fermare l’addestramento al minimo della loss di test può quindi non essere sufficiente per applicazioni sensibili alla privacy."
+      it: "La generalizzazione nei modelli generativi è la capacità di apprendere una distribuzione a partire da un dataset finito e di generare nuovi campioni. La valutazione si basa soprattutto sulle prestazioni su dati held-out e sulla qualità percepita dei campioni generati. Nella pratica si ricorre spesso all’early stopping al minimo della test loss, usato come indicatore operativo della generalizzazione. Mettiamo in discussione questo criterio identificando una fase di biased generalization durante il training: la test loss continua a diminuire, mentre i campioni generati risultano insolitamente vicini ai dati di training. Addestrando la stessa rete su due dataset disgiunti e confrontando le distanze reciproche tra i campioni generati e la loro somiglianza con i dati di training, introduciamo una misura quantitativa del bias e ne dimostriamo la presenza su immagini reali. Studiamo poi il meccanismo del bias in un modello gerarchico controllato dei dati, in cui gli score esatti e le statistiche di ground truth permettono di caratterizzarne con precisione l’insorgenza. Attribuiamo il fenomeno alla natura sequenziale del feature learning nelle reti profonde: la struttura più grossolana viene appresa inizialmente in modo indipendente dai dati, mentre le feature più fini vengono apprese in seguito e dipendono sempre più dai singoli campioni di training. I risultati mostrano che l’early stopping al minimo della test loss, pur essendo ottimale secondo i criteri standard di generalizzazione, può essere insufficiente nelle applicazioni in cui la tutela della privacy è critica."
     link: "https://arxiv.org/abs/2603.03469"
     # The arXiv version above is the pre-conference preprint; a v2 reflecting the
     # camera-ready is not posted yet.
@@ -111,7 +128,7 @@ papers:
       ratio: "3.60"
       alt:
         en: "Figure 1 of the paper. (a) On CelebA, the distance between samples from models trained on disjoint splits reaches its minimum before the test loss does, with generated faces and their nearest training images. (b) The same effect on hierarchical data, as the network resolves finer features. (c) A training-free model across sharpness values."
-        it: "Figura 1 dell’articolo. (a) Su CelebA, la distanza tra i campioni di modelli addestrati su insiemi disgiunti raggiunge il minimo prima della loss di test, con i volti generati e le immagini di training più vicine. (b) Lo stesso effetto su dati gerarchici, mentre la rete risolve dettagli più fini. (c) Un modello senza addestramento al variare della nitidezza."
+        it: "Figura 1 dell’articolo. (a) Su CelebA, la distanza tra i campioni di modelli addestrati su insiemi disgiunti raggiunge il minimo prima della test loss, con i volti generati e le immagini di training più vicine. (b) Lo stesso effetto su dati gerarchici, mentre la rete risolve dettagli più fini. (c) Un modello senza addestramento al variare della nitidezza."
     summary:
       en: "A lower test loss can hide a growing bias toward training examples. We measure this effect on real images and study its onset in a controlled hierarchical model."
-      it: "Una loss di test più bassa può nascondere una crescente preferenza per gli esempi di addestramento. Misuriamo questo effetto su immagini reali e ne studiamo l’emergere in un modello gerarchico controllato."
+      it: "La test loss può diminuire mentre aumenta il bias verso i dati di training. Misuriamo questo effetto su immagini reali e ne studiamo l’insorgenza in un modello gerarchico controllato."

@@ -24,7 +24,9 @@ neither has to do string surgery on the URL.
 
     {% include footer.html %}
 
-    <script src="{{ '/assets/js/script.js?v=20261015d' | relative_url }}"></script>
+    {% if page.ref == "trips" or page.ref == "story" %}{% include photo-dialog.html %}{% endif %}
+
+    <script src="{{ '/assets/js/script.js?v=20261019c' | relative_url }}"></script>
     <script type="module" src="{{ "/assets/js/exploration.js?v=20261015d" | relative_url }}"></script>
 </body>
 </html>

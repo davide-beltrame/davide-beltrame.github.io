@@ -12,7 +12,9 @@
 # field, and the index re-sorts itself.
 
 items:
-  - title: "SO-101 Policy Training"
+  - id: so-101
+    trip: munich-zurich
+    title: "SO-101 Policy Training"
     # EuroTech x HKTE Hackathon, June 2026 — the event date, confirmed by him.
     date: "2026-06"
     description:
@@ -31,14 +33,14 @@ items:
     date: "2025-05"
     description:
       en: "A course project on predicting response length before text diffusion begins, reducing the context used for generation. This work developed into the length-aware diffusion paper."
-      it: "Un progetto di corso sulla previsione della lunghezza delle risposte prima della generazione per diffusione, per ridurre il contesto utilizzato. Il lavoro è proseguito nell’articolo sui modelli di diffusione consapevoli della lunghezza."
+      it: "Un progetto di corso sulla previsione della lunghezza delle risposte prima della generazione con diffusion language models, per ridurre la finestra di contesto. Da questo lavoro è nato l’articolo “Diffusion Language Models Are Natively Length-Aware”."
     status:
       en: "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology."
       it: "Valutato come miglior progetto d’esame per il corso magistrale Bocconi 20879 Language Technology."
     tech:
       - "NLP"
       - "Deep learning"
-    url: "https://github.com/giacomo-ciro/diffusion-llms"
+    url: "https://arxiv.org/abs/2603.06123"
     featured: true
     collaborative: true
 

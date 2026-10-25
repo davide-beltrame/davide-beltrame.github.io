@@ -54,7 +54,7 @@ pages:
       it: "Ricerca · Davide Beltrame"
     description:
       en: "Papers and preprints by Davide Beltrame on diffusion models, NLP, and computer vision."
-      it: "Articoli e preprint di Davide Beltrame su modelli di diffusione, NLP e computer vision."
+      it: "Articoli e preprint di Davide Beltrame su diffusion models, NLP e computer vision."
   projects:
     title:
       en: "Projects · Davide Beltrame"
@@ -70,7 +70,7 @@ pages:
     # gave two pages the same snippet in a search result.
     description:
       en: "A dated timeline of Davide Beltrame’s studies, research, and work."
-      it: "Una cronologia datata degli studi, della ricerca e del lavoro di Davide Beltrame."
+      it: "Una cronologia degli studi, della ricerca e del lavoro di Davide Beltrame."
   shelf:
     title:
       en: "Shelf · Davide Beltrame"
@@ -83,8 +83,8 @@ pages:
       en: "Trips · Davide Beltrame"
       it: "Viaggi · Davide Beltrame"
     description:
-      en: "Pescasseroli in September 2026, and London for Hadestown and Jesus Christ Superstar."
-      it: "Pescasseroli a settembre 2026, e Londra per Hadestown e Jesus Christ Superstar."
+      en: "Travel and hiking photos."
+      it: "Foto di viaggi ed escursioni."
   everything:
     title:
       en: "Everything · Davide Beltrame"
@@ -118,6 +118,9 @@ og:
 # "Publications" band, and /shelf/ is titled "Shelf" and contains a
 # "Books & Films" one.
 sections:
+  interests:
+    en: "Research interests"
+    it: "Interessi di ricerca"
   research:
     en: "Research"
     it: "Ricerca"
@@ -175,18 +178,21 @@ contact_links:
     it: "CV"
 
 labels:
+  msc_exam:
+    en: "MSc exam · Computer Science for AI, Bocconi"
+    it: "Esame magistrale · Computer Science for AI, Bocconi"
   collaborative:
     en: "Collaborative"
     it: "In collaborazione"
   code:
     en: "Code"
     it: "Codice"
+  trip_photos:
+    en: "Trip photos"
+    it: "Foto del viaggio"
   preprint:
     en: "arXiv preprint"
     it: "Preprint su arXiv"
-  coursework:
-    en: "Coursework"
-    it: "Esami"
   abstract:
     en: "Abstract"
     it: "Abstract"
@@ -211,6 +217,15 @@ labels:
     it: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
 
 controls:
+  open_photo:
+    en: "Open photo"
+    it: "Apri la foto"
+  photo_viewer:
+    en: "Photo viewer"
+    it: "Visualizzatore foto"
+  close_photo:
+    en: "Close photo"
+    it: "Chiudi la foto"
   # The language link is labelled in the language it leads to, so the `en` value
   # here is the Italian sentence shown on English pages, and the reverse.
   switch_language:
@@ -266,17 +281,18 @@ shelf:
   filter_all:
     en: "All"
     it: "Tutti"
+  read_books:
+    en: "Read"
+    it: "Letti"
+  want_to_read:
+    en: "Want to read"
+    it: "Da leggere"
   filter_books:
     en: "Books"
     it: "Libri"
   filter_films:
     en: "Films"
     it: "Film"
-  # Shown when an entry has no note yet, so a missing note is said rather than
-  # left as a blank line.
-  missing_note:
-    en: "More to come."
-    it: "Altro in arrivo."
   nyt_streak:
     en: "current streak"
     it: "serie attuale"
@@ -290,8 +306,8 @@ shelf:
     en: "Wordle Solver"
     it: "Wordle Solver"
   lede:
-    en: "Books, films, games, and languages. Notes are still taking shape."
-    it: "Libri, film, giochi e lingue. Le note sono ancora da completare."
+    en: "Books, films, games, and languages."
+    it: "Libri, film, giochi e lingue."
   nyt_empty:
     en: "No personal game statistics added yet."
     it: "Le statistiche personali di gioco non sono ancora state aggiunte."
@@ -304,7 +320,7 @@ everything:
     it: "Filtra per tipo"
   filter_all:
     en: "All"
-    it: "Tutti"
+    it: "Tutte"
   entries:
     en: "entries"
     it: "voci"
@@ -381,7 +397,7 @@ exploration:
     it: "sezioni esplorate"
   suggest:
     en: "Take me somewhere new"
-    it: "Portami dove non sono stato"
+    it: "Portami in una sezione nuova"
   reset:
     en: "Reset visits"
     it: "Azzera le visite"

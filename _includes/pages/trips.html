@@ -1,13 +1,19 @@
 {%- comment -%}
 One article per trip, newest first, from `_data/trips.yml`: the date, styled
-like Story's, then the title and description. A photo uses the site's shared
-image frame, with who took it on hover.
+like Story's, then the title and optional description. Galleries preserve each
+photo's full aspect ratio; a single preview uses the shared image frame.
 {%- endcomment -%}
 {% include page-head.html title=site.data.ui.sections.trips %}
+{% assign project_pages = site.pages | where: "lang", page.lang | where: "ref", "projects" %}{% assign projects_page = project_pages | first %}
 {% for trip in site.data.trips.items %}<article class="band trip" id="{{ trip.id }}">
   {%- if trip.date %}<p class="event-date">{% include event-date.html date=trip.date %}</p>{% endif %}
   <h2 class="section-title">{% include t.html v=trip.title %}</h2>
-  <p>{% include t.html v=trip.description raw=true %}</p>
-  {%- if trip.photo %}{% include media.html image=trip.photo sizes="(max-width: 640px) 100vw, 480px" %}{% endif %}
+  {%- if trip.description %}<p>{% include t.html v=trip.description raw=true %}</p>{% endif %}
+  {%- if trip.project %}
+  {%- assign project = site.data.projects.items | where: "id", trip.project | first %}
+  <p><a href="{{ projects_page.url | relative_url }}#{{ trip.project | escape }}">{% include t.html v=project.title %} →</a></p>
+  {%- endif %}
+  {%- if trip.photo %}{% include media.html image=trip.photo expand=true sizes="(max-width: 640px) 100vw, 480px" %}{% endif %}
+  {%- if trip.photos %}<div class="trip-gallery{% if trip.equal_height %} trip-gallery--equal-height{% endif %}">{% for image in trip.photos %}{% include media.html image=image expand=true sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 360px" %}{% endfor %}</div>{% endif %}
   {%- if trip.note %}<p class="small">{% include t.html v=trip.note %}</p>{% endif %}
 </article>{% endfor %}

@@ -1,0 +1,8 @@
+<ul class="book-list">
+  {% for book in include.items %}
+  <li>
+    <h4 class="book-title">{% if book.link %}<a href="{{ book.link }}">{% include t.html v=book.title %} <span class="arrow" aria-hidden="true">↗</span></a>{% else %}{% include t.html v=book.title %}{% endif %}</h4>
+    <p class="book-author">{% include t.html v=book.creator %}</p>
+  </li>
+  {% endfor %}
+</ul>

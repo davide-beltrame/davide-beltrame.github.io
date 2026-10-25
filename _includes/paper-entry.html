@@ -15,9 +15,10 @@ than stored a second time, so the two can never disagree.
 {%- endcomment -%}
 {%- assign paper = include.paper -%}
 {%- assign primary = paper.venue_link | default: paper.link -%}
+{%- assign preprint_label = paper.preprint_label | default: site.data.ui.labels.preprint -%}
 {%- capture _abstract %}{% if paper.abstract %}{% include t.html v=paper.abstract %}{% endif %}{% endcapture -%}
 {%- assign _abstract = _abstract | strip -%}
-<article class="entry">
+<article class="entry"{% if paper.id %} id="{{ paper.id | escape }}"{% endif %}>
     <div class="entry-gutter">{{ paper.year }}</div>
     <div>
         <h3 class="entry-title">
@@ -47,10 +48,12 @@ than stored a second time, so the two can never disagree.
         {%- if paper.link or paper.code %}
         <div class="entry-links">
             {%- if paper.link and paper.link != "" %}
-            <a href="{{ paper.link }}">{% include t.html v=site.data.ui.labels.preprint %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            <a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
             {%- endif %}
             {%- if paper.code and paper.code != "" %}
             <a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            {%- elsif paper.code_notice %}
+            <span>{% include t.html v=paper.code_notice %}</span>
             {%- endif %}
         </div>
         {%- endif %}

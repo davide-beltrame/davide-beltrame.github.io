@@ -99,7 +99,7 @@ do not exist yet, since an empty one would be a promise rather than an index.
                             {%- if kind == "paper" -%}
                             {%- if item.venue and item.venue != "" -%}{{ item.venue }}{%- elsif item.link contains "arxiv.org" -%}arXiv{%- endif -%}
                             {%- else -%}
-                            {%- if item.url contains "github.com" %}GitHub{% endif -%}
+                            {%- if item.url contains "github.com" %}GitHub{%- elsif item.url contains "arxiv.org" %}arXiv{% endif -%}
                             {%- endif -%}
                         </td>
                     </tr>

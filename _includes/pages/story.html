@@ -5,6 +5,7 @@ and never fired for events already on screen, which meant the timeline could
 render as an empty page.
 {%- endcomment -%}
 {% include page-head.html title=site.data.ui.sections.story %}
+{% assign trip_pages = site.pages | where: "lang", page.lang | where: "ref", "trips" %}{% assign trips_page = trip_pages | first %}
 
 <section class="band">
     <div class="years">
@@ -17,7 +18,19 @@ render as an empty page.
                     {%- if event.display %}
                     <div class="event-date">{% include t.html v=event.display %}</div>
                     {%- endif %}
+                    {%- if event.kind == "msc_exam" %}<div class="event-kicker">{% include t.html v=site.data.ui.labels.msc_exam %}</div>{% endif %}
+                    {%- if event.photo_trip %}
+                    {%- assign photo_trip = site.data.trips.items | where: "id", event.photo_trip | first %}
+                    <details class="event-photo">
+                        <summary class="event-title">{% include t.html v=event.title %}</summary>
+                        <div class="event-photo-body">
+                            {% include media.html image=photo_trip.photo expand=true sizes="(max-width: 640px) 100vw, 480px" %}
+                            <p><a href="{{ trips_page.url | relative_url }}#{{ event.photo_trip | escape }}">{% include t.html v=site.data.ui.labels.trip_photos %} →</a></p>
+                        </div>
+                    </details>
+                    {%- else %}
                     <div class="event-title">{% include t.html v=event.title %}</div>
+                    {%- endif %}
                     {%- if event.description %}
                     <div class="event-desc">{% include t.html v=event.description %}</div>
                     {%- endif %}
@@ -28,33 +41,4 @@ render as an empty page.
         {%- endfor %}
     </div>
 
-    {%- assign coursework_count = 0 -%}
-    {%- for group in site.data.timeline.coursework -%}
-    {%- assign coursework_count = coursework_count | plus: group.courses.size -%}
-    {%- endfor -%}
-    {%- if coursework_count > 0 %}
-    <details class="panel">
-        <summary class="panel-summary">
-            <span>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</span>
-        </summary>
-        <div class="panel-body">
-            {%- for group in site.data.timeline.coursework %}
-            <div class="coursework-year">
-                <div class="coursework-year-label">{{ group.academic_year }}</div>
-                <ul class="coursework-list">
-                    {%- for course in group.courses %}
-                    <li class="coursework-item">
-                        <span class="coursework-name">
-                            {{ course.name | escape }}
-                            {%- if course.note %} <span class="coursework-note">({% include t.html v=course.note %})</span>{%- endif -%}
-                        </span>
-                        <span class="coursework-date">{% include t.html v=course.display %}</span>
-                    </li>
-                    {%- endfor %}
-                </ul>
-            </div>
-            {%- endfor %}
-        </div>
-    </details>
-    {%- endif %}
 </section>

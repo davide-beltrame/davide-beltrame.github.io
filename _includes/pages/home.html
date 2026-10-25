@@ -12,7 +12,7 @@ and status, and links to the preprint and code. The full entries stay on
 {% assign navpages = site.pages | where: "lang", page.lang %}
 {% assign contact = site.data.profile.contact %}{% assign pt = site.data.profile.portrait %}
 <header class="masthead">
-  <div class="masthead-copy"><h1 data-vt="name">{{ site.data.profile.name }}</h1>
+  <div class="masthead-copy"><h1>{{ site.data.profile.name }}</h1>
     <div class="intro">{% for paragraph in site.data.now.paragraphs %}<p>{% include t.html v=paragraph raw=true %}</p>{% endfor %}</div>
     <div class="contact-links">
       <a href="{{ contact.cv | relative_url }}">{% include t.html v=site.data.ui.contact_links.cv %}</a>
@@ -29,7 +29,14 @@ and status, and links to the preprint and code. The full entries stay on
   <ul class="news-list">
     {%- assign shown = 0 -%}
     {%- for group in site.data.timeline.years -%}{%- for event in group.events -%}{%- if shown < 3 %}
-    <li>{% include event-date.html date=event.date %}<span>{% include t.html v=event.title %}</span></li>
+    {%- assign news_href = event.link.url -%}
+    {%- if event.link.ref -%}
+    {%- assign news_page = navpages | where: "ref", event.link.ref | first -%}
+    {%- capture news_href -%}{{ news_page.url | relative_url }}{% if event.link.anchor %}#{{ event.link.anchor }}{% endif %}{%- endcapture -%}
+    {%- elsif news_href == nil -%}
+    {%- assign news_href = story_page.url | relative_url -%}
+    {%- endif %}
+    <li>{% include event-date.html date=event.date %}<a href="{{ news_href | escape }}">{% include t.html v=event.title %}&nbsp;<span class="arrow" aria-hidden="true">{% if event.link.url %}↗{% else %}→{% endif %}</span></a></li>
     {%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor %}
   </ul>
   <a class="news-more" href="{{ story_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.full_story %} →</a>
@@ -39,10 +46,11 @@ and status, and links to the preprint and code. The full entries stay on
   <div class="research-previews">
     {% for paper in site.data.research.papers %}<article>
       {%- assign primary = paper.venue_link | default: paper.link -%}
+      {%- assign preprint_label = paper.preprint_label | default: site.data.ui.labels.preprint -%}
       {%- if paper.figure %}<a class="research-figure" href="{{ primary }}" tabindex="-1" aria-hidden="true">{% include photo.html photo=paper.figure sizes="(max-width: 640px) 100vw, 540px" %}</a>{% endif %}
       <h3><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h3>
       <p class="preview-venue">{{ paper.venue | escape }}{% if paper.badge %} · {% include t.html v=paper.badge %}{% endif %}</p>
-      <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=site.data.ui.labels.preprint %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% endif %}</div>
+      <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% elsif paper.code_notice %}<span>{% include t.html v=paper.code_notice %}</span>{% endif %}</div>
     </article>{% endfor %}
   </div>
 </section>

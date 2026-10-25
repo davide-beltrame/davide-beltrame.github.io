@@ -1,12 +1,13 @@
 # Trips, newest first. Each entry is a title, a `date` (MM/YYYY, shown as
-# "Sep 2026"), one line about the trip, and an optional photo. No venues or
+# "Sep 2026"), an optional description, and a photo or photo gallery. No venues or
 # companions beyond what he has supplied. The description may carry links.
 #
 # Photos are re-encoded as WebP with no metadata before they are committed: a
 # phone photo carries GPS coordinates, the device and a timestamp. Anyone else
 # in a photo is shown only with their OK. `photo.src` is the path without its
 # `-<width>.webp` suffix; `widths` are the encoded sizes, `ratio` width/height.
-# `credit` shows over the photo on hover.
+# `photos` is an ordered gallery;
+# `project`, where present, links to a project by its stable ID.
 items:
   - id: pescasseroli
     date: "09/2026"
@@ -23,9 +24,6 @@ items:
       alt:
         en: "Pescasseroli and the mountains around it, seen from Castel Mancino."
         it: "Pescasseroli e le montagne intorno, viste da Castel Mancino."
-      credit:
-        en: "Taken by me at Castel Mancino, Pescasseroli."
-        it: "Scattata da me a Castel Mancino, Pescasseroli."
   - id: london
     date: "07/2026"
     title:
@@ -41,6 +39,113 @@ items:
       alt:
         en: "The Hadestown marquee at night."
         it: "L’insegna di Hadestown di notte."
-      credit:
-        en: "Taken by me in London."
-        it: "Scattata da me a Londra."
+  - id: munich-zurich
+    date: "06/2026"
+    title:
+      en: Munich and Zurich
+      it: Monaco e Zurigo
+    description:
+      en: EuroTech x HKTE Hackathon.
+      it: EuroTech x HKTE Hackathon.
+    project: so-101
+    equal_height: true
+    photos:
+      - src: /assets/img/trips/munich-marienplatz
+        widths: [480]
+        ratio: "1.333333"
+        alt:
+          en: Marienplatz in Munich, with the New Town Hall beneath a cloudy sky.
+          it: Marienplatz a Monaco, con il Neues Rathaus sotto un cielo nuvoloso.
+      - src: /assets/img/trips/hackathon-so101
+        widths: [640, 768]
+        ratio: "0.75"
+        alt:
+          en: The SO-101 gripper above coloured blocks during the robotics hackathon.
+          it: La pinza del robot SO-101 sopra alcuni cubi colorati durante l’hackathon di robotica.
+      - src: /assets/img/trips/zurich-view
+        widths: [640, 1024]
+        ratio: "1.333333"
+        alt:
+          en: Zurich rooftops and church spires, with hills in the distance.
+          it: I tetti e i campanili di Zurigo, con le colline sullo sfondo.
+  - id: monte-san-primo
+    date: "04/2026"
+    title:
+      en: Monte San Primo
+      it: Monte San Primo
+    photos:
+      - src: /assets/img/trips/monte-san-primo
+        widths: [640, 768]
+        ratio: "0.75"
+        alt:
+          en: A path through green slopes on Monte San Primo, with the lake and mountains beyond.
+          it: Un sentiero tra i prati del Monte San Primo, con il lago e le montagne sullo sfondo.
+  - id: paris
+    date: "04/2026"
+    title:
+      en: Paris
+      it: Parigi
+    description:
+      en: Parc Monceau.
+      it: Parc Monceau.
+    photos:
+      - src: /assets/img/trips/paris-parc-monceau
+        widths: [640, 1024]
+        ratio: "1.333333"
+        alt:
+          en: The pond, a weeping willow and the colonnade in Parc Monceau, Paris.
+          it: Il laghetto, un salice piangente e il colonnato del Parc Monceau, a Parigi.
+  - id: resegone
+    date: "09/2025"
+    title:
+      en: Resegone
+      it: Resegone
+    photos:
+      - src: /assets/img/trips/resegone-hikers
+        widths: [640, 1024]
+        ratio: "1.333333"
+        alt:
+          en: Hikers following a rocky path through mist on Resegone.
+          it: Escursionisti su un sentiero roccioso nella nebbia sul Resegone.
+      - src: /assets/img/trips/resegone-ridge
+        widths: [640, 1024]
+        ratio: "1.333333"
+        alt:
+          en: Rocky ridges and grassy slopes on Resegone, partly hidden by low clouds.
+          it: Creste rocciose e pendii erbosi del Resegone, in parte nascosti dalle nuvole basse.
+  - id: prague
+    date: "12/2024"
+    title:
+      en: Prague
+      it: Praga
+    photos:
+      - src: /assets/img/trips/prague-stained-glass
+        widths: [640, 768]
+        ratio: "0.75"
+        alt:
+          en: A colourful stained-glass window in Prague.
+          it: Una vetrata colorata a Praga.
+  - id: bucharest
+    date: "11/2024"
+    title:
+      en: Bucharest
+      it: Bucarest
+    photos:
+      - src: /assets/img/trips/bucharest-park
+        widths: [640, 768]
+        ratio: "0.75"
+        alt:
+          en: Ducks on a park lake beneath an arched bridge and autumn trees in Bucharest.
+          it: Anatre nel laghetto di un parco a Bucarest, sotto un ponte ad arco e alberi autunnali.
+  - id: imperia
+    date: "07/2019"
+    title:
+      en: "Imperia"
+      it: "Imperia"
+    photo:
+      src: "/assets/img/trips/imperia"
+      widths: [640, 1024]
+      ratio: "1.333333"
+      alt:
+        en: "Imperia’s harbour and coastline, framed by buildings and greenery."
+        it: "Il porto e la costa di Imperia, tra edifici e vegetazione."

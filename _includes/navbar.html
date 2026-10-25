@@ -6,11 +6,10 @@ page's own title is its heading, so nothing is said twice.
 The section links follow (nav-links.html) in a fixed order; the current one is
 underlined.
 
-The home heading and the name in the bar share a view-transition name, and so
-does the underline under the current link. Where the browser supports
-cross-document view transitions, the heading shrinks into the name at the top
-left, and the underline slides from link to link. Elsewhere, and with reduced
-motion, the page just changes.
+The underline under the current link has a view-transition name. Where the
+browser supports cross-document view transitions, it slides from link to link.
+The name changes with the page without moving between the bar and the heading.
+Elsewhere, and with reduced motion, the page just changes.
 
 On narrow screens the links move into a native <details>, which opens and
 closes without JavaScript; script.js only adds Escape to close it. It expands in
@@ -20,7 +19,7 @@ place rather than covering the page, so nothing behind it needs to be locked.
 {%- assign homepage = navpages | where: "ref", "home" | first -%}
 <header class="bar wrap">
   <div class="bar-start">
-    {%- if page.ref != "home" %}<a class="mark" href="{{ homepage.url | relative_url }}" data-vt="name">{{ site.data.profile.name }}</a>{% endif -%}
+    {%- if page.ref != "home" %}<a class="mark" href="{{ homepage.url | relative_url }}">{{ site.data.profile.name }}</a>{% endif -%}
   </div>
   <nav class="site-nav" aria-label="{% include t.html v=site.data.ui.controls.primary_nav %}">
     {% include nav-links.html %}

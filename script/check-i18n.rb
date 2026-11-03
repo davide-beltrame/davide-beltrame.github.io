@@ -8,7 +8,14 @@
 #
 #   ruby script/check-i18n.rb
 
+require 'date'
 require 'yaml'
+
+# Read the data as Jekyll does, which accepts YAML aliases and unquoted dates.
+# Psych's default refuses both, and would fail on valid data the site builds from.
+def load_data(file)
+  YAML.safe_load_file(file, permitted_classes: [Date, Time], aliases: true)
+end
 
 missing = []
 empty   = []
@@ -42,7 +49,7 @@ end
 
 files = Dir['_data/**/*.yml'].sort
 abort 'No _data/**/*.yml files found. Run this from the repository root.' if files.empty?
-files.each { |file| walk.call(YAML.load_file(file), File.basename(file, '.yml')) }
+files.each { |file| walk.call(load_data(file), File.basename(file, '.yml')) }
 
 puts "#{pairs} bilingual pairs in #{files.size} files"
 

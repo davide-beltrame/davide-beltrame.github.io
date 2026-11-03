@@ -6,7 +6,8 @@ retains its credited public-domain illustration.
 Duolingo and NYT Games are numbers rather than title/year/note entries. Every
 number in both is the reading recorded in `_data/shelf/` on the date shown;
 nothing is advanced from it at render time. Duolingo lists every course by XP
-and marks the one he is taking now.
+and marks the one he is taking now. NYT Games shows the Wordle and Connections
+summaries that script/nyt-games.rb writes to `nyt_results.yml`.
 {%- endcomment -%}
 {% assign duo = site.data.shelf.duolingo %}{% assign games = site.data.shelf.games %}{% assign duo_labels = site.data.ui.duolingo %}{% assign shelf_labels = site.data.ui.shelf %}
 {%- assign current_course = duo.languages | where: "current", true | first -%}
@@ -32,7 +33,7 @@ and marks the one he is taking now.
 <section class="band" id="duolingo">
   <h2 class="section-title sticky-title"><span>{% include t.html v=site.data.ui.sections.duolingo %}</span></h2>
   <p class="stat-line"><span class="stat-number">{% include number.html n=duo.current_streak %}</span> {% include t.html v=duo_labels.streak_days %}</p>
-  <p class="duo-summary">{% if current_course %}{% include t.html v=duo_labels.current_course %} <strong>{% include t.html v=current_course.name %}</strong>. {% endif %}{% include number.html n=duo.total_xp %} {% include t.html v=duo_labels.xp_across %} {{ duo.languages | size }} {% include t.html v=duo_labels.courses %}.</p>
+  <p class="duo-summary">{% if current_course %}{% include t.html v=duo_labels.current_course %} <strong>{% capture course_name %}{% include t.html v=current_course.name %}{% endcapture %}{% if page.lang == "it" %}{{ course_name | downcase }}{% else %}{{ course_name }}{% endif %}</strong>. {% endif %}{% include number.html n=duo.total_xp %} {% include t.html v=duo_labels.xp_across %} {{ duo.languages | size }} {% include t.html v=duo_labels.courses %}.</p>
   <h3 class="duo-list-title">{% include t.html v=duo_labels.by_xp %}</h3>
   <ol class="duo-courses">
     {%- for lang in duo.languages %}
@@ -43,10 +44,48 @@ and marks the one he is taking now.
 </section>
 <section class="band" id="nyt-games">
   <h2 class="section-title sticky-title"><span>{% include t.html v=site.data.ui.sections.nyt_games %}</span></h2>
-  {%- if games.streak or games.score %}
-  {%- if games.streak %}<p class="stat-line"><span class="stat-number">{% include number.html n=games.streak %}</span> {% include t.html v=shelf_labels.nyt_streak %}</p>{% endif %}
-  {%- if games.score %}<p class="stat-line"><span class="stat-number">{% include number.html n=games.score %}</span> {% include t.html v=shelf_labels.nyt_score %}</p>{% endif %}
-  {%- if games.data_last_updated_display and games.data_last_updated_display[page.lang] %}<p class="footnote">{% include t.html v=duo_labels.data_notice %} {% include t.html v=games.data_last_updated_display %}.</p>{% endif %}
+  {%- comment -%}
+  Only the stored summaries render. The Wordle bars are inline SVG, whose width
+  attribute the CSP allows where an inline style would be blocked; the counts
+  beside them are the data, and the bars are hidden from screen readers.
+  {%- endcomment -%}
+  {%- assign nyt = site.data.shelf.nyt_results -%}
+  {%- assign wordle = nyt.wordle.summary -%}
+  {%- assign connections = nyt.connections.summary -%}
+  {%- capture decimal %}{% include t.html v=site.data.ui.labels.decimal_separator %}{% endcapture -%}
+  {%- if wordle or connections %}
+  <div class="nyt-games">
+    {%- if wordle %}
+    {%- if wordle.current_streak == 1 %}{% assign streak_label = shelf_labels.nyt_streak.one %}{% else %}{% assign streak_label = shelf_labels.nyt_streak.other %}{% endif %}
+    {%- if wordle.played == 1 %}{% assign played_label = shelf_labels.nyt_played.one %}{% else %}{% assign played_label = shelf_labels.nyt_played.other %}{% endif %}
+    <section class="nyt-game" id="wordle">
+      <h3 class="book-list-heading"{% include lang-attr.html v="Wordle" %}>Wordle</h3>
+      <p class="stat-line"><span class="stat-number">{% include number.html n=wordle.current_streak %}</span> {% include t.html v=streak_label %}</p>
+      <p class="nyt-summary">{% include number.html n=wordle.played %} {% include t.html v=played_label %}, {{ wordle.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=wordle.max_streak %}{% if wordle.mean_guesses %}, {{ wordle.mean_guesses | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_guesses %}{% endif %}.</p>
+      {%- assign most = wordle.distribution | sort | last %}
+      {%- if most > 0 %}
+      <table class="nyt-distribution">
+        <caption>{% include t.html v=shelf_labels.nyt_distribution %}</caption>
+        {%- for count in wordle.distribution %}
+        {%- assign width = count | times: 100 | divided_by: most %}{% if width < 1 %}{% assign width = 1 %}{% endif %}
+        <tr><th scope="row">{{ forloop.index }}</th><td class="nyt-count">{% include number.html n=count %}</td><td class="nyt-bar">{% if count > 0 %}<svg aria-hidden="true" focusable="false"><rect width="{{ width }}%" height="100%" rx="3"/><rect width="{{ width | divided_by: 2 }}%" height="100%"/></svg>{% endif %}</td></tr>
+        {%- endfor %}
+      </table>
+      {%- endif %}
+      <p class="footnote">{% include t.html v=shelf_labels.nyt_as_of %} {% include iso-date.html date=wordle.as_of %} (Wordle {% include number.html n=wordle.last_puzzle %}).</p>
+    </section>
+    {%- endif %}
+    {%- if connections %}
+    {%- if connections.current_streak == 1 %}{% assign streak_label = shelf_labels.nyt_streak.one %}{% else %}{% assign streak_label = shelf_labels.nyt_streak.other %}{% endif %}
+    {%- if connections.played == 1 %}{% assign played_label = shelf_labels.nyt_played.one %}{% else %}{% assign played_label = shelf_labels.nyt_played.other %}{% endif %}
+    <section class="nyt-game" id="connections">
+      <h3 class="book-list-heading"{% include lang-attr.html v="Connections" %}>Connections</h3>
+      <p class="stat-line"><span class="stat-number">{% include number.html n=connections.current_streak %}</span> {% include t.html v=streak_label %}</p>
+      <p class="nyt-summary">{% include number.html n=connections.played %} {% include t.html v=played_label %}, {{ connections.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=connections.max_streak %}{% if connections.perfect %}, {% include number.html n=connections.perfect %} {% include t.html v=shelf_labels.nyt_perfect %}{% endif %}{% if connections.mean_mistakes %}, {{ connections.mean_mistakes | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_mistakes %}{% endif %}.</p>
+      <p class="footnote">{% include t.html v=shelf_labels.nyt_as_of %} {% include iso-date.html date=connections.as_of %} (Connections #{% include number.html n=connections.last_puzzle %}).</p>
+    </section>
+    {%- endif %}
+  </div>
   {%- else %}
   <p class="muted">{% include t.html v=shelf_labels.nyt_empty %}</p>
   {%- endif %}

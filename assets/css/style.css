@@ -1328,26 +1328,41 @@ a.research-figure {
     flex-wrap: wrap;
     min-height: 85px;
     padding-block: 20px;
-    gap: 14px;
+    gap: 14px 12px;
   }
 
-  /* The five links drop to their own row under the name and the controls, and
-     wrap onto a second row where they do not fit. */
-  .site-nav {
-    order: 3;
+  /* His name, where shown, takes a row of its own. The five links and the
+     controls share the next row, and the links wrap where they do not fit. */
+  .bar-start:empty {
+    display: none;
+  }
+
+  .bar-start:not(:empty) {
     width: 100%;
+  }
+
+  .site-nav {
+    flex: 1 1 0;
+    min-width: 0;
     margin-left: 0;
     flex-wrap: wrap;
-    gap: 10px 22px;
-    padding-top: 6px;
+    gap: 10px 12px;
   }
 
   .site-nav a {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .tools {
     margin-left: auto;
+    padding-left: 10px;
+    gap: 8px;
+  }
+
+  .theme-toggle {
+    font-size: 22px;
+    width: 32px;
+    height: 32px;
   }
 
   .main {
@@ -1533,11 +1548,11 @@ a.research-figure {
   }
 }
 
-/* The narrowest phones: a tighter gap keeps the English links on one row at
-   320 px; the longer Italian labels take a second row. */
+/* The narrowest phones: a tighter gap between the links. Below about 390 px
+   the last links wrap onto a second line beside the controls. */
 @media(max-width:400px) {
   .site-nav {
-    column-gap: 14px;
+    column-gap: 10px;
   }
 }
 

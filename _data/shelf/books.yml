@@ -1,5 +1,7 @@
 # Books read and books to read. No ratings or inferred reading dates.
 # Titles use their published English names where known, otherwise the original.
+# A title that stays the same in both languages is read as English unless
+# `title_lang` names its language.
 # The first read entry supplies the home page’s Reading preview.
 items:
 - title:
@@ -12,6 +14,7 @@ items:
     src: /assets/img/shelf/monte-cristo-johannot
     widths:
     - 640
+    - 800
     - 1280
     ratio: '1.8'
     alt:
@@ -26,7 +29,7 @@ items:
     it: Omero, Iliade
   creator: Alessandro Baricco
 - title:
-    en: The Path to the Spiders’ Nests
+    en: The Path to the Nest of Spiders
     it: Il sentiero dei nidi di ragno
   creator: Italo Calvino
 - title:
@@ -99,7 +102,7 @@ items:
   creator: Robert Harris
 - title:
     en: Lustrum
-    it: Conspirata (Lustrum)
+    it: Conspirata
   creator: Robert Harris
 - title:
     en: Dictator
@@ -116,6 +119,7 @@ items:
 - title:
     en: Luca Canali racconta l’Eneide
     it: Luca Canali racconta l’Eneide
+  title_lang: it
   creator: Luca Canali
 - title:
     en: If This Is a Man
@@ -128,17 +132,19 @@ items:
 - title:
     en: Come mi batte forte il tuo cuore
     it: Come mi batte forte il tuo cuore
+  title_lang: it
   creator: Benedetta Tobagi
 - title:
     en: Due storie d’amore
     it: Due storie d’amore
+  title_lang: it
   creator: Laura Mancinelli
 - title:
     en: Pride and Prejudice
     it: Orgoglio e pregiudizio
   creator: Jane Austen
 - title:
-    en: A Private Matter
+    en: A Private Affair
     it: Una questione privata
   creator: Beppe Fenoglio
 - title:
@@ -168,6 +174,7 @@ items:
 - title:
     en: Novecento
     it: Novecento
+  title_lang: it
   creator: Alessandro Baricco
 - title:
     en: The Castle of Crossed Destinies
@@ -200,6 +207,7 @@ items:
 - title:
     en: Trafalgar
     it: Trafalgar
+  title_lang: es
   creator: Benito Pérez Galdós
 - title:
     en: Robinson Crusoe
@@ -208,7 +216,9 @@ items:
 - title:
     en: White Nights
     it: Le notti bianche
-  creator: Fëdor Dostoevskij
+  creator:
+    en: Fyodor Dostoevsky
+    it: Fëdor Dostoevskij
 - title:
     en: The House by the Medlar Tree
     it: I Malavoglia

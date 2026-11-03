@@ -9,19 +9,22 @@
 # attribute, so the link behaves normally. To change it:
 #
 #   python3 -c "print(''.join('&#%d;' % ord(c) for c in 'you@example.com'))"
-#
-# It is also left out of /api/content.json; publishing it there as JSON would
-# undo the point of encoding it here.
 
 name: Davide Beltrame
 
+# The line under his name on the Open Graph cards (assets/img/og-card*.jpg). No
+# page renders it.
 title:
-  en: "Student & researcher in deep learning and AI"
-  it: "Studente e ricercatore in IA e deep learning"
+  en: "MSc in Artificial Intelligence (Computer Science), Bocconi · Research on diffusion models"
+  it: "Laurea magistrale in Artificial Intelligence (Informatica), Bocconi · Ricerca sui diffusion models"
 
-greeting:
-  en: "Davide Beltrame"
-  it: "Davide Beltrame"
+# The universities he graduated from, newest first, for the home page's
+# structured data.
+alumni_of:
+  - name: "Bocconi University"
+    url: "https://www.unibocconi.it"
+  - name: "LUISS Guido Carli University"
+    url: "https://www.luiss.it"
 
 # The portrait ships at three widths in webp and jpg. `src` is the fallback and
 # keeps the URL the photo has always had. `displayed` is the CSS box it is drawn
@@ -48,7 +51,7 @@ portrait:
     it: "Davide Beltrame"
 
 contact:
-  email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#46;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#64;&#115;&#116;&#117;&#100;&#98;&#111;&#99;&#99;&#111;&#110;&#105;&#46;&#105;&#116;"
+  email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#50;&#48;&#48;&#50;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
   github: "https://github.com/davide-beltrame"
   linkedin: "https://www.linkedin.com/in/davide-beltrame"
   # Listed in the structured data as one of his profiles. Not a contact link on

@@ -5,7 +5,7 @@ sit under the title where the entry has them. Notes render only when supplied.
 {%- endcomment -%}
 <article class="shelf-item">
   {% if include.item.illustration %}{% include media.html image=include.item.illustration sizes="(max-width: 640px) 100vw, 480px" %}{% endif %}
-  <h3 class="shelf-item-title">{% if include.item.link %}<a href="{{ include.item.link }}">{% include t.html v=include.item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% else %}{% include t.html v=include.item.title %}{% endif %}</h3>
+  <h3 class="shelf-item-title"{% include lang-attr.html v=include.item.title lang=include.item.title_lang %}>{% if include.item.link %}<a href="{{ include.item.link }}">{% include t.html v=include.item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% else %}{% include t.html v=include.item.title %}{% endif %}</h3>
   {% if include.item.creator %}<p class="shelf-item-meta">{{ include.item.creator }}{% if include.item.year %}, {{ include.item.year }}{% endif %}</p>{% elsif include.item.year %}<p class="shelf-item-meta">{{ include.item.year }}</p>{% endif %}
   {% if include.item.note %}<p class="shelf-item-note">{% include t.html v=include.item.note %}</p>{% endif %}
 </article>

@@ -11,9 +11,9 @@ browser supports cross-document view transitions, it slides from link to link.
 The name changes with the page without moving between the bar and the heading.
 Elsewhere, and with reduced motion, the page just changes.
 
-On narrow screens the links move into a native <details>, which opens and
-closes without JavaScript; script.js only adds Escape to close it. It expands in
-place rather than covering the page, so nothing behind it needs to be locked.
+On narrow screens the five links stay visible: they drop to their own row
+under the name and the controls, and wrap onto a second row where they do not
+fit. There is no menu to open.
 {%- endcomment -%}
 {%- assign navpages = site.pages | where: "lang", page.lang -%}
 {%- assign homepage = navpages | where: "ref", "home" | first -%}
@@ -25,8 +25,4 @@ place rather than covering the page, so nothing behind it needs to be locked.
     {% include nav-links.html %}
   </nav>
   <div class="tools">{% include controls.html %}</div>
-  <details class="mobile-navigation">
-    <summary>{% include t.html v=site.data.ui.controls.open_menu %}</summary>
-    <nav aria-label="{% include t.html v=site.data.ui.controls.primary_nav %}">{% include nav-links.html %}</nav>
-  </details>
 </header>

@@ -49,51 +49,29 @@ export function initExploration(document, window) {
       event.preventDefault(); first.focus();
     }
   });
-  let storage, visits = [];
-  const progress = [...container.querySelectorAll('.exploration-progress')];
-  const ring = container.querySelector('.exploration-ring');
-  const label = container.querySelector('.map-button-label');
-  const complete = document.getElementById('exploration-complete');
-  const resetNotice = document.getElementById('exploration-reset-notice');
-  const next = document.getElementById('exploration-new');
-  function unavailable() {
-    storage = null;
-    progress.forEach(element => element.hidden = true);
-    container.querySelectorAll('.visit-mark').forEach(element => element.hidden = true);
-    ring.setAttribute('hidden', '');
-    label.hidden = false;
-    complete.hidden = true;
-    resetNotice.hidden = true;
-  }
-  function render() {
-    progress.forEach(element => element.hidden = false);
-    ring.removeAttribute('hidden');
-    label.hidden = true;
-    container.querySelectorAll('.visited-count').forEach(element => element.textContent = visits.length);
-    container.querySelector('.ring-value').setAttribute('stroke-dasharray', `${visits.length} ${SECTIONS.length}`);
-    document.getElementById('exploration-meter').value = visits.length;
-    container.querySelectorAll('[data-visit]').forEach(link => link.querySelector('.visit-mark').hidden = !visits.includes(link.dataset.visit));
-    complete.hidden = unvisited(visits).length !== 0;
-    next.disabled = unvisited(visits).length === 0;
-  }
+  // Visits are remembered only to choose where "somewhere new" goes; nothing on
+  // the page shows them. Without storage the choice is any other section.
+  const current = container.dataset.section;
+  const here = SECTIONS.includes(current) ? [current] : [];
+  let storage = null, visits = here;
   try {
     storage = window.localStorage;
-    visits = readVisits(storage);
-    const current = container.dataset.section;
-    visits = saveVisits(storage, SECTIONS.includes(current) ? [...visits, current] : visits);
-    render();
-  } catch { unavailable(); }
-  document.getElementById('exploration-reset').addEventListener('click', () => {
-    try { visits = saveVisits(storage, []); render(); resetNotice.hidden = false; } catch { unavailable(); }
-  });
-  next.addEventListener('click', () => {
+    visits = saveVisits(storage, [...readVisits(storage), ...here]);
+  } catch { storage = null; }
+  container.querySelector('.map-actions').hidden = false;
+  document.getElementById('exploration-new').addEventListener('click', () => {
+    if (!suggestion(visits)) {
+      // Every section has been visited: a new round starts from this page.
+      visits = here;
+      try { if (storage) saveVisits(storage, visits); } catch { storage = null; }
+    }
     const id = suggestion(visits);
     const link = [...container.querySelectorAll('[data-visit]')].find(link => link.dataset.visit === id);
     if (link) window.location.assign(link.href);
   });
   window.addEventListener('storage', event => {
     if (storage && (event.key === STORAGE_KEY || event.key === null)) {
-      try { visits = readVisits(storage); render(); } catch { unavailable(); }
+      try { visits = normalizeVisits([...readVisits(storage), ...here]); } catch { storage = null; }
     }
   });
 }

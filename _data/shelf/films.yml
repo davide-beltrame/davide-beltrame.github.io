@@ -10,7 +10,7 @@ items:
     year: "2013"
     illustration:
       src: "/assets/img/shelf/hokusai-ejiri"
-      widths: [640, 1280]
+      widths: [640, 800, 1280]
       ratio: "1.433"
       alt:
         en: "Woodblock print of travellers on a path through the fields as a gust of wind scatters their papers and a hat, with Mount Fuji in the distance."

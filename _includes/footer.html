@@ -7,5 +7,5 @@
     </nav>
     {% include exploration.html %}
   </div>
-  <div class="footer-meta"><span>© {{ "now" | date: "%Y" }} {{ site.data.profile.name }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span></div>
+  <div class="footer-meta"><p>© {{ "now" | date: "%Y" }} {{ site.data.profile.name }}. {% include t.html v=site.data.ui.footer.licence raw=true %}</p></div>
 </footer>

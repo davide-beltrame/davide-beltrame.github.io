@@ -207,7 +207,7 @@ b, strong {
   white-space: nowrap;
 }
 
-.site-nav a[aria-current=page], .mobile-navigation a[aria-current=page] {
+.site-nav a[aria-current=page] {
   color: var(--text);
 }
 
@@ -220,7 +220,7 @@ b, strong {
   }
 }
 
-.site-nav a, .mobile-navigation a {
+.site-nav a {
   position: relative;
 }
 
@@ -277,10 +277,6 @@ b, strong {
   border: 0;
 }
 
-.mobile-navigation {
-  display: none;
-}
-
 /* Home */
 .masthead {
   display: grid;
@@ -316,6 +312,12 @@ b, strong {
 
 .contact-links a, .entry-links a {
   text-decoration: none;
+}
+
+/* "Updated November 2026" under the contact links: when the intro was written. */
+.masthead-copy .intro-updated {
+  margin: 12px 0 0;
+  font-size: 14px;
 }
 
 /* Recent news: the three newest Story events. */
@@ -406,8 +408,8 @@ b, strong {
   padding: 24px;
 }
 
-/* A paper's own figure, on white in both themes because the figures are drawn
-   for white paper. */
+/* A figure from a paper or its poster, on white in both themes because the
+   figures are drawn for white paper. */
 .research-figure {
   aspect-ratio: 3;
   margin: 0 0 24px;
@@ -673,6 +675,33 @@ a.research-figure {
   cursor: pointer;
 }
 
+/* A year's MSc exams, folded into one disclosure after its other events. */
+.exam-group > summary {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.exam-list {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.exam-list li {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+}
+
+.exam-note {
+  display: block;
+  font-size: 14px;
+}
+
 .event-photo-body {
   padding-top: 16px;
 }
@@ -720,8 +749,13 @@ a.research-figure {
   padding: 14px 0;
 }
 
+/* A paragraph in a list item, set like the h4 it replaced. */
 .book-title {
   font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  margin: 0 0 1rem;
 }
 
 .book-author {
@@ -805,6 +839,34 @@ a.research-figure {
   margin-bottom: 18px;
 }
 
+/* Trips two to a row on wide screens. Which trips take a whole row is decided
+   at build time in _includes/pages/trips.html, so no row is left half empty
+   and the order stays newest first, read left to right. */
+@media (min-width: 861px) {
+  .trips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+  }
+
+  .trip--wide {
+    grid-column: 1 / -1;
+  }
+
+  /* A single photo given a whole row: its text, then the photo beside it. */
+  .trip--side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+    align-items: start;
+  }
+
+  .trip--side > .media, .trip--side > .trip-gallery {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
 /* Trip galleries preserve the full photographs, including vertical views. */
 .trip-gallery {
   display: grid;
@@ -826,10 +888,15 @@ a.research-figure {
   aspect-ratio: auto;
 }
 
-/* Landscape, portrait, landscape: proportional columns align the full frames. */
+/* Landscape, portrait, landscape (or portrait, landscape): proportional columns
+   align the full frames. */
 @media (min-width: 641px) {
   .trip-gallery--equal-height {
     grid-template-columns: 16fr 9fr 16fr;
+  }
+
+  .trip-gallery--portrait-landscape {
+    grid-template-columns: 9fr 16fr;
   }
 }
 
@@ -929,6 +996,66 @@ a.research-figure {
   font-size: 13px;
   color: var(--muted);
   margin-left: 4px;
+}
+
+/* NYT Games: Wordle and Connections side by side from 861 px, each with its
+   streak, one summary line and, for Wordle, the guess distribution. The bars
+   are inline SVG sized by a width attribute, because the CSP blocks inline
+   styles; the count beside each bar carries the number. */
+.nyt-summary {
+  margin-top: 6px;
+}
+
+.nyt-distribution {
+  width: 100%;
+  max-width: 480px;
+  margin: 24px 0 18px;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.nyt-distribution caption {
+  padding: 0 0 8px;
+  text-align: left;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+.nyt-distribution th,
+.nyt-distribution td {
+  padding: 3px 0;
+}
+
+.nyt-distribution th {
+  width: 1.4em;
+  font-weight: 400;
+  text-align: left;
+}
+
+.nyt-distribution .nyt-count {
+  width: 3.5em;
+  padding-right: 12px;
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.nyt-distribution svg {
+  display: block;
+  width: 100%;
+  height: 14px;
+}
+
+.nyt-distribution rect {
+  fill: var(--accent);
+}
+
+@media (min-width: 861px) {
+  .nyt-games {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+  }
 }
 
 .notice {
@@ -1069,6 +1196,10 @@ a.research-figure {
   padding-top: 35px;
 }
 
+.footer-meta p {
+  margin: 0;
+}
+
 .footer-meta a {
   color: inherit;
 }
@@ -1083,25 +1214,6 @@ a.research-figure {
   align-items: center;
   gap: 12px;
   padding: 0;
-}
-
-.exploration-ring {
-  width: 32px;
-  height: 32px;
-  transform: rotate(-90deg);
-}
-
-.exploration-ring circle {
-  fill: none;
-  stroke-width: 1.8;
-}
-
-.ring-track {
-  stroke: var(--line);
-}
-
-.ring-value {
-  stroke: var(--accent);
 }
 
 .exploration-dialog {
@@ -1140,22 +1252,9 @@ a.research-figure {
 
 .map-links a {
   display: flex;
-  justify-content: space-between;
   padding: 12px 0;
   border-top: 1px solid var(--line);
   text-decoration: none;
-}
-
-.visit-mark {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-progress {
-  accent-color: var(--accent);
-  width: 100%;
-  height: 6px;
-  margin-bottom: 16px;
 }
 
 .map-actions {
@@ -1170,6 +1269,11 @@ progress {
   color: var(--accent);
 }
 
+.map-actions p {
+  flex-basis: 100%;
+  margin: 0;
+}
+
 .map-index {
   margin-top: 24px;
   font-size: 15px;
@@ -1181,11 +1285,6 @@ progress {
 
 #exploration-fallback[open] {
   width: 300px;
-}
-
-#exploration-complete, #exploration-reset-notice {
-  font-size: 15px;
-  color: var(--muted);
 }
 
 /* Narrower layouts */
@@ -1232,34 +1331,23 @@ progress {
     gap: 14px;
   }
 
+  /* The five links drop to their own row under the name and the controls, and
+     wrap onto a second row where they do not fit. */
   .site-nav {
-    display: none;
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    padding-top: 6px;
+  }
+
+  .site-nav a {
+    font-size: 15px;
   }
 
   .tools {
     margin-left: auto;
-  }
-
-  .mobile-navigation {
-    display: block;
-    width: 100%;
-    font-size: 15px;
-  }
-
-  .mobile-navigation summary {
-    color: var(--muted);
-    padding: 4px 0;
-  }
-
-  .mobile-navigation nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 24px;
-    padding: 20px 0 5px;
-  }
-
-  .mobile-navigation a {
-    text-decoration: none;
   }
 
   .main {
@@ -1351,12 +1439,32 @@ progress {
     font-size: 15px;
   }
 
+  /* Exam dates sit above the course, as news dates do. */
+  .exam-list {
+    gap: 10px;
+  }
+
+  .exam-list li {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .exam-date {
+    font-size: 14px;
+  }
+
   .research-previews, .personal-previews, .projects, .shelf-grid, .book-list {
     grid-template-columns: 1fr;
   }
 
   .research-previews {
     gap: 44px;
+  }
+
+  /* In one column no two figures share a row, so each keeps its own shape
+     instead of being fitted into the 3:1 box. */
+  .research-figure {
+    aspect-ratio: auto;
   }
 
   .personal-previews {
@@ -1422,6 +1530,14 @@ progress {
 
   .page-head {
     padding-bottom: 25px;
+  }
+}
+
+/* The narrowest phones: a tighter gap keeps the English links on one row at
+   320 px; the longer Italian labels take a second row. */
+@media(max-width:400px) {
+  .site-nav {
+    column-gap: 14px;
   }
 }
 

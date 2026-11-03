@@ -1,6 +1,6 @@
 // Progressive enhancement only. Every page ships complete in its HTML: nothing
 // here makes text appear. Content rendering happens at build time, the language
-// switch is a link, and the mobile menu is a native <details> element.
+// switch is a link, and the section links are always visible.
 //
 // The theme is applied before first paint by the inline script in the document
 // head; this file reveals the toggle, handles it, and follows the system
@@ -48,12 +48,3 @@ if (photoDialog && typeof photoDialog.showModal === 'function') {
   });
   photoDialog.addEventListener('close', () => photoTrigger?.focus({ preventScroll: true }));
 }
-
-// Escape closes the mobile menu and returns focus to its summary.
-const menu = document.querySelector('.mobile-navigation');
-menu?.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && menu.open) {
-    menu.open = false;
-    menu.querySelector('summary').focus();
-  }
-});

@@ -1,7 +1,9 @@
 # The three personal previews on the home page. Each links to a page by `ref`
 # (and to an `anchor` on it, where given) and takes its caption from the first
-# entry of the `source` data file. `image` labels the space a cover or photo
-# will fill; nothing stands in for it until he supplies the real one.
+# entry of the `source` data file. Its image is a trip's `photo`, else the first
+# of its `photos`, else a shelf entry's `illustration`. `image` labels the space
+# when none of those exists; nothing stands in for it until he supplies the real
+# one.
 heading:
   en: "A few other things"
   it: "Qualche altra cosa"

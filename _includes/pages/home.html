@@ -1,11 +1,12 @@
 {%- comment -%}
 The masthead is his name, the introduction from `_data/now.yml`, the contact
-links, and the portrait square beside them. Under it, the three newest Story
+links, the month the introduction was written, and the portrait square beside
+them. Under it, the three newest Story
 events with a link to the rest: the list is read from `_data/timeline.yml`, so
 news is written once, in Story.
 
 Research comes first, in compact form: each paper with its own figure, its venue
-and status, and links to the preprint and code. The full entries stay on
+and status, and links to the paper and code. The full entries stay on
 /research/. The personal previews follow, and render only when
 `_data/personal.yml` is present.
 {%- endcomment -%}
@@ -20,6 +21,9 @@ and status, and links to the preprint and code. The full entries stay on
       <a href="{{ contact.github }}">{% include t.html v=site.data.ui.contact_links.github %}</a>
       <a href="{{ contact.scholar }}">{% include t.html v=site.data.ui.contact_links.scholar %}</a>
     </div>
+    {%- if site.data.now.display %}
+    <p class="intro-updated small">{% include t.html v=site.data.ui.labels.updated %} <time datetime="{{ site.data.now.date }}">{% include t.html v=site.data.now.display %}</time></p>
+    {%- endif %}
   </div>
   <picture><source type="image/webp" srcset="{{ pt.variants | relative_url }}-320.webp 320w, {{ pt.variants | relative_url }}-640.webp 640w, {{ pt.variants | relative_url }}-960.webp 960w" sizes="{{ pt.displayed }}"><img class="portrait" src="{{ pt.src | relative_url }}" width="240" height="240" alt="{% include t.html v=pt.alt %}" fetchpriority="high"></picture>
 </header>
@@ -48,7 +52,7 @@ and status, and links to the preprint and code. The full entries stay on
       {%- assign primary = paper.venue_link | default: paper.link -%}
       {%- assign preprint_label = paper.preprint_label | default: site.data.ui.labels.preprint -%}
       {%- if paper.figure %}<a class="research-figure" href="{{ primary }}" tabindex="-1" aria-hidden="true">{% include photo.html photo=paper.figure sizes="(max-width: 640px) 100vw, 540px" %}</a>{% endif %}
-      <h3><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h3>
+      <h3{% include lang-attr.html v=paper.title %}><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h3>
       <p class="preview-venue">{{ paper.venue | escape }}{% if paper.badge %} · {% include t.html v=paper.badge %}{% endif %}</p>
       <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% elsif paper.code_notice %}<span>{% include t.html v=paper.code_notice %}</span>{% endif %}</div>
     </article>{% endfor %}

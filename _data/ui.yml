@@ -46,8 +46,8 @@ pages:
       en: "Davide Beltrame"
       it: "Davide Beltrame"
     description:
-      en: "Davide Beltrame’s personal website."
-      it: "Il sito personale di Davide Beltrame."
+      en: "Davide Beltrame, MSc in Artificial Intelligence (Computer Science), Bocconi, 2026. Research on memorisation in diffusion models and on diffusion language models."
+      it: "Davide Beltrame, laurea magistrale in Artificial Intelligence (Informatica), Bocconi, 2026. Ricerca sulla memorizzazione nei diffusion models e sui diffusion language models."
   research:
     title:
       en: "Research · Davide Beltrame"
@@ -76,22 +76,22 @@ pages:
       en: "Shelf · Davide Beltrame"
       it: "Scaffale · Davide Beltrame"
     description:
-      en: "Books, films, video games, and languages."
-      it: "Libri, film, videogiochi e lingue."
+      en: "Books, films, video games, and languages on Davide Beltrame’s shelf."
+      it: "Libri, film, videogiochi e lingue dello scaffale di Davide Beltrame."
   trips:
     title:
       en: "Trips · Davide Beltrame"
       it: "Viaggi · Davide Beltrame"
     description:
-      en: "Travel and hiking photos."
-      it: "Foto di viaggi ed escursioni."
+      en: "Travel and hiking photos by Davide Beltrame, 2019–2026."
+      it: "Foto di viaggi ed escursioni di Davide Beltrame, 2019–2026."
   everything:
     title:
       en: "Everything · Davide Beltrame"
       it: "Tutto · Davide Beltrame"
     description:
-      en: "Papers and projects by Davide Beltrame."
-      it: "Articoli e progetti di Davide Beltrame."
+      en: "Papers, projects and the MSc thesis by Davide Beltrame."
+      it: "Articoli, progetti e tesi magistrale di Davide Beltrame."
   notfound:
     title:
       en: "Page not found · Davide Beltrame"
@@ -104,14 +104,14 @@ pages:
 # language, built from this data so the preview cannot contradict the page.
 og:
   locale:
-    en: "en_US"
+    en: "en_GB"
     it: "it_IT"
   image:
     en: "/assets/img/og-card.jpg"
     it: "/assets/img/og-card-it.jpg"
   image_alt:
-    en: "Davide Beltrame, student and researcher in deep learning and AI"
-    it: "Davide Beltrame, studente e ricercatore in IA e deep learning"
+    en: "Davide Beltrame, MSc in Artificial Intelligence (Computer Science), Bocconi, research on diffusion models"
+    it: "Davide Beltrame, laurea magistrale in Artificial Intelligence (Informatica), Bocconi, ricerca sui diffusion models"
 
 # Section headings. The keys that end a route's <h1> and the keys that head a
 # band inside it are separate: /research/ is titled "Research" and contains a
@@ -178,9 +178,15 @@ contact_links:
     it: "CV"
 
 labels:
+  # Story folds each year's MSc exams into one disclosure, summarised as the
+  # count followed by one of these: "5 MSc exams, …". `msc_exam` is for a year
+  # with a single exam.
   msc_exam:
-    en: "MSc exam · Computer Science for AI, Bocconi"
-    it: "Esame magistrale · Computer Science for AI, Bocconi"
+    en: "MSc exam, Artificial Intelligence (Computer Science), Bocconi"
+    it: "esame della magistrale, Artificial Intelligence (Informatica), Bocconi"
+  msc_exams:
+    en: "MSc exams, Artificial Intelligence (Computer Science), Bocconi"
+    it: "esami della magistrale, Artificial Intelligence (Informatica), Bocconi"
   collaborative:
     en: "Collaborative"
     it: "In collaborazione"
@@ -204,9 +210,17 @@ labels:
   thousands_separator:
     en: ","
     it: "."
+  # Decimal separator for averages: "3.9" in English, "3,9" in Italian.
+  decimal_separator:
+    en: "."
+    it: ","
   news:
     en: "Recent news"
     it: "Novità"
+  # Precedes `now.display` under the home page's contact links.
+  updated:
+    en: "Updated"
+    it: "Aggiornato a"
   full_story:
     en: "Full story"
     it: "Tutta la storia"
@@ -215,6 +229,10 @@ labels:
   months:
     en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     it: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
+  # Full month names, for Story's day-month dates ("23 October", "23 ottobre").
+  months_long:
+    en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    it: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 
 controls:
   open_photo:
@@ -234,12 +252,6 @@ controls:
   toggle_theme:
     en: "Toggle theme"
     it: "Cambia tema"
-  open_menu:
-    en: "Open menu"
-    it: "Apri il menu"
-  close_menu:
-    en: "Close menu"
-    it: "Chiudi il menu"
   skip_to_content:
     en: "Skip to content"
     it: "Vai al contenuto"
@@ -249,7 +261,7 @@ controls:
 
 duolingo:
   streak_days:
-    en: "day streak"
+    en: "days in a row"
     it: "giorni di fila"
   current_course:
     en: "Currently learning"
@@ -293,15 +305,48 @@ shelf:
   filter_films:
     en: "Films"
     it: "Film"
+  # NYT Games. Every number comes from the summary in
+  # `_data/shelf/nyt_results.yml`, written by script/nyt-games.rb, and is shown
+  # with the date it was true. `one` is used when the number is 1.
   nyt_streak:
-    en: "current streak"
-    it: "serie attuale"
-  nyt_score:
-    en: "average score"
-    it: "punteggio medio"
+    one:
+      en: "win in a row"
+      it: "vittoria di fila"
+    other:
+      en: "wins in a row"
+      it: "vittorie di fila"
+  nyt_played:
+    one:
+      en: "game"
+      it: "partita"
+    other:
+      en: "games"
+      it: "partite"
+  nyt_won:
+    en: "won"
+    it: "vinte"
+  nyt_longest:
+    en: "longest streak"
+    it: "serie più lunga"
+  nyt_mean_guesses:
+    en: "guesses on average"
+    it: "tentativi in media"
+  nyt_perfect:
+    en: "without a mistake"
+    it: "senza errori"
+  nyt_mean_mistakes:
+    en: "mistakes on average"
+    it: "errori in media"
+  nyt_distribution:
+    en: "Guess distribution"
+    it: "Distribuzione dei tentativi"
+  # Followed by the date of the latest result counted and its puzzle number.
+  nyt_as_of:
+    en: "From my NYT results, up to"
+    it: "Dai miei risultati NYT, fino al"
   nyt_solver_note:
-    en: "I also built a solver for generalized Wordle:"
-    it: "Ho anche costruito un risolutore per Wordle generalizzato:"
+    en: "I also built a solver for generalised Wordle:"
+    it: "Ho anche scritto un risolutore per varianti di Wordle:"
   nyt_solver_link_label:
     en: "Wordle Solver"
     it: "Wordle Solver"
@@ -349,33 +394,35 @@ everything:
     project_plural:
       en: "Projects"
       it: "Progetti"
+    thesis:
+      en: "thesis"
+      it: "tesi"
 
-# Static hosting serves one 404 for the whole domain, so this page is in English
-# and offers the Italian home as a link rather than guessing the reader's language.
+# Static hosting serves one 404 for the whole domain, including every missing
+# /it/ URL, so the page shows both values of each pair, English then Italian,
+# rather than guessing the reader's language. `home_link.it` is the link to the
+# Italian home.
 not_found:
   heading:
     en: "Page not found"
     it: "Pagina non trovata"
   message:
     en: "The link may be out of date, or the page may have moved. Everything on this site is reachable from the home page."
-    it: "Il link potrebbe essere vecchio, oppure la pagina è stata spostata. Tutto il sito è raggiungibile dalla home."
+    it: "Il link potrebbe essere obsoleto, oppure la pagina potrebbe essere stata spostata. Tutto il sito è raggiungibile dalla home."
   home_link:
-    en: "Go to the home page"
-    it: "Vai alla home"
-  other_language:
-    en: "Italiano"
-    it: "English"
+    en: "Home"
+    it: "Home in italiano"
 
 redirect:
   moved:
     en: "This page has moved."
     it: "Questa pagina è stata spostata."
 
-# The exploration map in the footer. `sections` is the set it counts, in the
-# order the map lists them, and must match SECTIONS in assets/js/exploration.js.
-# English and Italian pages share these refs, so a visit in either language
-# counts once. Progress is kept in the visitor's own browser and never sent
-# anywhere. The progress line reads "<visited> of <total> explored".
+# The exploration map in the footer. `sections` is the set it lists, in this
+# order, and must match SECTIONS in assets/js/exploration.js. English and
+# Italian pages share these refs. Visits are kept in the visitor's own browser,
+# never sent anywhere and never shown; they only choose where "somewhere new"
+# goes.
 exploration:
   sections:
     - research
@@ -389,33 +436,19 @@ exploration:
   close:
     en: "Close"
     it: "Chiudi"
-  of:
-    en: "of"
-    it: "di"
-  explored:
-    en: "explored"
-    it: "sezioni esplorate"
   suggest:
     en: "Take me somewhere new"
     it: "Portami in una sezione nuova"
-  reset:
-    en: "Reset visits"
-    it: "Azzera le visite"
-  complete:
-    en: "You’ve visited every section. The map is still here whenever you need it."
-    it: "Hai visitato tutte le sezioni. La mappa resta qui quando ti serve."
-  reset_notice:
-    en: "Visits reset. Your next section visit starts a new count."
-    it: "Visite azzerate. La prossima sezione visitata avvia un nuovo conteggio."
-  visited:
-    en: "Visited"
-    it: "Visitata"
   storage_note:
-    en: "Saved only in this browser. English and Italian count as the same section."
-    it: "Salvato solo in questo browser. Inglese e italiano contano come la stessa sezione."
-  progress_label:
-    en: "Sections visited"
-    it: "Sezioni visitate"
+    en: "Visits are remembered only in this browser, to pick a section you have not opened yet."
+    it: "Le visite restano solo in questo browser e servono a scegliere una sezione che non hai ancora aperto."
   footer_nav:
     en: "More pages"
     it: "Altre pagine"
+
+# The licence line at the foot of every page, after "© <year> <name>.". It
+# carries its own link, so it is rendered raw.
+footer:
+  licence:
+    en: "Text under <a rel=\"license\" href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>; photos all rights reserved; code under the MIT License. Illustrations are public domain; paper figures belong to their authors."
+    it: "Testi con licenza <a rel=\"license\" href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>; foto: tutti i diritti riservati; codice con licenza MIT. Le illustrazioni sono di pubblico dominio; le figure degli articoli appartengono ai rispettivi autori."

@@ -6,17 +6,43 @@
 # phone photo carries GPS coordinates, the device and a timestamp. Anyone else
 # in a photo is shown only with their OK. `photo.src` is the path without its
 # `-<width>.webp` suffix; `widths` are the encoded sizes, `ratio` width/height.
-# `photos` is an ordered gallery;
-# `project`, where present, links to a project by its stable ID.
+# `photos` is an ordered gallery; `equal_height: true` (landscape, portrait,
+# landscape) or `gallery: portrait-landscape` sizes its columns so the frames
+# share one height;
+# `project`, where present, links to a project by its stable ID; `paper`, to a
+# paper on /research/ by its ID.
 items:
+  - id: paris-chantilly
+    date: "10/2026"
+    title:
+      en: Paris and Chantilly
+      it: Parigi e Chantilly
+    description:
+      en: "<a href=\"https://www.linkedin.com/posts/eurotech-federation_ai-research-machinelearning-activity-7520379226965856256-DXP-\">Europe AI Summer Research 2026 (EASR)</a>."
+      it: "<a href=\"https://www.linkedin.com/posts/eurotech-federation_ai-research-machinelearning-activity-7520379226965856256-DXP-\">Europe AI Summer Research 2026 (EASR)</a>."
+    paper: length-aware-diffusion
+    gallery: portrait-landscape
+    photos:
+      - src: /assets/img/trips/chantilly-chateau
+        widths: [640, 1024, 1280]
+        ratio: "0.75"
+        alt:
+          en: A swan on the lawn in front of the Château de Chantilly, with a fountain in the pool behind it.
+          it: Un cigno sul prato davanti al castello di Chantilly, con una fontana nella vasca alle spalle.
+      - src: /assets/img/trips/easr-presentation
+        widths: [640, 1024, 1280]
+        ratio: "1.333"
+        alt:
+          en: Presenting SmartCrop at the EASR 2026 finale in Paris, with the poster projected on the screen beside me and the audience seated in front.
+          it: Presento SmartCrop alla finale di EASR 2026 a Parigi, con il poster proiettato sullo schermo accanto a me e il pubblico seduto davanti.
   - id: pescasseroli
     date: "09/2026"
     title:
       en: "Pescasseroli"
       it: "Pescasseroli"
     description:
-      en: "My home office for this month."
-      it: "Il mio ufficio da remoto per questo mese."
+      en: "My home office for a month."
+      it: "Il mio ufficio da remoto per un mese."
     photo:
       src: "/assets/img/trips/pescasseroli"
       widths: [640, 1280]

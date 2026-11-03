@@ -10,19 +10,24 @@
 # a date already published on the site, or the repository's creation date from
 # the public GitHub API. Correct any of them at will — nothing else reads this
 # field, and the index re-sorts itself.
+#
+# `url` is where the title links. `paper`, in its place, links the title to a
+# paper's entry on /research/ by its ID, in the page's own language. `where`,
+# where present, fills the Where column of /everything/; otherwise it is read off
+# the URL (GitHub or arXiv).
 
 items:
-  - title: "SO-101 Policy Training"
+  - id: so-101
+    trip: munich-zurich
+    title: "SO-101 Policy Training"
     # EuroTech x HKTE Hackathon, June 2026 — the event date, confirmed by him.
     date: "2026-06"
     description:
-      en: "Built at the EuroTech x HKTE Hackathon: trained ACT and SmolVLA imitation-learning policies on a SO-101 robotic arm."
-      it: "Realizzato durante l'EuroTech x HKTE Hackathon: addestramento di policy di imitation learning ACT e SmolVLA su un braccio robotico SO-101."
+      en: "Built at the EuroTech x HKTE Hackathon: trained ACT and SmolVLA imitation-learning policies on an SO-101 robotic arm."
+      it: "Realizzato durante l’EuroTech x HKTE Hackathon: addestramento di policy di imitation learning ACT e SmolVLA su un braccio robotico SO-101."
     tech:
       - "Robotics"
       - "Imitation learning"
-      - "ACT"
-      - "SmolVLA"
     url: "https://github.com/giacomo-ciro/eurotech-hackathon"
     featured: true
     collaborative: true
@@ -32,18 +37,17 @@ items:
     # /story/ for that course.
     date: "2025-05"
     description:
-      en: "Research on novel diffusion-based architectures for large language models. Exploring more efficient text generation through length prediction mechanisms."
-      it: "Ricerca su nuove architetture basate su diffusione per modelli di linguaggio di grandi dimensioni. Esplorazione di generazione di testo più efficiente attraverso meccanismi di predizione della lunghezza."
+      en: "A course project on predicting response length before text diffusion begins, reducing the context used for generation. It developed into the paper “Diffusion Language Models Are Natively Length Aware”."
+      it: "Un progetto d’esame sulla previsione della lunghezza delle risposte prima della generazione con diffusion language models, per ridurre la finestra di contesto. Si è poi sviluppato nell’articolo “Diffusion Language Models Are Natively Length Aware”."
     status:
       en: "Graded as the best exam project for the Bocconi graduate course 20879 Language Technology."
-      it: "Valutato come miglior progetto d'esame per il corso magistrale Bocconi 20879 Language Technology."
+      it: "Valutato come miglior progetto d’esame del corso magistrale 20879 Language Technology della Bocconi."
     tech:
       - "NLP"
       - "Deep learning"
-      - "Masked diffusion models"
-      - "Efficiency"
-      - "PyTorch"
-    url: "https://github.com/giacomo-ciro/diffusion-llms"
+    # The title opens the entry of the paper this project became.
+    paper: length-aware-diffusion
+    where: "Bocconi, 20879 Language Technology"
     featured: true
     collaborative: true
 
@@ -52,16 +56,14 @@ items:
     # date in the URL of the write-up linked from /research/.
     date: "2025-06"
     description:
-      en: "Benchmarking explanation methods for CNNs in medical vision. This project evaluates different saliency methods for understanding how neural networks make decisions in medical image analysis."
-      it: "Benchmark di metodi di spiegazione per CNN nella visione medica. Questo progetto valuta diversi metodi di saliency per comprendere come le reti neurali prendono decisioni nell'analisi di immagini mediche."
+      en: "Co-first-authored a comparison of CNN saliency maps with 300+ annotations from 14 medical students and doctors on paediatric chest X-rays."
+      it: "Co-primo autore di un confronto tra mappe di salienza di CNN e oltre 300 annotazioni di 14 studenti di medicina e medici su radiografie toraciche pediatriche."
     status:
-      en: "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision & Image Processing. Published by Bocconi Students for Machine Learning."
-      it: "Valutato come miglior progetto d'esame (ex aequo) per il corso magistrale Bocconi 20878 Computer Vision & Image Processing. Pubblicato da Bocconi Students for Machine Learning."
+      en: "Graded as the best (tied) exam project for the Bocconi graduate course 20878 Computer Vision and Image Processing. Published by Bocconi Students for Machine Learning."
+      it: "Valutato come miglior progetto d’esame (ex aequo) del corso magistrale 20878 Computer Vision and Image Processing della Bocconi. Pubblicato da Bocconi Students for Machine Learning."
     tech:
       - "Computer vision"
       - "Medical imaging"
-      - "Explainability"
-      - "PyTorch"
     url: "https://github.com/davide-beltrame/medimg-saliency-benchmark"
     featured: true
     collaborative: true
@@ -70,8 +72,8 @@ items:
     # Repository created 5 March 2025 (GitHub API).
     date: "2025-03"
     description:
-      en: "Exploring semantic similarity retrieval methods maximizing BLEU score. Advanced NLP techniques for measuring and improving semantic understanding in text."
-      it: "Esplorazione di metodi di recupero di similarità semantica massimizzando il punteggio BLEU. Tecniche NLP avanzate per misurare e migliorare la comprensione semantica nei testi."
+      en: "Compared methods for retrieving semantically similar text, evaluated using BLEU."
+      it: "Confronto di metodi per recuperare testi semanticamente simili, valutati con BLEU."
     tech:
       - "NLP"
       - "HF transformers"
@@ -82,12 +84,11 @@ items:
     # Repository created 24 February 2025 (GitHub API).
     date: "2025-02"
     description:
-      en: "Super efficient algorithm for solving generalized Wordle puzzles. Implements optimal guessing strategies using information theory and probability."
-      it: "Algoritmo super efficiente per risolvere puzzle Wordle generalizzati. Implementa strategie di indovinamento ottimali usando teoria dell'informazione e probabilità."
+      en: "A solver for generalised Wordle puzzles that uses information theory to choose guesses and narrow the remaining candidates."
+      it: "Un risolutore per varianti di Wordle che usa la teoria dell’informazione per scegliere i tentativi e ridurre i candidati rimanenti."
     tech:
       - "Information theory"
       - "NLP"
-      - "Algorithms"
     url: "https://github.com/davide-beltrame/wordle-solver"
     featured: true
 
@@ -95,11 +96,10 @@ items:
     # Repository created 1 February 2025 (GitHub API).
     date: "2025-02"
     description:
-      en: "This website! A minimal, clean design built from scratch with pure HTML, CSS, and JavaScript. Features dark/light mode and responsive design."
-      it: "Questo sito web! Un design minimalista e pulito costruito da zero con HTML, CSS e JavaScript puri. Include modalità scura/chiara e design responsive."
+      en: "This site: research, projects, and personal notes in English and Italian, built as static pages with Jekyll."
+      it: "Questo sito: ricerca, progetti e note personali in inglese e italiano, con pagine statiche generate da Jekyll."
     tech:
       - "HTML"
       - "CSS"
-      - "JavaScript"
     url: "https://github.com/davide-beltrame/davide-beltrame.github.io"
     featured: true

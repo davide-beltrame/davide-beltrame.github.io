@@ -1,0 +1,14 @@
+{%- comment -%}
+A WebP image at its encoded widths. Usage:
+
+  {% include photo.html photo=trip.photo sizes="(max-width: 860px) 100vw, 540px" %}
+
+`photo` carries `src` (the path without `-<width>.webp`), `widths`, `ratio`
+(width/height, used to reserve the box before the file arrives) and an
+{en, it} `alt`. The largest width is the fallback `src`.
+{%- endcomment -%}
+{%- assign ph = include.photo -%}
+{%- assign largest = ph.widths | last -%}
+{%- capture srcset -%}{%- for w in ph.widths -%}{{ ph.src | relative_url }}-{{ w }}.webp {{ w }}w{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+{%- assign height = largest | divided_by: ph.ratio | round -%}
+<img src="{{ ph.src | relative_url }}-{{ largest }}.webp" srcset="{{ srcset }}" sizes="{{ include.sizes }}" width="{{ largest }}" height="{{ height }}" alt="{% include t.html v=ph.alt %}" loading="lazy" decoding="async">

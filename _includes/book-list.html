@@ -1,0 +1,12 @@
+{%- comment -%}
+A list of books, each an item rather than a heading: the headings on /shelf/
+are the sections (Books, Read, Want to read), not the titles in them.
+{%- endcomment -%}
+<ul class="book-list">
+  {% for book in include.items %}
+  <li>
+    <p class="book-title"{% include lang-attr.html v=book.title lang=book.title_lang %}>{% if book.link %}<a href="{{ book.link }}">{% include t.html v=book.title %} <span class="arrow" aria-hidden="true">↗</span></a>{% else %}{% include t.html v=book.title %}{% endif %}</p>
+    <p class="book-author">{% include t.html v=book.creator %}</p>
+  </li>
+  {% endfor %}
+</ul>

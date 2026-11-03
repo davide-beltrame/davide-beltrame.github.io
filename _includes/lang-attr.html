@@ -1,0 +1,22 @@
+{%- comment -%}
+A ` lang="…"` attribute for a title that is not in the page's language, or
+nothing. Put it on the element that holds the title:
+
+  <h3 class="entry-title"{% include lang-attr.html v=paper.title %}>
+  <p class="book-title"{% include lang-attr.html v=book.title lang=book.title_lang %}>
+
+A translated {en, it} pair renders in the page's language and gets nothing. A
+title that stays the same in both languages, a plain string or a pair with two
+equal values, is taken to be English, unless `lang` gives its language: the
+Italian titles on the shelf carry `title_lang: it`. Screen readers then read an
+English paper title on an Italian page in English, and the reverse.
+{%- endcomment -%}
+{%- assign _v = include.v -%}
+{%- assign _l = page.lang | default: "en" -%}
+{%- assign _tl = include.lang | default: "" -%}
+{%- if _tl == "" -%}
+  {%- assign _s = _v[_l] -%}
+  {%- if _v.en == nil or _v.en == _v.it or _s == nil or _s == "" or _s == "TODO" -%}{%- assign _tl = "en" -%}
+  {%- else -%}{%- assign _tl = _l -%}{%- endif -%}
+{%- endif -%}
+{%- if _tl != _l %} lang="{{ _tl }}"{% endif -%}

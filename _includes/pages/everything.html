@@ -1,32 +1,45 @@
 {%- comment -%}
-The dense index, on its own page — decided over inlining it into the other
-pages, see `.agents/context/decisions.md`.
+The dense index, on its own page rather than inlined into the other pages.
 
-Ordering: Liquid has no way to sort one list built out of two differently
-shaped ones, so each entry contributes a `"<date>|<kind>|<index>"` string, the
+Ordering: Liquid has no way to sort one list built out of differently shaped
+ones, so each entry contributes a `"<date>|<kind>|<index>"` string, the
 strings are sorted as text (which is why the dates are zero-padded and written
 biggest unit first), and the loop dereferences each one back to its source.
 Nothing is copied into a second data file; `_data/research.yml` and
-`_data/projects.yml` stay the only place these entries exist.
+`_data/projects.yml` stay the only place these entries exist. The MSc thesis is
+the `thesis` block of its role in `_data/research.yml`.
 
 The filter is radio inputs plus `:has()`, no JavaScript: "all" is checked in
 the HTML, so the page's default and its no-script state are the same complete
 list. The per-filter counts are all rendered at build time and CSS shows the
 one that matches, so the number is right without a script to recompute it.
 
-Writing has no entries yet. It keeps its filter and says so when selected,
-rather than being hidden until it exists. There is no talks filter: unlike
-writing, no talks are planned anywhere, so it would be a promise rather than a
-placeholder.
+Papers, projects and the thesis are listed. The thesis is labelled as a thesis
+but filters with the papers (its row's `data-kind` is `paper`), so there is no
+filter for a kind with a single entry, and none for kinds that do not exist yet.
+
+Paper bylines set his name in bold, as on /research/. A project with a `paper`
+links to that paper's entry on /research/, and its `where` fills the Where cell.
 {%- endcomment -%}
 {%- assign papers = site.data.research.papers -%}
+{%- assign roles = site.data.research.roles -%}
 {%- assign projects = site.data.projects.items | where: "featured", true -%}
 {%- assign kinds = site.data.ui.everything.kinds -%}
+{%- assign research_page = site.pages | where: "lang", page.lang | where: "ref", "research" | first -%}
+{%- capture _me %}<strong>{{ site.data.profile.name }}</strong>{% endcapture -%}
 
 {%- assign rows = "" -%}
 {%- for p in papers -%}
 {%- assign k = p.date | default: "0000-00-00" -%}
 {%- assign rows = rows | append: k | append: "|paper|" | append: forloop.index0 | append: "," -%}
+{%- endfor -%}
+{%- assign n_thesis = 0 -%}
+{%- for r in roles -%}
+{%- if r.thesis -%}
+{%- assign k = r.thesis.date | default: "0000-00" | append: "-00" -%}
+{%- assign rows = rows | append: k | append: "|thesis|" | append: forloop.index0 | append: "," -%}
+{%- assign n_thesis = n_thesis | plus: 1 -%}
+{%- endif -%}
 {%- endfor -%}
 {%- for p in projects -%}
 {%- assign k = p.date | default: "0000-00" | append: "-00" -%}
@@ -35,28 +48,24 @@ placeholder.
 {%- assign rows = rows | split: "," | sort | reverse -%}
 
 {%- assign n_all = rows | size -%}
-{%- assign n_paper = papers | size -%}
+{%- assign n_paper = papers | size | plus: n_thesis -%}
 {%- assign n_project = projects | size -%}
 
-{% include page-head.html title=site.data.ui.sections.everything lede=site.data.ui.everything.lede %}
+{% include page-head.html title=site.data.ui.sections.everything %}
 
 <section class="band">
     <div class="idx">
         <div class="idx-controls" role="radiogroup" aria-label="{% include t.html v=site.data.ui.everything.filter_group_label %}">
-            <span class="filter-lead">{% include t.html v=site.data.ui.labels.filter %}</span>
             <input type="radio" name="idx-filter" id="idx-all" class="idx-input" checked>
             <label for="idx-all" class="idx-chip">{% include t.html v=site.data.ui.everything.filter_all %}</label>
             <input type="radio" name="idx-filter" id="idx-paper" class="idx-input">
             <label for="idx-paper" class="idx-chip">{% include t.html v=kinds.paper_plural %}</label>
             <input type="radio" name="idx-filter" id="idx-project" class="idx-input">
             <label for="idx-project" class="idx-chip">{% include t.html v=kinds.project_plural %}</label>
-            <input type="radio" name="idx-filter" id="idx-post" class="idx-input">
-            <label for="idx-post" class="idx-chip">{% include t.html v=kinds.post_plural %}</label>
 
             <span class="idx-count" data-for="all">{{ n_all }} {% include t.html v=site.data.ui.everything.entries %}</span>
             <span class="idx-count" data-for="paper">{{ n_paper }} {% include t.html v=site.data.ui.everything.entries %}</span>
             <span class="idx-count" data-for="project">{{ n_project }} {% include t.html v=site.data.ui.everything.entries %}</span>
-            <span class="idx-count" data-for="post">0 {% include t.html v=site.data.ui.everything.entries %}</span>
         </div>
 
         <div class="idx-scroll">
@@ -72,28 +81,40 @@ placeholder.
                 <tbody>
                     {%- for row in rows %}
                     {%- assign parts = row | split: "|" -%}
-                    {%- assign when = parts[0] | slice: 0, 7 -%}
+                    {%- assign ym = parts[0] | slice: 0, 7 | split: "-" -%}
+                    {%- assign m = ym[1] | plus: 0 | minus: 1 -%}
+                    {%- assign months = site.data.ui.labels.months[page.lang] | default: site.data.ui.labels.months.en -%}
                     {%- assign kind = parts[1] -%}
                     {%- assign i = parts[2] | plus: 0 -%}
                     {%- if kind == "paper" -%}
                     {%- assign item = papers[i] -%}
+                    {%- elsif kind == "thesis" -%}
+                    {%- assign item = roles[i] -%}
                     {%- else -%}
                     {%- assign item = projects[i] -%}
                     {%- endif -%}
-                    <tr class="idx-row" data-kind="{{ kind }}">
-                        <td class="idx-when">{{ when }}</td>
-                        <td class="idx-kind"><span class="k k--{{ kind }}">{% if kind == "paper" %}{% include t.html v=kinds.paper %}{% else %}{% include t.html v=kinds.project %}{% endif %}</span></td>
+                    {%- assign kind_label = kinds[kind] -%}
+                    <tr class="idx-row" data-kind="{% if kind == "thesis" %}paper{% else %}{{ kind }}{% endif %}">
+                        <td class="idx-when"><time datetime="{{ ym[0] }}-{{ ym[1] }}">{{ months[m] }} {{ ym[0] }}</time></td>
+                        <td class="idx-kind"><span class="k k--{{ kind }}">{% include t.html v=kind_label %}</span></td>
                         <td>
-                            <div class="idx-title">
+                            {%- if kind == "thesis" %}{% assign title_v = item.thesis.title %}{% else %}{% assign title_v = item.title %}{% endif %}
+                            <div class="idx-title"{% include lang-attr.html v=title_v %}>
                                 {%- if kind == "paper" -%}
-                                <a href="{{ item.venue_link | default: item.link }}" target="_blank" rel="noopener noreferrer">{% include t.html v=item.title %}</a>
+                                <a href="{{ item.venue_link | default: item.link }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+                                {%- elsif kind == "thesis" -%}
+                                <a href="{{ research_page.url | relative_url }}#{{ item.id | escape }}">{{ item.thesis.title | escape }}&nbsp;<span class="arrow" aria-hidden="true">→</span></a>
+                                {%- elsif item.paper -%}
+                                <a href="{{ research_page.url | relative_url }}#{{ item.paper | escape }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">→</span></a>
                                 {%- else -%}
-                                <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{% include t.html v=item.title %}</a>
+                                <a href="{{ item.url }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
                                 {%- endif -%}
                             </div>
                             <div class="idx-sub">
                                 {%- if kind == "paper" -%}
-                                {{ item.authors | escape }}
+                                {{ item.authors | escape | replace: site.data.profile.name, _me }}
+                                {%- elsif kind == "thesis" -%}
+                                {% include t.html v=item.org %}
                                 {%- else -%}
                                 {%- capture _d %}{% include t.html v=item.description raw=true %}{% endcapture -%}
                                 {{ _d | strip | truncatewords: 14 | escape }}
@@ -103,8 +124,10 @@ placeholder.
                         <td class="idx-where">
                             {%- if kind == "paper" -%}
                             {%- if item.venue and item.venue != "" -%}{{ item.venue }}{%- elsif item.link contains "arxiv.org" -%}arXiv{%- endif -%}
+                            {%- elsif kind == "thesis" -%}
+                            {% include t.html v=item.thesis.where %}
                             {%- else -%}
-                            {{ item.tech | first | escape }}
+                            {%- if item.where %}{% include t.html v=item.where %}{%- elsif item.url contains "github.com" %}GitHub{%- elsif item.url contains "arxiv.org" %}arXiv{% endif -%}
                             {%- endif -%}
                         </td>
                     </tr>
@@ -113,9 +136,5 @@ placeholder.
             </table>
         </div>
 
-        <div class="notice idx-empty" data-for="post">
-            {% include icon.html name="code" %}
-            <span>{% include t.html v=site.data.ui.wip_notice %}</span>
-        </div>
     </div>
 </section>

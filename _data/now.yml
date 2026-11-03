@@ -1,0 +1,19 @@
+# What he is doing now, in his own words. It is the introduction on the home
+# page, under his name. `date` is the month the text was written, as YYYY-MM;
+# update it whenever the text changes, so an old update never reads as current.
+# `display` is that month as words, shown under the contact links after
+# `ui.labels.updated`, so a reader can tell when the text was written.
+# Paragraphs may carry a link, so they are rendered as markup.
+date: "2026-11"
+display:
+  en: "November 2026"
+  it: "novembre 2026"
+paragraphs:
+  - en: "I’ve just graduated cum laude from Bocconi University’s MSc in Artificial Intelligence (Computer Science, class LM-18), with the thesis “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”, supervised by Prof. Luca Biggio."
+    it: "Mi sono appena laureato con lode all’Università Bocconi nella laurea magistrale in Artificial Intelligence (Informatica, classe LM-18), con la tesi “Bias and Memory in Diffusion Models: Training-Data Dependence and Image Reconstruction through Learned Conditioning”, relatore il Prof. Luca Biggio."
+  - en: "I recently studied memorisation and generalisation in diffusion models, and generation efficiency in diffusion language models."
+    it: "Di recente ho studiato la memorizzazione e la generalizzazione nei diffusion models e l’efficienza di generazione nei diffusion language models."
+  - en: "I also recently worked as a technical consultant at <a href=\"https://www.silverstream.ai/\">Silverstream AI</a>, doing AI agent evaluation."
+    it: "Di recente ho anche lavorato come consulente tecnico presso <a href=\"https://www.silverstream.ai/\">Silverstream AI</a>, occupandomi di valutazione di agenti di IA."
+  - en: "I’m looking for roles in machine learning research and/or engineering, and applying to PhD programmes starting in 2027."
+    it: "Cerco ruoli nella ricerca e/o nell’ingegneria del machine learning e sto facendo domanda per dottorati che iniziano nel 2027."

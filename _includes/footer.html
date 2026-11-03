@@ -1,6 +1,11 @@
-<footer class="site-footer">
-    <div class="footer-inner">
-        <span>© {{ "now" | date: "%Y" }} {{ site.data.profile.name }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span>
-        <span>{% include t.html v=site.data.ui.footer_note %}</span>
-    </div>
+<footer class="site-footer wrap">
+  <div class="footer-main">
+    <nav class="footer-links" aria-label="{% include t.html v=site.data.ui.exploration.footer_nav %}">
+      {% assign refs = "everything" | split: "," %}
+      {% for ref in refs %}{% assign p = navpages | where: "ref", ref | first %}<a href="{{ p.url | relative_url }}">{% assign section_label = site.data.ui.sections[ref] %}{% include t.html v=section_label %}</a>{% endfor %}
+      <a href="{% include email-href.html address=site.data.profile.contact.email_encoded %}">{% include t.html v=site.data.ui.contact_links.email %}</a>
+    </nav>
+    {% include exploration.html %}
+  </div>
+  <div class="footer-meta"><p>© {{ "now" | date: "%Y" }} {{ site.data.profile.name }}. {% include t.html v=site.data.ui.footer.licence raw=true %}</p></div>
 </footer>

@@ -1,0 +1,29 @@
+{%- comment -%}
+The exploration map in the footer. Without JavaScript it is a plain <details>
+listing the sections and a link to /everything/. exploration.js moves the
+same contents into a dialog and shows "Take me somewhere new", which goes to a
+random section not yet visited in this browser (English and Italian pages share
+a `data-visit` ref). The visits are kept in localStorage only for that choice;
+the map does not show them. If storage is unavailable, the button picks any
+other section.
+{%- endcomment -%}
+{% assign explore = site.data.ui.exploration %}
+<div class="exploration" data-section="{{ page.ref }}">
+  <button type="button" id="exploration-open" hidden aria-haspopup="dialog">
+    <span>{% include t.html v=explore.title %}</span>
+    <span aria-hidden="true">↗</span>
+  </button>
+  <details id="exploration-fallback">
+    <summary>{% include t.html v=explore.title %}</summary>
+    <div id="exploration-content">
+      <div class="map-heading"><h2 id="map-title">{% include t.html v=explore.title %}</h2><button type="button" id="exploration-close" hidden>{% include t.html v=explore.close %}</button></div>
+      <nav class="map-links" aria-label="{% include t.html v=explore.title %}">
+      {% for item in explore.sections %}{% assign p = navpages | where: "ref", item | first %}
+        {% if p %}<a href="{{ p.url | relative_url }}" data-visit="{{ item }}"{% if item == page.ref %} aria-current="page"{% endif %}><span>{% assign section_label = site.data.ui.sections[item] %}{% include t.html v=section_label %}</span></a>{% endif %}
+      {% endfor %}
+      </nav>
+      <div class="map-actions" hidden><button type="button" id="exploration-new">{% include t.html v=explore.suggest %}</button><p class="small">{% include t.html v=explore.storage_note %}</p></div>
+      <p class="map-index">{% assign p = navpages | where: "ref", "everything" | first %}<a href="{{ p.url | relative_url }}">{% include t.html v=site.data.ui.sections.everything %} →</a></p>
+    </div>
+  </details>
+</div>

@@ -1,0 +1,54 @@
+# NYT Wordle and Connections results, written by script/nyt-games.rb, whose
+# header explains how to log a game and how to set a baseline. Change it
+# through the script: the summary is recomputed from `baseline` and `results`
+# on every run, and the build checks fail if it stops matching them.
+#
+# `baseline` is NYT's Statistics screen as read on `date`, counting every
+# puzzle up to `puzzle`. `results` has one entry per puzzle, from the share
+# text, dated by puzzle number; entries up to the baseline's puzzle are kept
+# but not counted again. `summary` is what the Shelf page shows, true as of
+# `as_of`. With no baseline and no results it is null, and the page says no
+# results have been added.
+
+wordle:
+  baseline:
+    date: "2026-11-03"
+    puzzle: 1963
+    played: 392
+    won: 383
+    current_streak: 1
+    max_streak: 52
+    distribution: [0, 16, 86, 155, 91, 35]
+  results: []
+  summary:
+    as_of: "2026-11-03"
+    last_puzzle: 1963
+    played: 392
+    won: 383
+    win_pct: 98
+    current_streak: 1
+    max_streak: 52
+    mean_guesses: 4.1
+    distribution: [0, 16, 86, 155, 91, 35]
+
+connections:
+  baseline:
+    date: "2026-11-03"
+    puzzle: 1241
+    played: 243
+    won: 141
+    current_streak: 1
+    max_streak: 12
+    perfect: 61
+    mistakes: [61, 42, 16, 22, 102]
+  results: []
+  summary:
+    as_of: "2026-11-03"
+    last_puzzle: 1241
+    played: 243
+    won: 141
+    win_pct: 58
+    current_streak: 1
+    max_streak: 12
+    perfect: 61
+    mean_mistakes: 2.3

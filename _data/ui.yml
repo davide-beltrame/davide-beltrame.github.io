@@ -6,15 +6,18 @@
 # with that `ref` in the current language, so permalinks live in the page front
 # matter and nowhere else.
 
+#
+# The bar lists every entry except `home`: his name at the left of the bar is
+# the link home on every page but the home page itself, where the name is the
+# heading instead. The order here is the order in the bar, on every page.
+# `home` stays here because the redirect stubs read its label. Everything is
+# reached from the footer.
+
 nav:
   - ref: home
     label:
       en: "Home"
       it: "Home"
-  - ref: now
-    label:
-      en: "Now"
-      it: "Ora"
   - ref: research
     label:
       en: "Research"
@@ -35,10 +38,6 @@ nav:
     label:
       en: "Trips"
       it: "Viaggi"
-  - ref: everything
-    label:
-      en: "Everything"
-      it: "Tutto"
 
 # Per-page <title> and meta description, keyed by page ref.
 pages:
@@ -47,63 +46,56 @@ pages:
       en: "Davide Beltrame"
       it: "Davide Beltrame"
     description:
-      en: "Davide Beltrame's personal website."
-      it: "Il sito personale di Davide Beltrame."
-  now:
-    title:
-      en: "Now — Davide Beltrame"
-      it: "Ora — Davide Beltrame"
-    description:
-      en: "What Davide Beltrame is doing right now."
-      it: "Cosa sta facendo Davide Beltrame in questo momento."
+      en: "Davide Beltrame, MSc in Artificial Intelligence (Computer Science), Bocconi, 2026. Research on memorisation in diffusion models and on diffusion language models."
+      it: "Davide Beltrame, laurea magistrale in Artificial Intelligence (Informatica), Bocconi, 2026. Ricerca sulla memorizzazione nei diffusion models e sui diffusion language models."
   research:
     title:
-      en: "Research — Davide Beltrame"
-      it: "Ricerca — Davide Beltrame"
+      en: "Research · Davide Beltrame"
+      it: "Ricerca · Davide Beltrame"
     description:
-      en: "Papers and preprints by Davide Beltrame — diffusion models, NLP, and computer vision."
-      it: "Articoli e preprint di Davide Beltrame — modelli di diffusione, NLP e computer vision."
+      en: "Papers and preprints by Davide Beltrame on diffusion models, NLP, and computer vision."
+      it: "Articoli e preprint di Davide Beltrame su diffusion models, NLP e computer vision."
   projects:
     title:
-      en: "Projects — Davide Beltrame"
-      it: "Progetti — Davide Beltrame"
+      en: "Projects · Davide Beltrame"
+      it: "Progetti · Davide Beltrame"
     description:
-      en: "Research projects and software by Davide Beltrame — AI, NLP, and Computer Vision."
-      it: "Progetti di ricerca e software di Davide Beltrame — IA, NLP e computer vision."
+      en: "Research projects and software by Davide Beltrame in AI, NLP, and computer vision."
+      it: "Progetti di ricerca e software di Davide Beltrame in IA, NLP e computer vision."
   story:
     title:
-      en: "Story — Davide Beltrame"
-      it: "Storia — Davide Beltrame"
+      en: "Story · Davide Beltrame"
+      it: "Storia · Davide Beltrame"
     # This read as a copy of the home page's description until 2026-08-13, which
     # gave two pages the same snippet in a search result.
     description:
-      en: "A dated timeline of Davide Beltrame's studies, research, and work."
-      it: "Una cronologia datata degli studi, della ricerca e del lavoro di Davide Beltrame."
+      en: "A dated timeline of Davide Beltrame’s studies, research, and work."
+      it: "Una cronologia degli studi, della ricerca e del lavoro di Davide Beltrame."
   shelf:
     title:
-      en: "Shelf — Davide Beltrame"
-      it: "Scaffale — Davide Beltrame"
+      en: "Shelf · Davide Beltrame"
+      it: "Scaffale · Davide Beltrame"
     description:
-      en: "Languages and more — Davide Beltrame."
-      it: "Lingue e altro — Davide Beltrame."
+      en: "Books, films, video games, and languages on Davide Beltrame’s shelf."
+      it: "Libri, film, videogiochi e lingue dello scaffale di Davide Beltrame."
   trips:
     title:
-      en: "Trips — Davide Beltrame"
-      it: "Viaggi — Davide Beltrame"
+      en: "Trips · Davide Beltrame"
+      it: "Viaggi · Davide Beltrame"
     description:
-      en: "A section for trips on Davide Beltrame's site. Nothing published here yet."
-      it: "Una sezione dedicata ai viaggi sul sito di Davide Beltrame. Non c'è ancora nulla."
+      en: "Travel and hiking photos by Davide Beltrame, 2019–2026."
+      it: "Foto di viaggi ed escursioni di Davide Beltrame, 2019–2026."
   everything:
     title:
-      en: "Everything — Davide Beltrame"
-      it: "Tutto — Davide Beltrame"
+      en: "Everything · Davide Beltrame"
+      it: "Tutto · Davide Beltrame"
     description:
-      en: "Every paper, project, and post by Davide Beltrame in one index, newest first."
-      it: "Ogni articolo, progetto e scritto di Davide Beltrame in un unico indice, dal più recente."
+      en: "Papers, projects and the MSc thesis by Davide Beltrame."
+      it: "Articoli, progetti e tesi magistrale di Davide Beltrame."
   notfound:
     title:
-      en: "Page not found — Davide Beltrame"
-      it: "Pagina non trovata — Davide Beltrame"
+      en: "Page not found · Davide Beltrame"
+      it: "Pagina non trovata · Davide Beltrame"
     description:
       en: "That page is not on this site."
       it: "Questa pagina non esiste su questo sito."
@@ -112,23 +104,23 @@ pages:
 # language, built from this data so the preview cannot contradict the page.
 og:
   locale:
-    en: "en_US"
+    en: "en_GB"
     it: "it_IT"
   image:
     en: "/assets/img/og-card.jpg"
     it: "/assets/img/og-card-it.jpg"
   image_alt:
-    en: "Davide Beltrame — student and researcher in deep learning and AI"
-    it: "Davide Beltrame — studente e ricercatore in IA e deep learning"
+    en: "Davide Beltrame, MSc in Artificial Intelligence (Computer Science), Bocconi, research on diffusion models"
+    it: "Davide Beltrame, laurea magistrale in Artificial Intelligence (Informatica), Bocconi, ricerca sui diffusion models"
 
 # Section headings. The keys that end a route's <h1> and the keys that head a
 # band inside it are separate: /research/ is titled "Research" and contains a
 # "Publications" band, and /shelf/ is titled "Shelf" and contains a
 # "Books & Films" one.
 sections:
-  now:
-    en: "Now"
-    it: "Ora"
+  interests:
+    en: "Research interests"
+    it: "Interessi di ricerca"
   research:
     en: "Research"
     it: "Ricerca"
@@ -162,6 +154,9 @@ sections:
   everything:
     en: "Everything"
     it: "Tutto"
+  video_games:
+    en: "Video games"
+    it: "Videogiochi"
 
 # Labels for the contact links. The email one shows this label and never the
 # address, which appears only inside an entity-encoded mailto: href.
@@ -183,21 +178,27 @@ contact_links:
     it: "CV"
 
 labels:
+  # Story folds each year's MSc exams into one disclosure, summarised as the
+  # count followed by one of these: "5 MSc exams, …". `msc_exam` is for a year
+  # with a single exam.
+  msc_exam:
+    en: "MSc exam, Artificial Intelligence (Computer Science), Bocconi"
+    it: "esame della magistrale, Artificial Intelligence (Informatica), Bocconi"
+  msc_exams:
+    en: "MSc exams, Artificial Intelligence (Computer Science), Bocconi"
+    it: "esami della magistrale, Artificial Intelligence (Informatica), Bocconi"
   collaborative:
     en: "Collaborative"
     it: "In collaborazione"
   code:
     en: "Code"
     it: "Codice"
+  trip_photos:
+    en: "Trip photos"
+    it: "Foto del viaggio"
   preprint:
     en: "arXiv preprint"
     it: "Preprint su arXiv"
-  coursework:
-    en: "Coursework"
-    it: "Esami"
-  filter:
-    en: "filter"
-    it: "filtra"
   abstract:
     en: "Abstract"
     it: "Abstract"
@@ -209,8 +210,40 @@ labels:
   thousands_separator:
     en: ","
     it: "."
+  # Decimal separator for averages: "3.9" in English, "3,9" in Italian.
+  decimal_separator:
+    en: "."
+    it: ","
+  news:
+    en: "Recent news"
+    it: "Novità"
+  # Precedes `now.display` under the home page's contact links.
+  updated:
+    en: "Updated"
+    it: "Aggiornato a"
+  full_story:
+    en: "Full story"
+    it: "Tutta la storia"
+  # Short month names for dates built from a raw `date` field, such as the
+  # news list on the home page.
+  months:
+    en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    it: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
+  # Full month names, for Story's day-month dates ("23 October", "23 ottobre").
+  months_long:
+    en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    it: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 
 controls:
+  open_photo:
+    en: "Open photo"
+    it: "Apri la foto"
+  photo_viewer:
+    en: "Photo viewer"
+    it: "Visualizzatore foto"
+  close_photo:
+    en: "Close photo"
+    it: "Chiudi la foto"
   # The language link is labelled in the language it leads to, so the `en` value
   # here is the Italian sentence shown on English pages, and the reverse.
   switch_language:
@@ -219,12 +252,6 @@ controls:
   toggle_theme:
     en: "Toggle theme"
     it: "Cambia tema"
-  open_menu:
-    en: "Open menu"
-    it: "Apri il menu"
-  close_menu:
-    en: "Close menu"
-    it: "Chiudi il menu"
   skip_to_content:
     en: "Skip to content"
     it: "Vai al contenuto"
@@ -232,55 +259,33 @@ controls:
     en: "Site sections"
     it: "Sezioni del sito"
 
-footer_note:
-  en: "No tracking, no cookies, no JavaScript required."
-  it: "Nessun tracciamento, nessun cookie, nessun JavaScript richiesto."
-
-wip_notice:
-  en: "This section is a work in progress — more content coming soon!"
-  it: "Questa sezione è in lavorazione — altri contenuti in arrivo!"
-
-# The /now page itself is unwritten — see site-content-and-voice on why this
-# is a placeholder rather than drafted prose in his voice. Update this text
-# (and the date) only once he has actually written the page.
-now_notice:
-  en: "As of August 12, 2026, this page hasn't been written yet — check back for what's occupying me this month."
-  it: "Al 12 agosto 2026, questa pagina non è ancora stata scritta — torna a trovarmi per sapere a cosa sto lavorando questo mese."
-
-# Trips is a section with no content behind it yet. This line describes what the
-# section is for; it promises no schedule and names no trip.
-trips_lede:
-  en: "A section for trips. A write-up or a set of photos, decided per trip."
-  it: "Una sezione dedicata ai viaggi. Un resoconto o una serie di foto, a seconda del viaggio."
-
 duolingo:
-  streak_sentence:
-    en: "day streak on Duolingo"
-    it: "giorni di fila su Duolingo"
-  current_streak:
-    en: "current streak"
-    it: "serie attuale"
-  longest_streak:
-    en: "longest streak"
-    it: "serie più lunga"
-  total_xp:
-    en: "total XP"
-    it: "XP totali"
-  languages:
-    en: "languages"
-    it: "lingue"
-  more_languages:
-    en: "more"
-    it: "in più"
-  # Names every number in the panel, because all of them are the reading taken
-  # on that date and none of them is advanced afterwards.
+  streak_days:
+    en: "days in a row"
+    it: "giorni di fila"
+  current_course:
+    en: "Currently learning"
+    it: "Sto studiando"
+  xp_across:
+    en: "XP across"
+    it: "XP in"
+  courses:
+    en: "courses"
+    it: "corsi"
+  by_xp:
+    en: "Courses by XP"
+    it: "Corsi per XP"
+  current_tag:
+    en: "current"
+    it: "in corso"
+  # Names every number in the section, because all of them are the reading
+  # taken on that date and none of them is advanced afterwards.
   data_notice:
-    en: "* Streak, XP, and language data last updated:"
-    it: "* Serie, XP e dati sulle lingue aggiornati il:"
+    en: "Read from the public profile on"
+    it: "Dati letti dal profilo pubblico il"
 
-# The books/films filter is pure CSS (radio inputs + a :has() selector), so
-# "all entries visible, grouped by kind" is the page's only state rather than
-# a no-JS fallback of a different one.
+# The shelf no longer filters: books, films and video games are separate bands,
+# and `filter_books` and `filter_films` now head the first two.
 shelf:
   filter_group_label:
     en: "Filter the shelf"
@@ -288,43 +293,79 @@ shelf:
   filter_all:
     en: "All"
     it: "Tutti"
+  read_books:
+    en: "Read"
+    it: "Letti"
+  want_to_read:
+    en: "Want to read"
+    it: "Da leggere"
   filter_books:
     en: "Books"
     it: "Libri"
   filter_films:
     en: "Films"
     it: "Film"
-  # Shown in place of a blank line when an entry has no note — the note is
-  # the entire reason a shelf entry exists, so a missing one is flagged
-  # rather than rendered silently.
-  missing_note:
-    en: "No note yet — flagged for follow-up."
-    it: "Nessuna nota ancora — segnalata per il seguito."
+  # NYT Games. Every number comes from the summary in
+  # `_data/shelf/nyt_results.yml`, written by script/nyt-games.rb, and is shown
+  # with the date it was true. `one` is used when the number is 1.
   nyt_streak:
-    en: "current streak"
-    it: "serie attuale"
-  nyt_score:
-    en: "average score"
-    it: "punteggio medio"
+    one:
+      en: "win in a row"
+      it: "vittoria di fila"
+    other:
+      en: "wins in a row"
+      it: "vittorie di fila"
+  nyt_played:
+    one:
+      en: "game"
+      it: "partita"
+    other:
+      en: "games"
+      it: "partite"
+  nyt_won:
+    en: "won"
+    it: "vinte"
+  nyt_longest:
+    en: "longest streak"
+    it: "serie più lunga"
+  nyt_mean_guesses:
+    en: "guesses on average"
+    it: "tentativi in media"
+  nyt_perfect:
+    en: "without a mistake"
+    it: "senza errori"
+  nyt_mean_mistakes:
+    en: "mistakes on average"
+    it: "errori in media"
+  nyt_distribution:
+    en: "Guess distribution"
+    it: "Distribuzione dei tentativi"
+  # Followed by the date of the latest result counted and its puzzle number.
+  nyt_as_of:
+    en: "From my NYT results, up to"
+    it: "Dai miei risultati NYT, fino al"
   nyt_solver_note:
-    en: "I also built a solver for generalized Wordle:"
-    it: "Ho anche costruito un risolutore per Wordle generalizzato:"
+    en: "I also built a solver for generalised Wordle:"
+    it: "Ho anche scritto un risolutore per varianti di Wordle:"
   nyt_solver_link_label:
     en: "Wordle Solver"
     it: "Wordle Solver"
+  lede:
+    en: "Books, films, games, and languages."
+    it: "Libri, film, giochi e lingue."
+  nyt_empty:
+    en: "No personal game statistics added yet."
+    it: "Le statistiche personali di gioco non sono ancora state aggiunte."
 
-# The dense index. Its filter is the same pure-CSS mechanism as the shelf's,
+# The dense index. Its filter is pure CSS (radio inputs + a :has() selector),
 # and the counts beside it are rendered per filter state at build time.
 everything:
-  lede:
-    en: "Every paper, project, and post, newest first."
-    it: "Ogni articolo, progetto e scritto, dal più recente."
   filter_group_label:
     en: "Filter by type"
     it: "Filtra per tipo"
   filter_all:
     en: "All"
-    it: "Tutti"
+    it: "Tutte"
   entries:
     en: "entries"
     it: "voci"
@@ -353,27 +394,61 @@ everything:
     project_plural:
       en: "Projects"
       it: "Progetti"
-    post_plural:
-      en: "Writing"
-      it: "Scritti"
+    thesis:
+      en: "thesis"
+      it: "tesi"
 
-# Static hosting serves one 404 for the whole domain, so this page is in English
-# and offers the Italian home as a link rather than guessing the reader's language.
+# Static hosting serves one 404 for the whole domain, including every missing
+# /it/ URL, so the page shows both values of each pair, English then Italian,
+# rather than guessing the reader's language. `home_link.it` is the link to the
+# Italian home.
 not_found:
   heading:
     en: "Page not found"
     it: "Pagina non trovata"
   message:
     en: "The link may be out of date, or the page may have moved. Everything on this site is reachable from the home page."
-    it: "Il link potrebbe essere vecchio, oppure la pagina è stata spostata. Tutto il sito è raggiungibile dalla home."
+    it: "Il link potrebbe essere obsoleto, oppure la pagina potrebbe essere stata spostata. Tutto il sito è raggiungibile dalla home."
   home_link:
-    en: "Go to the home page"
-    it: "Vai alla home"
-  other_language:
-    en: "Italiano"
-    it: "English"
+    en: "Home"
+    it: "Home in italiano"
 
 redirect:
   moved:
     en: "This page has moved."
     it: "Questa pagina è stata spostata."
+
+# The exploration map in the footer. `sections` is the set it lists, in this
+# order, and must match SECTIONS in assets/js/exploration.js. English and
+# Italian pages share these refs. Visits are kept in the visitor's own browser,
+# never sent anywhere and never shown; they only choose where "somewhere new"
+# goes.
+exploration:
+  sections:
+    - research
+    - projects
+    - story
+    - shelf
+    - trips
+  title:
+    en: "Explore the site"
+    it: "Esplora il sito"
+  close:
+    en: "Close"
+    it: "Chiudi"
+  suggest:
+    en: "Take me somewhere new"
+    it: "Portami in una sezione nuova"
+  storage_note:
+    en: "Visits are remembered only in this browser, to pick a section you have not opened yet."
+    it: "Le visite restano solo in questo browser e servono a scegliere una sezione che non hai ancora aperto."
+  footer_nav:
+    en: "More pages"
+    it: "Altre pagine"
+
+# The licence line at the foot of every page, after "© <year> <name>.". It
+# carries its own link, so it is rendered raw.
+footer:
+  licence:
+    en: "Text under <a rel=\"license\" href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>; photos all rights reserved; code under the MIT License. Illustrations are public domain; paper figures belong to their authors."
+    it: "Testi con licenza <a rel=\"license\" href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>; foto: tutti i diritti riservati; codice con licenza MIT. Le illustrazioni sono di pubblico dominio; le figure degli articoli appartengono ai rispettivi autori."

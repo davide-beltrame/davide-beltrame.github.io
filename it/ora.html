@@ -1,7 +1,26 @@
 ---
-layout: default
+layout: null
 lang: it
-ref: now
 permalink: /it/ora/
+sitemap: false
 ---
-{% include pages/now.html %}
+{%- comment -%}
+/it/ora/ was the Now page. What it said is now the introduction on the home
+page, so it keeps a stub that sends existing links there, with the canonical
+pointing at the home page.
+{%- endcomment -%}
+{%- assign target = site.data.ui.nav | where: "ref", "home" | first -%}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url={{ '/it/' | relative_url }}">
+    <link rel="canonical" href="{{ '/it/' | absolute_url }}">
+    <meta name="robots" content="noindex, follow">
+    <title>{% include t.html v=site.data.ui.pages.home.title %}</title>
+</head>
+<body>
+    <p>{% include t.html v=site.data.ui.redirect.moved %} <a href="{{ '/it/' | relative_url }}">{% include t.html v=target.label %}</a></p>
+</body>
+</html>

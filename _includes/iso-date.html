@@ -1,0 +1,12 @@
+{%- comment -%}
+A <time> for an ISO date string (YYYY-MM-DD), written out in the page's
+language with the full month name from `ui.labels.months_long`:
+
+  {% include iso-date.html date=summary.as_of %}
+
+renders "3 November 2026" on English pages and "3 novembre 2026" on Italian ones.
+{%- endcomment -%}
+{%- assign _parts = include.date | split: "-" -%}
+{%- assign _months = site.data.ui.labels.months_long[page.lang] | default: site.data.ui.labels.months_long.en -%}
+{%- assign _m = _parts[1] | plus: 0 | minus: 1 -%}
+<time datetime="{{ include.date }}">{{ _parts[2] | plus: 0 }} {{ _months[_m] }} {{ _parts[0] }}</time>{%- comment -%} The tag strips the newline after the element. {%- endcomment -%}

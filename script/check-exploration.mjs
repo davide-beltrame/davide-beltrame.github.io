@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const source = await readFile(new URL('../assets/js/exploration.js', import.meta.url), 'utf8');
+const { SECTIONS, normalizeVisits, readVisits, saveVisits, suggestion } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+assert.deepEqual(normalizeVisits(['home','research','research','everything','unknown']), ['research']);
+assert.deepEqual(normalizeVisits({ research: true }), []);
+let stored = '{invalid';
+const storage = { getItem: () => stored, setItem: (_,value) => { stored=value; } };
+assert.deepEqual(readVisits(storage), []);
+assert.deepEqual(saveVisits(storage,['research','research','shelf']), ['research','shelf']);
+assert.deepEqual(readVisits(storage), ['research','shelf']);
+assert.equal(suggestion(SECTIONS), null);
+assert.equal(suggestion(SECTIONS.slice(1), () => 0), 'research');
+assert.deepEqual(saveVisits(storage, []), []);
+assert.equal(suggestion([], () => 0), 'research');
+assert.throws(() => readVisits({getItem(){throw new Error('denied')}}), /denied/);
+assert.throws(() => saveVisits({setItem(){throw new Error('quota')}}, ['now']), /quota/);
+console.log('Exploration state: deduplication, invalid data, persistence, reset, exhausted suggestions, denied storage: passed');

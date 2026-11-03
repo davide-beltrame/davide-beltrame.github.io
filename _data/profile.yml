@@ -9,23 +9,22 @@
 # attribute, so the link behaves normally. To change it:
 #
 #   python3 -c "print(''.join('&#%d;' % ord(c) for c in 'you@example.com'))"
-#
-# It is also left out of /api/content.json; publishing it there as JSON would
-# undo the point of encoding it here.
 
 name: Davide Beltrame
 
+# The line under his name on the Open Graph cards (assets/img/og-card*.jpg). No
+# page renders it.
 title:
-  en: "Student & researcher in deep learning and AI"
-  it: "Studente e ricercatore in IA e deep learning"
+  en: "MSc in Artificial Intelligence (Computer Science), Bocconi · Research on diffusion models"
+  it: "Laurea magistrale in Artificial Intelligence (Informatica), Bocconi · Ricerca sui diffusion models"
 
-greeting:
-  en: "Hi, I'm Davide!"
-  it: "Ciao, sono Davide!"
-
-about:
-  en: "I'm a student in the <a href=\"https://www.unibocconi.it/en/programs/master-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">MSc in Artificial Intelligence at Bocconi University</a>, where I advise machine-learning projects with <a href=\"https://bsmachinelearning.com\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>. I write for <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> as Editor-in-Chief delegate to AI and New Technologies. <br><br><strong>I'm working on my master's thesis on memorization in diffusion models at the Bocconi Machine Learning &amp; Statistical Physics Lab, advised by Luca Biggio. A paper I co-authored with the Statistical Physics Lab, on biased generalization in diffusion models, was accepted at ICML 2026 as a spotlight (top 2.2% of submissions).</strong>"
-  it: "Sono uno studente della <a href=\"https://www.unibocconi.it/it/corsi-di-studio/master-of-science/artificial-intelligence\" target=\"_blank\" rel=\"noopener noreferrer\">magistrale in Intelligenza Artificiale presso l'Università Bocconi</a>, dove faccio da advisor per progetti di machine learning con <a href=\"https://bsmachinelearning.com\" target=\"_blank\" rel=\"noopener noreferrer\">Bocconi Students for Machine Learning</a>. Scrivo per <a href=\"https://www.consensusrivista.com\" target=\"_blank\" rel=\"noopener noreferrer\">Consensus Rivista</a> come Caporedattore delegato all'AI e alle Nuove Tecnologie. <br><br><strong>Sto lavorando alla tesi magistrale sulla memorizzazione nei modelli di diffusione presso il Bocconi Machine Learning &amp; Statistical Physics Lab, relatore Luca Biggio. Un articolo scritto con lo Statistical Physics Lab, sulla generalizzazione distorta nei modelli di diffusione, è stato accettato a ICML 2026 come spotlight (primo 2.2% delle submission).</strong>"
+# The universities he graduated from, newest first, for the home page's
+# structured data.
+alumni_of:
+  - name: "Bocconi University"
+    url: "https://www.unibocconi.it"
+  - name: "LUISS Guido Carli University"
+    url: "https://www.luiss.it"
 
 # The portrait ships at three widths in webp and jpg. `src` is the fallback and
 # keeps the URL the photo has always had. `displayed` is the CSS box it is drawn
@@ -34,9 +33,9 @@ about:
 # render time; `box` feeds width/height and reserves the space before the image
 # arrives.
 #
-# Regenerate every variant, and both Open Graph cards, from one source with
-# `.agents/tools/build-portrait.py` — the cards embed the photograph, so a new
-# portrait that skips them leaves the old face in every link preview.
+# Regenerate every variant, and both Open Graph cards, from one source: the
+# cards embed the photograph, so a new portrait that skips them leaves the old
+# face in every link preview.
 #
 # Strip EXIF from anything regenerated here. The photo replaced on 2026-08-13
 # arrived carrying an iPhone model, an iOS version, a capture timestamp, an XMP
@@ -45,14 +44,14 @@ portrait:
   src: "/assets/files/davide_beltrame_propic.jpg"
   variants: "/assets/img/portrait"
   widths: [320, 640, 960]
-  displayed: "(max-width: 760px) 116px, 160px"
-  box: 160
+  displayed: "(max-width: 640px) 144px, 240px"
+  box: 240
   alt:
     en: "Davide Beltrame"
     it: "Davide Beltrame"
 
 contact:
-  email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#46;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#64;&#115;&#116;&#117;&#100;&#98;&#111;&#99;&#99;&#111;&#110;&#105;&#46;&#105;&#116;"
+  email_encoded: "&#100;&#97;&#118;&#105;&#100;&#101;&#98;&#101;&#108;&#116;&#114;&#97;&#109;&#101;&#50;&#48;&#48;&#50;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
   github: "https://github.com/davide-beltrame"
   linkedin: "https://www.linkedin.com/in/davide-beltrame"
   # Listed in the structured data as one of his profiles. Not a contact link on
@@ -61,3 +60,4 @@ contact:
   # the identifier, so it is left off.
   scholar: "https://scholar.google.com/citations?user=7hTm8DEAAAAJ"
   cv: "/assets/files/davide_beltrame_cv.pdf"
+

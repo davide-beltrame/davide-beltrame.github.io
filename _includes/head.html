@@ -15,7 +15,7 @@ there is nothing to allow but `'self'`.
 {%- assign og_image = og_image_rel | strip | absolute_url -%}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YbSGakeXGvDYJ4MIPIOF3vt+owHAve8kRHFsDO/R3a4='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-B/VNkujAiBTQ1hPTfURDa8bpdj+eqyPZP65ZdtbwcQk='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
 
 <title>{{ page_title }}</title>
 <meta name="description" content="{{ page_desc }}">
@@ -26,20 +26,13 @@ there is nothing to allow but `'self'`.
 {%- if alt %}
 <link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url | absolute_url }}">
 {%- endif %}
-<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+{%- comment -%} The fallback for other languages is the English version of this same page. {%- endcomment -%}
+{%- if page.lang == "en" or alt == nil %}{% assign x_default = page %}{% else %}{% assign x_default = alt %}{% endif %}
+<link rel="alternate" hreflang="x-default" href="{{ x_default.url | absolute_url }}">
 
 {% include theme-init.html %}
 
-{%- comment -%}
-The Latin subset is the only file either language actually needs — Italian's
-accented vowels sit in Latin-1, inside its range — so it is the one preloaded,
-for both faces. The Extended files cover names outside that range and are
-fetched only if a page uses one, by unicode-range. Measured: no page on the
-site requests either of them today.
-{%- endcomment -%}
-<link rel="preload" href="{{ '/assets/fonts/inter-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ '/assets/fonts/newsreader-latin-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20261103' | relative_url }}">
 
 <meta property="og:type" content="{% if page.ref == 'home' %}profile{% else %}website{% endif %}">
 <meta property="og:site_name" content="{{ site.data.profile.name }}">
@@ -66,21 +59,23 @@ site requests either of them today.
 <meta name="twitter:image:alt" content="{% include t.html v=og.image_alt %}">
 
 {%- comment -%}
-The PNGs are declared and the 15 kB .ico is not, so a browser fetches 2.7 kB
-instead. `/favicon.ico` stays in place for anything that asks for it by convention
-rather than by declaration.
+The DB monogram. Browsers that read SVG icons take `favicon.svg`; the .ico
+(16, 32 and 48 px) is for the rest and for anything that asks for
+`/favicon.ico` by convention. `sizes="32x32"` on the .ico stops Chrome from
+choosing it over the SVG. iOS takes the 180 px touch icon.
 {%- endcomment -%}
-<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/files/favicon/davide_beltrame_favicon-32x32.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/files/favicon/davide_beltrame_favicon-16x16.png' | relative_url }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/files/favicon/davide_beltrame_apple-touch-icon.png' | relative_url }}">
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
+<link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
 <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 {%- if page.ref == 'home' %}
 {%- comment -%}
-A `Person`, on the home page only, so there is one entity rather than one per URL.
-`sameAs` lists only profiles that have been confirmed to exist. An ORCID entry
-belongs here as soon as that identifier is known — an invented one is worse than
-an absent one.
+A `ProfilePage` whose `mainEntity` is the `Person`, on the home page only, so
+there is one entity rather than one per URL. `alumniOf` lists the universities
+he graduated from (`profile.yml`). `sameAs` lists only profiles that have been
+confirmed to exist. An ORCID entry belongs here as soon as that identifier is
+known — an invented one is worse than an absent one.
 
 A `application/ld+json` block is a data block, not an executable script, so the
 `script-src` above does not apply to it. Verified in a browser console, not assumed.
@@ -88,22 +83,30 @@ A `application/ld+json` block is a data block, not an executable script, so the
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": {{ site.data.profile.name | jsonify }},
+  "@type": "ProfilePage",
   "url": {{ page.url | absolute_url | jsonify }},
-  "image": {{ site.data.profile.portrait.src | absolute_url | jsonify }},
-  "description": {{ page_desc | strip | jsonify }},
-  "affiliation": {
-    "@type": "CollegeOrUniversity",
-    "name": "Bocconi University",
-    "url": "https://www.unibocconi.it"
-  },
-  "knowsLanguage": ["en", "it"],
-  "sameAs": [
-    {{ site.data.profile.contact.github | jsonify }},
-    {{ site.data.profile.contact.linkedin | jsonify }},
-    {{ site.data.profile.contact.scholar | jsonify }}
-  ]
+  "mainEntity": {
+    "@type": "Person",
+    "name": {{ site.data.profile.name | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
+    "image": {{ site.data.profile.portrait.src | absolute_url | jsonify }},
+    "description": {{ page_desc | strip | jsonify }},
+    "alumniOf": [
+      {%- for school in site.data.profile.alumni_of %}
+      {
+        "@type": "CollegeOrUniversity",
+        "name": {{ school.name | jsonify }},
+        "url": {{ school.url | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+    ],
+    "knowsLanguage": ["en", "it"],
+    "sameAs": [
+      {{ site.data.profile.contact.github | jsonify }},
+      {{ site.data.profile.contact.linkedin | jsonify }},
+      {{ site.data.profile.contact.scholar | jsonify }}
+    ]
+  }
 }
 </script>
 {%- endif %}

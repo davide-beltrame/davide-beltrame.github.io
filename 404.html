@@ -5,15 +5,22 @@ ref: notfound
 permalink: /404.html
 sitemap: false
 ---
+{%- comment -%}
+The one 404 for the whole domain, /it/ included, so it says everything in both
+languages: the English value of each string, then the Italian one marked
+`lang="it"`.
+{%- endcomment -%}
+{% assign nf = site.data.ui.not_found %}
 <div class="page-head">
-    <h1 class="page-title">{% include t.html v=site.data.ui.not_found.heading %}</h1>
+    <h1 class="page-title">{{ nf.heading.en | escape }} · <span lang="it">{{ nf.heading.it | escape }}</span></h1>
 </div>
 
 <section class="band">
-    <p class="notfound-message">{% include t.html v=site.data.ui.not_found.message %}</p>
+    <p class="notfound-message">{{ nf.message.en | escape }}</p>
+    <p class="notfound-message" lang="it">{{ nf.message.it | escape }}</p>
     <p class="notfound-links">
-        <a href="{{ '/' | relative_url }}">{% include t.html v=site.data.ui.not_found.home_link %}</a>
+        <a href="{{ '/' | relative_url }}">{{ nf.home_link.en | escape }}</a>
         <span aria-hidden="true">·</span>
-        <a href="{{ '/it/' | relative_url }}" lang="it" hreflang="it">{% include t.html v=site.data.ui.not_found.other_language %}</a>
+        <a href="{{ '/it/' | relative_url }}" lang="it" hreflang="it">{{ nf.home_link.it | escape }}</a>
     </p>
 </section>

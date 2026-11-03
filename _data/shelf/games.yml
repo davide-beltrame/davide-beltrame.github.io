@@ -1,15 +1,9 @@
-# NYT Games: a lightweight streak/score callout, closer in spirit to the
-# Duolingo panel than to a title/year/note shelf entry — decided in
-# `.agents/dispatch/07-shelf.md`. Tied to the Wordle Solver project, already
-# listed under Projects (`project_url` below).
+# NYT Games: a callout closer in spirit to the Duolingo panel than to a
+# title/year/note shelf entry. Tied to the Wordle Solver project, already listed
+# under Projects (`project_url` below).
 #
-# streak/score are his personal NYT Games numbers, not the solver's — left
-# null until he supplies real ones. Never invented; the page shows a
-# "coming soon" notice while both are null.
+# His Wordle and Connections numbers live in `nyt_results.yml`, written by
+# script/nyt-games.rb from NYT's share text and Statistics screen. They are his
+# results, not the solver's, and the page shows only that file's summary, with
+# its date. While it has none, the page says no statistics have been added.
 project_url: "https://github.com/davide-beltrame/wordle-solver"
-streak: null
-score: null
-data_last_updated: null
-data_last_updated_display:
-  en: null
-  it: null

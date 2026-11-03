@@ -1,0 +1,25 @@
+{%- comment -%}
+A <time> built from a timeline `date` (DD/MM/YYYY, MM/YYYY or YYYY), with short
+month names from `ui.labels.months` in the page's language. Usage:
+
+  {% include event-date.html date=event.date %}
+  {% include event-date.html date=event.date long=true %}
+
+`long` is Story's form: the full month name from `ui.labels.months_long` and no
+year, since the year heads the group ("23 October", "23 ottobre").
+{%- endcomment -%}
+{%- assign parts = include.date | split: "/" -%}
+{%- if include.long -%}
+{%- assign months = site.data.ui.labels.months_long[page.lang] | default: site.data.ui.labels.months_long.en -%}
+{%- else -%}
+{%- assign months = site.data.ui.labels.months[page.lang] | default: site.data.ui.labels.months.en -%}
+{%- endif -%}
+{%- if parts.size == 3 -%}
+{%- assign m = parts[1] | plus: 0 | minus: 1 -%}
+<time datetime="{{ parts[2] }}-{{ parts[1] }}-{{ parts[0] }}">{{ parts[0] | plus: 0 }} {{ months[m] }}{% unless include.long %} {{ parts[2] }}{% endunless %}</time>
+{%- elsif parts.size == 2 -%}
+{%- assign m = parts[0] | plus: 0 | minus: 1 -%}
+<time datetime="{{ parts[1] }}-{{ parts[0] }}">{{ months[m] }}{% unless include.long %} {{ parts[1] }}{% endunless %}</time>
+{%- else -%}
+<time datetime="{{ include.date }}">{{ include.date }}</time>
+{%- endif -%}

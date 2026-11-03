@@ -1,0 +1,14 @@
+# Same rules as `books.yml`. Titles are kept in their original English form in
+# both languages.
+items:
+  - title: "Star Wars: Knights of the Old Republic I & II"
+    link: "https://en.wikipedia.org/wiki/Star_Wars:_Knights_of_the_Old_Republic"
+    creator: "BioWare, Obsidian Entertainment"
+    year: "2003–04"
+  - title: "The Legend of Zelda: Breath of the Wild"
+    link: "https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild"
+    creator: "Nintendo"
+    year: "2017"
+    note:
+      en: "Recently playing this as a newcomer to both Zelda and Nintendo games."
+      it: "Ci sto giocando da poco: è il mio primo incontro con Zelda e con i giochi Nintendo."

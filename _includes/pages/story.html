@@ -3,59 +3,63 @@ Year groups and event order come from `_data/timeline.yml` as written. There is
 no scroll-reveal animation: the previous one re-hid every event on each render
 and never fired for events already on screen, which meant the timeline could
 render as an empty page.
+
+An event's date line is its `display` where it has one (a month, or a range),
+otherwise the day and month built from `date`; a year-only event has none.
+
+A year's MSc exams (`kind: msc_exam`) are folded into one closed <details> after
+its other events, each exam with its date and course, so the milestones are what
+the page reads as. The exams stay in the HTML and open without JavaScript.
 {%- endcomment -%}
 {% include page-head.html title=site.data.ui.sections.story %}
+{% assign trip_pages = site.pages | where: "lang", page.lang | where: "ref", "trips" %}{% assign trips_page = trip_pages | first %}
 
 <section class="band">
     <div class="years">
         {%- for group in site.data.timeline.years %}
+        {%- assign exams = group.events | where: "kind", "msc_exam" %}
         <div class="year">
             <h2 class="year-label">{{ group.year }}</h2>
             <div>
                 {%- for event in group.events %}
+                {%- if event.kind == "msc_exam" %}{% continue %}{% endif %}
+                {%- assign date_parts = event.date | split: "/" %}
                 <div class="event">
                     {%- if event.display %}
                     <div class="event-date">{% include t.html v=event.display %}</div>
+                    {%- elsif date_parts.size == 3 %}
+                    <div class="event-date">{% include event-date.html date=event.date long=true %}</div>
                     {%- endif %}
+                    {%- if event.photo_trip %}
+                    {%- assign photo_trip = site.data.trips.items | where: "id", event.photo_trip | first %}
+                    <details class="event-photo">
+                        <summary class="event-title">{% include t.html v=event.title %}</summary>
+                        <div class="event-photo-body">
+                            {% include media.html image=photo_trip.photo expand=true sizes="(max-width: 640px) 100vw, 480px" %}
+                            <p><a href="{{ trips_page.url | relative_url }}#{{ event.photo_trip | escape }}">{% include t.html v=site.data.ui.labels.trip_photos %} →</a></p>
+                        </div>
+                    </details>
+                    {%- else %}
                     <div class="event-title">{% include t.html v=event.title %}</div>
+                    {%- endif %}
                     {%- if event.description %}
                     <div class="event-desc">{% include t.html v=event.description %}</div>
                     {%- endif %}
                 </div>
                 {%- endfor %}
+                {%- if exams.size > 0 %}
+                <details class="event exam-group">
+                    <summary>{{ exams.size }} {% if exams.size == 1 %}{% include t.html v=site.data.ui.labels.msc_exam %}{% else %}{% include t.html v=site.data.ui.labels.msc_exams %}{% endif %}</summary>
+                    <ul class="exam-list">
+                        {%- for exam in exams %}
+                        <li><span class="exam-date">{% include event-date.html date=exam.date long=true %}</span><span><span{% include lang-attr.html v=exam.title %}>{% include t.html v=exam.title %}</span>{% if exam.description %}<span class="exam-note">{% include t.html v=exam.description %}</span>{% endif %}</span></li>
+                        {%- endfor %}
+                    </ul>
+                </details>
+                {%- endif %}
             </div>
         </div>
         {%- endfor %}
     </div>
 
-    {%- assign coursework_count = 0 -%}
-    {%- for group in site.data.timeline.coursework -%}
-    {%- assign coursework_count = coursework_count | plus: group.courses.size -%}
-    {%- endfor -%}
-    {%- if coursework_count > 0 %}
-    <details class="panel">
-        <summary class="panel-summary">
-            <span>{% include t.html v=site.data.ui.labels.coursework %} ({{ coursework_count }})</span>
-            {% include icon.html name="chevron-down" %}
-        </summary>
-        <div class="panel-body">
-            {%- for group in site.data.timeline.coursework %}
-            <div class="coursework-year">
-                <div class="coursework-year-label">{{ group.academic_year }}</div>
-                <ul class="coursework-list">
-                    {%- for course in group.courses %}
-                    <li class="coursework-item">
-                        <span class="coursework-name">
-                            {{ course.name | escape }}
-                            {%- if course.note %} <span class="coursework-note">({% include t.html v=course.note %})</span>{%- endif -%}
-                        </span>
-                        <span class="coursework-date">{% include t.html v=course.display %}</span>
-                    </li>
-                    {%- endfor %}
-                </ul>
-            </div>
-            {%- endfor %}
-        </div>
-    </details>
-    {%- endif %}
 </section>

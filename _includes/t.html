@@ -2,7 +2,7 @@
 Resolve a bilingual value for the current page's language.
 
   {% include t.html v=paper.title %}
-  {% include t.html v=site.data.profile.about raw=true %}
+  {% include t.html v=role.description raw=true %}
 
 `v` is either an {en, it} pair or a plain string. A plain string passes through
 unchanged, so values that are the same in both languages — repository names,
@@ -11,7 +11,7 @@ to the English. It never renders a key, an empty tag, or the literal `TODO`.
 
 Output is escaped, because most values are prose that may contain an ampersand
 or a quote and several land in an attribute. Pass `raw=true` for the few values
-that carry deliberate markup — the bio and its links are the only one today.
+that carry deliberate markup: the home introduction, and the role descriptions on /research/.
 {%- endcomment -%}
 {%- assign _v = include.v -%}
 {%- assign _l = page.lang | default: "en" -%}

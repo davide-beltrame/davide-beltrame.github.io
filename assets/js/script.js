@@ -1,80 +1,50 @@
 // Progressive enhancement only. Every page ships complete in its HTML: nothing
 // here makes text appear. Content rendering happens at build time, the language
-// switch is a link, and the two disclosures are native <details> elements.
+// switch is a link, and the section links are always visible.
 //
 // The theme is applied before first paint by the inline script in the document
-// head; this file only handles the toggle and follows the system preference
-// while no explicit choice has been made.
+// head; this file reveals the toggle, handles it, and follows the system
+// preference while no explicit choice has been made.
 
-// ===== THEME =====
-const THEME_KEY = 'theme';
-
-function initTheme() {
-    const root = document.documentElement;
-
-    document.querySelectorAll('.theme-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', next);
-            try {
-                localStorage.setItem(THEME_KEY, next);
-            } catch (e) {
-                /* private browsing: the toggle still works for this page view */
-            }
-        });
-    });
-
-    // Follow the system preference until the visitor picks a theme themselves.
-    if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            let stored = null;
-            try {
-                stored = localStorage.getItem(THEME_KEY);
-            } catch (err) {
-                /* ignore */
-            }
-            if (stored !== 'light' && stored !== 'dark') {
-                root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-            }
-        });
-    }
+const root = document.documentElement;
+let chosenTheme = null;
+// Storage can be blocked; the toggle then works for this page view only.
+try { chosenTheme = localStorage.getItem('theme'); } catch {}
+function updateThemeControls() {
+  document.querySelectorAll('.theme-toggle').forEach(button => {
+    button.hidden = false;
+    button.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+  });
 }
-
-// ===== MOBILE MENU =====
-function initHamburger() {
-    const btn = document.getElementById('hamburgerBtn');
-    const menu = document.getElementById('mobileMenu');
-    if (!btn || !menu) return;
-
-    function setState(open) {
-        btn.classList.toggle('open', open);
-        menu.classList.toggle('open', open);
-        // The page behind the menu must not scroll under it.
-        document.body.classList.toggle('menu-open', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        const label = open ? btn.dataset.labelClose : btn.dataset.labelOpen;
-        if (label) btn.setAttribute('aria-label', label);
-    }
-
-    btn.addEventListener('click', () => setState(!btn.classList.contains('open')));
-
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => setState(false));
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) setState(false);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && btn.classList.contains('open')) {
-            setState(false);
-            btn.focus();
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    initHamburger();
+updateThemeControls();
+document.querySelectorAll('.theme-toggle').forEach(button => button.addEventListener('click', () => {
+  chosenTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  root.dataset.theme = chosenTheme;
+  try { localStorage.setItem('theme', chosenTheme); } catch {}
+  updateThemeControls();
+}));
+// Follow the system preference until the visitor picks a theme themselves.
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+  if (chosenTheme !== 'light' && chosenTheme !== 'dark') {
+    root.dataset.theme = event.matches ? 'dark' : 'light';
+    updateThemeControls();
+  }
 });
+// Trip photos remain ordinary image links without dialog support or JavaScript.
+const photoDialog = document.querySelector('.photo-dialog');
+if (photoDialog && typeof photoDialog.showModal === 'function') {
+  const fullPhoto = photoDialog.querySelector('img');
+  let photoTrigger = null;
+  document.querySelectorAll('.photo-expand').forEach(link => link.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    photoTrigger = link;
+    fullPhoto.src = link.href;
+    fullPhoto.alt = link.querySelector('img').alt;
+    photoDialog.showModal();
+  }));
+  photoDialog.addEventListener('click', event => {
+    if (event.target === photoDialog) photoDialog.close();
+  });
+  photoDialog.addEventListener('close', () => photoTrigger?.focus({ preventScroll: true }));
+}

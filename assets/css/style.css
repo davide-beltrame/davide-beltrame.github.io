@@ -999,9 +999,9 @@ a.research-figure {
 }
 
 /* NYT Games: Wordle and Connections side by side from 861 px, each with its
-   streak, one summary line and, for Wordle, the guess distribution. The bars
-   are inline SVG sized by a width attribute, because the CSP blocks inline
-   styles; the count beside each bar carries the number. */
+   games played, one summary line and its guess or mistake distribution. The
+   bars are inline SVG sized by a width attribute, because the CSP blocks
+   inline styles; the count beside each bar carries the number. */
 .nyt-summary {
   margin-top: 6px;
 }

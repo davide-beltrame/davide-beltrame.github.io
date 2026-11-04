@@ -1,0 +1,19 @@
+{%- comment -%}
+One NYT distribution chart: a row per count, labelled from `start`.
+
+  {% include nyt-distribution.html counts=wordle.distribution start=1 caption=shelf_labels.nyt_distribution %}
+
+The bars are inline SVG, whose width attribute the CSP allows where an inline
+style would be blocked; the count beside each bar is the data, and the bars are
+hidden from screen readers. Renders nothing when every count is zero.
+{%- endcomment -%}
+{%- assign _most = include.counts | sort | last -%}
+{%- if _most > 0 %}
+<table class="nyt-distribution">
+  <caption>{% include t.html v=include.caption %}</caption>
+  {%- for count in include.counts %}
+  {%- assign _width = count | times: 100 | divided_by: _most %}{% if _width < 1 %}{% assign _width = 1 %}{% endif %}
+  <tr><th scope="row">{{ forloop.index0 | plus: include.start }}</th><td class="nyt-count">{% include number.html n=count %}</td><td class="nyt-bar">{% if count > 0 %}<svg aria-hidden="true" focusable="false"><rect width="{{ _width }}%" height="100%" rx="3"/><rect width="{{ _width | divided_by: 2 }}%" height="100%"/></svg>{% endif %}</td></tr>
+  {%- endfor %}
+</table>
+{%- endif -%}

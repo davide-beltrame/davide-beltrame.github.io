@@ -35,11 +35,11 @@
 # --distribution is the six Wordle bars, 1 to 6 guesses, and is required.
 # --mistakes is the Connections mistake chart, 0 to 3 mistakes (or 0 to 4, where
 # 4 is the losses). Without it, --win-pct is required, --perfect may give the
-# perfect puzzles, and the average number of mistakes is left out. The
-# statistics are taken to include the puzzle of --date; if they were read before
-# that day's game, pass --puzzle with the previous day's number. Results up to
-# the baseline's puzzle stay in the file but are not counted again. A new
-# baseline replaces the old one.
+# perfect puzzles, and the average number of mistakes and the mistake chart are
+# left out. The statistics are taken to include the puzzle of --date; if they
+# were read before that day's game, pass --puzzle with the previous day's
+# number. Results up to the baseline's puzzle stay in the file but are not
+# counted again. A new baseline replaces the old one.
 #
 # A streak runs over consecutive puzzle numbers, so a game that was played but
 # not logged breaks it here even though NYT's own count goes on. Logging the
@@ -82,7 +82,7 @@ BASELINE_KEYS = {
 }.freeze
 SUMMARY_KEYS = {
   'wordle' => %w[as_of last_puzzle played won win_pct current_streak max_streak mean_guesses distribution],
-  'connections' => %w[as_of last_puzzle played won win_pct current_streak max_streak perfect mean_mistakes]
+  'connections' => %w[as_of last_puzzle played won win_pct current_streak max_streak perfect mean_mistakes mistakes]
 }.freeze
 
 HEADER = <<~YAML.freeze
@@ -339,6 +339,7 @@ def summarise(game, entry)
     end
     summary['perfect'] = perfect
     summary['mean_mistakes'] = mean
+    summary['mistakes'] = hist
   end
   summary
 end

@@ -45,9 +45,8 @@ summaries that script/nyt-games.rb writes to `nyt_results.yml`.
 <section class="band" id="nyt-games">
   <h2 class="section-title sticky-title"><span>{% include t.html v=site.data.ui.sections.nyt_games %}</span></h2>
   {%- comment -%}
-  Only the stored summaries render. The Wordle bars are inline SVG, whose width
-  attribute the CSP allows where an inline style would be blocked; the counts
-  beside them are the data, and the bars are hidden from screen readers.
+  Only the stored summaries render: games played, one summary line, and the
+  guess or mistake distribution as NYT's Statistics screen shows it.
   {%- endcomment -%}
   {%- assign nyt = site.data.shelf.nyt_results -%}
   {%- assign wordle = nyt.wordle.summary -%}
@@ -56,32 +55,22 @@ summaries that script/nyt-games.rb writes to `nyt_results.yml`.
   {%- if wordle or connections %}
   <div class="nyt-games">
     {%- if wordle %}
-    {%- if wordle.current_streak == 1 %}{% assign streak_label = shelf_labels.nyt_streak.one %}{% else %}{% assign streak_label = shelf_labels.nyt_streak.other %}{% endif %}
     {%- if wordle.played == 1 %}{% assign played_label = shelf_labels.nyt_played.one %}{% else %}{% assign played_label = shelf_labels.nyt_played.other %}{% endif %}
     <section class="nyt-game" id="wordle">
       <h3 class="book-list-heading"{% include lang-attr.html v="Wordle" %}>Wordle</h3>
-      <p class="stat-line"><span class="stat-number">{% include number.html n=wordle.current_streak %}</span> {% include t.html v=streak_label %}</p>
-      <p class="nyt-summary">{% include number.html n=wordle.played %} {% include t.html v=played_label %}, {{ wordle.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=wordle.max_streak %}{% if wordle.mean_guesses %}, {{ wordle.mean_guesses | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_guesses %}{% endif %}.</p>
-      {%- assign most = wordle.distribution | sort | last %}
-      {%- if most > 0 %}
-      <table class="nyt-distribution">
-        <caption>{% include t.html v=shelf_labels.nyt_distribution %}</caption>
-        {%- for count in wordle.distribution %}
-        {%- assign width = count | times: 100 | divided_by: most %}{% if width < 1 %}{% assign width = 1 %}{% endif %}
-        <tr><th scope="row">{{ forloop.index }}</th><td class="nyt-count">{% include number.html n=count %}</td><td class="nyt-bar">{% if count > 0 %}<svg aria-hidden="true" focusable="false"><rect width="{{ width }}%" height="100%" rx="3"/><rect width="{{ width | divided_by: 2 }}%" height="100%"/></svg>{% endif %}</td></tr>
-        {%- endfor %}
-      </table>
-      {%- endif %}
+      <p class="stat-line"><span class="stat-number">{% include number.html n=wordle.played %}</span> {% include t.html v=played_label %}</p>
+      <p class="nyt-summary">{{ wordle.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=wordle.max_streak %}{% if wordle.mean_guesses %}, {{ wordle.mean_guesses | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_guesses %}{% endif %}.</p>
+      {%- include nyt-distribution.html counts=wordle.distribution start=1 caption=shelf_labels.nyt_distribution %}
       <p class="footnote">{% include t.html v=shelf_labels.nyt_as_of %} {% include iso-date.html date=wordle.as_of %} (Wordle {% include number.html n=wordle.last_puzzle %}).</p>
     </section>
     {%- endif %}
     {%- if connections %}
-    {%- if connections.current_streak == 1 %}{% assign streak_label = shelf_labels.nyt_streak.one %}{% else %}{% assign streak_label = shelf_labels.nyt_streak.other %}{% endif %}
     {%- if connections.played == 1 %}{% assign played_label = shelf_labels.nyt_played.one %}{% else %}{% assign played_label = shelf_labels.nyt_played.other %}{% endif %}
     <section class="nyt-game" id="connections">
       <h3 class="book-list-heading"{% include lang-attr.html v="Connections" %}>Connections</h3>
-      <p class="stat-line"><span class="stat-number">{% include number.html n=connections.current_streak %}</span> {% include t.html v=streak_label %}</p>
-      <p class="nyt-summary">{% include number.html n=connections.played %} {% include t.html v=played_label %}, {{ connections.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=connections.max_streak %}{% if connections.perfect %}, {% include number.html n=connections.perfect %} {% include t.html v=shelf_labels.nyt_perfect %}{% endif %}{% if connections.mean_mistakes %}, {{ connections.mean_mistakes | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_mistakes %}{% endif %}.</p>
+      <p class="stat-line"><span class="stat-number">{% include number.html n=connections.played %}</span> {% include t.html v=played_label %}</p>
+      <p class="nyt-summary">{{ connections.win_pct }}% {% include t.html v=shelf_labels.nyt_won %}, {% include t.html v=shelf_labels.nyt_longest %} {% include number.html n=connections.max_streak %}{% if connections.perfect %}, {% include number.html n=connections.perfect %} {% include t.html v=shelf_labels.nyt_perfect %}{% endif %}{% if connections.mean_mistakes %}, {{ connections.mean_mistakes | append: "" | replace: ".", decimal }} {% include t.html v=shelf_labels.nyt_mean_mistakes %}{% endif %}.</p>
+      {%- if connections.mistakes %}{% include nyt-distribution.html counts=connections.mistakes start=0 caption=shelf_labels.nyt_mistake_distribution %}{% endif %}
       <p class="footnote">{% include t.html v=shelf_labels.nyt_as_of %} {% include iso-date.html date=connections.as_of %} (Connections #{% include number.html n=connections.last_puzzle %}).</p>
     </section>
     {%- endif %}

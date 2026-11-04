@@ -308,20 +308,13 @@ shelf:
   # NYT Games. Every number comes from the summary in
   # `_data/shelf/nyt_results.yml`, written by script/nyt-games.rb, and is shown
   # with the date it was true. `one` is used when the number is 1.
-  nyt_streak:
-    one:
-      en: "win in a row"
-      it: "vittoria di fila"
-    other:
-      en: "wins in a row"
-      it: "vittorie di fila"
   nyt_played:
     one:
-      en: "game"
-      it: "partita"
+      en: "game played"
+      it: "partita giocata"
     other:
-      en: "games"
-      it: "partite"
+      en: "games played"
+      it: "partite giocate"
   nyt_won:
     en: "won"
     it: "vinte"
@@ -340,6 +333,10 @@ shelf:
   nyt_distribution:
     en: "Guess distribution"
     it: "Distribuzione dei tentativi"
+  # Rows 0 to 4; four mistakes is a lost game.
+  nyt_mistake_distribution:
+    en: "Mistake distribution"
+    it: "Distribuzione degli errori"
   # Followed by the date of the latest result counted and its puzzle number.
   nyt_as_of:
     en: "From my NYT results, up to"

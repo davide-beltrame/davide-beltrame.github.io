@@ -12,43 +12,44 @@
 
 wordle:
   baseline:
-    date: "2026-11-03"
-    puzzle: 1963
-    played: 392
-    won: 383
-    current_streak: 1
+    date: "2026-11-04"
+    puzzle: 1964
+    played: 393
+    won: 384
+    current_streak: 2
     max_streak: 52
-    distribution: [0, 16, 86, 155, 91, 35]
+    distribution: [0, 16, 86, 156, 91, 35]
   results: []
   summary:
-    as_of: "2026-11-03"
-    last_puzzle: 1963
-    played: 392
-    won: 383
+    as_of: "2026-11-04"
+    last_puzzle: 1964
+    played: 393
+    won: 384
     win_pct: 98
-    current_streak: 1
+    current_streak: 2
     max_streak: 52
     mean_guesses: 4.1
-    distribution: [0, 16, 86, 155, 91, 35]
+    distribution: [0, 16, 86, 156, 91, 35]
 
 connections:
   baseline:
-    date: "2026-11-03"
-    puzzle: 1241
-    played: 243
-    won: 141
-    current_streak: 1
+    date: "2026-11-04"
+    puzzle: 1242
+    played: 244
+    won: 142
+    current_streak: 2
     max_streak: 12
     perfect: 61
-    mistakes: [61, 42, 16, 22, 102]
+    mistakes: [61, 43, 16, 22, 102]
   results: []
   summary:
-    as_of: "2026-11-03"
-    last_puzzle: 1241
-    played: 243
-    won: 141
+    as_of: "2026-11-04"
+    last_puzzle: 1242
+    played: 244
+    won: 142
     win_pct: 58
-    current_streak: 1
+    current_streak: 2
     max_streak: 12
     perfect: 61
     mean_mistakes: 2.3
+    mistakes: [61, 43, 16, 22, 102]

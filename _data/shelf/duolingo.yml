@@ -8,12 +8,12 @@
 # he is taking now carries `current: true`.
 
 username: "davide1729"
-current_streak: 1438
-total_xp: 166136
-data_last_updated: "2026-10-15"
+current_streak: 1458
+total_xp: 166662
+data_last_updated: "2026-11-04"
 data_last_updated_display:
-  en: "15 October 2026"
-  it: "15 ottobre 2026"
+  en: "4 November 2026"
+  it: "4 novembre 2026"
 languages:
   - name:
       en: "French"
@@ -28,14 +28,14 @@ languages:
       it: "Francese (dall’italiano)"
     xp: 5668
   - name:
+      en: "Chinese (Simplified)"
+      it: "Cinese semplificato"
+    xp: 4420
+    current: true
+  - name:
       en: "Spanish"
       it: "Spagnolo"
     xp: 4208
-  - name:
-      en: "Chinese (Simplified)"
-      it: "Cinese semplificato"
-    xp: 3894
-    current: true
   - name:
       en: "German"
       it: "Tedesco"

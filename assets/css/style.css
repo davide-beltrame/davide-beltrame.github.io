@@ -446,7 +446,8 @@ a.research-figure {
 }
 
 /* Titles that are links read as titles, and underline on hover. External
-   links end in ↗ and internal ones in →, everywhere. */
+   links end in ↗ and internal ones in →, everywhere. Every ↗ is followed by
+   U+FE0E, which asks for the text glyph: without it iOS draws an emoji. */
 .title-link, .entry-title a, .project-title a, .idx-title a, .shelf-item-title a {
   color: var(--text);
   text-decoration: none;

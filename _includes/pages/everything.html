@@ -101,13 +101,13 @@ links to that paper's entry on /research/, and its `where` fills the Where cell.
                             {%- if kind == "thesis" %}{% assign title_v = item.thesis.title %}{% else %}{% assign title_v = item.title %}{% endif %}
                             <div class="idx-title"{% include lang-attr.html v=title_v %}>
                                 {%- if kind == "paper" -%}
-                                <a href="{{ item.venue_link | default: item.link }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+                                <a href="{{ item.venue_link | default: item.link }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
                                 {%- elsif kind == "thesis" -%}
                                 <a href="{{ research_page.url | relative_url }}#{{ item.id | escape }}">{{ item.thesis.title | escape }}&nbsp;<span class="arrow" aria-hidden="true">→</span></a>
                                 {%- elsif item.paper -%}
                                 <a href="{{ research_page.url | relative_url }}#{{ item.paper | escape }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">→</span></a>
                                 {%- else -%}
-                                <a href="{{ item.url }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+                                <a href="{{ item.url }}">{% include t.html v=item.title %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
                                 {%- endif -%}
                             </div>
                             <div class="idx-sub">

@@ -23,7 +23,7 @@ the page's language, with an inward arrow, instead of to an external `url`.
                 {%- if project.paper %}
                 <a href="{{ research_page.url | relative_url }}#{{ project.paper | escape }}">{% include t.html v=project.title %}&nbsp;<span class="arrow" aria-hidden="true">→</span></a>
                 {%- else %}
-                <a href="{{ project.url }}">{% include t.html v=project.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+                <a href="{{ project.url }}">{% include t.html v=project.title %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
                 {%- endif %}
             </h2>
             {%- if project.collaborative %}

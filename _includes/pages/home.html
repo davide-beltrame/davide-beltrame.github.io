@@ -40,7 +40,7 @@ and status, and links to the paper and code. The full entries stay on
     {%- elsif news_href == nil -%}
     {%- assign news_href = story_page.url | relative_url -%}
     {%- endif %}
-    <li>{% include event-date.html date=event.date %}<a href="{{ news_href | escape }}">{% include t.html v=event.title %}&nbsp;<span class="arrow" aria-hidden="true">{% if event.link.url %}↗{% else %}→{% endif %}</span></a></li>
+    <li>{% include event-date.html date=event.date %}<a href="{{ news_href | escape }}">{% include t.html v=event.title %}&nbsp;<span class="arrow" aria-hidden="true">{% if event.link.url %}↗&#xFE0E;{% else %}→{% endif %}</span></a></li>
     {%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor %}
   </ul>
   <a class="news-more" href="{{ story_page.url | relative_url }}">{% include t.html v=site.data.ui.labels.full_story %} →</a>
@@ -52,9 +52,9 @@ and status, and links to the paper and code. The full entries stay on
       {%- assign primary = paper.venue_link | default: paper.link -%}
       {%- assign preprint_label = paper.preprint_label | default: site.data.ui.labels.preprint -%}
       {%- if paper.figure %}<a class="research-figure" href="{{ primary }}" tabindex="-1" aria-hidden="true">{% include photo.html photo=paper.figure sizes="(max-width: 640px) 100vw, 540px" %}</a>{% endif %}
-      <h3{% include lang-attr.html v=paper.title %}><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h3>
+      <h3{% include lang-attr.html v=paper.title %}><a class="title-link" href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a></h3>
       <p class="preview-venue">{{ paper.venue | escape }}{% if paper.badge %} · {% include t.html v=paper.badge %}{% endif %}</p>
-      <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>{% elsif paper.code_notice %}<span>{% include t.html v=paper.code_notice %}</span>{% endif %}</div>
+      <div class="entry-links"><a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>{% if paper.code %}<a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>{% elsif paper.code_notice %}<span>{% include t.html v=paper.code_notice %}</span>{% endif %}</div>
     </article>{% endfor %}
   </div>
 </section>

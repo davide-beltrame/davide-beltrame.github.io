@@ -26,7 +26,7 @@ data stays exactly as published.
     <div>
         <h3 class="entry-title"{% include lang-attr.html v=paper.title %}>
             {%- if primary and primary != "" -%}
-            <a href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            <a href="{{ primary }}">{% include t.html v=paper.title %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
             {%- else -%}
             {% include t.html v=paper.title %}
             {%- endif -%}
@@ -52,15 +52,15 @@ data stays exactly as published.
         {%- if paper.link or paper.code %}
         <div class="entry-links">
             {%- if paper.link and paper.link != "" %}
-            <a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            <a href="{{ paper.link }}">{% include t.html v=preprint_label %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
             {%- endif %}
             {%- if paper.code and paper.code != "" %}
-            <a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            <a href="{{ paper.code }}">{% include t.html v=site.data.ui.labels.code %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
             {%- elsif paper.code_notice %}
             <span>{% include t.html v=paper.code_notice %}</span>
             {%- endif %}
             {%- if paper.poster %}
-            <a href="{{ paper.poster.url | relative_url }}">{% include t.html v=paper.poster.label %}&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+            <a href="{{ paper.poster.url | relative_url }}">{% include t.html v=paper.poster.label %}&nbsp;<span class="arrow" aria-hidden="true">↗&#xFE0E;</span></a>
             {%- endif %}
         </div>
         {%- endif %}
